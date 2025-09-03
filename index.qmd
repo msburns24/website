@@ -1,7 +1,15 @@
 ---
-title: "website"
+title: Matthew Burns
 ---
 
-This is a Quarto website.
+Welcome to my Quarto website! I decided to start this as a way to showcase my
+data science projects, but found it a great way to share insights, tips, and
+other helpful information related to data science.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Projects
+
+- [Titanic][1]
+
+<!-- References -->
+
+[1]: /projects/titanic.html
