@@ -68,5 +68,68 @@
     "title": "Matthew Burns",
     "section": "Projects",
     "text": "Projects\n\nTitanic"
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "The Notebook",
+    "section": "",
+    "text": "Data Lifecycle 101\n\n\nHow to Stay Relevant Beyond a Single Project\n\n\n\n\n\n\n\n\nFeb 24, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html",
+    "href": "posts/data-lifecycle-101/index.html",
+    "title": "Data Lifecycle 101",
+    "section": "",
+    "text": "Ever wonder how datasets used for one project end up fueling countless others? From Netflix recommendations to COVID-19 dashboards, data lives far beyond its original intended use, all thanks to the data lifecycle.\nThe data lifecycle is the end-to-end process that ensures that data remains useful, accurate, and accessible long after its first use. Without explicit and careful curation throughout the lifecycle, datasets can become outdated, unreliable, or even lost.\nIn this post, I will break down the key stages of the data lifecycle and why they matter for long-term value."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#introduction",
+    "href": "posts/data-lifecycle-101/index.html#introduction",
+    "title": "Data Lifecycle 101",
+    "section": "",
+    "text": "Ever wonder how datasets used for one project end up fueling countless others? From Netflix recommendations to COVID-19 dashboards, data lives far beyond its original intended use, all thanks to the data lifecycle.\nThe data lifecycle is the end-to-end process that ensures that data remains useful, accurate, and accessible long after its first use. Without explicit and careful curation throughout the lifecycle, datasets can become outdated, unreliable, or even lost.\nIn this post, I will break down the key stages of the data lifecycle and why they matter for long-term value."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#what-is-the-data-lifecycle",
+    "href": "posts/data-lifecycle-101/index.html#what-is-the-data-lifecycle",
+    "title": "Data Lifecycle 101",
+    "section": "What Is the Data Lifecycle?",
+    "text": "What Is the Data Lifecycle?\nThe data lifecycle refers to the complete journey data takes—from collection and storage to analysis and sharing, and eventually disposal of the data. It ensures that data can be repurposed across a variety of projects, industries, and even decades.\nUnlike project-based work or problem-solving, which is time-bound, data often outlives the project for which it was collected. This longevity makes proper lifecycle management essential to avoid duplication, ensure data quality, and enable future discoveries from the data."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#the-stages-of-the-data-lifecycle",
+    "href": "posts/data-lifecycle-101/index.html#the-stages-of-the-data-lifecycle",
+    "title": "Data Lifecycle 101",
+    "section": "The Stages of the Data Lifecycle",
+    "text": "The Stages of the Data Lifecycle\nThe data lifecycle consists of the following key stages:\n\nPlanning and collection\nIngestion and Storage\nDescription and Metadata\nProcessing and Quality Assurance\nAnalysis and Utilization\nPreservation and Curation\nPublication and Sharing\nArchival and Disposal\n\nEach stage of the data lifecycle has its own characteristics that add value to the life of the data. Let’s dig into each step in more detail:\n\n1. Planning and Collection\nThe lifecycle begins with planning and collection, where organizations decide what data to gather and how to collect it. This stage requires careful consideration, especially when collecting data in complex environments.\nFor instance, installing sensors on remote mountain tops to measure snowpack demand thoughtful planning, such as overseeing the power supply to the sensors and transmitting data from hard-to-reach areas. Without careful preparation, data collection efforts can be inefficient, incomplete, or unusable.\n\n\n2. Ingestion and Storage\nOnce the data is collected, it moves on to the ingestion & storage phase. This involves capturing the data and organizing it in data storage systems, like databases or data lakes, to make sure it can be easily retrieved for use in the future.\nRolls-Royce is an excellent example in this phase. They collect telemetry data from their aircraft engines during flight, storing it at regular intervals. They will use this to monitor engine performance and predict the maintenance requirements of the aircraft.\n\n\n3. Description and Metadata\nTo make datasets understandable and reusable, they must be documented with metadata—effectively, data about the data. Metadata describes not just the dataset’s structure, but its context, origin, and any transformation it has undergone.\nThe National Archives, for example, meticulously tags its electronic records with metadata to ensure that users can clearly interpret and work with the records effectively in the future. Standardized schemas and ontologies make it easier to share and merge data across disciplines.\n\n\n4. Processing and Quality Assurance\nRaw data is rarely useful in its original state; it must be cleaned and transformed before it is ready to be analyzed. This stage, known as processing and quality assurance, ensures consistency, accuracy, and reliability prior to the analysis.\nAutomation plays a crucial role here, reducing human error and streamline the process. A web scraping project, for example, might involve filtering out duplicate entries, standardizing date formats, and flagging anomalies before the data is ready for the analysis.\n\n\n5. Analysis and Utilization\nOnce the data has been cleaned and its quality has been verified, the data can then be analyzed and utilized to extract insights and drive decision-making. This is the phase where predictive models, dashboards, and reports come into play.\nNetflix exemplifies this stage well with their recommendation systems. They will use their data to analyze user behavior to recommend shows based on the user’s viewing history and preferences. This personalizes each user’s experience, helping to maintain engagement and success within their platform.\n\n\n6. Preservation and Curation\nPreservation and curation ensure the data remains accessible and usable over time. Following FAIR data principles (Findable, Accessible, Interoperable, and Reusable) helps maintain data integrity and discoverability.\nIn astronomy, researchers often reanalyze old photographic plates to discover previously undetected supernovae, demonstrating how well-preserved data can fuel new discoveries, even decades after collection.\n\n\n7. Publication and Sharing\nWhen datasets are ready to be used in a broader context, they enter the publication and sharing stage. This involves making datasets available with clear usage criteria, documentation, and licensing.\nPublic health organizations, for example, published COVID-19 datasets worldwide, allowing researchers to work with the data in real-time and advance the pandemic response efforts.\n\n\n8. Archival/Disposal\nEventually, datasets will become outdated or irrelevant, bringing them to the archival/disposal phase. These kinds of datasets must be securely archived or disposed of by following all regulatory guidelines.\nAn example of this is legal records, which are often retained for a specific period before they are securely deleted. This explicit process of handling old data helps maintain compliance and avoid unnecessary storage costs."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#why-it-matters-the-value-of-lifecycle-management",
+    "href": "posts/data-lifecycle-101/index.html#why-it-matters-the-value-of-lifecycle-management",
+    "title": "Data Lifecycle 101",
+    "section": "Why It Matters: The Value of Lifecycle Management",
+    "text": "Why It Matters: The Value of Lifecycle Management\nEffective data lifecycle management helps ensure that good data never truly dies. It evolves, supports new insights, and drives innovation across projects and disciplines. Good management of this lifecycle promotes data integrity, redundancy, and reusability.\nIn scientific research, data collected decades ago can continue to fuel new discoveries, from climate change studies to advancements in medicine. Without proper lifecycle practices, we risk valuable datasets becoming obsolete, underutilized, or lost in the deluge of data."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#challenges-and-best-practices",
+    "href": "posts/data-lifecycle-101/index.html#challenges-and-best-practices",
+    "title": "Data Lifecycle 101",
+    "section": "Challenges and Best Practices",
+    "text": "Challenges and Best Practices\nManaging data throughout the lifecycle is not always easy. For instance, technology can become obsolete, rendering datasets unreadable as platforms and formats evolve. Privacy regulations, such as HIPAA, add to the complexity of data storage and sharing. Further, the sheer volume of data can drive up storage costs, making effective infrastructure an essential practice.\nWe must keep best practices when we manage our data’s lifecycle. This means automating our data pipelines to ensure consistency and reliability while transforming our data. It means using standard formats like JSON or XML for better interoperability and maintaining clear documentation for each dataset. Regular audits, quality checks, and clear metadata updates will further enhance our data’s usability and longevity."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#conclusion",
+    "href": "posts/data-lifecycle-101/index.html#conclusion",
+    "title": "Data Lifecycle 101",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe data lifecycle transforms raw data into a long-term asset, ensuring that it remains valuable, accessible, and trustworthy. From collection to archival, every stage has its own importance. We must think not just about our current projects, but about all future innovations.\nBy taking care to manage data, adopt best practices, and ensure quality throughout its lifecycle, we can turn our data into a persisting resource that moves beyond a one-time tool."
+  },
+  {
+    "objectID": "posts/data-lifecycle-101/index.html#references",
+    "href": "posts/data-lifecycle-101/index.html#references",
+    "title": "Data Lifecycle 101",
+    "section": "References",
+    "text": "References\n\nNational Archives. Managing Electronic Records. (Link)\nWilkinson, M. D. et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. Scientific Data, 3, 160018. (Link)\nMarr, B. (2015). How Big Data Drives Success At Rolls-Royce. Forbes. (Link)"
   }
 ]

@@ -1,0 +1,13 @@
+---
+listing:
+  contents: '*.qmd'
+  feed:
+    items: 10
+    type: partial
+    title: Recent Posts
+  sort: date desc
+  type: default
+page-layout: full
+title: The Notebook
+title-block-bannerrR: false
+---
