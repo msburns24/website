@@ -1,13 +1,8 @@
 ---
-title: "Projects"
+title: Projects
 listing:
-  contents: posts
+  contents: ['*.ipynb', '*.qmd']
   sort: "date desc"
   type: default
   categories: true
-page-layout: full
-title-block-banner: true
-
-
-draft: true
 ---

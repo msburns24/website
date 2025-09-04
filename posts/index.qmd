@@ -9,6 +9,4 @@ listing:
   type: default
 page-layout: full
 title: Posts
-
-draft: true
 ---
