@@ -2,6 +2,10 @@
 title: Projects
 listing:
   contents: ['*.ipynb', '*.qmd']
+  feed:
+    items: 10
+    type: partial
+    title: Recent Posts
   sort: "date desc"
   type: default
   categories: true

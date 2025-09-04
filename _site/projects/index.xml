@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Recent Posts</title>
+<link>https://msburns.netlify.app/projects/</link>
+<atom:link href="https://msburns.netlify.app/projects/index.xml" rel="self" type="application/rss+xml"/>
+<description>A website and portfolio for data science projects and insights</description>
+<generator>quarto-1.7.34</generator>
+<lastBuildDate>Thu, 04 Sep 2025 17:02:56 GMT</lastBuildDate>
+<item>
+  <title>Titanic</title>
+  <link>https://msburns.netlify.app/projects/titanic/</link>
+  <description><![CDATA[ To most, the Titanic may evokes imagery of a grand ship, a newspaper headline, or maybe the iconic picture of Leo &amp; Kate on the bow of the ship. To data scientists, the Titanic often reminds us of our first dataset, a <em>real</em> dataset, requiring vast amounts of cleaning, preprocessing, transformation, and hyperparameter tuning. ]]></description>
+  <guid>https://msburns.netlify.app/projects/titanic/</guid>
+  <pubDate>Thu, 04 Sep 2025 17:02:56 GMT</pubDate>
+</item>
+</channel>
+</rss>

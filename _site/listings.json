@@ -1,15 +1,15 @@
 [
   {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/titanic/index.html"
+    ]
+  },
+  {
     "listing": "/posts/index.html",
     "items": [
       "/posts/wikidata-overview/index.html",
       "/posts/data-lifecycle-101/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/index.html",
-    "items": [
-      "/projects/titanic/index.html"
     ]
   }
 ]

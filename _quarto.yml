@@ -4,6 +4,7 @@ project:
 website:
   title: Matthew Burns
   description: A website and portfolio for data science projects and insights
+  site-url: https://msburns.netlify.app/
 
   search: 
     location: navbar

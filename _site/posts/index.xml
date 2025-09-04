@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Recent Posts</title>
+<link>https://msburns.netlify.app/posts/</link>
+<atom:link href="https://msburns.netlify.app/posts/index.xml" rel="self" type="application/rss+xml"/>
+<description>A website and portfolio for data science projects and insights</description>
+<generator>quarto-1.7.34</generator>
+<lastBuildDate>Thu, 31 Jul 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Wikidata: A Collaborative, Multilingual Knowledge Graph</title>
+  <link>https://msburns.netlify.app/posts/wikidata-overview/</link>
+  <description><![CDATA[ “Wikidata is a free, collaborative, multilingual, secondary knowledge base, collecting structured data to provide support for Wikipedia, Wikimedia Commons, the other wikis of the Wikimedia movement, and to anyone in the world.” – Wikidata’s Self-Description ]]></description>
+  <category>Databases</category>
+  <category>Knowledge Graphs</category>
+  <guid>https://msburns.netlify.app/posts/wikidata-overview/</guid>
+  <pubDate>Thu, 31 Jul 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://msburns.netlify.app/posts/wikidata-overview/wikimedia-foundation-subsidiaries.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Data Lifecycle 101</title>
+  <link>https://msburns.netlify.app/posts/data-lifecycle-101/</link>
+  <description><![CDATA[ Ever wonder how datasets used for one project end up fueling countless others? From Netflix recommendations to COVID-19 dashboards, data lives far beyond its original intended use, all thanks to the data lifecycle. ]]></description>
+  <category>Data Science</category>
+  <category>Databases</category>
+  <category>Data Lifecycle</category>
+  <guid>https://msburns.netlify.app/posts/data-lifecycle-101/</guid>
+  <pubDate>Mon, 24 Feb 2025 05:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
