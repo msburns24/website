@@ -5,11 +5,10 @@ subtitle: How to Stay Relevant Beyond a Single Project
 date: 2025-02-24
 date-modified: 2025-09-03
 categories:
-  - data-science
-  - databases
+  - Data Science
+  - Databases
+  - Data Lifecycle
 ---
-
-## Introduction
 
 Ever wonder how datasets used for one project end up fueling countless others?
 From Netflix recommendations to COVID-19 dashboards, data lives far beyond its

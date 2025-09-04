@@ -1,5 +1,19 @@
 ---
-title: "About"
+title: "About | Matthew Burns"
+image: images/Matthew-Burns-headshot.jpg
+about:
+  template: jolla
+  image-width: 20em
+  image-shape: round
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: www.linkedin.com/in/deepshamenghani
+    - icon: github
+      text: Github
+      href: https://github.com/msburns24/
+    - icon: envelope
+      text: Contact me
+      href: mailto:msb@ameritech.net
 ---
 
-About this site

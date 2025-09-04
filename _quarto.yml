@@ -4,9 +4,15 @@ project:
 website:
   title: Matthew Burns
   description: A website and portfolio for data science projects and insights
+
+  search: 
+    location: navbar
+    type: overlay
+
   navbar:
     background: "#343A40"
     title: matthew burns
+
     left:
       - href: index.qmd
         text: Home
@@ -14,6 +20,10 @@ website:
         text: About
       - href: posts/index.html
         text: Posts
+        
+    right:
+      - icon: github
+        href: https://github.com/msburns24/website/
 
 format:
   html:

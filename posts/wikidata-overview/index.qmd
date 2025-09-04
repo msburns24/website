@@ -1,0 +1,189 @@
+---
+layout: post
+title: Wikidata: A Collaborative, Multilingual Knowledge Graph
+image: wikimedia-foundation-subsidiaries.svg
+date: 2025-07-31
+date-modified: 2025-09-04
+categories:
+  - Databases
+  - Knowledge Graphs
+---
+
+> "Wikidata is a free, collaborative, multilingual, secondary knowledge base,
+> collecting structured data to provide support for Wikipedia, Wikimedia
+> Commons, the other wikis of the Wikimedia movement, and to anyone in the
+> world." – Wikidata’s Self-Description
+
+Let’s take a step back to the year 2012. When searching for information, we
+often consulted with the collaborative realm of Wikipedia, despite cautions
+from our English teachers. This massive source provided a wealth of
+information, ranging from ancient historical facts to governmental structures
+to Pokémon types.
+
+Despite its usefulness, Wikipedia had 2 main problems: First, it held wide
+variation in content between languages. We take this for granted as
+English-speakers, but when providing information to billions of people
+speaking thousands of languages, making that many updates simply isn’t
+feasible. Second, while Wikipedia is useful for one-off research needs, it
+provides little benefit when trying to aggregate vast amounts of information.
+Imagine creating a Python webscraper for all of Wikipedia, parsing the content
+from the HTML documents, utilizing natural language processing to extract
+knowledge from the raw information… You get the picture. Not exactly the
+easiest approach.
+
+Enter Wikidata. Created by the Wikimedia Deutschland association in October
+2012, the project sought to build on Wikipedia by providing consistent,
+highly findable data across a variety of domains. The concept of the semantic
+web is prevalent in Wikidata, showcasing the creators’ emphasis on meaningful,
+interrelated links between pages. In addition, Wikidata allows its data to be
+edited by anyone.
+
+![Wikimedia Subsidiaries](wikimedia-foundation-subsidiaries.svg)
+
+## Free, Structured, and Collaborative
+
+Wikidata acts as a database for a wide variety of data, much of which is
+sourced from other Wikimedia sites like Wikipedia, Wikibooks, or Wiktionary.
+The knowledge base can be accessed and modified by anyone. This provides 3
+main benefits:
+
+1. **Free & Accessible:** Like Wikipedia, Wikidata is published under the
+   Creative Commons license, letting you copy, modify, or distribute the data
+   for any purpose, without requiring permission, and from anywhere on the
+   planet.
+2. **Structured:** The site provides multiple mechanisms to access its content.
+   While the most obvious interface is through their website, wikidata.org, it
+   is also possible to query its data using SPARQL queries at
+   query.wikidata.org. This bot-friendly approach means Wikidata’s content and
+   be aggregated for all sorts of applications.
+3. **Collaborative:** The content itself is maintained by Wikidata editors,
+   meaning you don’t have to manage the data’s structure and accuracy yourself.
+   The site’s many editors use preset rules for content creation, ensuring
+   consistency and accuracy across its many languages.
+
+## A Repository of Items
+
+Wikidata is composed of items, each representing a single entity like a person,
+company, location, language, etc. To prevent duplication, a unique item
+identifier is given to each item, prefixed with a Q (e.g., Douglas Adams has ID
+Q42). The more friendly name for an item is called its label, which is
+typically the name or title we associate with the object. The item’s header
+also contains a description and aliases to allow for clearer understanding and
+better findability.
+
+The real power within Wikidata comes from its statements: the key-value pairs
+that provide the context for items. Each statement contains a property along
+with one or more values that describe it. For example, you may find a person’s
+sex/gender, a location’s native language, or a company’s logo and founders. If
+a property’s value links to an external database, it is called an identifier.
+
+![Wikidata's Data Model](wikidata-data-model.svg)
+
+In most cases, statements provide a connection to other Wikidata pages,
+creating a semantic link between entities. While it initially may appear
+unimportant, this subtle addition creates the mechanism that connects items
+together, resulting in a complex, interconnected network of information. But
+how does this help us? Are links really that important?
+
+## Nodes and Edges
+
+The links created from Wikidata’s item statements provide a powerful structure
+to traverse its data. Similar to a graph database, the property values provide
+meaningful relationships between pages in the form of nodes (Wikidata items)
+and edges (property values). It’s easy to overlook just how useful these links
+are. Take Figure 3 for example. Many programmers know that Python is a
+descendent of C, much in the same way that English is a descendent of Latin.
+However, many aren’t aware of the far-reaching effects of this relationship.
+
+While C influenced both Python and C++ independently, there are other software
+packages that benefit from this inheritance. For instance: the Python package
+NumPy, a package used in numerous other libraries, is written in both Python
+and C. This package inspired Pandas, which builds on the library by providing
+stronger analytical tools. While developed separately from Python, C++ is the
+primary language used in Matplotlib, one of the most common visual tools in a
+data scientist’s toolkit. If that weren’t enough, there is an additional
+relationship between NumPy, Pandas, and Matplotlib: they each receive funding
+from the Chan Zuckerberg Initiative, an organization established by Mark
+Zuckerberg and his wife, Priscilla Chan. While it certainly conveys the
+strength of the connection between these items, Figure 3 only scratches the
+surface of the interconnectedness of Python- and C-based software.
+
+![Wikidata Property-Value Graph](wikidata-property-value-graph.svg)
+
+## Applications
+
+While this highly connected structure may seem abstract on the surface, it’s
+already in wide use across the web. From visual art to historical timelines to
+semantic search, developers and researchers have tapped into the torrent of
+information that is Wikidata. While numerous projects have been developed on
+top of Wikidata, a few are detailed in the following sections.
+
+### Reasonator
+
+One of the most well-known tools is Reasonator, a web application to make
+Wikidata content more readable and engaging. Its creators believed the default
+Wikidata interface was too dry, providing more database than story. To
+compensate for this, they implemented a custom JavaScript class to query and
+render Wikidata content, dynamically pulling data and formatting the results
+based on an item’s category. It also provides support for SPARQL queries,
+translating results directly into their API, which is useful for advanced users
+and custom displays. The result is a semantic front-end that reads cleaner than
+the standard Wikidata database.
+
+Figure 3: Wikidata’s property-value relationships reveal the interconnectedness
+of Python packages.
+
+### Histropedia
+
+Another stand-out application, Histropedia is an interactive timeline builder
+that pulls events, people, and cultural landmarks from Wikidata. Targeted at
+researchers and instructors, the application makes it easy to explore and
+visualize historical relationships over time.
+
+Users can choose from a library of premade timelines, such as "Presidents of
+the United States", or can create their own timelines from scratch. The
+software provides flexibility with custom timeline creation, allowing users to
+search for items on Wikidata or Wikipedia, then drag and drop them into the
+site’s WYSIWYG editor. Lastly, filters can be applied to various searches to
+better refine the query by topic, location, or period. By layering a
+user-friendly frontend on top of a powerful, knowledge-rich backend,
+Histropedia makes it simple to turn raw facts into a visually engaging
+narrative.
+
+### Crotos
+
+Last on our list, Crotos exploits the power of Wikidata in a more refined
+sense. Considering the over 400,000 artworks cataloged in Wikidata, more than
+half of which are in high definition, Crotos aggregates this collection of art
+to create a virtual path through an endless art museum. The platform connects
+to Wikidata’s backend to allow users to search for artworks by medium (e.g.,
+paintings, sculptures, prints), as well as artists, creation date, and a
+variety of other metadata. Crotos’ clean interface allows for discovery of art,
+which particularly serves museums, educators, or simply the curious individual
+looking to gain some culture.
+
+## Where to Begin
+
+Given its connection to the other Wikimedia sites, Wikidata contains just about
+any information you can think of. You can search for past U.S. presidents,
+finding their birth date and death date, their personal signature, and their
+occupations prior to taking office. You can search for cities across the globe,
+finding their coordinates, year of inception, and who they are named after. You
+can find artistic works, scientific methods, company information, universities,
+historical events, and even past elections.
+
+The easiest way to get started is by searching a topic from Wikidata’s main
+page. Alternatively, the site provides a handful of quick-start guides, from a
+basic introduction to full-fledged tutorials. Wherever you begin, know that
+you’re taking a first step onto the limitless, interconnected web of knowledge
+that that is Wikidata.
+
+## Sources
+
+[1] Wikipedia Contributors. (2019, October 14). Wikidata. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Wikidata
+
+[2] Perez, S. (2012, March 30). Wikipedia’s Next Big Thing: Wikidata, A Machine Readable, User-Editable Database Funded By Google, Paul Allen And Others | TechCrunch. TechCrunch. https://techcrunch.com/2012/03/30/wikipedias-next-bigthing-wikidata-a-machine-readable-user-editable-database-funded-by-google-paulallen-and-others/
+
+[3] Wikidata:Introduction - Wikidata. (n.d.). Www.wikidata.org. https://www.wikidata.org/wiki/Wikidata:Introduction
+
+[4] Chalabi, M. (2013, April 26). Welcome to Wikidata! Now what? The Guardian. https://www.theguardian.com/news/datablog/2013/apr/26/wikidata-launch
