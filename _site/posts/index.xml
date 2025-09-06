@@ -10,7 +10,15 @@
 <atom:link href="https://msburns.netlify.app/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website and portfolio for data science projects and insights</description>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Thu, 31 Jul 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 05 Sep 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Stochastic Gradient Descent</title>
+  <link>https://msburns.netlify.app/posts/stochastic-gradient-descent/</link>
+  <description><![CDATA[ <img src="https://msburns.netlify.app/posts/stochastic-gradient-descent/gradient-descent.svg" class="img-fluid"> ]]></description>
+  <guid>https://msburns.netlify.app/posts/stochastic-gradient-descent/</guid>
+  <pubDate>Fri, 05 Sep 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://msburns.netlify.app/posts/stochastic-gradient-descent/gradient-descent.svg" medium="image" type="image/svg+xml"/>
+</item>
 <item>
   <title>Wikidata: A Collaborative, Multilingual Knowledge Graph</title>
   <link>https://msburns.netlify.app/posts/wikidata-overview/</link>

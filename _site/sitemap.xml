@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://msburns.netlify.app/posts/index.html</loc>
-    <lastmod>2025-09-04T16:56:53.532Z</lastmod>
+    <lastmod>2025-09-06T11:59:32.926Z</lastmod>
   </url>
   <url>
     <loc>https://msburns.netlify.app/index.html</loc>
@@ -27,5 +27,9 @@
   <url>
     <loc>https://msburns.netlify.app/projects/titanic/index.html</loc>
     <lastmod>2025-09-04T14:53:11.625Z</lastmod>
+  </url>
+  <url>
+    <loc>https://msburns.netlify.app/posts/stochastic-gradient-descent/index.html</loc>
+    <lastmod>2025-09-06T12:23:09.036Z</lastmod>
   </url>
 </urlset>

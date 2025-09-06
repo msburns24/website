@@ -1,6 +1,8 @@
 ---
 listing:
-  contents: '*.qmd'
+  contents:
+    - '*.qmd'
+    - '*.ipynb'
   feed:
     items: 10
     type: partial
