@@ -41,9 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-90c3747c317cefb03aa88438a69113e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-270c39920d9f1194d940fa72c4a3831a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -272,8 +272,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/index.html"> 
+    <a class="nav-link" href="./posts/"> 
 <span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./projects/"> 
+<span class="menu-text">Projects</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -299,7 +303,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#projects" id="toc-projects" class="nav-link active" data-scroll-target="#projects">Projects</a></li>
+  <li><a href="#projects" id="toc-projects" class="nav-link active" data-scroll-target="#projects">Projects</a>
+  <ul class="collapse">
+  <li><a href="#h3" id="toc-h3" class="nav-link" data-scroll-target="#h3">H3</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -329,12 +336,18 @@ ul.task-list li input[type="checkbox"] {
 <p>Welcome to my Quarto website! I decided to start this as a way to showcase my data science projects, but found it a great way to share insights, tips, and other helpful information related to data science.</p>
 <section id="projects" class="level2">
 <h2 class="anchored" data-anchor-id="projects">Projects</h2>
+<section id="h3" class="level3">
+<h3 class="anchored" data-anchor-id="h3">H3</h3>
+<section id="h4" class="level4">
+<h4 class="anchored" data-anchor-id="h4">H4</h4>
 <ul>
-<li><a href=".\projects/titanic.html">Titanic</a></li>
+<li><a href=".\projects/titanic/">Titanic</a></li>
 </ul>
 <!-- References -->
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -437,6 +450,8 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

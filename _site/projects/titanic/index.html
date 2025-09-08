@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-08-31">
+<meta name="description" content="Predicting survival through feature engineering and robust model selection">
 
 <title>Titanic – Matthew Burns</title>
 <style>
@@ -71,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9582434199d49cc9e91654cdeeb4866b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8dcd8563ea6803ab7cbb3d71ca5772e1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9582434199d49cc9e91654cdeeb4866b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-90c3747c317cefb03aa88438a69113e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a163a388c6ca0202938e506d953d7db3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c3ebf6c6dd978375fc56ae2f12bbfe05.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-a163a388c6ca0202938e506d953d7db3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -310,8 +312,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts/index.html"> 
+    <a class="nav-link" href="../../posts/"> 
 <span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/"> 
+<span class="menu-text">Projects</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -338,32 +344,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#define-workflow" id="toc-define-workflow" class="nav-link" data-scroll-target="#define-workflow">Define Workflow</a></li>
   </ul></li>
   <li><a href="#business-understanding" id="toc-business-understanding" class="nav-link" data-scroll-target="#business-understanding">1. Business Understanding</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#business-objectives" id="toc-business-objectives" class="nav-link" data-scroll-target="#business-objectives">Business Objectives</a></li>
   <li><a href="#assess-the-situation" id="toc-assess-the-situation" class="nav-link" data-scroll-target="#assess-the-situation">Assess the Situation</a></li>
   <li><a href="#determine-the-goals" id="toc-determine-the-goals" class="nav-link" data-scroll-target="#determine-the-goals">Determine the Goals</a></li>
   <li><a href="#formulate-a-project-plan" id="toc-formulate-a-project-plan" class="nav-link" data-scroll-target="#formulate-a-project-plan">Formulate a Project Plan</a></li>
   </ul></li>
   <li><a href="#data-understanding" id="toc-data-understanding" class="nav-link" data-scroll-target="#data-understanding">2. Data Understanding</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load Data</a></li>
   <li><a href="#describe-our-data" id="toc-describe-our-data" class="nav-link" data-scroll-target="#describe-our-data">Describe our Data</a></li>
   <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data">Explore the Data</a></li>
   </ul></li>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">3. Data Preparation</a>
+  <ul>
+  <li><a href="#clean-data" id="toc-clean-data" class="nav-link" data-scroll-target="#clean-data">Clean Data</a>
   <ul class="collapse">
-  <li><a href="#clean-data" id="toc-clean-data" class="nav-link" data-scroll-target="#clean-data">Clean Data</a></li>
-  <li><a href="#transform-data" id="toc-transform-data" class="nav-link" data-scroll-target="#transform-data">Transform Data</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
+  <li><a href="#age-median-value-fill" id="toc-age-median-value-fill" class="nav-link" data-scroll-target="#age-median-value-fill"><code>Age</code>: Median-Value Fill</a></li>
+  <li><a href="#cabin-default-value-fill" id="toc-cabin-default-value-fill" class="nav-link" data-scroll-target="#cabin-default-value-fill"><code>Cabin</code>: Default-Value Fill</a></li>
+  <li><a href="#embarked-background-research" id="toc-embarked-background-research" class="nav-link" data-scroll-target="#embarked-background-research"><code>Embarked</code>: Background Research</a></li>
+  </ul></li>
+  <li><a href="#transform-data" id="toc-transform-data" class="nav-link" data-scroll-target="#transform-data">Transform Data</a>
+  <ul class="collapse">
+  <li><a href="#plan-1" id="toc-plan-1" class="nav-link" data-scroll-target="#plan-1">Plan</a></li>
+  <li><a href="#passengerid-set-as-index" id="toc-passengerid-set-as-index" class="nav-link" data-scroll-target="#passengerid-set-as-index"><code>PassengerId</code>: Set as Index</a></li>
+  <li><a href="#pclass-one-hot-encoding" id="toc-pclass-one-hot-encoding" class="nav-link" data-scroll-target="#pclass-one-hot-encoding"><code>Pclass</code>: One-Hot Encoding</a></li>
+  <li><a href="#name-extract-title" id="toc-name-extract-title" class="nav-link" data-scroll-target="#name-extract-title"><code>Name</code>: Extract Title</a></li>
+  <li><a href="#sex-one-hot-encoding" id="toc-sex-one-hot-encoding" class="nav-link" data-scroll-target="#sex-one-hot-encoding"><code>Sex</code>: One-Hot Encoding</a></li>
+  <li><a href="#age-ordinal-encoding---one-hot-encoding" id="toc-age-ordinal-encoding---one-hot-encoding" class="nav-link" data-scroll-target="#age-ordinal-encoding---one-hot-encoding"><code>Age</code>: Ordinal Encoding -&gt; One-Hot Encoding</a></li>
+  <li><a href="#sibsp-parch-extract-familysize---ordinal-encoding---one-hot-encoding" id="toc-sibsp-parch-extract-familysize---ordinal-encoding---one-hot-encoding" class="nav-link" data-scroll-target="#sibsp-parch-extract-familysize---ordinal-encoding---one-hot-encoding"><code>SibSp</code> / <code>Parch</code>: Extract <code>FamilySize</code> -&gt; Ordinal Encoding -&gt; One-Hot Encoding</a></li>
+  <li><a href="#ticket-drop" id="toc-ticket-drop" class="nav-link" data-scroll-target="#ticket-drop"><code>Ticket</code>: Drop</a></li>
+  <li><a href="#fare-ordinal-encoding---one-hot-encoding" id="toc-fare-ordinal-encoding---one-hot-encoding" class="nav-link" data-scroll-target="#fare-ordinal-encoding---one-hot-encoding"><code>Fare</code>: Ordinal Encoding -&gt; One-Hot Encoding</a></li>
+  <li><a href="#cabin-extract-deck" id="toc-cabin-extract-deck" class="nav-link" data-scroll-target="#cabin-extract-deck"><code>Cabin</code>: Extract Deck</a></li>
+  <li><a href="#embarked-one-hot-encoding" id="toc-embarked-one-hot-encoding" class="nav-link" data-scroll-target="#embarked-one-hot-encoding"><code>Embarked</code>: One-Hot Encoding</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">4. Modeling</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#select-modeling-techniques" id="toc-select-modeling-techniques" class="nav-link" data-scroll-target="#select-modeling-techniques">Select modeling techniques</a></li>
   <li><a href="#generate-test-design" id="toc-generate-test-design" class="nav-link" data-scroll-target="#generate-test-design">Generate test design</a></li>
-  <li><a href="#build-model" id="toc-build-model" class="nav-link" data-scroll-target="#build-model">Build model</a></li>
+  <li><a href="#build-model" id="toc-build-model" class="nav-link" data-scroll-target="#build-model">Build model</a>
+  <ul class="collapse">
+  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes">Naive-Bayes</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
+  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors">K-Nearest Neighbors</a></li>
+  <li><a href="#decisiontree" id="toc-decisiontree" class="nav-link" data-scroll-target="#decisiontree">DecisionTree</a></li>
+  <li><a href="#support-vector-classifier-svc" id="toc-support-vector-classifier-svc" class="nav-link" data-scroll-target="#support-vector-classifier-svc">Support Vector Classifier (SVC)</a></li>
+  <li><a href="#randomforest" id="toc-randomforest" class="nav-link" data-scroll-target="#randomforest">RandomForest</a></li>
+  <li><a href="#ada-boosted-decision-tree" id="toc-ada-boosted-decision-tree" class="nav-link" data-scroll-target="#ada-boosted-decision-tree">Ada-Boosted Decision Tree</a></li>
+  <li><a href="#gradient-boosted-tree" id="toc-gradient-boosted-tree" class="nav-link" data-scroll-target="#gradient-boosted-tree">Gradient-Boosted Tree</a></li>
+  </ul></li>
   <li><a href="#assess-model" id="toc-assess-model" class="nav-link" data-scroll-target="#assess-model">Assess model</a></li>
   </ul></li>
   <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">5. Evaluation</a></li>
@@ -376,14 +411,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Titanic</h1>
-</div>
+<div class="quarto-title-block"><div><h1 class="title">Titanic</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/msburns24/website/blob/main/projects/titanic/index.ipynb">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Classification</div>
+    <div class="quarto-category">Feature Engineering</div>
+    <div class="quarto-category">Cross-Validation</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Predicting survival through feature engineering and robust model selection
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -395,6 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>To most, the Titanic may evokes imagery of a grand ship, a newspaper headline, or maybe the iconic picture of Leo &amp; Kate on the bow of the ship. To data scientists, the Titanic often reminds us of our first dataset, a <em>real</em> dataset, requiring vast amounts of cleaning, preprocessing, transformation, and hyperparameter tuning.</p>
 <p>Nevertheless, the Titanic dataset is a great place to start with data science projects. It is a great place to start, covering a great variety of topics.</p>
+<p><img src="titanic.jpg" class="img-fluid"></p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <section id="define-workflow" class="level3">
@@ -468,16 +520,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="load-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-data">Load Data</h3>
 <div id="340e3b46" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import required modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.axes <span class="im">import</span> Axes</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="0eb3a362" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/Titanic-Dataset.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Loaded data into variable `df`'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Loaded data into variable `df`</code></pre>
 </div>
@@ -493,8 +551,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Null value distribution</li>
 </ol>
 <div id="9fa05994" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display first 10 rows</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -692,9 +753,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </blockquote>
 <div id="56a475c5" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display data types</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>display(df.dtypes.value_counts().to_frame(<span class="st">'# Columns'</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>display(df.dtypes.to_frame(name<span class="op">=</span><span class="st">'Type'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -796,8 +860,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Also, while it may be tempting to get rid of the 5 string fields, we can’t disregard this yet – we don’t have a ton of information to work with, so we’ll want to extract as much information as possible.</p>
 </blockquote>
 <div id="fff62975" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Describe the data</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df.describe().<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -915,6 +982,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </blockquote>
 <div id="7289b837" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Understand the null distribution</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>null_distribution <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Null Count'</span>: df.isna().<span class="bu">sum</span>().<span class="bu">map</span>(<span class="kw">lambda</span> n: <span class="st">''</span> <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="ss">f'</span><span class="sc">{</span>n<span class="sc">:,}</span><span class="ss">'</span>),</span>
@@ -923,6 +992,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>null_distribution <span class="op">=</span> null_distribution.loc[null_distribution.iloc[:,<span class="dv">0</span>] <span class="op">!=</span> <span class="st">''</span>]</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>null_distribution.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -966,6 +1036,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h3>
 <p>Now for the fun part of EDA–the visuals! Let’s try to visualize what our data looks like. Each cell will be looking to answer a preliminary question or one raised in the data description step prior to this.</p>
 <div id="3d2e0987" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_bar_labels(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        ax: Axes,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        fmt: <span class="bu">str</span>,</span>
@@ -975,8 +1047,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> container <span class="kw">in</span> ax.containers:</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        ax.bar_label(container, label_type<span class="op">=</span>label_type, fmt<span class="op">=</span>fmt, color<span class="op">=</span>color)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="8d08ff36" class="cell" data-execution_count="8">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How did class play a role in survival?</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_class <span class="op">=</span> df.groupby(<span class="st">'Pclass'</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">'Survived'</span>]].mean()</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> df_class.plot(</span>
@@ -1003,6 +1078,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.set_title('Passenger Survival by Class', size=14, pad=12)</span></span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1016,6 +1092,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Unsurprisingly, first-class passengers has the best chance of surviving, followed by second, then third class.</p>
 </blockquote>
 <div id="e67bf856" class="cell" data-execution_count="9">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What was the distribution of sex on the Titanic? How did this affect surival?</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create pivot-table by sex</span></span>
@@ -1035,6 +1113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>add_bar_labels(ax, fmt<span class="op">=</span><span class="st">'</span><span class="sc">{:,.0f}</span><span class="st">'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1044,6 +1123,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="de849443" class="cell" data-execution_count="10">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How does Age play an impact in survival?</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_age <span class="op">=</span> df.groupby(<span class="st">'Age'</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">'Survived'</span>]].mean()</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df_age[<span class="st">'Survived'</span>] <span class="op">=</span> df_age[<span class="st">'Survived'</span>].ewm(alpha<span class="op">=</span><span class="fl">0.2</span>).mean()</span>
@@ -1064,6 +1145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>ytick_labels <span class="op">=</span> <span class="bu">map</span>(<span class="st">'</span><span class="sc">{:.0%}</span><span class="st">'</span>.<span class="bu">format</span>, yticks)</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(yticks, ytick_labels)</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1073,6 +1155,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="bd1795b1" class="cell" data-execution_count="11">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Did older passengers pay higher fares?</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_age_fare <span class="op">=</span> df.groupby(<span class="st">'Age'</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">'Fare'</span>]].mean()</span>
@@ -1091,6 +1175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1100,6 +1185,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="d81223c3" class="cell" data-execution_count="12">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How does Fare play an impact in survival?</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_fare <span class="op">=</span> df.groupby(<span class="st">'Fare'</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">'Survived'</span>]].mean()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_fare[<span class="st">'Survived'</span>] <span class="op">=</span> df_fare[<span class="st">'Survived'</span>].ewm(alpha<span class="op">=</span><span class="fl">0.02</span>).mean()</span>
@@ -1120,6 +1207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>ytick_labels <span class="op">=</span> <span class="bu">map</span>(<span class="st">'</span><span class="sc">{:.0%}</span><span class="st">'</span>.<span class="bu">format</span>, yticks)</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(yticks, ytick_labels)</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1133,6 +1221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It seems that generally, higher fares meant higher chance of survival, but there was a small dip around $30-50 fare, where passnegers that paid around $20-30 had a slightly higher chance of survival.</p>
 </blockquote>
 <div id="228b3875" class="cell" data-execution_count="13">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are the most common words within "Name"?</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>is_alnum_or_space <span class="op">=</span> <span class="kw">lambda</span> s: s.isalpha() <span class="kw">or</span> s <span class="op">==</span> <span class="st">' '</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1149,6 +1239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1162,6 +1253,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It doesn’t seem like this extracts much information, since common names like “William”, “John”, and “Henry” are captured as common words in names. But, we may be able to extract the person’s title from the structure of the name: nearly every name is structured as “LastName, Title. FirstName (Alt Name)”</p>
 </blockquote>
 <div id="57628509" class="cell" data-execution_count="14">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are the most common titles?</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_name_title(name: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
@@ -1188,6 +1281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>add_bar_labels(ax, fmt<span class="op">=</span><span class="st">'</span><span class="sc">{:.0f}</span><span class="st">'</span>, label_type<span class="op">=</span><span class="st">'edge'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1197,10 +1291,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="79c59ae9" class="cell" data-execution_count="15">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How strong is the correlation between variables?</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.heatmap(df.corr(numeric_only<span class="op">=</span><span class="va">True</span>), cmap<span class="op">=</span><span class="st">'RdYlGn'</span>, annot<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Feature Correlation'</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1210,6 +1307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="5d96900d" class="cell" data-execution_count="16">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What were the most common cabins?</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">\</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .loc[<span class="op">~</span>df.Cabin.isna(), <span class="st">'Cabin'</span>] <span class="op">\</span></span>
@@ -1230,6 +1329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>add_bar_labels(ax, fmt<span class="op">=</span><span class="st">'</span><span class="sc">{:.0f}</span><span class="st">'</span>, label_type<span class="op">=</span><span class="st">'edge'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1277,13 +1377,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div id="d8752b5c" class="cell" data-execution_count="17">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df.copy()   <span class="co"># Preserve raw data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="age-median-value-fill" class="level4">
 <h4 class="anchored" data-anchor-id="age-median-value-fill"><code>Age</code>: Median-Value Fill</h4>
 <p>To balance simplicity of analysis with as beneficial of an imputation as possible, we can look to use the median age by <code>Sex</code> and <code>Pclass</code> to fill the null values of <code>Age</code>.</p>
 <div id="3245dbb0" class="cell" data-execution_count="18">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> median_value_fill(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        df: pd.DataFrame,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        column: <span class="bu">str</span>,</span>
@@ -1301,18 +1406,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df_clean.pipe(median_value_fill, <span class="st">'Age'</span>, [<span class="st">'Sex'</span>, <span class="st">'Pclass'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="cabin-default-value-fill" class="level4">
 <h4 class="anchored" data-anchor-id="cabin-default-value-fill"><code>Cabin</code>: Default-Value Fill</h4>
 <div id="5129302d" class="cell" data-execution_count="19">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'Cabin'</span>] <span class="op">=</span> df_clean.Cabin.fillna(<span class="st">'Unknown'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="embarked-background-research" class="level4">
 <h4 class="anchored" data-anchor-id="embarked-background-research"><code>Embarked</code>: Background Research</h4>
 <div id="101fefbe" class="cell" data-execution_count="20">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df.loc[df.Embarked.isna()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 
@@ -1382,7 +1494,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Lastly, to help with the interpretation of feature importance, we can change the <code>Embarked</code> field to the full name. This will make it easier to read later, since ‘Southampton’ is faster to interpret than just ‘S’.</p>
 <!-- References -->
 <div id="eaf7cba0" class="cell" data-execution_count="21">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'Embarked'</span>] <span class="op">=</span> df_clean.Embarked.fillna(<span class="st">'S'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>Aside: A Reminder of the Human Stories Behind the Data</strong></p>
 <p>These 2 passengers were actually in the same group: Amelie boarded the Titanic as the maid to Martha Evelyn Stone. Encyclopedia Titanica gives a brief story of their experience when the Titanic struck the iceberg:</p>
@@ -1464,19 +1579,27 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 </tbody>
 </table>
 <div id="64195d84" class="cell" data-execution_count="22">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_transformed <span class="op">=</span> df_clean.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="passengerid-set-as-index" class="level4">
 <h4 class="anchored" data-anchor-id="passengerid-set-as-index"><code>PassengerId</code>: Set as Index</h4>
 <div id="d203333e" class="cell" data-execution_count="23">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'PassengerId'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    df_transformed <span class="op">=</span> df_transformed.set_index(<span class="st">'PassengerId'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="pclass-one-hot-encoding" class="level4">
 <h4 class="anchored" data-anchor-id="pclass-one-hot-encoding"><code>Pclass</code>: One-Hot Encoding</h4>
 <div id="674d5843" class="cell" data-execution_count="24">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Pclass'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    pclass_map <span class="op">=</span> {<span class="dv">1</span>: <span class="st">'FirstClass'</span>, <span class="dv">2</span>: <span class="st">'SecondClass'</span>, <span class="dv">3</span>: <span class="st">'ThirdClass'</span>}</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    df_transformed[<span class="st">'Pclass'</span>] <span class="op">=</span> df_transformed.Pclass.<span class="bu">map</span>(pclass_map)</span>
@@ -1487,11 +1610,14 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>[<span class="st">'Pclass'</span>],</span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span><span class="bu">int</span></span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="name-extract-title" class="level4">
 <h4 class="anchored" data-anchor-id="name-extract-title"><code>Name</code>: Extract Title</h4>
 <div id="d323cdba" class="cell" data-execution_count="25">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_binned_title_from_name(name: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    title_and_firstname <span class="op">=</span> name.split(<span class="st">', '</span>)[<span class="dv">1</span>]</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> title_and_firstname.split(<span class="st">'. '</span>)[<span class="dv">0</span>]</span>
@@ -1514,19 +1640,25 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>[<span class="st">'Title'</span>],</span>
 <span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span><span class="bu">int</span></span>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="sex-one-hot-encoding" class="level4">
 <h4 class="anchored" data-anchor-id="sex-one-hot-encoding"><code>Sex</code>: One-Hot Encoding</h4>
 <div id="369ad9c9" class="cell" data-execution_count="26">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Sex'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    df_transformed[<span class="st">'Male'</span>] <span class="op">=</span> df_transformed[<span class="st">'Sex'</span>].eq(<span class="st">'male'</span>).astype(<span class="bu">int</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    df_transformed.drop(<span class="st">'Sex'</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="age-ordinal-encoding---one-hot-encoding" class="level4">
 <h4 class="anchored" data-anchor-id="age-ordinal-encoding---one-hot-encoding"><code>Age</code>: Ordinal Encoding -&gt; One-Hot Encoding</h4>
 <div id="c516730e" class="cell" data-execution_count="27">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_ordinal_to_one_hot(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        df: pd.DataFrame,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        column: <span class="bu">str</span>,</span>
@@ -1540,16 +1672,22 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    ]</span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    df[column] <span class="op">=</span> pd.qcut(df[column], q, labels)</span>
 <span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.get_dummies(df, columns<span class="op">=</span>[column], prefix_sep<span class="op">=</span><span class="st">''</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9c4363d5" class="cell" data-execution_count="28">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Age'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    df_transformed <span class="op">=</span> df_transformed.pipe(apply_ordinal_to_one_hot, <span class="st">'Age'</span>, q<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="sibsp-parch-extract-familysize---ordinal-encoding---one-hot-encoding" class="level4">
 <h4 class="anchored" data-anchor-id="sibsp-parch-extract-familysize---ordinal-encoding---one-hot-encoding"><code>SibSp</code> / <code>Parch</code>: Extract <code>FamilySize</code> -&gt; Ordinal Encoding -&gt; One-Hot Encoding</h4>
 <p>It’s likely that, while <code>SibSp</code> and <code>Parch</code> may not be useful alone, the combination gives us insight: the size of the family/group. We can also apply binning here to group passenger family sizes, whether they traveled alone (which was fairly common) or had a small, medium, or large family.</p>
 <div id="e0da4032" class="cell" data-execution_count="29">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encode_family_size(size: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> size <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Alone'</span></span>
@@ -1575,23 +1713,33 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>[<span class="st">'FamilySize'</span>],</span>
 <span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span><span class="bu">int</span></span>
 <span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="ticket-drop" class="level4">
 <h4 class="anchored" data-anchor-id="ticket-drop"><code>Ticket</code>: Drop</h4>
 <div id="0aa14d7b" class="cell" data-execution_count="30">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Ticket'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    df_transformed.drop(<span class="st">'Ticket'</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="fare-ordinal-encoding---one-hot-encoding" class="level4">
 <h4 class="anchored" data-anchor-id="fare-ordinal-encoding---one-hot-encoding"><code>Fare</code>: Ordinal Encoding -&gt; One-Hot Encoding</h4>
 <div id="08be663e" class="cell" data-execution_count="31">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Fare'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    df_transformed <span class="op">=</span> df_transformed.pipe(apply_ordinal_to_one_hot, <span class="st">'Fare'</span>, q<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="fbd4c903" class="cell" data-execution_count="32">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df_transformed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <div>
 
@@ -1931,6 +2079,8 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <p>There is an odd deck: T. This passenger is first-class, so we can bucket him into the ‘A’ deck with other first-class passengers.</p>
 <p>We can group these decks as ‘ABC’, ‘DE’, and ‘FG’, leaving ‘X’ for any unknown decks.</p>
 <div id="ecacc200" class="cell" data-execution_count="33">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_deck_from_cabin(cabin) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    default_deck <span class="op">=</span> <span class="st">'X'</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1955,11 +2105,14 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>[<span class="st">'Deck'</span>],</span>
 <span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span><span class="bu">int</span></span>
 <span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="embarked-one-hot-encoding" class="level4">
 <h4 class="anchored" data-anchor-id="embarked-one-hot-encoding"><code>Embarked</code>: One-Hot Encoding</h4>
 <div id="db2321ed" class="cell" data-execution_count="34">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Embarked'</span> <span class="kw">in</span> df_transformed.columns:</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    cities_map <span class="op">=</span> {<span class="st">'S'</span>: <span class="st">'Southampton'</span>, <span class="st">'C'</span>: <span class="st">'Cherbourg'</span>, <span class="st">'Q'</span>: <span class="st">'Queenstown'</span>}</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    df_transformed[<span class="st">'Embarked'</span>] <span class="op">=</span> df_transformed.Embarked.<span class="bu">map</span>(cities_map)</span>
@@ -1970,9 +2123,13 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        columns<span class="op">=</span>[<span class="st">'Embarked'</span>],</span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span><span class="bu">int</span></span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="3d80a7b9" class="cell" data-execution_count="35">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df_transformed.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 
@@ -2195,6 +2352,8 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <p>Finally, to tune the hyperparameters, we can use a grid search to find the optimal parameters. Note that, as the diagram above shows, the hyperparameter tuning will be done with a validation set, leaving the test set for the final model evaluation.</p>
 <p>We can store the model, grid search results, hyperparameters, and performance scores in a DataFrame for easy access.</p>
 <div id="7e7d5d00" class="cell" data-execution_count="36">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split train/test datasets</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, GridSearchCV</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2205,11 +2364,14 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="build-model" class="level3">
 <h3 class="anchored" data-anchor-id="build-model">Build model</h3>
 <div id="4ac17e0e" class="cell" data-execution_count="37">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> BaseEstimator</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> (</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    AdaBoostClassifier,</span>
@@ -2221,8 +2383,11 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
 <span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
 <span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="5f1d89d7" class="cell" data-execution_count="38">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup dataframe to store model information</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>model_names <span class="op">=</span> [</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'AdaBoost'</span>,</span>
@@ -2237,6 +2402,7 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">'Model'</span>, <span class="st">'GridSearchResults'</span>, <span class="st">'OptimalParams'</span>, <span class="st">'Accuracy'</span>]</span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>model_names, columns<span class="op">=</span>columns)</span>
 <span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>models</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <div>
 
@@ -2315,6 +2481,8 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 </div>
 </div>
 <div id="171a82a8" class="cell" data-execution_count="39">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_grid_search(estimator: BaseEstimator, params: <span class="bu">dict</span>) <span class="op">-&gt;</span> pd.Series:</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> GridSearchCV(estimator, params, scoring<span class="op">=</span><span class="st">'accuracy'</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    model.fit(X_train, y_train)</span>
@@ -2325,14 +2493,18 @@ Stone and her maid got into lifeboat 6 and were rescued. She thought there were 
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>        OptimalParams<span class="op">=</span>model.best_params_,</span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>        Accuracy<span class="op">=</span>accuracy,</span>
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="naive-bayes" class="level4">
 <h4 class="anchored" data-anchor-id="naive-bayes">Naive-Bayes</h4>
 <div id="4db43af8" class="cell" data-execution_count="40">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">'var_smoothing'</span>: np.logspace(<span class="op">-</span><span class="dv">12</span>, <span class="op">-</span><span class="dv">7</span>, <span class="dv">6</span>)}</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'NaiveBayes'</span>] <span class="op">=</span> apply_grid_search(GaussianNB(), params)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'NaiveBayes'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'NaiveBayes'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 78.21%</code></pre>
 </div>
@@ -2885,6 +3057,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="logistic-regression" class="level4">
 <h4 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h4>
 <div id="0646bc78" class="cell" data-execution_count="41">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'penalty'</span>:      [<span class="st">'l2'</span>, <span class="st">'l1'</span>],</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C'</span>:            np.logspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>),</span>
@@ -2895,6 +3069,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>                                                     params)</span>
 <span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'LogisticRegression'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'LogisticRegression'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 83.24%</code></pre>
 </div>
@@ -3512,6 +3687,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="k-nearest-neighbors" class="level4">
 <h4 class="anchored" data-anchor-id="k-nearest-neighbors">K-Nearest Neighbors</h4>
 <div id="f732c35a" class="cell" data-execution_count="42">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_neighbors"</span>: [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">15</span>],</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"weights"</span>:     [<span class="st">"uniform"</span>, <span class="st">"distance"</span>],</span>
@@ -3520,6 +3697,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'KNN'</span>] <span class="op">=</span> apply_grid_search(KNeighborsClassifier(), params)</span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'KNN'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'KNN'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 77.09%</code></pre>
 </div>
@@ -4102,6 +4280,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="decisiontree" class="level4">
 <h4 class="anchored" data-anchor-id="decisiontree">DecisionTree</h4>
 <div id="affdc1f3" class="cell" data-execution_count="43">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"criterion"</span>:         [<span class="st">"gini"</span>, <span class="st">"entropy"</span>, <span class="st">"log_loss"</span>],</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_depth"</span>:         [<span class="va">None</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>],</span>
@@ -4112,6 +4292,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'DecisionTree'</span>] <span class="op">=</span> apply_grid_search(DecisionTreeClassifier(), params)</span>
 <span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'DecisionTree'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'DecisionTree'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 82.68%</code></pre>
 </div>
@@ -4719,6 +4900,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="support-vector-classifier-svc" class="level4">
 <h4 class="anchored" data-anchor-id="support-vector-classifier-svc">Support Vector Classifier (SVC)</h4>
 <div id="b46cc31f" class="cell" data-execution_count="44">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"kernel"</span>:       [<span class="st">"linear"</span>, <span class="st">"rbf"</span>],</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>:            np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
@@ -4728,6 +4911,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'SVC'</span>] <span class="op">=</span> apply_grid_search(SVC(), params)</span>
 <span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'SVC'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'SVC'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 80.45%</code></pre>
 </div>
@@ -5345,6 +5529,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="randomforest" class="level4">
 <h4 class="anchored" data-anchor-id="randomforest">RandomForest</h4>
 <div id="7eb0ca88" class="cell" data-execution_count="45">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_estimators"</span>:     [<span class="dv">200</span>, <span class="dv">400</span>],</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"max_depth"</span>:        [<span class="va">None</span>, <span class="dv">10</span>, <span class="dv">20</span>],</span>
@@ -5355,6 +5541,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'RandomForest'</span>] <span class="op">=</span> apply_grid_search(RandomForestClassifier(), params)</span>
 <span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'RandomForest'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'RandomForest'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 83.24%</code></pre>
 </div>
@@ -5992,6 +6179,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="ada-boosted-decision-tree" class="level4">
 <h4 class="anchored" data-anchor-id="ada-boosted-decision-tree">Ada-Boosted Decision Tree</h4>
 <div id="00b83df6" class="cell" data-execution_count="46">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_estimators"</span>:  [<span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">600</span>],</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"learning_rate"</span>: [<span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>],</span>
@@ -6001,6 +6190,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'AdaBoost'</span>] <span class="op">=</span> apply_grid_search(estimator, params)</span>
 <span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'AdaBoost'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'AdaBoost'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>c:\programming\repos\website\.venv\Lib\site-packages\sklearn\ensemble\_weight_boosting.py:519: FutureWarning: The parameter 'algorithm' is deprecated in 1.6 and has no effect. It will be removed in version 1.8.
   warnings.warn(</code></pre>
@@ -6652,6 +6842,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="gradient-boosted-tree" class="level4">
 <h4 class="anchored" data-anchor-id="gradient-boosted-tree">Gradient-Boosted Tree</h4>
 <div id="f6cedb50" class="cell" data-execution_count="47">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_estimators"</span>:  [<span class="dv">100</span>, <span class="dv">300</span>],</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"learning_rate"</span>: [<span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>],</span>
@@ -6663,6 +6855,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'GradientBoosted'</span>] <span class="op">=</span> apply_grid_search(estimator, params)</span>
 <span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">{:.2%}</span><span class="st">'</span>.<span class="bu">format</span>(models.loc[<span class="st">'GradientBoosted'</span>, <span class="st">'Accuracy'</span>]))</span>
 <span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>models.loc[<span class="st">'GradientBoosted'</span>, <span class="st">'Model'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 81.56%</code></pre>
 </div>
@@ -7307,9 +7500,12 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <section id="assess-model" class="level3">
 <h3 class="anchored" data-anchor-id="assess-model">Assess model</h3>
 <div id="e967644a" class="cell" data-execution_count="48">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> models[<span class="st">'Accuracy'</span>].sort_values().plot(kind<span class="op">=</span><span class="st">'barh'</span>, title<span class="op">=</span><span class="st">'Model Accuracy'</span>)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>add_bar_labels(ax, <span class="st">'</span><span class="sc">{:.2%}</span><span class="st">'</span>)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -7332,6 +7528,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </ul>
 <p>Overall, the workflow demonstrated the importance of thorough data understanding, careful cleaning, and feature engineering in building effective predictive models for Titanic survival.</p>
 <div id="fdb52f7e" class="cell" data-execution_count="49">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>model_coefficients <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Feature'</span>: X.columns,</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Coefficient'</span>: models.loc[<span class="st">'LogisticRegression'</span>, <span class="st">'Model'</span>].coef_[<span class="dv">0</span>]</span>
@@ -7342,6 +7540,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>sns.heatmap(model_coefficients, cmap<span class="op">=</span><span class="st">'RdYlGn'</span>)</span>
 <span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Logistic Regression Coefficients'</span>)</span>
 <span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -7438,6 +7637,57 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/msburns\.netlify\.app\/");
@@ -7454,6 +7704,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

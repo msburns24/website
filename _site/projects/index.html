@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-90c3747c317cefb03aa88438a69113e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-270c39920d9f1194d940fa72c4a3831a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-categories','listing-description','listing-date','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -133,7 +133,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../styles.css">
-<link rel="alternate" type="application/rss+xml" title="Recent Posts" href="index.xml" data-external="1"></head>
+</head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -332,8 +332,12 @@ window.Quarto = {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts/index.html"> 
+    <a class="nav-link" href="../posts/"> 
 <span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/"> 
+<span class="menu-text">Projects</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -356,7 +360,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2xhc3NpZmljYXRpb24=">Classification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q3Jvc3MtVmFsaWRhdGlvbg==">Cross-Validation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RmVhdHVyZSUyMEVuZ2luZWVyaW5n">Feature Engineering <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -384,26 +388,38 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1756997591625" data-listing-reading-time-sort="18" data-listing-word-count-sort="3414">
-<div class="thumbnail"><a href="../projects/titanic/index.html" class="no-external">
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Q2xhc3NpZmljYXRpb24lMkNGZWF0dXJlJTIwRW5naW5lZXJpbmclMkNDcm9zcy1WYWxpZGF0aW9u" data-listing-date-sort="1756612800000" data-listing-file-modified-sort="1757178460132" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3414">
+<a href="../projects/titanic/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../projects/titanic/titanic.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Titanic
+</h5>
+<div class="listing-reading-time card-text text-muted">18 min</div>
+<div class="listing-categories">
 
-<p class="card-img-top"><img src="titanic\index_files\figure-html\cell-9-output-1.png"  class="thumbnail-image card-img"/></p>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xhc3NpZmljYXRpb24='); return false;">Classification</div>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../projects/titanic/index.html" class="no-external">Titanic</a>
-</h3>
-<div class="delink listing-description"><a href="../projects/titanic/index.html" class="no-external">
-To most, the Titanic may evokes imagery of a grand ship, a newspaper headline, or maybe the iconic picture of Leo &amp; Kate on the bow of the ship. To data scientists, the…<em></em>
-</a></div>
+<div class="listing-category" onclick="window.quartoListingCategory('RmVhdHVyZSUyMEVuZ2luZWVyaW5n'); return false;">Feature Engineering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q3Jvc3MtVmFsaWRhdGlvbg=='); return false;">Cross-Validation</div>
+
 </div>
-<div class="metadata">
-<a href="../projects/titanic/index.html" class="no-external">
-</a>
+<div class="card-text listing-description delink">
+<p>Predicting survival through feature engineering and robust model selection</p>
 </div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Aug 31, 2025
+</div>
+</div>
+</div>
+</div></a>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
@@ -507,6 +523,8 @@ To most, the Titanic may evokes imagery of a grand ship, a newspaper headline, o
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

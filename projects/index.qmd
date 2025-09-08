@@ -1,12 +1,17 @@
 ---
 title: Projects
 listing:
-  contents: ['*.ipynb', '*.qmd']
-  feed:
-    items: 10
-    type: partial
-    title: Recent Posts
+  contents:
+    - '*.ipynb'
+    - '*.qmd'
+  fields:
+    - image
+    - title
+    - categories
+    - description
+    - date
+    - reading-time
   sort: "date desc"
-  type: default
+  type: grid
   categories: true
 ---

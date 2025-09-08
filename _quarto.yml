@@ -19,8 +19,10 @@ website:
         text: Home
       - href: about.qmd
         text: About
-      - href: posts/index.html
+      - href: /posts/
         text: Posts
+      - href: /projects/
+        text: Projects
         
     right:
       - icon: github
@@ -28,16 +30,14 @@ website:
 
 format:
   html:
+    link-external-icon: true
     respect-user-color-scheme: true
     theme:
       light:
         - sandstone
-        - brand
+        - theme-light.scss
       dark:
-        - darkly
-        - brand
+        - sandstone
+        - theme-dark.scss
     css: styles.css
     toc: true
-
-
-
