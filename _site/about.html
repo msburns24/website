@@ -40,9 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3aa6afd50bd12cc4553eca7e6da48e96.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-215b10f3dd3d4757dd9eab01bf82c76c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-270c39920d9f1194d940fa72c4a3831a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -297,7 +297,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <div class="quarto-about-jolla">
   <img src="images/Matthew-Burns-headshot.jpg" class="about-image
@@ -311,7 +318,13 @@ ul.task-list li input[type="checkbox"] {
 </header><main class="content" id="quarto-document-content">
 
 
+<p><em>Analytical problem-solver bridging supply chain, data science, and software development, leveraging machine learning and deep learning to build innovative, data-driven solutions.</em></p>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>I started my career with a background in mechanical engineering before transitioning into supply chain analytics, where I discovered my passion for using data to solve complex problems in the organization. Over time, I realized I was most excited by the data science and modeling approaches, trying to understand the concepts at a deeper level. That led me to enroll in a Master in Applied Data Science program, where I’ve been expanding my knowledge with dat scientists who work with some real cutting-edge approaches. Today, I’m finding ways to apply those tools toward high-impact problems: ones that require robust solutions and creative approaches.</p>
 
+
+</section>
 </main> 
   <hr class="about-sep">
    <div class="about-links">
@@ -422,6 +435,8 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

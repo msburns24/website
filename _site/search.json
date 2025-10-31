@@ -25,7 +25,7 @@
     "href": "index.html#projects",
     "title": "Matthew Burns",
     "section": "Projects",
-    "text": "Projects\n\nH3\n\nH4\n\nTitanic"
+    "text": "Projects\n\nTitanic"
   },
   {
     "objectID": "posts/data-lifecycle-101/index.html",
@@ -236,5 +236,12 @@
     "title": "Stochastic Gradient Descent",
     "section": "Conclusion",
     "text": "Conclusion\nIt’s quite incredible that stochastic gradient descent ran this much faster than batch gradient descent. Originally, I had expected to see an optimal point: a crossing of the two curves that indicates the point where batch gradient descent isn’t worth it and stochastic gradient descent becomes a better option. Instead, it looks like nearly always, stochastic gradient descent takes the cake.\nThe most peculiar finding is the sudden jump in training time for batch gradient descent, at around 26,000 samples. This baffled me for a while, as I expected a smooth transition of training time as a function of sample size. However, after re-running this several times, I kept getting the same result. After a bit of research, I found some enlightening information.\nThe jump in training time for batch gradient descent can likely be attributed to memory allocation. Up through around 26k rows, the arrays neatly fit into our CPU cache (L2/L3). At around 27k rows, the matrix-vector multiplications no longer fully fit in the cache, forcing far more frequent main memory access. This produced a sudden slowdown, requiring a change in the backend algorithm, ultimately affecting the performance.\nWhile I started this with the intent of understanding batch gradient descent, it also provided an insightful lesson in the backend nuances of Numpy."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About | Matthew Burns",
+    "section": "",
+    "text": "Analytical problem-solver bridging supply chain, data science, and software development, leveraging machine learning and deep learning to build innovative, data-driven solutions.\n\nBackground\nI started my career with a background in mechanical engineering before transitioning into supply chain analytics, where I discovered my passion for using data to solve complex problems in the organization. Over time, I realized I was most excited by the data science and modeling approaches, trying to understand the concepts at a deeper level. That led me to enroll in a Master in Applied Data Science program, where I’ve been expanding my knowledge with dat scientists who work with some real cutting-edge approaches. Today, I’m finding ways to apply those tools toward high-impact problems: ones that require robust solutions and creative approaches."
   }
 ]

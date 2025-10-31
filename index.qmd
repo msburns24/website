@@ -8,10 +8,6 @@ other helpful information related to data science.
 
 ## Projects
 
-### H3
-
-#### H4
-
 - [Titanic][1]
 
 <!-- References -->
