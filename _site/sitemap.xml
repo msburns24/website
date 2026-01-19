@@ -32,4 +32,20 @@
     <loc>https://msburns.netlify.app/posts/stochastic-gradient-descent/index.html</loc>
     <lastmod>2025-09-06T12:23:09.036Z</lastmod>
   </url>
+  <url>
+    <loc>https://msburns.netlify.app/projects/steam-recommender/index.html</loc>
+    <lastmod>2026-01-19T18:47:54.156Z</lastmod>
+  </url>
+  <url>
+    <loc>https://msburns.netlify.app/projects/steam-recommender/Part-2-Data-Preparation.html</loc>
+    <lastmod>2026-01-18T19:35:27.107Z</lastmod>
+  </url>
+  <url>
+    <loc>https://msburns.netlify.app/projects/steam-recommender/Part-1-Data-Collection.html</loc>
+    <lastmod>2026-01-12T21:46:05.339Z</lastmod>
+  </url>
+  <url>
+    <loc>https://msburns.netlify.app/projects/steam-recommender/Part-3-Implicit-ALS.html</loc>
+    <lastmod>2026-01-18T21:45:42.197Z</lastmod>
+  </url>
 </urlset>

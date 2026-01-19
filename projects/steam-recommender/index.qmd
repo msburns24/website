@@ -1,0 +1,144 @@
+---
+title: Steam Recommender System
+subtitle: Recommending Games Based on User Playtime
+description: Recommending Games Based on User Playtime
+author: Matthew Burns
+date: 2026-01-19
+categories:
+  - Data Science
+  - Machine Learning
+  - Recommender Systems
+  - Video Games
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    page-layout: full
+freeze: auto
+---
+
+## TL;DR
+
+This project builds a **collaborative-filtering recommender system** for Steam
+games using an **implicit-feedback Alternating Least Squares (ALS)** model. The
+workflow is documented as a short series so readers can scan the *why*,
+*what I did*, and *what came out* without digging through the entire repo.
+
+## Quick links
+
+- [GitHub repo](https://github.com/msburns24/Steam-Recommender-System)
+- **Notebooks (read in order):**
+  1. [Part 1 — Data Collection](Part-1-Data-Collection.ipynb)
+  2. [Part 2 — Data Preparation](Part-2-Data-Preparation.ipynb)
+  3. [Part 3 — Implicit ALS Modeling](Part-3-Implicit-ALS.ipynb)
+
+## What this demonstrates
+
+- End-to-end DS workflow: **data ingestion → cleaning/reshaping → modeling → evaluation**
+- Working with real-world "messy" nested data (Steam user-item histories)
+- Recommender-system fundamentals:
+  - **Implicit feedback** (playtime) vs explicit ratings
+  - Sparse user-item matrices
+  - ALS factorization and practical tuning
+- Pragmatic model validation using ranking metrics (**NDCG@K**)
+
+## Project overview
+
+### Goal
+
+Recommend Steam games to users using interaction history (playtime). Because
+playtime is not a 1-5 rating, this is treated as **implicit feedback** where
+"more playtime" indicates stronger preference.
+
+### Data source
+
+This project uses a public Steam interactions dataset released by UCSD's
+recommender-systems group (McAuley Lab). The raw data comes as a gzipped
+JSON-lines file containing users and their nested item histories.
+
+### Approach in one paragraph
+
+I download and parse the raw dataset, convert the nested structures into a
+clean long-form table (user, item, playtime), apply practical filtering and
+transformations (cold-start mitigation + log playtime), generate consistent
+numeric IDs, create train/validation/test splits, then train and tune an
+**implicit ALS** model and evaluate ranking quality with **NDCG@10**.
+
+## Walkthrough (3 parts)
+
+::: {.columns}
+::: {.column width="33%"}
+### Part 1 — Data Collection
+
+**Focus:** reproducible ingestion
+
+- Download the dataset
+- Extract from GZIP
+- Parse JSON-by-line structure
+- Save to a local artifact for reuse
+
+[Open Part 1](Part-1-Data-Collection.ipynb)
+:::
+
+::: {.column width="33%"}
+### Part 2 — Data Preparation
+
+**Focus:** "model-ready" interactions table
+
+- Expand nested user → items structure into long form
+- Fix/standardize user identifiers
+- Drop very-low-interaction users (reduce cold-start impact)
+- Transform playtime (log(1 + x))
+- Map user/item IDs to contiguous integers
+- Build samples + train/valid/test splits
+
+[Open Part 2](Part-2-Data-Preparation.ipynb)
+:::
+
+::: {.column width="33%"}
+### Part 3 — Implicit ALS Modeling
+
+**Focus:** collaborative filtering
+
+- Build a sparse user-item matrix
+- Train ALS (implicit feedback formulation)
+- Grid-search key hyperparameters:
+  - latent factors
+  - regularization
+  - alpha (confidence scaling)
+- Evaluate ranking quality (NDCG@10)
+- Train a final model configuration
+
+[Open Part 3](Part-3-Implicit-ALS.ipynb)
+:::
+:::
+
+## Key implementation details
+
+### Cold-start mitigation
+
+To avoid training a model dominated by extremely sparse users, I filter out
+users with too few interactions before training. This improves recommendation
+stability and makes evaluation more meaningful.
+
+### Implicit feedback handling
+
+Playtime is treated as a confidence-weighted preference signal rather than an
+explicit rating. I also apply a log transform to dampen heavy-tail effects (a
+few games with extremely high playtime).
+
+### Evaluation
+
+I measure ranking quality using **NDCG@10** on a held-out validation set during
+tuning, then use the test set for final sanity checks.
+
+## How to run (locally)
+
+1. Clone the repo
+2. Create the environment (requirements/conda)
+3. Run notebooks in order:
+   - `01-Data-Collection.ipynb`
+   - `02-Data-Preparation.ipynb`
+   - `03-Implicit-ALS.ipynb`
