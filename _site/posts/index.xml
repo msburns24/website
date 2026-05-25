@@ -10,7 +10,17 @@
 <atom:link href="https://msburns.netlify.app/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website and portfolio for data science projects and insights</description>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Fri, 05 Sep 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 25 May 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>From Notebook to Production: What Sentiment Analysis Actually Takes</title>
+  <link>https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/</link>
+  <description><![CDATA[ There’s a specific moment every ML practitioner eventually hits. You’ve trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a <code>predict()</code> call and it works. You close the notebook feeling good. ]]></description>
+  <category>Machine Learning</category>
+  <category>ML Engineering</category>
+  <category>Sentiment Classification</category>
+  <guid>https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/</guid>
+  <pubDate>Mon, 25 May 2026 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Stochastic Gradient Descent</title>
   <link>https://msburns.netlify.app/posts/stochastic-gradient-descent/</link>

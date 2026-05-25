@@ -1,0 +1,19 @@
+# Diagrams Advice
+
+Three would add the most value, in rough priority order:
+
+1. Label distribution shift (Section 8 — Drift Results)
+This is the strongest case. The numbers are dramatic (34% positive → 13%, 61% negative → 83%) but a side-by-side grouped bar chart makes the shift immediately visceral in a way a formatted text block doesn't. It's also the most "shareable" image in the post — the kind of thing that gets pulled out of context.
+
+2. The fallback chain (Section 5)
+The ASCII art works, but a proper flowchart with styled boxes — color-coded by tier (green/orange/red matching the tiers) and with the pass/fail routing labeled on the arrows — would be significantly more readable, especially on mobile. The presentation version with the three color-coded tier boxes is a better model than the monochrome ASCII. This is the diagram most likely to be referenced by readers who want to replicate the pattern.
+
+3. Confidence histogram — healthy vs. drifting (Section 6)
+The text in that section says "a healthy system has most mass in the 0.8–1.0 bucket" and "a drifting system shows mass spreading toward 0.4–0.6." That's a natural paired diagram: two small histograms side by side, one labeled "healthy" with a right-skewed distribution, one labeled "drifting" with a flatter or bimodal one. It's a diagram that teaches the concept, not just illustrates data you already have.
+
+---
+
+The system architecture diagram (Section 4) and the text-length KS comparison are lower priority — the architecture ASCII is already legible and the KS result is better conveyed by the p-value than by a density plot. I'd skip those unless you're going long-form.
+
+For format: Mermaid works well for the flowchart if your blog platform renders it. The histogram and bar chart are better as static images since they show actual data rather than structure.
+
