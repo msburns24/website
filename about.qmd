@@ -17,9 +17,9 @@ about:
       href: mailto:msb@ameritech.net
 ---
 
-*Analytical problem-solver bridging supply chain, data science, and software
-development, leveraging machine learning and deep learning to build
-innovative, data-driven solutions.*
+*Senior Data Scientist and ML Engineer building production ML systems for supply
+chain and logistics — from demand forecasting and inventory optimization to
+NLP-powered operations tooling.*
 
 # Background
 
@@ -28,7 +28,7 @@ transitioning into supply chain analytics, where I discovered my passion for
 using data to solve complex problems in the organization. Over time, I realized
 I was most excited by the data science and modeling approaches, trying to
 understand the concepts at a deeper level. That led me to enroll in a Master in
-Applied Data Science program, where I've been expanding my knowledge with dat
+Applied Data Science program, where I've been expanding my knowledge with data
 scientists who work with some real cutting-edge approaches. Today, I'm finding
 ways to apply those tools toward high-impact problems: ones that require robust
 solutions and creative approaches.

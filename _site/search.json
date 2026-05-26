@@ -16,9 +16,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Matthew Burns",
+    "title": "\nMatthew Burns\n",
     "section": "",
-    "text": "Welcome to my Quarto website! I decided to start this as a way to showcase my data science projects, but found it a great way to share insights, tips, and other helpful information related to data science."
+    "text": "Senior Data Scientist / ML Engineer — Supply Chain & Logistics ML\n\nI build production ML systems that work outside the notebook — from end-to-end NLP pipelines on 130M-row datasets to collaborative filtering at scale. My background spans mechanical engineering, supply chain operations, and a Master’s in Applied Data Science, giving me an edge on problems where domain knowledge and ML engineering depth both matter.\n\nView Projects About Me\n\n\n\n\n\n\n\n\n\n\n\n\n\nML Engineering\n\n\nEnd-to-end NLP pipeline on 130M Amazon reviews — production-style architecture with fallback chains, failure-mode analysis, and monitoring.\n\n\n\n\n\n\n\n\n🎮\n\n\nRecommender Systems\n\n\nCollaborative filtering on implicit user feedback — ALS model trained on Steam playtime data to surface personalized game recommendations.\n\n\n\n\n\n\nAll Projects →\n\n\n\n\n\nFrom mechanical engineering to supply chain analytics to ML systems — my career has followed the data. I’m currently finishing a Master’s in Applied Data Science, applying rigorous methods to high-impact problems in forecasting, NLP, and optimization.\n\nMore about me →   LinkedIn    GitHub"
   },
   {
     "objectID": "index.html#projects",
@@ -242,7 +242,7 @@
     "href": "about.html",
     "title": "About | Matthew Burns",
     "section": "",
-    "text": "Analytical problem-solver bridging supply chain, data science, and software development, leveraging machine learning and deep learning to build innovative, data-driven solutions.\n\nBackground\nI started my career with a background in mechanical engineering before transitioning into supply chain analytics, where I discovered my passion for using data to solve complex problems in the organization. Over time, I realized I was most excited by the data science and modeling approaches, trying to understand the concepts at a deeper level. That led me to enroll in a Master in Applied Data Science program, where I’ve been expanding my knowledge with dat scientists who work with some real cutting-edge approaches. Today, I’m finding ways to apply those tools toward high-impact problems: ones that require robust solutions and creative approaches."
+    "text": "Senior Data Scientist and ML Engineer building production ML systems for supply chain and logistics — from demand forecasting and inventory optimization to NLP-powered operations tooling.\n\nBackground\nI started my career with a background in mechanical engineering before transitioning into supply chain analytics, where I discovered my passion for using data to solve complex problems in the organization. Over time, I realized I was most excited by the data science and modeling approaches, trying to understand the concepts at a deeper level. That led me to enroll in a Master in Applied Data Science program, where I’ve been expanding my knowledge with data scientists who work with some real cutting-edge approaches. Today, I’m finding ways to apply those tools toward high-impact problems: ones that require robust solutions and creative approaches."
   },
   {
     "objectID": "projects/steam-recommender/index.html",
@@ -572,5 +572,19 @@
     "title": "From Notebook to Production: What Sentiment Analysis Actually Takes",
     "section": "Closing Thought",
     "text": "Closing Thought\nThe notebook took two hours to write and got 87% accuracy. The production system took considerably longer — and that’s the right investment ratio for anything that acts on real data and affects real customers.\nThe patterns here — a structured return contract that never raises, explicit failure modes enumerated before they happen, a layered fallback chain, drift detection that watches multiple signals independently, an observability layer that reflects what’s actually happening rather than what you hope is happening — aren’t specific to sentiment analysis. They’re the same patterns you’d apply to a fraud classifier, a content moderation system, or a medical risk scorer. The domain changes; the engineering discipline doesn’t.\nIf you’ve built something similar or have war stories from the notebook-to-production gap, I’d like to hear them.\nThe full codebase, including the FastAPI serving layer, drift simulation script, Streamlit observability dashboard, and four-layer test suite, is on GitHub."
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "\nMatthew Burns\n",
+    "section": "",
+    "text": "ML Engineering\n\n\nEnd-to-end NLP pipeline on 130M Amazon reviews — production-style architecture with fallback chains, failure-mode analysis, and monitoring.\n\n\n\n\n\n\n\n\n🎮\n\n\nRecommender Systems\n\n\nCollaborative filtering on implicit user feedback — ALS model trained on Steam playtime data to surface personalized game recommendations.\n\n\n\n\n\n\nAll Projects →"
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "\nMatthew Burns\n",
+    "section": "",
+    "text": "From mechanical engineering to supply chain analytics to ML systems — my career has followed the data. I’m currently finishing a Master’s in Applied Data Science, applying rigorous methods to high-impact problems in forecasting, NLP, and optimization.\n\nMore about me →   LinkedIn    GitHub"
   }
 ]

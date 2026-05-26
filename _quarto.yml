@@ -6,6 +6,7 @@ website:
   description: A website and portfolio for data science projects and insights
   site-url: https://www.matthewburns.net/
   open-graph: true
+  twitter-card: true
   image: images/Matthew-Burns-headshot.jpg
   image-alt: "Matthew Burns - Senior Data Scientist / ML Engineer"
 
@@ -28,8 +29,10 @@ website:
         text: Projects
         
     right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/matthewsburns849/
       - icon: github
-        href: https://github.com/msburns24/website/
+        href: https://github.com/msburns24/
 
 format:
   html:
