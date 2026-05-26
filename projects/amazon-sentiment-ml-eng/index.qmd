@@ -4,9 +4,9 @@ title: "From Notebook to Production: What Sentiment Analysis Actually Takes"
 subtitle: "A practitioner's account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn't teach you."
 date: 2026-05-25
 date-modified: 2026-05-26
-image: notebook_vs_production.svg
+image: notebook_vs_production_thumbnail.svg
 include-before-body:
-  text: '<img src="notebook_vs_production.svg" style="width:100%; margin-bottom:1rem;">'
+  text: '<img src="notebook_vs_production_header.svg" style="width:100%; margin-bottom:1rem;">'
 categories:
   - Machine Learning
   - ML Engineering
@@ -14,6 +14,14 @@ categories:
 execute:
   code-fold: true
 ---
+
+::: {.callout-note title="TL;DR"}
+- **Problem:** Classify 130M Amazon customer reviews to trigger churn-prevention interventions — 20,000 reviews/day, 99.9% uptime, and a business that can't afford silent failures or surprise exceptions.
+
+- **What I built:** A production-ready 3-tier fallback classifier (fine-tuned DistilBERT → rule-based keyword matching → human review queue) with FastAPI serving, drift detection across three independent signals, and a Streamlit observability dashboard.
+
+- **Key result:** The system handles every failure mode — non-English input, low confidence, resource pressure, training-serving skew — with a structured `{label, confidence, status, reason}` response and never raises to the caller. On a real Amazon temporal split, drift detection flagged a review-bombing event (label distribution shifted from 34% → 13% positive) before F1 had time to visibly degrade; OOV-only monitoring would have missed it entirely.
+:::
 
 There's a specific moment every ML practitioner eventually hits. You've trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a `predict()` call and it works. You close the notebook feeling good.
 
@@ -153,12 +161,6 @@ This post documents the full journey, using the [Amazon Customer Reviews 2023 da
 <br />
 
 ```
-
-::: {.callout-note title="TL;DR"}
-- **Problem:** Classify 130M Amazon customer reviews to trigger churn-prevention interventions — 20,000 reviews/day, 99.9% uptime, and a business that can't afford silent failures or surprise exceptions.
-- **What I built:** A production-ready 3-tier fallback classifier (fine-tuned DistilBERT → rule-based keyword matching → human review queue) with FastAPI serving, drift detection across three independent signals, and a Streamlit observability dashboard.
-- **Key result:** The system handles every failure mode — non-English input, low confidence, resource pressure, training-serving skew — with a structured `{label, confidence, status, reason}` response and never raises to the caller. On a real Amazon temporal split, drift detection flagged a review-bombing event (label distribution shifted from 34% → 13% positive) before F1 had time to visibly degrade; OOV-only monitoring would have missed it entirely.
-:::
 
 ![System architecture: five decoupled modules with a unified response contract.](system_architecture.svg)
 

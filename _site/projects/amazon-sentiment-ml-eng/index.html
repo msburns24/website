@@ -111,11 +111,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="From Notebook to Production: What Sentiment Analysis Actually Takes – Matthew Burns">
 <meta property="og:description" content="A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.">
-<meta property="og:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production.svg">
+<meta property="og:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production_thumbnail.svg">
 <meta property="og:site_name" content="Matthew Burns">
 <meta name="twitter:title" content="From Notebook to Production: What Sentiment Analysis Actually Takes – Matthew Burns">
 <meta name="twitter:description" content="A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.">
-<meta name="twitter:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production.svg">
+<meta name="twitter:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production_thumbnail.svg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<img src="notebook_vs_production.svg" style="width:100%; margin-bottom:1rem;">
+<img src="notebook_vs_production_header.svg" style="width:100%; margin-bottom:1rem;">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -422,6 +422,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="TL;DR">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TL;DR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Problem:</strong> Classify 130M Amazon customer reviews to trigger churn-prevention interventions — 20,000 reviews/day, 99.9% uptime, and a business that can’t afford silent failures or surprise exceptions.</p></li>
+<li><p><strong>What I built:</strong> A production-ready 3-tier fallback classifier (fine-tuned DistilBERT → rule-based keyword matching → human review queue) with FastAPI serving, drift detection across three independent signals, and a Streamlit observability dashboard.</p></li>
+<li><p><strong>Key result:</strong> The system handles every failure mode — non-English input, low confidence, resource pressure, training-serving skew — with a structured <code>{label, confidence, status, reason}</code> response and never raises to the caller. On a real Amazon temporal split, drift detection flagged a review-bombing event (label distribution shifted from 34% → 13% positive) before F1 had time to visibly degrade; OOV-only monitoring would have missed it entirely.</p></li>
+</ul>
+</div>
+</div>
 <p>There’s a specific moment every ML practitioner eventually hits. You’ve trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a <code>predict()</code> call and it works. You close the notebook feeling good.</p>
 <p>Then someone asks: “Can we deploy this?”</p>
 <p>That question opens a chasm. On one side: a model that works in a notebook. On the other: a system that handles 20,000 reviews a day with 99.9% uptime, degrades gracefully under memory pressure, detects when its training distribution is shifting, and never crashes the service when it encounters bad input. Crossing that chasm is what ML engineering is actually about.</p>
@@ -554,23 +571,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <br>
 
-<div class="callout callout-style-default callout-note callout-titled" title="TL;DR">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TL;DR
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>Problem:</strong> Classify 130M Amazon customer reviews to trigger churn-prevention interventions — 20,000 reviews/day, 99.9% uptime, and a business that can’t afford silent failures or surprise exceptions.</li>
-<li><strong>What I built:</strong> A production-ready 3-tier fallback classifier (fine-tuned DistilBERT → rule-based keyword matching → human review queue) with FastAPI serving, drift detection across three independent signals, and a Streamlit observability dashboard.</li>
-<li><strong>Key result:</strong> The system handles every failure mode — non-English input, low confidence, resource pressure, training-serving skew — with a structured <code>{label, confidence, status, reason}</code> response and never raises to the caller. On a real Amazon temporal split, drift detection flagged a review-bombing event (label distribution shifted from 34% → 13% positive) before F1 had time to visibly degrade; OOV-only monitoring would have missed it entirely.</li>
-</ul>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="system_architecture.svg" class="img-fluid figure-img"></p>
