@@ -1,1 +1,1 @@
-Sitemap: https://msburns.netlify.app/sitemap.xml
+Sitemap: https://www.matthewburns.net/sitemap.xml

@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-05-25">
+
+<title>From Notebook to Production: What Sentiment Analysis Actually Takes – Matthew Burns</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-270c39920d9f1194d940fa72c4a3831a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c7646f10914b6a51968bb574a7417c7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="From Notebook to Production: What Sentiment Analysis Actually Takes – Matthew Burns">
+<meta property="og:description" content="A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.">
+<meta property="og:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production.svg">
+<meta property="og:site_name" content="Matthew Burns">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">matthew burns</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/msburns24/website/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-gap-between-notebook-accuracy-and-production-readiness" id="toc-the-gap-between-notebook-accuracy-and-production-readiness" class="nav-link active" data-scroll-target="#the-gap-between-notebook-accuracy-and-production-readiness">1. The Gap Between Notebook Accuracy and Production Readiness</a></li>
+  <li><a href="#requirements-first-a-walkthrough" id="toc-requirements-first-a-walkthrough" class="nav-link" data-scroll-target="#requirements-first-a-walkthrough">2. Requirements First: A Walkthrough</a>
+  <ul class="collapse">
+  <li><a href="#business-requirements" id="toc-business-requirements" class="nav-link" data-scroll-target="#business-requirements">Business requirements</a></li>
+  <li><a href="#system-performance-requirements" id="toc-system-performance-requirements" class="nav-link" data-scroll-target="#system-performance-requirements">System performance requirements</a></li>
+  <li><a href="#model-quality-requirements" id="toc-model-quality-requirements" class="nav-link" data-scroll-target="#model-quality-requirements">Model quality requirements</a></li>
+  <li><a href="#data-quality-requirements" id="toc-data-quality-requirements" class="nav-link" data-scroll-target="#data-quality-requirements">Data quality requirements</a></li>
+  <li><a href="#a-note-on-label-derivation" id="toc-a-note-on-label-derivation" class="nav-link" data-scroll-target="#a-note-on-label-derivation">A note on label derivation</a></li>
+  </ul></li>
+  <li><a href="#failure-modes-when-the-amazon-dataset-bites-you" id="toc-failure-modes-when-the-amazon-dataset-bites-you" class="nav-link" data-scroll-target="#failure-modes-when-the-amazon-dataset-bites-you">3. Failure Modes: When the Amazon Dataset Bites You</a>
+  <ul class="collapse">
+  <li><a href="#f1-non-english-input" id="toc-f1-non-english-input" class="nav-link" data-scroll-target="#f1-non-english-input">F1: Non-English input</a></li>
+  <li><a href="#f2-very-short-and-very-long-reviews" id="toc-f2-very-short-and-very-long-reviews" class="nav-link" data-scroll-target="#f2-very-short-and-very-long-reviews">F2: Very short and very long reviews</a></li>
+  <li><a href="#f3-low-confidence-predictions" id="toc-f3-low-confidence-predictions" class="nav-link" data-scroll-target="#f3-low-confidence-predictions">F3: Low-confidence predictions</a></li>
+  <li><a href="#f4-resource-pressure" id="toc-f4-resource-pressure" class="nav-link" data-scroll-target="#f4-resource-pressure">F4: Resource pressure</a></li>
+  <li><a href="#f5-training-serving-skew" id="toc-f5-training-serving-skew" class="nav-link" data-scroll-target="#f5-training-serving-skew">F5: Training-serving skew</a></li>
+  </ul></li>
+  <li><a href="#system-architecture" id="toc-system-architecture" class="nav-link" data-scroll-target="#system-architecture">4. System Architecture</a></li>
+  <li><a href="#the-fallback-chain" id="toc-the-fallback-chain" class="nav-link" data-scroll-target="#the-fallback-chain">5. The Fallback Chain</a></li>
+  <li><a href="#serving-predictions-the-fastapi-layer" id="toc-serving-predictions-the-fastapi-layer" class="nav-link" data-scroll-target="#serving-predictions-the-fastapi-layer">6. Serving Predictions: The FastAPI Layer</a></li>
+  <li><a href="#watching-it-run-the-observability-dashboard" id="toc-watching-it-run-the-observability-dashboard" class="nav-link" data-scroll-target="#watching-it-run-the-observability-dashboard">7. Watching It Run: The Observability Dashboard</a></li>
+  <li><a href="#drift-simulation-results" id="toc-drift-simulation-results" class="nav-link" data-scroll-target="#drift-simulation-results">8. Drift Simulation Results</a></li>
+  <li><a href="#testing-across-four-layers" id="toc-testing-across-four-layers" class="nav-link" data-scroll-target="#testing-across-four-layers">9. Testing Across Four Layers</a></li>
+  <li><a href="#what-comes-next" id="toc-what-comes-next" class="nav-link" data-scroll-target="#what-comes-next">10. What Comes Next</a></li>
+  <li><a href="#closing-thought" id="toc-closing-thought" class="nav-link" data-scroll-target="#closing-thought">Closing Thought</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<img src="notebook_vs_production.svg" style="width:100%; margin-bottom:1rem;">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">From Notebook to Production: What Sentiment Analysis Actually Takes</h1>
+<p class="subtitle lead">A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">ML Engineering</div>
+    <div class="quarto-category">Sentiment Classification</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 25, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 26, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>There’s a specific moment every ML practitioner eventually hits. You’ve trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a <code>predict()</code> call and it works. You close the notebook feeling good.</p>
+<p>Then someone asks: “Can we deploy this?”</p>
+<p>That question opens a chasm. On one side: a model that works in a notebook. On the other: a system that handles 20,000 reviews a day with 99.9% uptime, degrades gracefully under memory pressure, detects when its training distribution is shifting, and never crashes the service when it encounters bad input. Crossing that chasm is what ML engineering is actually about.</p>
+<p>This post documents the full journey, using the <a href="https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023">Amazon Customer Reviews 2023 dataset</a> as the proving ground.</p>
+<style>
+  .repo-card {
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-body-color) 8%);
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius-lg);
+    padding: 1.1rem 1.25rem;
+    max-width: 560px;
+  }
+
+  .repo-card:hover {
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+  }
+
+  .repo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .repo-icon {
+    color: var(--bs-secondary-color);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .repo-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--bs-link-color);
+    text-decoration: none;
+  }
+
+  .repo-name:hover {
+    text-decoration: underline;
+  }
+
+  .repo-desc {
+    font-size: 13px;
+    color: var(--bs-secondary-color);
+    margin: 0 0 12px;
+    line-height: 1.5;
+  }
+
+  .repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: rgba(var(--bs-info-rgb), 0.15);
+    color: var(--bs-link-color);
+    font-family: var(--bs-font-monospace);
+  }
+
+  .repo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .repo-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+  }
+
+  .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3572A5;
+    flex-shrink: 0;
+  }
+
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius);
+    padding: 5px 10px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .view-btn:hover {
+    background: color-mix(in srgb, var(--bs-body-bg) 85%, var(--bs-body-color) 15%);
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+    color: var(--bs-body-color);
+  }
+</style>
+<div class="repo-card">
+  <div class="repo-top">
+    <i class="bi bi-github repo-icon" aria-hidden="true"></i>
+    <a class="repo-name" href="https://github.com/msburns24/amazon-sentiment-ml-eng">msburns24 /
+      amazon-sentiment-ml-eng</a>
+  </div>
+  <p class="repo-desc">Production-ready sentiment classifier on 130M Amazon reviews — fallback chain, drift detection,
+    FastAPI serving, and Streamlit observability dashboard. Run locally: <code>pip install -e . &amp;&amp; uvicorn app.main:app</code></p>
+  <div class="repo-tags">
+    <span class="tag">python</span>
+    <span class="tag">transformers</span>
+    <span class="tag">fastapi</span>
+    <span class="tag">mlops</span>
+    <span class="tag">concept-drift</span>
+  </div>
+  <div class="repo-footer">
+    <div class="repo-lang">
+      <span class="lang-dot"></span>
+      <span>Python</span>
+    </div>
+    <a class="view-btn" href="https://github.com/msburns24/amazon-sentiment-ml-eng">
+      View on GitHub <i class="bi bi-arrow-right" style="font-size:12px" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<br>
+
+<div class="callout callout-style-default callout-note callout-titled" title="TL;DR">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TL;DR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Problem:</strong> Classify 130M Amazon customer reviews to trigger churn-prevention interventions — 20,000 reviews/day, 99.9% uptime, and a business that can’t afford silent failures or surprise exceptions.</li>
+<li><strong>What I built:</strong> A production-ready 3-tier fallback classifier (fine-tuned DistilBERT → rule-based keyword matching → human review queue) with FastAPI serving, drift detection across three independent signals, and a Streamlit observability dashboard.</li>
+<li><strong>Key result:</strong> The system handles every failure mode — non-English input, low confidence, resource pressure, training-serving skew — with a structured <code>{label, confidence, status, reason}</code> response and never raises to the caller. On a real Amazon temporal split, drift detection flagged a review-bombing event (label distribution shifted from 34% → 13% positive) before F1 had time to visibly degrade; OOV-only monitoring would have missed it entirely.</li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="system_architecture.svg" class="img-fluid figure-img"></p>
+<figcaption>System architecture: five decoupled modules with a unified response contract.</figcaption>
+</figure>
+</div>
+<section id="the-gap-between-notebook-accuracy-and-production-readiness" class="level2">
+<h2 class="anchored" data-anchor-id="the-gap-between-notebook-accuracy-and-production-readiness">1. The Gap Between Notebook Accuracy and Production Readiness</h2>
+<p>A notebook-trained model answers one question: <em>given this exact dataset, with this exact preprocessing, can the model learn the signal?</em> It answers nothing about:</p>
+<ul>
+<li>What happens when input arrives in an unexpected format</li>
+<li>What happens when confidence is low</li>
+<li>What happens when the model service is under CPU pressure</li>
+<li>What happens six months after training, when users have started leaving reviews in a different style</li>
+<li>What the business is actually trying to accomplish</li>
+</ul>
+<p>Accuracy on a test set is a <strong>necessary condition</strong>, not a sufficient one. An 87% accurate model that silently returns wrong predictions for 13% of inputs — with no flagging, no fallback, no audit trail — is not a production system. It’s a liability.</p>
+<p>The root problem is that notebooks optimize for the happy path. You load clean data, train, evaluate, celebrate. Production optimizes for <em>what goes wrong</em>, because something always does.</p>
+<p>The Amazon reviews dataset makes this visceral. It spans 1996 to 2023, covers every product category from industrial tools to baby food, and contains reviews in multiple languages, reviews that are a single emoji, reviews that are 8,000-word essays, and reviews that are clearly fake. Any one of those will break a notebook-grade classifier in ways the test set never hinted at.</p>
+</section>
+<section id="requirements-first-a-walkthrough" class="level2">
+<h2 class="anchored" data-anchor-id="requirements-first-a-walkthrough">2. Requirements First: A Walkthrough</h2>
+<p>Before writing a single line of model code, the question is: <em>what does this system need to do?</em></p>
+<p>This isn’t academic process-following. Requirements documents are the artifact that makes engineers and stakeholders talk about the same system. Without them, “production-ready” means something different to everyone in the room.</p>
+<p>Here’s the structure used, working top-down from business intent.</p>
+<p><img src="requirements_hierarchy.svg" class="img-fluid"></p>
+<section id="business-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="business-requirements">Business requirements</h3>
+<p>The scenario: classify customer reviews to trigger retention interventions. A negative review is a signal that a customer might churn. A human agent follows up. The business metric is customer churn rate.</p>
+<blockquote class="blockquote">
+<p><strong>Primary goal:</strong> Decrease customer churn by 15% within 90 days of deployment.</p>
+</blockquote>
+<p>That single sentence changes everything about how you design the system. It means:</p>
+<ul>
+<li>False negatives (missed negatives) cost real money — unhappy customers you didn’t catch</li>
+<li>False positives (neutral/positive reviews flagged as negative) waste agent time</li>
+<li>The model doesn’t just need to be accurate; it needs to fail in <em>predictable, bounded ways</em></li>
+</ul>
+</section>
+<section id="system-performance-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="system-performance-requirements">System performance requirements</h3>
+<p>From that business goal, concrete numbers emerge:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>p50 latency</td>
+<td>&lt; 90 ms</td>
+</tr>
+<tr class="even">
+<td>p95 latency</td>
+<td>&lt; 200 ms</td>
+</tr>
+<tr class="odd">
+<td>Throughput (sustained)</td>
+<td>50 req/s</td>
+</tr>
+<tr class="even">
+<td>Throughput (burst)</td>
+<td>200 req/s</td>
+</tr>
+<tr class="odd">
+<td>Availability</td>
+<td>99.9% (≈ 44 min downtime/month)</td>
+</tr>
+<tr class="even">
+<td>Daily volume</td>
+<td>20,000 reviews (max 100,000)</td>
+</tr>
+</tbody>
+</table>
+<p>These numbers aren’t pulled from thin air — they’re derived from the review volume of a mid-sized e-commerce operation and the response time a human agent can realistically act on.</p>
+</section>
+<section id="model-quality-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="model-quality-requirements">Model quality requirements</h3>
+<p>The three-class structure (positive / neutral / negative) requires per-class thresholds, not just a single accuracy number. Each class has a different failure cost:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Negative</td>
+<td>≥ 75%</td>
+<td>≥ 85%</td>
+<td>Missing a negative (low recall) costs more than an unnecessary call (low precision)</td>
+</tr>
+<tr class="even">
+<td>Positive</td>
+<td>≥ 90%</td>
+<td>≥ 70%</td>
+<td>Accidentally flagging a happy customer as negative and calling them is a trust-destroying experience</td>
+</tr>
+<tr class="odd">
+<td>Neutral</td>
+<td>≥ 80%</td>
+<td>≥ 80%</td>
+<td>Mostly a safety valve — misclassified neutrals should fall into the above buckets</td>
+</tr>
+</tbody>
+</table>
+<p>Overall: macro F1 ≥ 85%.</p>
+</section>
+<section id="data-quality-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="data-quality-requirements">Data quality requirements</h3>
+<p>The model makes assumptions about its inputs. Every one of those assumptions needs to be made explicit and guarded at the boundary:</p>
+<ul>
+<li><strong>Text length:</strong> 5–5,000 characters. Under 5: no signal. Over 5,000: likely a data pipeline bug.</li>
+<li><strong>Language:</strong> English only (v1). Detect with <code>langdetect</code>, reject non-English with a structured error — don’t let the model produce a confident wrong prediction on French text.</li>
+<li><strong>Encoding:</strong> UTF-8. Encoding errors above 5% trigger a pipeline alert.</li>
+<li><strong>Drift:</strong> OOV rate, text length distribution, and label distribution are all monitored with configured alert thresholds.</li>
+</ul>
+<p>The data quality section is where requirements documents usually run thin. It shouldn’t. The most common source of silent production failures isn’t a bad model — it’s bad data that the model was never trained to handle gracefully.</p>
+</section>
+<section id="a-note-on-label-derivation" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-label-derivation">A note on label derivation</h3>
+<p>The Amazon dataset doesn’t come with sentiment labels. It comes with star ratings, and those are a noisy proxy. The mapping used here — 1–2 stars to negative, 3 stars to neutral, 4–5 stars to positive — is intuitive but imperfect. A 2-star review that says “the packaging was fine but the product itself was great” isn’t negative. A 5-star review that’s just a brand’s promotional copy isn’t really positive sentiment either.</p>
+<p>This tradeoff is documented explicitly and treated as a known limitation rather than a hidden assumption. At scale, the noise averages out. In edge cases, it doesn’t, and those edge cases are exactly the ones the fallback chain is designed to catch.</p>
+</section>
+</section>
+<section id="failure-modes-when-the-amazon-dataset-bites-you" class="level2">
+<h2 class="anchored" data-anchor-id="failure-modes-when-the-amazon-dataset-bites-you">3. Failure Modes: When the Amazon Dataset Bites You</h2>
+<p>With requirements written, the next step is to systematically enumerate what can go wrong. The Amazon dataset is an excellent stress-test because it actually triggers all of these.</p>
+<p><img src="failure_mode_map.svg" class="img-fluid"></p>
+<section id="f1-non-english-input" class="level3">
+<h3 class="anchored" data-anchor-id="f1-non-english-input">F1: Non-English input</h3>
+<p>The dataset contains millions of Spanish, French, German, and Japanese reviews. Pass one of these to a model trained on English text and you get a confident, wrong prediction. There’s no error — just a label.</p>
+<p><strong>Mitigation:</strong> Language detection runs before every inference call. Non-English inputs return <code>status="rejected"</code> with the detected language code. The calling system knows exactly what happened.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>detected_lang <span class="op">=</span> langdetect.detect(text)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> detected_lang <span class="op">!=</span> <span class="st">"en"</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> PredictionResult(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        status<span class="op">=</span><span class="st">"rejected"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        reason<span class="op">=</span><span class="ss">f"Unsupported language: '</span><span class="sc">{</span>detected_lang<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ).to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is a boundary check, not a model concern. The model never sees these inputs.</p>
+</section>
+<section id="f2-very-short-and-very-long-reviews" class="level3">
+<h3 class="anchored" data-anchor-id="f2-very-short-and-very-long-reviews">F2: Very short and very long reviews</h3>
+<p>One-word reviews (“Junk”, “Perfect”, “Meh”) are common on Amazon. Inputs under 5 characters get rejected — there’s no reliable signal to extract. Inputs over 5,000 characters, which do appear (usually via copy-paste of product manuals or pasted terms and conditions), are either truncated or rejected depending on configuration.</p>
+</section>
+<section id="f3-low-confidence-predictions" class="level3">
+<h3 class="anchored" data-anchor-id="f3-low-confidence-predictions">F3: Low-confidence predictions</h3>
+<p>DistilBERT fine-tuned on Amazon reviews outputs a three-class probability distribution. When it’s uncertain, it shouldn’t be trusted to pick a side. Any prediction where the top-class confidence score falls below 0.75 is a candidate for the neutral label. Below 0.60 — the confidence gate — the prediction is demoted to <code>status="fallback"</code> and passed to the rule-based tier.</p>
+<p>This is the most commonly triggered failure mode in production. It’s not a failure of the model — it’s a signal that the input is genuinely ambiguous, and the system is handling that ambiguity explicitly rather than hiding it behind a spurious confident prediction.</p>
+</section>
+<section id="f4-resource-pressure" class="level3">
+<h3 class="anchored" data-anchor-id="f4-resource-pressure">F4: Resource pressure</h3>
+<p>Under memory pressure, model inference can corrupt or crash. The system checks before every request:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mem <span class="op">=</span> psutil.virtual_memory().percent</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cpu <span class="op">=</span> psutil.cpu_percent(interval<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> mem <span class="op">&gt;</span> <span class="fl">90.0</span> <span class="kw">or</span> cpu <span class="op">&gt;</span> <span class="fl">95.0</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> PredictionResult(status<span class="op">=</span><span class="st">"fallback"</span>, reason<span class="op">=</span><span class="st">"Resource limit exceeded"</span>).to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This looks paranoid until the first time a memory leak in a co-located service causes your sentiment classifier to start returning garbage.</p>
+</section>
+<section id="f5-training-serving-skew" class="level3">
+<h3 class="anchored" data-anchor-id="f5-training-serving-skew">F5: Training-serving skew</h3>
+<p>This is the silent killer. The model trains on reviews from an early time window. Six months later, the ingestion team switches to a new parser that doesn’t strip HTML. The model starts seeing <code>&amp;amp;</code> and <code>&lt;br/&gt;</code> tokens in every review. F1 degrades over weeks while the team looks at every other signal first.</p>
+<p>The mitigation is an OOV rate check on every prediction. DistilBERT’s WordPiece tokenizer almost never produces true <code>[UNK]</code> tokens — its vocabulary is large enough to handle essentially any well-formed English text. So a spike in the UNK rate is a reliable proxy for “something in the input distribution changed.”</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_unk <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> tokens <span class="cf">if</span> t <span class="op">==</span> tokenizer.unk_token)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>oov_rate <span class="op">=</span> n_unk <span class="op">/</span> <span class="bu">len</span>(tokens)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alert if oov_rate &gt; 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="system-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="system-architecture">4. System Architecture</h2>
+<p>The system is organized as five decoupled modules, each with a single clearly defined responsibility.</p>
+<p>The architecture is deliberately flat and file-based rather than database-backed. Every output is inspectable with a text editor, testable without infrastructure dependencies, and directly readable by the dashboard without an intermediate API layer. That simplicity is a feature, not a constraint — it keeps the system legible while the patterns it demonstrates are portable to any production stack.</p>
+<p>The core contract runs through all five modules: every function that touches the classification path returns a consistent <code>{label, confidence, status, reason}</code> dictionary and never raises an exception to its caller. That contract is what makes the modules composable.</p>
+</section>
+<section id="the-fallback-chain" class="level2">
+<h2 class="anchored" data-anchor-id="the-fallback-chain">5. The Fallback Chain</h2>
+<p>The classifier doesn’t exist in isolation. It sits at the top of a three-tier fallback chain designed so that <em>every input gets a structured response</em>, regardless of what goes wrong.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Business View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Technical View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><img src="fallback_chain.svg" class="img-fluid"></p>
+<p>Every review that enters the system exits with one of three outcomes: a confident model prediction, a rule-based fallback, or escalation to a human reviewer. Nothing is silently dropped or causes an unhandled exception.</p>
+<p><strong>Why three tiers?</strong></p>
+<ul>
+<li><strong>Tier 1 (DistilBERT):</strong> Handles the majority of reviews with high confidence. When confidence falls below threshold, it hands off rather than guessing.</li>
+<li><strong>Tier 2 (Keyword rules):</strong> Fast, auditable, and handles the obvious cases — reviews full of “excellent” or “scam” that the model was uncertain about. Keeps the human queue small.</li>
+<li><strong>Tier 3 (Human queue):</strong> An append-only log of genuinely ambiguous cases. These are the highest-value training examples for future model improvements.</li>
+</ul>
+<p>The downstream system — the churn-intervention workflow — never needs to handle exceptions or write defensive wrappers. The classifier always returns a result.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Every path through the fallback chain produces the same four-field response contract:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"negative"</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"confidence"</span><span class="fu">:</span> <span class="fl">0.92</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"ok"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"reason"</span><span class="fu">:</span> <span class="st">""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>status</code> field encodes which tier responded:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>"ok"</code></td>
+<td>Model prediction above confidence gate (≥ 0.60)</td>
+</tr>
+<tr class="even">
+<td><code>"fallback"</code></td>
+<td>Keyword rules resolved it, or resource/confidence gate fired</td>
+</tr>
+<tr class="odd">
+<td><code>"rejected"</code></td>
+<td>Input failed validation (non-English, too short, too long)</td>
+</tr>
+</tbody>
+</table>
+<p>This design principle — <em>never raise to the caller</em> — is the single most important production pattern in the codebase. Downstream systems treat the classifier as a reliable function, not a fragile service.</p>
+<p>The keyword tier matches three sets (18 positive, 18 negative, 11 neutral terms) and picks the class with the most hits. Ties and no-matches escalate to Tier 3 rather than guessing.</p>
+<p>The human queue (Tier 3) is an append-only JSONL file with a timestamp and reason code on every record. It feeds both the observability dashboard and, eventually, the retraining pipeline.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>The confidence gate that routes Tier 1 → Tier 2:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result[<span class="st">"confidence"</span>] <span class="op">&lt;</span> CONFIDENCE_GATE:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> PredictionResult(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        status<span class="op">=</span><span class="st">"fallback"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        reason<span class="op">=</span><span class="ss">f"Confidence </span><span class="sc">{</span>result[<span class="st">'confidence'</span>]<span class="sc">:.2f}</span><span class="ss"> below gate </span><span class="sc">{</span>CONFIDENCE_GATE<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ).to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See §3 below for additional code snippets covering language detection, resource guards, and OOV rate checking — each maps to one of the five failure modes the chain is designed to handle.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="serving-predictions-the-fastapi-layer" class="level2">
+<h2 class="anchored" data-anchor-id="serving-predictions-the-fastapi-layer">6. Serving Predictions: The FastAPI Layer</h2>
+<p>Wrapping <code>classify()</code> in a web service sounds straightforward, but there are a handful of decisions worth making deliberately.</p>
+<p><strong>Model loading.</strong> The model loads exactly once, at application startup, using an async lifespan context manager. This is not the default if you reach for a naive <code>@app.on_event("startup")</code> — you need the newer <code>lifespan</code> pattern to ensure proper teardown. Regardless of implementation, the critical constraint is that the model must not load per-request. A DistilBERT checkpoint takes several seconds to load; doing it per-request would make your p95 latency measurement meaningless.</p>
+<p><strong>The <code>/predict</code> endpoint</strong> accepts a JSON body with a single <code>text</code> field, runs the full classification and fallback pipeline, logs the result to <code>predictions.jsonl</code>, and returns the four-field response. If the text is empty or whitespace-only, it returns a 422 before any inference runs — FastAPI’s validation layer handles this before the classifier ever sees the input.</p>
+<p><strong>The <code>/health</code> endpoint</strong> returns <code>{"status": "ok"}</code> and nothing else. This is a liveness probe for orchestrators. It should always return 200 as long as the process is alive, which means it should not check model readiness or database connectivity. Those belong on a separate <code>/ready</code> endpoint when you need them.</p>
+<p><strong>The <code>/metrics</code> endpoint</strong> is where the observability story comes together. It maintains an in-memory rolling window over the last 1,000 predictions — small enough to be fast, large enough to be statistically meaningful. It exposes:</p>
+<ul>
+<li><code>total_requests</code>: cumulative count since startup</li>
+<li><code>status_breakdown</code>: counts for <code>ok</code>, <code>rejected</code>, and <code>fallback</code> statuses</li>
+<li><code>rolling_oov_rate</code>: mean OOV fraction across the window</li>
+<li><code>rolling_confidence</code>: mean model confidence for predictions that reached the model</li>
+<li><code>confidence_histogram</code>: distribution bucketed into five equal ranges from 0.0 to 1.0</li>
+</ul>
+<p>The histogram is particularly useful. A healthy system has most mass in the 0.8–1.0 bucket. A system that’s drifting or seeing out-of-distribution input will show a spreading distribution — more mass in the 0.4–0.6 range as the model becomes less decisive. That’s a signal you can act on before F1 starts to visibly drop.</p>
+</section>
+<section id="watching-it-run-the-observability-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="watching-it-run-the-observability-dashboard">7. Watching It Run: The Observability Dashboard</h2>
+<p>The metrics endpoint is queryable, but an operator shouldn’t have to write curl commands to understand what’s happening. The Streamlit dashboard reads from the same three data sources — <code>predictions.jsonl</code>, <code>human_queue.jsonl</code>, and <code>reports/drift.json</code> — and surfaces them in four panels.</p>
+<p><strong>Predictions overview.</strong> A confidence histogram, a status breakdown showing the ok/rejected/fallback split, OOV rate plotted over time, and the label distribution. The OOV rate time series is the most operationally important: a sudden uptick here, before F1 has started to move, is the early warning you want.</p>
+<p><strong>Human review queue.</strong> Every review that escalated to Tier 3, with the reason it couldn’t be resolved automatically and the timestamp. This is where a human labeler would work — confirming or correcting labels before they enter the retraining pipeline. The design deliberately keeps this UI simple: the goal is triage, not a full labeling platform.</p>
+<p><strong>Drift report.</strong> A side-by-side view of the three drift signals with the early and late statistics, the threshold for each, and a visual badge indicating whether that signal fired. When the drift report shows two of three signals above threshold — as it does in the actual results below — this panel makes that legible without requiring the operator to parse JSON.</p>
+<p><strong>Demo data generator.</strong> A sidebar button seeds 200 synthetic prediction records so you can explore the dashboard’s visualizations without running a live server. This matters more than it sounds: a dashboard with no data is a dashboard that doesn’t get tested, and a dashboard that doesn’t get tested isn’t trusted when the data it’s showing is real.</p>
+<p>One implementation detail worth calling out: all data reads use <code>@st.cache_data(ttl=10)</code>. This prevents redundant file I/O on every interaction while still reflecting recent activity within ten seconds. For a production dashboard fed by a high-volume API, you’d want to cache at a longer TTL or move to a database-backed approach — but the pattern is the same.</p>
+</section>
+<section id="drift-simulation-results" class="level2">
+<h2 class="anchored" data-anchor-id="drift-simulation-results">8. Drift Simulation Results</h2>
+<p>Here’s where the Amazon dataset’s temporal depth pays off. We compared two time windows drawn from the dataset: an early window of 14,108 reviews and a later window of 6,838 reviews.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Details</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>The results are more nuanced than the “everything drifts” story you might expect — and that nuance is exactly the point.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Signal</th>
+<th>Early</th>
+<th>Late</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OOV rate</td>
+<td>0.0%</td>
+<td>3.3%</td>
+<td>No drift (threshold: 5%)</td>
+</tr>
+<tr class="even">
+<td>Text length (KS test)</td>
+<td>438 chars avg</td>
+<td>514 chars avg</td>
+<td><strong>Drifted</strong> (p ≈ 10⁻⁵⁸)</td>
+</tr>
+<tr class="odd">
+<td>Label distribution (JS divergence)</td>
+<td>34% pos / 61% neg</td>
+<td>13% pos / 83% neg</td>
+<td><strong>Drifted</strong> (JS = 0.184)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overall: DRIFT DETECTED</strong> in text length and label distribution.</p>
+<p><img src="label_distribution_early_late.png" class="img-fluid"></p>
+<p>The sentiment balance shifted dramatically — positive reviews fell from 34% to 13% while negative surged from 61% to 83%. This is a review-bombing pattern. A model trained on the early window will see F1 regression on the positive class, which it was trained to expect at roughly 3× the frequency it now encounters.</p>
+<p><strong>Critical finding:</strong> If OOV rate were the only monitored signal, this drift event would have been missed entirely. Multi-signal monitoring is not redundancy — the signals catch different failure modes.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<pre><code>╔══════════════════════════════════════════════════════════════╗
+║                       DRIFT REPORT                           ║
+║           Early window: 14,108   Late window: 6,838          ║
+╚══════════════════════════════════════════════════════════════╝
+
+Signal 1: OOV Rate
+  Early mean:  0.0%
+  Late mean:   3.3%
+  Delta:      +3.3%   (threshold: 5.0%)
+  → NO DRIFT
+
+Signal 2: Text Length (Kolmogorov-Smirnov test)
+  Early mean:  438 chars   std: 518
+  Late mean:   514 chars   std: 513
+  KS p-value:  2.3 × 10⁻⁵⁸   (threshold: 0.05)
+  → DRIFTED
+
+Signal 3: Label Distribution (Jensen-Shannon divergence)
+  Early:  positive 34.3%, negative 61.3%, neutral 4.3%
+  Late:   positive 12.9%, negative 83.3%, neutral 3.9%
+  JS divergence: 0.184       (threshold: 0.05)
+  → DRIFTED
+
+Overall: DRIFT DETECTED in [text_length, label_dist]</code></pre>
+<p>The OOV signal held because DistilBERT’s WordPiece vocabulary is large enough that a shift in review <em>content</em> doesn’t necessarily produce unknown tokens. The KS p-value of 10⁻⁵⁸ is not a rounding issue — reviews in the late window are systematically longer, consistent with a surge in detailed complaints. The drift report fires before accuracy metrics have time to visibly degrade, which is when the fix is cheapest.</p>
+<p>The actionable thresholds (OOV &gt; 5%, KS p-value &lt; 0.05, JS divergence &gt; 0.05) are all operator-configurable via CLI flags:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/simulate_drift.py <span class="at">--output-json</span> reports/drift.json <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--oov-threshold</span> 0.05 <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--length-pvalue</span> 0.05 <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--js-threshold</span> 0.05</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Different business contexts warrant different sensitivities: a fraud detection system might want hair-trigger drift alerts; a product review classifier might tolerate more variance before escalating. The JSON output feeds directly into the dashboard’s drift report panel.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-across-four-layers" class="level2">
+<h2 class="anchored" data-anchor-id="testing-across-four-layers">9. Testing Across Four Layers</h2>
+<p>A system this layered needs tests that match its architecture. There are four distinct testing concerns here, and conflating them leads to either overtesting the happy path or missing the failure modes that actually matter in production.</p>
+<p><strong>Unit tests</strong> cover the edge cases that production will hit: empty strings, <code>None</code> inputs, non-English text, inputs below the 5-character floor and above the 5,000-character ceiling. They verify the confidence gate — that a result with confidence below 0.60 is correctly demoted to <code>fallback</code> status. They test the rule-based predictor for all three cases it needs to handle: a clear keyword winner, a tie between two classes, and no keyword match at all. The resource guard is tested by mocking memory and CPU utilization above threshold and verifying that the response routes to fallback. These tests use a mocked model, so they run in seconds without downloading any checkpoints.</p>
+<p><strong>Integration tests</strong> exercise the full pipeline end-to-end with a real DistilBERT checkpoint. The critical case here is a genuinely low-confidence input — something the model truly is uncertain about — verifying that the fallback chain actually fires and produces a valid response rather than raising an exception. Integration tests also confirm that the human queue file is created, written to correctly, and produces valid JSON on every record.</p>
+<p><strong>Drift tests</strong> operate on synthetic datasets with known statistical properties. They verify two things: that comparing a window against itself doesn’t generate a false positive drift alert (specificity), and that a window with a deliberately shifted label distribution does correctly fire (sensitivity). Threshold customization is tested to confirm that changing the JS divergence threshold changes which signals are flagged.</p>
+<p><strong>API tests</strong> confirm that the serving layer behaves correctly at its boundaries. The health endpoint returns 200. An empty <code>text</code> field in a predict request returns 422 before any inference runs. The metrics endpoint correctly tracks status breakdown and rolling averages across a sequence of requests with different outcomes.</p>
+<p>Thirty-plus assertions across these four layers, organized so that each layer can run independently. The unit and drift tests run in CI without any model downloads; integration and API tests require the checkpoint and are gated accordingly.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Key Results">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Reliability:</strong> The fallback chain handles 100% of inputs with a structured <code>{label, confidence, status, reason}</code> response — including non-English text, very short/long reviews, low-confidence predictions, and resource-pressure conditions. Zero unhandled exceptions reach the caller.</li>
+<li><strong>Drift detection:</strong> On a real Amazon temporal split (14,108 early vs.&nbsp;6,838 late reviews), 2 of 3 signals fired — text length (KS p ≈ 10⁻⁵⁸) and label distribution (JS divergence 0.184). OOV-only monitoring would have missed the event entirely.</li>
+<li><strong>Test coverage:</strong> 30+ assertions across four independent layers (unit, integration, drift, API), organized so each layer can run without the others.</li>
+<li><strong>Serving:</strong> FastAPI with single-load model startup, rolling 1,000-prediction metrics window, and a confidence histogram that surfaces distribution shift before F1 visibly degrades.</li>
+</ul>
+<p><em>Note: latency and throughput figures above (§2) are derived from business requirements, not live load-test measurements — the system is designed to those targets but not yet benchmarked under production traffic.</em></p>
+</div>
+</div>
+</section>
+<section id="what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next">10. What Comes Next</h2>
+<p>The system described above is a complete production-pattern foundation: fine-tuned model, validated inputs, layered fallback chain, drift detection, API serving, observability dashboard, and a four-layer test suite. What it isn’t yet is a horizontally scalable, automatically retraining, Kubernetes-native deployment. Here’s the honest upgrade path.</p>
+<p><strong>Containerization.</strong> The FastAPI app is already stateless — model loaded at startup, no per-request state. A Dockerfile that installs the package and runs <code>uvicorn</code> with multiple workers is straightforward. The main consideration is image size: a DistilBERT checkpoint is roughly 250 MB, and you don’t want that baked into the image if the model updates frequently. Mount it as a volume or pull it from a model registry at startup instead.</p>
+<p><strong>Horizontal scaling.</strong> Kubernetes with a horizontal pod autoscaler keyed on request rate is the natural next step. The liveness probe is already wired (<code>/health</code>). A readiness probe tied to model-load completion would prevent a pod from receiving traffic before inference is possible.</p>
+<p><strong>Closing the retraining loop.</strong> The human review queue is the seed of a retraining pipeline. Today it’s an append-only JSONL file. The upgrade path: human labelers work through the queue, confirmed records are added to the training set, a weekly fine-tuning run uses the expanded dataset, a new checkpoint is A/B-tested against the current one on held-out reviews, and promoted if macro F1 improves without the confidence distribution regressing. Without this loop, the drift report is just an alert system. With it, the alert becomes a retraining trigger — and the model stays calibrated as the review distribution evolves.</p>
+<p><strong>Model versioning.</strong> The current system loads a single checkpoint. A model registry with semantic versioning, a shadow-scoring mode where the new checkpoint scores requests alongside the current one without serving its predictions, and a promotion workflow tied to a statistical significance test on the F1 difference would make model updates operationally safe at scale.</p>
+</section>
+<section id="closing-thought" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thought">Closing Thought</h2>
+<p>The notebook took two hours to write and got 87% accuracy. The production system took considerably longer — and that’s the right investment ratio for anything that acts on real data and affects real customers.</p>
+<p>The patterns here — a structured return contract that never raises, explicit failure modes enumerated before they happen, a layered fallback chain, drift detection that watches multiple signals independently, an observability layer that reflects what’s actually happening rather than what you hope is happening — aren’t specific to sentiment analysis. They’re the same patterns you’d apply to a fraud classifier, a content moderation system, or a medical risk scorer. The domain changes; the engineering discipline doesn’t.</p>
+<p>If you’ve built something similar or have war stories from the notebook-to-production gap, I’d like to hear them.</p>
+<p><em>The full codebase, including the FastAPI serving layer, drift simulation script, Streamlit observability dashboard, and four-layer test suite, is on <a href="https://github.com/msburns24/amazon-sentiment-ml-eng">GitHub</a>.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.matthewburns\.net\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

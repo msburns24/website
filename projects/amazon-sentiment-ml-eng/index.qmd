@@ -11,6 +11,8 @@ categories:
   - Machine Learning
   - ML Engineering
   - Sentiment Classification
+execute:
+  code-fold: true
 ---
 
 There's a specific moment every ML practitioner eventually hits. You've trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a `predict()` call and it works. You close the notebook feeling good.
@@ -130,7 +132,7 @@ This post documents the full journey, using the [Amazon Customer Reviews 2023 da
       amazon-sentiment-ml-eng</a>
   </div>
   <p class="repo-desc">Production-ready sentiment classifier on 130M Amazon reviews — fallback chain, drift detection,
-    FastAPI serving, and Streamlit observability dashboard.</p>
+    FastAPI serving, and Streamlit observability dashboard. Run locally: <code>pip install -e . && uvicorn app.main:app</code></p>
   <div class="repo-tags">
     <span class="tag">python</span>
     <span class="tag">transformers</span>
@@ -151,6 +153,14 @@ This post documents the full journey, using the [Amazon Customer Reviews 2023 da
 <br />
 
 ```
+
+::: {.callout-note title="TL;DR"}
+- **Problem:** Classify 130M Amazon customer reviews to trigger churn-prevention interventions — 20,000 reviews/day, 99.9% uptime, and a business that can't afford silent failures or surprise exceptions.
+- **What I built:** A production-ready 3-tier fallback classifier (fine-tuned DistilBERT → rule-based keyword matching → human review queue) with FastAPI serving, drift detection across three independent signals, and a Streamlit observability dashboard.
+- **Key result:** The system handles every failure mode — non-English input, low confidence, resource pressure, training-serving skew — with a structured `{label, confidence, status, reason}` response and never raises to the caller. On a real Amazon temporal split, drift detection flagged a review-bombing event (label distribution shifted from 34% → 13% positive) before F1 had time to visibly degrade; OOV-only monitoring would have missed it entirely.
+:::
+
+![System architecture: five decoupled modules with a unified response contract.](system_architecture.svg)
 
 ## 1. The Gap Between Notebook Accuracy and Production Readiness
 
@@ -297,8 +307,6 @@ oov_rate = n_unk / len(tokens)
 
 The system is organized as five decoupled modules, each with a single clearly defined responsibility.
 
-![](system_architecture.svg)
-
 The architecture is deliberately flat and file-based rather than database-backed. Every output is inspectable with a text editor, testable without infrastructure dependencies, and directly readable by the dashboard without an intermediate API layer. That simplicity is a feature, not a constraint — it keeps the system legible while the patterns it demonstrates are portable to any production stack.
 
 The core contract runs through all five modules: every function that touches the classification path returns a consistent `{label, confidence, status, reason}` dictionary and never raises an exception to its caller. That contract is what makes the modules composable.
@@ -307,9 +315,25 @@ The core contract runs through all five modules: every function that touches the
 
 The classifier doesn't exist in isolation. It sits at the top of a three-tier fallback chain designed so that *every input gets a structured response*, regardless of what goes wrong.
 
+::: {.panel-tabset}
+
+### Business View
+
 ![](fallback_chain.svg)
 
-Every path through this diagram produces the same response shape:
+Every review that enters the system exits with one of three outcomes: a confident model prediction, a rule-based fallback, or escalation to a human reviewer. Nothing is silently dropped or causes an unhandled exception.
+
+**Why three tiers?**
+
+- **Tier 1 (DistilBERT):** Handles the majority of reviews with high confidence. When confidence falls below threshold, it hands off rather than guessing.
+- **Tier 2 (Keyword rules):** Fast, auditable, and handles the obvious cases — reviews full of "excellent" or "scam" that the model was uncertain about. Keeps the human queue small.
+- **Tier 3 (Human queue):** An append-only log of genuinely ambiguous cases. These are the highest-value training examples for future model improvements.
+
+The downstream system — the churn-intervention workflow — never needs to handle exceptions or write defensive wrappers. The classifier always returns a result.
+
+### Technical View
+
+Every path through the fallback chain produces the same four-field response contract:
 
 ```json
 {
@@ -320,13 +344,36 @@ Every path through this diagram produces the same response shape:
 }
 ```
 
-The `status` field tells the caller which tier responded. `"ok"` means the model was confident. `"fallback"` means a lower tier handled it. `"rejected"` means the input failed validation. The caller never needs to handle an exception — the system's contract is that it always returns this shape.
+The `status` field encodes which tier responded:
 
-This design principle — *never raise to the caller* — is the single most important production pattern in the codebase. It means downstream systems can treat the classifier as a reliable function rather than a fragile service that needs try/except wrappers throughout the call chain.
+| Status | Meaning |
+|---|---|
+| `"ok"` | Model prediction above confidence gate (≥ 0.60) |
+| `"fallback"` | Keyword rules resolved it, or resource/confidence gate fired |
+| `"rejected"` | Input failed validation (non-English, too short, too long) |
 
-The keyword tier (Tier 2) isn't sophisticated. It matches three keyword sets — 18 positive terms like "excellent" and "wonderful," 18 negative terms like "awful" and "scam," and 11 neutral terms like "mediocre" and "acceptable" — then picks the class with the most hits. It handles the cases that fall through Tier 1 where the model was uncertain but the review contains clear signal words. It's fast, it's auditable, and it keeps the human queue from filling up with easy cases. If two classes tie, or if no keywords match at all, the request escalates rather than guessing.
+This design principle — *never raise to the caller* — is the single most important production pattern in the codebase. Downstream systems treat the classifier as a reliable function, not a fragile service.
 
-The human queue (Tier 3) is an append-only JSONL file. Every routed review gets a timestamp and a reason code. This file feeds the observability dashboard and, eventually, the retraining pipeline — because human-labeled edge cases are more valuable training data than any synthetic augmentation.
+The keyword tier matches three sets (18 positive, 18 negative, 11 neutral terms) and picks the class with the most hits. Ties and no-matches escalate to Tier 3 rather than guessing.
+
+The human queue (Tier 3) is an append-only JSONL file with a timestamp and reason code on every record. It feeds both the observability dashboard and, eventually, the retraining pipeline.
+
+### Code
+
+The confidence gate that routes Tier 1 → Tier 2:
+
+```python
+if result["confidence"] < CONFIDENCE_GATE:
+    return PredictionResult(
+        status="fallback",
+        reason=f"Confidence {result['confidence']:.2f} below gate {CONFIDENCE_GATE}"
+    ).to_dict()
+```
+
+See §3 below for additional code snippets covering language detection, resource guards, and OOV rate checking — each maps to one of the five failure modes the chain is designed to handle.
+
+:::
+
 
 ## 6. Serving Predictions: The FastAPI Layer
 
@@ -366,7 +413,27 @@ One implementation detail worth calling out: all data reads use `@st.cache_data(
 
 Here's where the Amazon dataset's temporal depth pays off. We compared two time windows drawn from the dataset: an early window of 14,108 reviews and a later window of 6,838 reviews.
 
+::: {.panel-tabset}
+
+### Summary
+
 The results are more nuanced than the "everything drifts" story you might expect — and that nuance is exactly the point.
+
+| Signal | Early | Late | Result |
+|---|---|---|---|
+| OOV rate | 0.0% | 3.3% | No drift (threshold: 5%) |
+| Text length (KS test) | 438 chars avg | 514 chars avg | **Drifted** (p ≈ 10⁻⁵⁸) |
+| Label distribution (JS divergence) | 34% pos / 61% neg | 13% pos / 83% neg | **Drifted** (JS = 0.184) |
+
+**Overall: DRIFT DETECTED** in text length and label distribution.
+
+![](label_distribution_early_late.png)
+
+The sentiment balance shifted dramatically — positive reviews fell from 34% to 13% while negative surged from 61% to 83%. This is a review-bombing pattern. A model trained on the early window will see F1 regression on the positive class, which it was trained to expect at roughly 3× the frequency it now encounters.
+
+**Critical finding:** If OOV rate were the only monitored signal, this drift event would have been missed entirely. Multi-signal monitoring is not redundancy — the signals catch different failure modes.
+
+### Details
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
@@ -395,21 +462,21 @@ Signal 3: Label Distribution (Jensen-Shannon divergence)
 Overall: DRIFT DETECTED in [text_length, label_dist]
 ```
 
-The OOV signal held — the late-window vocabulary isn't significantly different from what DistilBERT saw during training. If OOV rate were the only signal monitored, this drift event would have been missed entirely.
+The OOV signal held because DistilBERT's WordPiece vocabulary is large enough that a shift in review *content* doesn't necessarily produce unknown tokens. The KS p-value of 10⁻⁵⁸ is not a rounding issue — reviews in the late window are systematically longer, consistent with a surge in detailed complaints. The drift report fires before accuracy metrics have time to visibly degrade, which is when the fix is cheapest.
 
-The text length and label distribution signals are unambiguous. Reviews in the late window are systematically longer (the KS p-value is effectively zero — 10⁻⁵⁸ is not a rounding issue). And the sentiment balance has shifted dramatically: positive reviews fell from 34% to 13% while negative reviews surged from 61% to 83%. That's a review-bombing pattern — a period where negative sentiment concentrates and the volume of detailed, lengthy complaints increases.
-
-![](label_distribution_early_late.png)
-
-The practical consequence: a model trained on the early window's balanced distribution and evaluated against the late window's heavily skewed one will see F1 regression on the positive class, which it was trained to expect at roughly 3× the frequency it now encounters. The drift report doesn't fix this — but it fires before the model's accuracy metrics have time to visibly degrade, which is when the fix is cheapest.
-
-The actionable thresholds (OOV > 5%, KS p-value < 0.05, JS divergence > 0.05) are all operator-configurable. The simulation script accepts `--oov-threshold`, `--length-pvalue`, and `--js-threshold` flags so sensitivity can be tuned without touching code. Different business contexts warrant different sensitivities: a fraud detection system might want hair-trigger drift alerts; a product review classifier might tolerate more variance before escalating.
+The actionable thresholds (OOV > 5%, KS p-value < 0.05, JS divergence > 0.05) are all operator-configurable via CLI flags:
 
 ```bash
-python scripts/simulate_drift.py --output-json reports/drift.json
+python scripts/simulate_drift.py --output-json reports/drift.json \
+  --oov-threshold 0.05 \
+  --length-pvalue 0.05 \
+  --js-threshold 0.05
 ```
 
-The JSON output feeds directly into the dashboard's drift report panel.
+Different business contexts warrant different sensitivities: a fraud detection system might want hair-trigger drift alerts; a product review classifier might tolerate more variance before escalating. The JSON output feeds directly into the dashboard's drift report panel.
+
+:::
+
 
 ## 9. Testing Across Four Layers
 
@@ -424,6 +491,15 @@ A system this layered needs tests that match its architecture. There are four di
 **API tests** confirm that the serving layer behaves correctly at its boundaries. The health endpoint returns 200. An empty `text` field in a predict request returns 422 before any inference runs. The metrics endpoint correctly tracks status breakdown and rolling averages across a sequence of requests with different outcomes.
 
 Thirty-plus assertions across these four layers, organized so that each layer can run independently. The unit and drift tests run in CI without any model downloads; integration and API tests require the checkpoint and are gated accordingly.
+
+::: {.callout-important title="Key Results"}
+- **Reliability:** The fallback chain handles 100% of inputs with a structured `{label, confidence, status, reason}` response — including non-English text, very short/long reviews, low-confidence predictions, and resource-pressure conditions. Zero unhandled exceptions reach the caller.
+- **Drift detection:** On a real Amazon temporal split (14,108 early vs. 6,838 late reviews), 2 of 3 signals fired — text length (KS p ≈ 10⁻⁵⁸) and label distribution (JS divergence 0.184). OOV-only monitoring would have missed the event entirely.
+- **Test coverage:** 30+ assertions across four independent layers (unit, integration, drift, API), organized so each layer can run without the others.
+- **Serving:** FastAPI with single-load model startup, rolling 1,000-prediction metrics window, and a confidence histogram that surfaces distribution shift before F1 visibly degrades.
+
+*Note: latency and throughput figures above (§2) are derived from business requirements, not live load-test measurements — the system is designed to those targets but not yet benchmarked under production traffic.*
+:::
 
 ## 10. What Comes Next
 
@@ -445,4 +521,4 @@ The patterns here — a structured return contract that never raises, explicit f
 
 If you've built something similar or have war stories from the notebook-to-production gap, I'd like to hear them.
 
-*The full codebase, including the FastAPI serving layer, drift simulation script, Streamlit observability dashboard, and four-layer test suite, is on [GitHub](https://github.com/msb/amazon-sentiment-ml-eng).*
+*The full codebase, including the FastAPI serving layer, drift simulation script, Streamlit observability dashboard, and four-layer test suite, is on [GitHub](https://github.com/msburns24/amazon-sentiment-ml-eng).*
