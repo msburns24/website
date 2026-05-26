@@ -6,48 +6,42 @@
       version="2.0">
 <channel>
 <title>Recent Posts</title>
-<link>https://msburns.netlify.app/posts/</link>
-<atom:link href="https://msburns.netlify.app/posts/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://www.matthewburns.net/posts/</link>
+<atom:link href="https://www.matthewburns.net/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website and portfolio for data science projects and insights</description>
+<image>
+<url>https://www.matthewburns.net/images/Matthew-Burns-headshot.jpg</url>
+<title>Recent Posts</title>
+<link>https://www.matthewburns.net/posts/</link>
+</image>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Mon, 25 May 2026 04:00:00 GMT</lastBuildDate>
-<item>
-  <title>From Notebook to Production: What Sentiment Analysis Actually Takes</title>
-  <link>https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/</link>
-  <description><![CDATA[ There’s a specific moment every ML practitioner eventually hits. You’ve trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a <code>predict()</code> call and it works. You close the notebook feeling good. ]]></description>
-  <category>Machine Learning</category>
-  <category>ML Engineering</category>
-  <category>Sentiment Classification</category>
-  <guid>https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/</guid>
-  <pubDate>Mon, 25 May 2026 04:00:00 GMT</pubDate>
-  <media:content url="https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/notebook_vs_production.svg" medium="image" type="image/svg+xml"/>
-</item>
+<lastBuildDate>Fri, 05 Sep 2025 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Stochastic Gradient Descent</title>
-  <link>https://msburns.netlify.app/posts/stochastic-gradient-descent/</link>
-  <description><![CDATA[ <img src="https://msburns.netlify.app/posts/stochastic-gradient-descent/gradient-descent.svg" class="img-fluid"> ]]></description>
-  <guid>https://msburns.netlify.app/posts/stochastic-gradient-descent/</guid>
+  <link>https://www.matthewburns.net/posts/stochastic-gradient-descent/</link>
+  <description><![CDATA[ <img src="https://www.matthewburns.net/posts/stochastic-gradient-descent/gradient-descent.svg" class="img-fluid"> ]]></description>
+  <guid>https://www.matthewburns.net/posts/stochastic-gradient-descent/</guid>
   <pubDate>Fri, 05 Sep 2025 04:00:00 GMT</pubDate>
-  <media:content url="https://msburns.netlify.app/posts/stochastic-gradient-descent/gradient-descent.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://www.matthewburns.net/posts/stochastic-gradient-descent/gradient-descent.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Wikidata: A Collaborative, Multilingual Knowledge Graph</title>
-  <link>https://msburns.netlify.app/posts/wikidata-overview/</link>
+  <link>https://www.matthewburns.net/posts/wikidata-overview/</link>
   <description><![CDATA[ “Wikidata is a free, collaborative, multilingual, secondary knowledge base, collecting structured data to provide support for Wikipedia, Wikimedia Commons, the other wikis of the Wikimedia movement, and to anyone in the world.” – Wikidata’s Self-Description ]]></description>
   <category>Databases</category>
   <category>Knowledge Graphs</category>
-  <guid>https://msburns.netlify.app/posts/wikidata-overview/</guid>
+  <guid>https://www.matthewburns.net/posts/wikidata-overview/</guid>
   <pubDate>Thu, 31 Jul 2025 04:00:00 GMT</pubDate>
-  <media:content url="https://msburns.netlify.app/posts/wikidata-overview/wikimedia-foundation-subsidiaries.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://www.matthewburns.net/posts/wikidata-overview/wikimedia-foundation-subsidiaries.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Data Lifecycle 101</title>
-  <link>https://msburns.netlify.app/posts/data-lifecycle-101/</link>
+  <link>https://www.matthewburns.net/posts/data-lifecycle-101/</link>
   <description><![CDATA[ Ever wonder how datasets used for one project end up fueling countless others? From Netflix recommendations to COVID-19 dashboards, data lives far beyond its original intended use, all thanks to the data lifecycle. ]]></description>
   <category>Data Science</category>
   <category>Databases</category>
   <category>Data Lifecycle</category>
-  <guid>https://msburns.netlify.app/posts/data-lifecycle-101/</guid>
+  <guid>https://www.matthewburns.net/posts/data-lifecycle-101/</guid>
   <pubDate>Mon, 24 Feb 2025 05:00:00 GMT</pubDate>
 </item>
 </channel>

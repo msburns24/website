@@ -2,6 +2,7 @@
 pagetitle: "Matthew Burns — Senior Data Scientist / ML Engineer"
 page-layout: full
 toc: false
+link-external-icon: false
 ---
 
 <div class="container py-5">

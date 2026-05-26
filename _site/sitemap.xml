@@ -1,71 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://msburns.netlify.app/projects/index.html</loc>
-    <lastmod>2025-09-06T17:07:07.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/posts/index.html</loc>
-    <lastmod>2026-05-26T08:46:14.678Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/index.html</loc>
-    <lastmod>2026-05-26T08:40:00.157Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/about.html</loc>
-    <lastmod>2025-10-31T12:49:06.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/posts/data-lifecycle-101/index.html</loc>
-    <lastmod>2025-09-04T14:38:51.848Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/posts/wikidata-overview/index.html</loc>
-    <lastmod>2025-09-04T14:55:01.841Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/projects/titanic/index.html</loc>
-    <lastmod>2025-09-06T17:07:40.132Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/posts/stochastic-gradient-descent/index.html</loc>
-    <lastmod>2025-09-06T12:23:09.036Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/projects/steam-recommender/index.html</loc>
-    <lastmod>2026-01-19T18:47:54.156Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/projects/steam-recommender/Part-2-Data-Preparation.html</loc>
-    <lastmod>2026-01-18T19:35:27.107Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/projects/steam-recommender/Part-1-Data-Collection.html</loc>
-    <lastmod>2026-01-12T21:46:05.339Z</lastmod>
-  </url>
-  <url>
-    <loc>https://msburns.netlify.app/projects/steam-recommender/Part-3-Implicit-ALS.html</loc>
+    <loc>https://www.matthewburns.net/projects/steam-recommender/Part-3-Implicit-ALS.html</loc>
     <lastmod>2026-01-18T21:45:42.197Z</lastmod>
   </url>
   <url>
-    <loc>https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/index.html</loc>
-    <lastmod>2026-05-26T11:04:19.423Z</lastmod>
+    <loc>https://www.matthewburns.net/projects/steam-recommender/Part-1-Data-Collection.html</loc>
+    <lastmod>2026-01-12T21:46:05.339Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/projects/index.html</loc>
     <lastmod>2025-09-06T17:07:07.075Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/index.html</loc>
-    <lastmod>2026-05-26T16:02:33.564Z</lastmod>
+    <loc>https://www.matthewburns.net/posts/wikidata-overview/index.html</loc>
+    <lastmod>2025-09-04T14:55:01.841Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/index.html</loc>
+    <lastmod>2026-05-26T08:46:14.678Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/index.html</loc>
-    <lastmod>2026-05-26T16:19:09.125Z</lastmod>
+    <lastmod>2026-05-26T16:23:07.857Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/about.html</loc>
     <lastmod>2026-05-26T16:16:20.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/data-lifecycle-101/index.html</loc>
+    <lastmod>2025-09-04T14:38:51.848Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/stochastic-gradient-descent/index.html</loc>
+    <lastmod>2025-09-06T12:23:09.036Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/index.html</loc>
+    <lastmod>2026-05-26T16:02:33.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/steam-recommender/index.html</loc>
+    <lastmod>2026-01-19T18:47:54.156Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/steam-recommender/Part-2-Data-Preparation.html</loc>
+    <lastmod>2026-01-18T19:35:27.107Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/titanic/index.html</loc>
+    <lastmod>2025-09-06T17:07:40.132Z</lastmod>
   </url>
 </urlset>

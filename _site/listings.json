@@ -13,7 +13,6 @@
   {
     "listing": "/posts/index.html",
     "items": [
-      "/posts/amazon-sentiment-ml-eng/index.html",
       "/posts/stochastic-gradient-descent/index.html",
       "/posts/wikidata-overview/index.html",
       "/posts/data-lifecycle-101/index.html"
