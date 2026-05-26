@@ -14,5 +14,12 @@
       "/posts/wikidata-overview/index.html",
       "/posts/data-lifecycle-101/index.html"
     ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/projects/amazon-sentiment-ml-eng/index.html",
+      "/projects/steam-recommender/index.html"
+    ]
   }
 ]

@@ -3,6 +3,14 @@ pagetitle: "Matthew Burns — Senior Data Scientist / ML Engineer"
 page-layout: full
 toc: false
 link-external-icon: false
+listing:
+  - id: featured-projects
+    contents:
+      - "projects/amazon-sentiment-ml-eng/*.qmd"
+      - "projects/steam-recommender/*.qmd"
+    sort: "date desc"
+    type: default
+    image-align: left
 ---
 
 <div class="container py-5">
@@ -23,61 +31,10 @@ I build production ML systems that work outside the notebook &mdash; from end-to
 </div>
 </div>
 
----
-
 ## Featured Projects
 
-<div class="row g-4 mb-4">
-
-<div class="col-12 col-md-6">
-<div class="card h-100 shadow-sm">
-<div style="overflow:hidden; height:180px; background:#f0f4f8; display:flex; align-items:center; justify-content:center;">
-<img src="/projects/amazon-sentiment-ml-eng/system_architecture.svg"
-     alt="System architecture diagram"
-     style="width:100%; height:100%; object-fit:cover;">
-</div>
-<div class="card-body">
-<span class="badge bg-primary mb-2">ML Engineering</span>
-<h5 class="card-title">
-<a href="/projects/amazon-sentiment-ml-eng/" class="stretched-link text-decoration-none">
-From Notebook to Production: Sentiment Analysis at Scale
-</a>
-</h5>
-<p class="card-text text-muted small">
-End-to-end NLP pipeline on 130M Amazon reviews &mdash; production-style architecture with fallback chains, failure-mode analysis, and monitoring.
-</p>
-</div>
-</div>
-</div>
-
-<br />
-
-<div class="col-12 col-md-6">
-<div class="card h-100 shadow-sm">
-<div style="height:180px; background: linear-gradient(135deg, #325d88 0%, #29abe0 100%); display:flex; align-items:center; justify-content:center;">
-<span style="font-size:4rem; line-height:1;">&#x1F3AE;</span>
-</div>
-<div class="card-body">
-<span class="badge bg-secondary mb-2">Recommender Systems</span>
-<h5 class="card-title">
-<a href="/projects/steam-recommender/" class="stretched-link text-decoration-none">
-Steam Game Recommender System
-</a>
-</h5>
-<p class="card-text text-muted small">
-Collaborative filtering on implicit user feedback &mdash; ALS model trained on Steam playtime data to surface personalized game recommendations.
-</p>
-</div>
-</div>
-</div>
-
-</div>
-
-<div class="text-center mb-5">
-<a href="/projects/" class="btn btn-outline-primary">All Projects &rarr;</a>
-</div>
-
----
+:::{#featured-projects}
+:::
 
 ## About Me
 

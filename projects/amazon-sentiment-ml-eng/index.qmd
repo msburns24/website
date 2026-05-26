@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "From Notebook to Production: What Sentiment Analysis Actually Takes"
-subtitle: "A practitioner's account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn't teach you."
+description: "A practitioner's account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn't teach you."
 date: 2026-05-25
 date-modified: 2026-05-26
 image: notebook_vs_production_thumbnail.svg

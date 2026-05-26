@@ -8,7 +8,7 @@
 
 <meta name="author" content="Matthew Burns">
 <meta name="dcterms.date" content="2026-01-19">
-<meta name="description" content="Recommending Games Based on User Playtime">
+<meta name="description" content="End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data.">
 
 <title>Steam Recommender System – Matthew Burns</title>
 <style>
@@ -141,11 +141,11 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Steam Recommender System – Matthew Burns">
-<meta property="og:description" content="Recommending Games Based on User Playtime">
+<meta property="og:description" content="End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data.">
 <meta property="og:image" content="https://www.matthewburns.net/projects/steam-recommender/sparse_matrix_thumbnail.svg">
 <meta property="og:site_name" content="Matthew Burns">
 <meta name="twitter:title" content="Steam Recommender System – Matthew Burns">
-<meta name="twitter:description" content="Recommending Games Based on User Playtime">
+<meta name="twitter:description" content="End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data.">
 <meta name="twitter:image" content="https://www.matthewburns.net/projects/steam-recommender/sparse_matrix_thumbnail.svg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -431,7 +431,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    Recommending Games Based on User Playtime
+    End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data.
   </div>
 </div>
 
@@ -504,7 +504,7 @@ TL;DR
 <section id="data-source" class="level3">
 <h3 class="anchored" data-anchor-id="data-source">Data Source</h3>
 <p>The dataset comes from Julian McAuley and Wang-Cheng Kang at UC San Diego, hosted on <a href="https://cseweb.ucsd.edu/~jmcauley/datasets.html#steam_data">McAuley’s website</a>. The <strong>V1 User-Items</strong> dataset describes the hours that Australian Steam users played each of their games. It arrives as a <code>.json.gz</code> file — 70.6 MB compressed, 527.5 MB extracted.</p>
-<div id="147f3931" class="cell" data-execution_count="1">
+<div id="83e317d6" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -520,7 +520,7 @@ TL;DR
 </section>
 <section id="download" class="level3">
 <h3 class="anchored" data-anchor-id="download">Download</h3>
-<div id="dafc68dc" class="cell" data-execution_count="2">
+<div id="6c86a965" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
@@ -542,7 +542,7 @@ TL;DR
 </section>
 <section id="extract-from-gzip" class="level3">
 <h3 class="anchored" data-anchor-id="extract-from-gzip">Extract from GZIP</h3>
-<div id="67c112b9" class="cell" data-execution_count="3">
+<div id="2de8c8e7" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gzip</span>
@@ -589,7 +589,7 @@ TL;DR
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ]</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The nested <code>items</code> list will be expanded in Part 2. For now, we parse all 88,310 records into a DataFrame and pickle it (pickle preserves the nested list column; feather does not).</p>
-<div id="06692416" class="cell" data-execution_count="4">
+<div id="7f0769f3" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ast</span>
@@ -634,7 +634,7 @@ TL;DR
 </ol>
 <section id="helper-dataframe-summary" class="level3">
 <h3 class="anchored" data-anchor-id="helper-dataframe-summary">Helper: DataFrame Summary</h3>
-<div id="a3eea917" class="cell" data-execution_count="5">
+<div id="e2d61ba8" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Optional</span>
@@ -661,7 +661,7 @@ TL;DR
 <section id="cleaning-expand-nested-data" class="level3">
 <h3 class="anchored" data-anchor-id="cleaning-expand-nested-data">Cleaning: Expand Nested Data</h3>
 <p>Three functions applied in sequence:</p>
-<div id="63fbe00a" class="cell" data-execution_count="6">
+<div id="54950a22" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> correct_naming_of_user_columns(df: pd.DataFrame) <span class="op">-&gt;</span> pd.DataFrame:</span>
@@ -687,7 +687,7 @@ TL;DR
 </section>
 <section id="cold-start-mitigation" class="level3">
 <h3 class="anchored" data-anchor-id="cold-start-mitigation">Cold-Start Mitigation</h3>
-<div id="0385e672" class="cell" data-execution_count="7">
+<div id="0b3006dc" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_users_by_num_items(df: pd.DataFrame, min_items: <span class="bu">int</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
@@ -701,7 +701,7 @@ TL;DR
 </section>
 <section id="log-playtime-transform" class="level3">
 <h3 class="anchored" data-anchor-id="log-playtime-transform">Log Playtime Transform</h3>
-<div id="9ef27a8d" class="cell" data-execution_count="8">
+<div id="f7c7c6d3" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_log_playtime(df: pd.DataFrame) <span class="op">-&gt;</span> pd.DataFrame:</span>
@@ -713,7 +713,7 @@ TL;DR
 </section>
 <section id="contiguous-id-mapping" class="level3">
 <h3 class="anchored" data-anchor-id="contiguous-id-mapping">Contiguous ID Mapping</h3>
-<div id="f550775e" class="cell" data-execution_count="9">
+<div id="8bcd130f" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> map_to_continuous_id(data: pd.Series) <span class="op">-&gt;</span> pd.Series:</span>
@@ -726,7 +726,7 @@ TL;DR
 <section id="train-validation-test-splits" class="level3">
 <h3 class="anchored" data-anchor-id="train-validation-test-splits">Train / Validation / Test Splits</h3>
 <p>Standard random splits don’t work here — if a user appears only in the test set, the model has never seen them. Instead we split <em>each user’s items</em> independently, so every user is present in all three splits.</p>
-<div id="d9abd635" class="cell" data-execution_count="10">
+<div id="1f5fd0e6" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_valid_test_split_by_item(</span>
@@ -807,7 +807,7 @@ TL;DR
 <p>We use the <a href="https://github.com/benfred/implicit"><code>implicit</code></a> library, which exposes this model via SciPy CSR matrices.</p>
 <section id="sparse-matrix-construction" class="level3">
 <h3 class="anchored" data-anchor-id="sparse-matrix-construction">Sparse Matrix Construction</h3>
-<div id="464ec9dc" class="cell" data-execution_count="11">
+<div id="3b292d6a" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> csr_matrix</span>
@@ -829,7 +829,7 @@ TL;DR
 </section>
 <section id="initial-training" class="level3">
 <h3 class="anchored" data-anchor-id="initial-training">Initial Training</h3>
-<div id="7d128cab" class="cell" data-execution_count="12">
+<div id="0d47a6bf" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -877,7 +877,7 @@ TL;DR
 </tr>
 </tbody>
 </table>
-<div id="0366ff92" class="cell" data-execution_count="13">
+<div id="d91d7e90" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
@@ -967,7 +967,7 @@ TL;DR
 <section id="final-model" class="level3">
 <h3 class="anchored" data-anchor-id="final-model">Final Model</h3>
 <p>Train on the combined train + validation sets using the best configuration, then evaluate on the held-out test set:</p>
-<div id="2f798a40" class="cell" data-execution_count="14">
+<div id="08c0d04d" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>R_train_full <span class="op">=</span> R_train <span class="op">+</span> R_valid   <span class="co"># no overlap, so simple addition is safe</span></span>
@@ -1464,7 +1464,7 @@ TL;DR
 <div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Steam Recommender System</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Recommending Games Based on User Playtime</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Recommending Games Based on User Playtime</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data."</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Matthew Burns</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-01-19</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> 2026-05-26</span></span>

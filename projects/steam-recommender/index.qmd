@@ -1,7 +1,7 @@
 ---
 title: Steam Recommender System
 subtitle: Recommending Games Based on User Playtime
-description: Recommending Games Based on User Playtime
+description: "End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data."
 author: Matthew Burns
 date: 2026-01-19
 date-modified: 2026-05-26

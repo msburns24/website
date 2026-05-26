@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,16 +72,72 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-featured-projects .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-featured-projects'] = new List('listing-featured-projects', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Matthew Burns — Senior Data Scientist / ML Engineer">
-<meta property="og:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/system_architecture.svg">
+<meta property="og:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production_thumbnail.svg">
 <meta property="og:site_name" content="Matthew Burns">
-<meta property="og:image:alt" content="System architecture diagram">
 <meta name="twitter:title" content="Matthew Burns — Senior Data Scientist / ML Engineer">
-<meta name="twitter:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/system_architecture.svg">
-<meta name="twitter:image:alt" content="System architecture diagram">
+<meta name="twitter:image" content="https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/notebook_vs_production_thumbnail.svg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -334,48 +392,66 @@ Matthew Burns
 </div>
 </div>
 </div>
-<hr>
 <section id="featured-projects" class="level2">
 <h2 class="anchored" data-anchor-id="featured-projects">Featured Projects</h2>
-<div class="row g-4 mb-4">
-<div class="col-12 col-md-6">
-<div class="card h-100 shadow-sm">
-<div style="overflow:hidden; height:180px; background:#f0f4f8; display:flex; align-items:center; justify-content:center;">
-<p><img src="./projects/amazon-sentiment-ml-eng/system_architecture.svg" alt="System architecture diagram" style="width:100%; height:100%; object-fit:cover;"></p>
+<div id="listing-featured-projects" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-left" data-index="0" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDTUwlMjBFbmdpbmVlcmluZyUyQ1NlbnRpbWVudCUyMENsYXNzaWZpY2F0aW9u" data-listing-date-sort="1779681600000" data-listing-file-modified-sort="1779820373459" data-listing-date-modified-sort="1779768000000" data-listing-reading-time-sort="24" data-listing-word-count-sort="4717">
+<div class="thumbnail"><a href="./projects/amazon-sentiment-ml-eng/index.html" class="no-external">
+
+<img loading="lazy" src="./projects/amazon-sentiment-ml-eng/notebook_vs_production_thumbnail.svg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./projects/amazon-sentiment-ml-eng/index.html" class="no-external">From Notebook to Production: What Sentiment Analysis Actually Takes</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./projects/amazon-sentiment-ml-eng/index.html" class="no-external"></a>
 </div>
-<div class="card-body">
-<span class="badge bg-primary mb-2">ML Engineering</span>
-<h5 class="card-title anchored">
-<a href="./projects/amazon-sentiment-ml-eng/" class="stretched-link text-decoration-none"> From Notebook to Production: Sentiment Analysis at Scale </a>
-</h5>
-<p class="card-text text-muted small">
-End-to-end NLP pipeline on 130M Amazon reviews — production-style architecture with fallback chains, failure-mode analysis, and monitoring.
-</p>
+<div class="delink listing-description"><a href="./projects/amazon-sentiment-ml-eng/index.html" class="no-external">
+<p>A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.</p>
+</a></div>
 </div>
+<div class="metadata">
+<a href="./projects/amazon-sentiment-ml-eng/index.html" class="no-external">
+<div class="listing-date">
+May 25, 2026
 </div>
-</div>
-<p><br></p>
-<div class="col-12 col-md-6">
-<div class="card h-100 shadow-sm">
-<div style="height:180px; background: linear-gradient(135deg, #325d88 0%, #29abe0 100%); display:flex; align-items:center; justify-content:center;">
-<p><span style="font-size:4rem; line-height:1;">🎮</span></p>
-</div>
-<div class="card-body">
-<span class="badge bg-secondary mb-2">Recommender Systems</span>
-<h5 class="card-title anchored">
-<a href="./projects/steam-recommender/" class="stretched-link text-decoration-none"> Steam Game Recommender System </a>
-</h5>
-<p class="card-text text-muted small">
-Collaborative filtering on implicit user feedback — ALS model trained on Steam playtime data to surface personalized game recommendations.
-</p>
+</a>
 </div>
 </div>
+<div class="quarto-post image-left" data-index="1" data-categories="RGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmclMkNSZWNvbW1lbmRlciUyMFN5c3RlbXMlMkNWaWRlbyUyMEdhbWVz" data-listing-date-sort="1768798800000" data-listing-file-modified-sort="1779820700211" data-listing-date-modified-sort="1779768000000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2560">
+<div class="thumbnail"><a href="./projects/steam-recommender/index.html" class="no-external">
+
+<img loading="lazy" src="./projects/steam-recommender/sparse_matrix_thumbnail.svg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./projects/steam-recommender/index.html" class="no-external">Steam Recommender System</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./projects/steam-recommender/index.html" class="no-external">Recommending Games Based on User Playtime</a>
+</div>
+<div class="delink listing-description"><a href="./projects/steam-recommender/index.html" class="no-external">
+<p>End-to-end recommender system pipeline: ingesting 5M+ Steam playtime records, applying implicit-feedback ALS, and achieving 79.79% NDCG@10 on held-out data.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./projects/steam-recommender/index.html" class="no-external">
+<div class="listing-date">
+Jan 19, 2026
+</div>
+<div class="listing-author">
+Matthew Burns
+</div>
+</a>
 </div>
 </div>
-<div class="text-center mb-5">
-<p><a href="./projects/" class="btn btn-outline-primary">All Projects →</a></p>
 </div>
-<hr>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
 </section>
 <section id="about-me" class="level2">
 <h2 class="anchored" data-anchor-id="about-me">About Me</h2>
@@ -385,6 +461,7 @@ Collaborative filtering on implicit user feedback — ALS model trained on Steam
 </div>
 </section>
 </div>
+
 
 
 
