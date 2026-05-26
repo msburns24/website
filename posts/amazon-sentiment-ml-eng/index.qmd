@@ -1,9 +1,12 @@
 ---
 layout: post
 title: "From Notebook to Production: What Sentiment Analysis Actually Takes"
-subtitle: "A practitioner's account of building a production-ready classifier on 130 million Amazon reviews — and everything a Jupyter notebook doesn't teach you."
+subtitle: "A practitioner's account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn't teach you."
 date: 2026-05-25
-date-modified: 2026-05-25
+date-modified: 2026-05-26
+image: notebook_vs_production.svg
+include-before-body:
+  text: '<img src="notebook_vs_production.svg" style="width:100%; margin-bottom:1rem;">'
 categories:
   - Machine Learning
   - ML Engineering
@@ -16,9 +19,7 @@ Then someone asks: "Can we deploy this?"
 
 That question opens a chasm. On one side: a model that works in a notebook. On the other: a system that handles 20,000 reviews a day with 99.9% uptime, degrades gracefully under memory pressure, detects when its training distribution is shifting, and never crashes the service when it encounters bad input. Crossing that chasm is what ML engineering is actually about.
 
-This post documents the full journey — using the [Amazon Customer Reviews 2023 dataset](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023) as the proving ground.
-
----
+This post documents the full journey, using the [Amazon Customer Reviews 2023 dataset](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023) as the proving ground.
 
 ## 1. The Gap Between Notebook Accuracy and Production Readiness
 
@@ -35,8 +36,6 @@ Accuracy on a test set is a **necessary condition**, not a sufficient one. An 87
 The root problem is that notebooks optimize for the happy path. You load clean data, train, evaluate, celebrate. Production optimizes for *what goes wrong*, because something always does.
 
 The Amazon reviews dataset makes this visceral. It spans 1996 to 2023, covers every product category from industrial tools to baby food, and contains reviews in multiple languages, reviews that are a single emoji, reviews that are 8,000-word essays, and reviews that are clearly fake. Any one of those will break a notebook-grade classifier in ways the test set never hinted at.
-
----
 
 ## 2. Requirements First: A Walkthrough
 
@@ -78,7 +77,7 @@ These numbers aren't pulled from thin air — they're derived from the review vo
 The three-class structure (positive / neutral / negative) requires per-class thresholds, not just a single accuracy number. Each class has a different failure cost:
 
 | Class | Precision | Recall | Why |
-|---|---|---|---|
+|-------|---|---|---|
 | Negative | ≥ 75% | ≥ 85% | Missing a negative (low recall) costs more than an unnecessary call (low precision) |
 | Positive | ≥ 90% | ≥ 70% | Accidentally flagging a happy customer as negative and calling them is a trust-destroying experience |
 | Neutral | ≥ 80% | ≥ 80% | Mostly a safety valve — misclassified neutrals should fall into the above buckets |
@@ -101,8 +100,6 @@ The data quality section is where requirements documents usually run thin. It sh
 The Amazon dataset doesn't come with sentiment labels. It comes with star ratings, and those are a noisy proxy. The mapping used here — 1–2 stars to negative, 3 stars to neutral, 4–5 stars to positive — is intuitive but imperfect. A 2-star review that says "the packaging was fine but the product itself was great" isn't negative. A 5-star review that's just a brand's promotional copy isn't really positive sentiment either.
 
 This tradeoff is documented explicitly and treated as a known limitation rather than a hidden assumption. At scale, the noise averages out. In edge cases, it doesn't, and those edge cases are exactly the ones the fallback chain is designed to catch.
-
----
 
 ## 3. Failure Modes: When the Amazon Dataset Bites You
 
@@ -161,80 +158,21 @@ oov_rate = n_unk / len(tokens)
 # Alert if oov_rate > 0.05
 ```
 
----
-
 ## 4. System Architecture
 
 The system is organized as five decoupled modules, each with a single clearly defined responsibility.
 
-```
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│ classifier   │───▶│  fallback    │───▶│    drift     │
-│ DistilBERT   │    │ three-tier   │    │ OOV / length │
-│ + validation │    │ recovery     │    │ / label dist │
-└──────────────┘    └──────────────┘    └──────────────┘
-       │                                        │
-       ▼                                        ▼
-┌──────────────┐                    ┌──────────────────┐
-│   api.py     │                    │  dashboard.py    │
-│ FastAPI      │                    │  Streamlit       │
-│ /predict     │                    │  observability   │
-│ /health      │                    │  UI              │
-│ /metrics     │                    └──────────────────┘
-└──────────────┘
-       │
-       ▼
-Persistent artifacts:
-  predictions.jsonl    ← every API call logged
-  human_queue.jsonl    ← tier-3 escalations, append-only
-  reports/drift.json   ← drift simulation output
-```
+![](system_architecture.svg)
 
 The architecture is deliberately flat and file-based rather than database-backed. Every output is inspectable with a text editor, testable without infrastructure dependencies, and directly readable by the dashboard without an intermediate API layer. That simplicity is a feature, not a constraint — it keeps the system legible while the patterns it demonstrates are portable to any production stack.
 
 The core contract runs through all five modules: every function that touches the classification path returns a consistent `{label, confidence, status, reason}` dictionary and never raises an exception to its caller. That contract is what makes the modules composable.
 
----
-
 ## 5. The Fallback Chain
 
 The classifier doesn't exist in isolation. It sits at the top of a three-tier fallback chain designed so that *every input gets a structured response*, regardless of what goes wrong.
 
-```
-                         Input text
-                             │
-                             ▼
-              ┌──────────────────────────────┐
-              │        Input Validation       │
-              │  (length, language, encoding) │
-              └──────────────┬───────────────┘
-                             │ valid
-                             ▼
-              ┌──────────────────────────────┐
-              │       Resource Check          │
-              │   (memory ≤ 90%, CPU ≤ 95%)  │
-              └──────────────┬───────────────┘
-                             │ resources ok
-                             ▼
-              ┌──────────────────────────────┐
-              │   TIER 1: DistilBERT Model   │
-              │   confidence ≥ 0.60 → label  │
-              └──────────────┬───────────────┘
-                   ok ◄──────┤ confidence < 0.60
-                             ▼
-              ┌──────────────────────────────┐
-              │  TIER 2: Keyword Heuristics  │
-              │  positive / negative /        │
-              │  neutral keyword sets         │
-              └──────────────┬───────────────┘
-                   ok ◄──────┤ no match / tie
-                             ▼
-              ┌──────────────────────────────┐
-              │  TIER 3: Human Review Queue  │
-              │  append-only JSONL file      │
-              │  status="fallback"           │
-              └──────────────────────────────┘
-```
+![](fallback_chain.svg)
 
 Every path through this diagram produces the same response shape:
 
@@ -254,8 +192,6 @@ This design principle — *never raise to the caller* — is the single most imp
 The keyword tier (Tier 2) isn't sophisticated. It matches three keyword sets — 18 positive terms like "excellent" and "wonderful," 18 negative terms like "awful" and "scam," and 11 neutral terms like "mediocre" and "acceptable" — then picks the class with the most hits. It handles the cases that fall through Tier 1 where the model was uncertain but the review contains clear signal words. It's fast, it's auditable, and it keeps the human queue from filling up with easy cases. If two classes tie, or if no keywords match at all, the request escalates rather than guessing.
 
 The human queue (Tier 3) is an append-only JSONL file. Every routed review gets a timestamp and a reason code. This file feeds the observability dashboard and, eventually, the retraining pipeline — because human-labeled edge cases are more valuable training data than any synthetic augmentation.
-
----
 
 ## 6. Serving Predictions: The FastAPI Layer
 
@@ -277,8 +213,6 @@ Wrapping `classify()` in a web service sounds straightforward, but there are a h
 
 The histogram is particularly useful. A healthy system has most mass in the 0.8–1.0 bucket. A system that's drifting or seeing out-of-distribution input will show a spreading distribution — more mass in the 0.4–0.6 range as the model becomes less decisive. That's a signal you can act on before F1 starts to visibly drop.
 
----
-
 ## 7. Watching It Run: The Observability Dashboard
 
 The metrics endpoint is queryable, but an operator shouldn't have to write curl commands to understand what's happening. The Streamlit dashboard reads from the same three data sources — `predictions.jsonl`, `human_queue.jsonl`, and `reports/drift.json` — and surfaces them in four panels.
@@ -292,8 +226,6 @@ The metrics endpoint is queryable, but an operator shouldn't have to write curl 
 **Demo data generator.** A sidebar button seeds 200 synthetic prediction records so you can explore the dashboard's visualizations without running a live server. This matters more than it sounds: a dashboard with no data is a dashboard that doesn't get tested, and a dashboard that doesn't get tested isn't trusted when the data it's showing is real.
 
 One implementation detail worth calling out: all data reads use `@st.cache_data(ttl=10)`. This prevents redundant file I/O on every interaction while still reflecting recent activity within ten seconds. For a production dashboard fed by a high-volume API, you'd want to cache at a longer TTL or move to a database-backed approach — but the pattern is the same.
-
----
 
 ## 8. Drift Simulation Results
 
@@ -332,6 +264,8 @@ The OOV signal held — the late-window vocabulary isn't significantly different
 
 The text length and label distribution signals are unambiguous. Reviews in the late window are systematically longer (the KS p-value is effectively zero — 10⁻⁵⁸ is not a rounding issue). And the sentiment balance has shifted dramatically: positive reviews fell from 34% to 13% while negative reviews surged from 61% to 83%. That's a review-bombing pattern — a period where negative sentiment concentrates and the volume of detailed, lengthy complaints increases.
 
+![](label_distribution_early_late.png)
+
 The practical consequence: a model trained on the early window's balanced distribution and evaluated against the late window's heavily skewed one will see F1 regression on the positive class, which it was trained to expect at roughly 3× the frequency it now encounters. The drift report doesn't fix this — but it fires before the model's accuracy metrics have time to visibly degrade, which is when the fix is cheapest.
 
 The actionable thresholds (OOV > 5%, KS p-value < 0.05, JS divergence > 0.05) are all operator-configurable. The simulation script accepts `--oov-threshold`, `--length-pvalue`, and `--js-threshold` flags so sensitivity can be tuned without touching code. Different business contexts warrant different sensitivities: a fraud detection system might want hair-trigger drift alerts; a product review classifier might tolerate more variance before escalating.
@@ -341,8 +275,6 @@ python scripts/simulate_drift.py --output-json reports/drift.json
 ```
 
 The JSON output feeds directly into the dashboard's drift report panel.
-
----
 
 ## 9. Testing Across Four Layers
 
@@ -358,8 +290,6 @@ A system this layered needs tests that match its architecture. There are four di
 
 Thirty-plus assertions across these four layers, organized so that each layer can run independently. The unit and drift tests run in CI without any model downloads; integration and API tests require the checkpoint and are gated accordingly.
 
----
-
 ## 10. What Comes Next
 
 The system described above is a complete production-pattern foundation: fine-tuned model, validated inputs, layered fallback chain, drift detection, API serving, observability dashboard, and a four-layer test suite. What it isn't yet is a horizontally scalable, automatically retraining, Kubernetes-native deployment. Here's the honest upgrade path.
@@ -372,8 +302,6 @@ The system described above is a complete production-pattern foundation: fine-tun
 
 **Model versioning.** The current system loads a single checkpoint. A model registry with semantic versioning, a shadow-scoring mode where the new checkpoint scores requests alongside the current one without serving its predictions, and a promotion workflow tied to a statistical significance test on the F1 difference would make model updates operationally safe at scale.
 
----
-
 ## Closing Thought
 
 The notebook took two hours to write and got 87% accuracy. The production system took considerably longer — and that's the right investment ratio for anything that acts on real data and affects real customers.
@@ -381,7 +309,5 @@ The notebook took two hours to write and got 87% accuracy. The production system
 The patterns here — a structured return contract that never raises, explicit failure modes enumerated before they happen, a layered fallback chain, drift detection that watches multiple signals independently, an observability layer that reflects what's actually happening rather than what you hope is happening — aren't specific to sentiment analysis. They're the same patterns you'd apply to a fraud classifier, a content moderation system, or a medical risk scorer. The domain changes; the engineering discipline doesn't.
 
 If you've built something similar or have war stories from the notebook-to-production gap, I'd like to hear them.
-
----
 
 *The full codebase, including the FastAPI serving layer, drift simulation script, Streamlit observability dashboard, and four-layer test suite, is on [GitHub](https://github.com/msb/amazon-sentiment-ml-eng).*

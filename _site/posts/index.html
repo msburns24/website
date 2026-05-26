@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-subtitle','listing-date','listing-categories','listing-reading-time','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
     };
@@ -390,10 +390,10 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDTUwlMjBFbmdpbmVlcmluZyUyQ1NlbnRpbWVudCUyMENsYXNzaWZpY2F0aW9u" data-listing-date-sort="1779681600000" data-listing-file-modified-sort="1779752286138" data-listing-date-modified-sort="1779681600000" data-listing-reading-time-sort="25" data-listing-word-count-sort="4897">
+<div class="quarto-post image-right" data-index="0" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDTUwlMjBFbmdpbmVlcmluZyUyQ1NlbnRpbWVudCUyMENsYXNzaWZpY2F0aW9u" data-listing-date-sort="1779681600000" data-listing-file-modified-sort="1779790579888" data-listing-date-modified-sort="1779768000000" data-listing-reading-time-sort="19" data-listing-word-count-sort="3747">
 <div class="thumbnail"><a href="../posts/amazon-sentiment-ml-eng/index.html" class="no-external">
 
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+<img loading="lazy" src="../posts/amazon-sentiment-ml-eng/notebook_vs_production.svg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
@@ -401,17 +401,24 @@ window.Quarto = {
 <a href="../posts/amazon-sentiment-ml-eng/index.html" class="no-external">From Notebook to Production: What Sentiment Analysis Actually Takes</a>
 </h3>
 <div class="listing-subtitle">
-<a href="../posts/amazon-sentiment-ml-eng/index.html" class="no-external">A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews — and everything a Jupyter notebook doesn’t teach you.</a>
+<a href="../posts/amazon-sentiment-ml-eng/index.html" class="no-external">A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.</a>
 </div>
-<div class="delink listing-description"><a href="../posts/amazon-sentiment-ml-eng/index.html" class="no-external">
-There’s a specific moment every ML practitioner eventually hits. You’ve trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix…<code></code>
-</a></div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TUwlMjBFbmdpbmVlcmluZw=='); return false;">ML Engineering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VudGltZW50JTIwQ2xhc3NpZmljYXRpb24='); return false;">Sentiment Classification</div>
+
+</div>
 </div>
 <div class="metadata">
 <a href="../posts/amazon-sentiment-ml-eng/index.html" class="no-external">
 <div class="listing-date">
 May 25, 2026
 </div>
+<div class="listing-reading-time">19 min</div>
 </a>
 </div>
 </div>
@@ -428,15 +435,13 @@ May 25, 2026
 <div class="listing-subtitle">
 <a href="../posts/stochastic-gradient-descent/index.html" class="no-external">The Effects of Batch Size on Convergence</a>
 </div>
-<div class="delink listing-description"><a href="../posts/stochastic-gradient-descent/index.html" class="no-external">
-Gradient descent is one of the most fundamental tools in data science, as it opens the door to models that don’t have a closed-form solution. Even more, it sets the…
-</a></div>
 </div>
 <div class="metadata">
 <a href="../posts/stochastic-gradient-descent/index.html" class="no-external">
 <div class="listing-date">
 Sep 5, 2025
 </div>
+<div class="listing-reading-time">7 min</div>
 </a>
 </div>
 </div>
@@ -453,15 +458,20 @@ Sep 5, 2025
 <div class="listing-subtitle">
 <a href="../posts/wikidata-overview/index.html" class="no-external"></a>
 </div>
-<div class="delink listing-description"><a href="../posts/wikidata-overview/index.html" class="no-external">
-“Wikidata is a free, collaborative, multilingual, secondary knowledge base, collecting structured data to provide support for Wikipedia, Wikimedia Commons, the other wikis…
-</a></div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YWJhc2Vz'); return false;">Databases</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('S25vd2xlZGdlJTIwR3JhcGhz'); return false;">Knowledge Graphs</div>
+
+</div>
 </div>
 <div class="metadata">
 <a href="../posts/wikidata-overview/index.html" class="no-external">
 <div class="listing-date">
 Jul 31, 2025
 </div>
+<div class="listing-reading-time">7 min</div>
 </a>
 </div>
 </div>
@@ -478,15 +488,22 @@ Jul 31, 2025
 <div class="listing-subtitle">
 <a href="../posts/data-lifecycle-101/index.html" class="no-external">How to Stay Relevant Beyond a Single Project</a>
 </div>
-<div class="delink listing-description"><a href="../posts/data-lifecycle-101/index.html" class="no-external">
-Ever wonder how datasets used for one project end up fueling countless others? From Netflix recommendations to COVID-19 dashboards, data lives far beyond its original…
-</a></div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFNjaWVuY2U='); return false;">Data Science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YWJhc2Vz'); return false;">Databases</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMExpZmVjeWNsZQ=='); return false;">Data Lifecycle</div>
+
+</div>
 </div>
 <div class="metadata">
 <a href="../posts/data-lifecycle-101/index.html" class="no-external">
 <div class="listing-date">
 Feb 24, 2025
 </div>
+<div class="listing-reading-time">6 min</div>
 </a>
 </div>
 </div>

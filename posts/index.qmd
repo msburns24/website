@@ -9,6 +9,13 @@ listing:
     title: Recent Posts
   sort: date desc
   type: default
+  fields:
+    - title
+    - subtitle
+    - date
+    - categories
+    - reading-time
+    - image
 page-layout: full
 title: Posts
 ---

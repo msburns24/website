@@ -370,11 +370,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<img src="notebook_vs_production.svg" style="width:100%; margin-bottom:1rem;">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">From Notebook to Production: What Sentiment Analysis Actually Takes</h1>
-<p class="subtitle lead">A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews — and everything a Jupyter notebook doesn’t teach you.</p>
+<p class="subtitle lead">A practitioner’s account of building a production-ready classifier on 130 million Amazon reviews, and everything a Jupyter notebook doesn’t teach you.</p>
   <div class="quarto-categories">
     <div class="quarto-category">Machine Learning</div>
     <div class="quarto-category">ML Engineering</div>
@@ -397,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 25, 2026</p>
+      <p class="date-modified">May 26, 2026</p>
     </div>
   </div>
     
@@ -411,8 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There’s a specific moment every ML practitioner eventually hits. You’ve trained a sentiment classifier. It scores 87% accuracy on a held-out test set. The confusion matrix looks reasonable. You paste a few reviews into a <code>predict()</code> call and it works. You close the notebook feeling good.</p>
 <p>Then someone asks: “Can we deploy this?”</p>
 <p>That question opens a chasm. On one side: a model that works in a notebook. On the other: a system that handles 20,000 reviews a day with 99.9% uptime, degrades gracefully under memory pressure, detects when its training distribution is shifting, and never crashes the service when it encounters bad input. Crossing that chasm is what ML engineering is actually about.</p>
-<p>This post documents the full journey — using the <a href="https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023">Amazon Customer Reviews 2023 dataset</a> as the proving ground.</p>
-<hr>
+<p>This post documents the full journey, using the <a href="https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023">Amazon Customer Reviews 2023 dataset</a> as the proving ground.</p>
 <section id="the-gap-between-notebook-accuracy-and-production-readiness" class="level2">
 <h2 class="anchored" data-anchor-id="the-gap-between-notebook-accuracy-and-production-readiness">1. The Gap Between Notebook Accuracy and Production Readiness</h2>
 <p>A notebook-trained model answers one question: <em>given this exact dataset, with this exact preprocessing, can the model learn the signal?</em> It answers nothing about:</p>
@@ -426,7 +426,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Accuracy on a test set is a <strong>necessary condition</strong>, not a sufficient one. An 87% accurate model that silently returns wrong predictions for 13% of inputs — with no flagging, no fallback, no audit trail — is not a production system. It’s a liability.</p>
 <p>The root problem is that notebooks optimize for the happy path. You load clean data, train, evaluate, celebrate. Production optimizes for <em>what goes wrong</em>, because something always does.</p>
 <p>The Amazon reviews dataset makes this visceral. It spans 1996 to 2023, covers every product category from industrial tools to baby food, and contains reviews in multiple languages, reviews that are a single emoji, reviews that are 8,000-word essays, and reviews that are clearly fake. Any one of those will break a notebook-grade classifier in ways the test set never hinted at.</p>
-<hr>
 </section>
 <section id="requirements-first-a-walkthrough" class="level2">
 <h2 class="anchored" data-anchor-id="requirements-first-a-walkthrough">2. Requirements First: A Walkthrough</h2>
@@ -490,10 +489,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The three-class structure (positive / neutral / negative) requires per-class thresholds, not just a single accuracy number. Each class has a different failure cost:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -541,7 +540,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="a-note-on-label-derivation">A note on label derivation</h3>
 <p>The Amazon dataset doesn’t come with sentiment labels. It comes with star ratings, and those are a noisy proxy. The mapping used here — 1–2 stars to negative, 3 stars to neutral, 4–5 stars to positive — is intuitive but imperfect. A 2-star review that says “the packaging was fine but the product itself was great” isn’t negative. A 5-star review that’s just a brand’s promotional copy isn’t really positive sentiment either.</p>
 <p>This tradeoff is documented explicitly and treated as a known limitation rather than a hidden assumption. At scale, the noise averages out. In edge cases, it doesn’t, and those edge cases are exactly the ones the fallback chain is designed to catch.</p>
-<hr>
 </section>
 </section>
 <section id="failure-modes-when-the-amazon-dataset-bites-you" class="level2">
@@ -585,84 +583,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_unk <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> tokens <span class="cf">if</span> t <span class="op">==</span> tokenizer.unk_token)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>oov_rate <span class="op">=</span> n_unk <span class="op">/</span> <span class="bu">len</span>(tokens)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alert if oov_rate &gt; 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
 </section>
 </section>
 <section id="system-architecture" class="level2">
 <h2 class="anchored" data-anchor-id="system-architecture">4. System Architecture</h2>
 <p>The system is organized as five decoupled modules, each with a single clearly defined responsibility.</p>
-<pre><code>┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│ classifier   │───▶│  fallback    │───▶│    drift     │
-│ DistilBERT   │    │ three-tier   │    │ OOV / length │
-│ + validation │    │ recovery     │    │ / label dist │
-└──────────────┘    └──────────────┘    └──────────────┘
-       │                                        │
-       ▼                                        ▼
-┌──────────────┐                    ┌──────────────────┐
-│   api.py     │                    │  dashboard.py    │
-│ FastAPI      │                    │  Streamlit       │
-│ /predict     │                    │  observability   │
-│ /health      │                    │  UI              │
-│ /metrics     │                    └──────────────────┘
-└──────────────┘
-       │
-       ▼
-Persistent artifacts:
-  predictions.jsonl    ← every API call logged
-  human_queue.jsonl    ← tier-3 escalations, append-only
-  reports/drift.json   ← drift simulation output</code></pre>
+<p><img src="system_architecture.svg" class="img-fluid"></p>
 <p>The architecture is deliberately flat and file-based rather than database-backed. Every output is inspectable with a text editor, testable without infrastructure dependencies, and directly readable by the dashboard without an intermediate API layer. That simplicity is a feature, not a constraint — it keeps the system legible while the patterns it demonstrates are portable to any production stack.</p>
 <p>The core contract runs through all five modules: every function that touches the classification path returns a consistent <code>{label, confidence, status, reason}</code> dictionary and never raises an exception to its caller. That contract is what makes the modules composable.</p>
-<hr>
 </section>
 <section id="the-fallback-chain" class="level2">
 <h2 class="anchored" data-anchor-id="the-fallback-chain">5. The Fallback Chain</h2>
 <p>The classifier doesn’t exist in isolation. It sits at the top of a three-tier fallback chain designed so that <em>every input gets a structured response</em>, regardless of what goes wrong.</p>
-<pre><code>                         Input text
-                             │
-                             ▼
-              ┌──────────────────────────────┐
-              │        Input Validation       │
-              │  (length, language, encoding) │
-              └──────────────┬───────────────┘
-                             │ valid
-                             ▼
-              ┌──────────────────────────────┐
-              │       Resource Check          │
-              │   (memory ≤ 90%, CPU ≤ 95%)  │
-              └──────────────┬───────────────┘
-                             │ resources ok
-                             ▼
-              ┌──────────────────────────────┐
-              │   TIER 1: DistilBERT Model   │
-              │   confidence ≥ 0.60 → label  │
-              └──────────────┬───────────────┘
-                   ok ◄──────┤ confidence &lt; 0.60
-                             ▼
-              ┌──────────────────────────────┐
-              │  TIER 2: Keyword Heuristics  │
-              │  positive / negative /        │
-              │  neutral keyword sets         │
-              └──────────────┬───────────────┘
-                   ok ◄──────┤ no match / tie
-                             ▼
-              ┌──────────────────────────────┐
-              │  TIER 3: Human Review Queue  │
-              │  append-only JSONL file      │
-              │  status="fallback"           │
-              └──────────────────────────────┘</code></pre>
+<p><img src="fallback_chain.svg" class="img-fluid"></p>
 <p>Every path through this diagram produces the same response shape:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"negative"</span><span class="fu">,</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"confidence"</span><span class="fu">:</span> <span class="fl">0.92</span><span class="fu">,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"ok"</span><span class="fu">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"reason"</span><span class="fu">:</span> <span class="st">""</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"negative"</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"confidence"</span><span class="fu">:</span> <span class="fl">0.92</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"ok"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"reason"</span><span class="fu">:</span> <span class="st">""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>status</code> field tells the caller which tier responded. <code>"ok"</code> means the model was confident. <code>"fallback"</code> means a lower tier handled it. <code>"rejected"</code> means the input failed validation. The caller never needs to handle an exception — the system’s contract is that it always returns this shape.</p>
 <p>This design principle — <em>never raise to the caller</em> — is the single most important production pattern in the codebase. It means downstream systems can treat the classifier as a reliable function rather than a fragile service that needs try/except wrappers throughout the call chain.</p>
 <p>The keyword tier (Tier 2) isn’t sophisticated. It matches three keyword sets — 18 positive terms like “excellent” and “wonderful,” 18 negative terms like “awful” and “scam,” and 11 neutral terms like “mediocre” and “acceptable” — then picks the class with the most hits. It handles the cases that fall through Tier 1 where the model was uncertain but the review contains clear signal words. It’s fast, it’s auditable, and it keeps the human queue from filling up with easy cases. If two classes tie, or if no keywords match at all, the request escalates rather than guessing.</p>
 <p>The human queue (Tier 3) is an append-only JSONL file. Every routed review gets a timestamp and a reason code. This file feeds the observability dashboard and, eventually, the retraining pipeline — because human-labeled edge cases are more valuable training data than any synthetic augmentation.</p>
-<hr>
 </section>
 <section id="serving-predictions-the-fastapi-layer" class="level2">
 <h2 class="anchored" data-anchor-id="serving-predictions-the-fastapi-layer">6. Serving Predictions: The FastAPI Layer</h2>
@@ -679,7 +623,6 @@ Persistent artifacts:
 <li><code>confidence_histogram</code>: distribution bucketed into five equal ranges from 0.0 to 1.0</li>
 </ul>
 <p>The histogram is particularly useful. A healthy system has most mass in the 0.8–1.0 bucket. A system that’s drifting or seeing out-of-distribution input will show a spreading distribution — more mass in the 0.4–0.6 range as the model becomes less decisive. That’s a signal you can act on before F1 starts to visibly drop.</p>
-<hr>
 </section>
 <section id="watching-it-run-the-observability-dashboard" class="level2">
 <h2 class="anchored" data-anchor-id="watching-it-run-the-observability-dashboard">7. Watching It Run: The Observability Dashboard</h2>
@@ -689,7 +632,6 @@ Persistent artifacts:
 <p><strong>Drift report.</strong> A side-by-side view of the three drift signals with the early and late statistics, the threshold for each, and a visual badge indicating whether that signal fired. When the drift report shows two of three signals above threshold — as it does in the actual results below — this panel makes that legible without requiring the operator to parse JSON.</p>
 <p><strong>Demo data generator.</strong> A sidebar button seeds 200 synthetic prediction records so you can explore the dashboard’s visualizations without running a live server. This matters more than it sounds: a dashboard with no data is a dashboard that doesn’t get tested, and a dashboard that doesn’t get tested isn’t trusted when the data it’s showing is real.</p>
 <p>One implementation detail worth calling out: all data reads use <code>@st.cache_data(ttl=10)</code>. This prevents redundant file I/O on every interaction while still reflecting recent activity within ten seconds. For a production dashboard fed by a high-volume API, you’d want to cache at a longer TTL or move to a database-backed approach — but the pattern is the same.</p>
-<hr>
 </section>
 <section id="drift-simulation-results" class="level2">
 <h2 class="anchored" data-anchor-id="drift-simulation-results">8. Drift Simulation Results</h2>
@@ -721,11 +663,11 @@ Signal 3: Label Distribution (Jensen-Shannon divergence)
 Overall: DRIFT DETECTED in [text_length, label_dist]</code></pre>
 <p>The OOV signal held — the late-window vocabulary isn’t significantly different from what DistilBERT saw during training. If OOV rate were the only signal monitored, this drift event would have been missed entirely.</p>
 <p>The text length and label distribution signals are unambiguous. Reviews in the late window are systematically longer (the KS p-value is effectively zero — 10⁻⁵⁸ is not a rounding issue). And the sentiment balance has shifted dramatically: positive reviews fell from 34% to 13% while negative reviews surged from 61% to 83%. That’s a review-bombing pattern — a period where negative sentiment concentrates and the volume of detailed, lengthy complaints increases.</p>
+<p><img src="label_distribution_early_late.png" class="img-fluid"></p>
 <p>The practical consequence: a model trained on the early window’s balanced distribution and evaluated against the late window’s heavily skewed one will see F1 regression on the positive class, which it was trained to expect at roughly 3× the frequency it now encounters. The drift report doesn’t fix this — but it fires before the model’s accuracy metrics have time to visibly degrade, which is when the fix is cheapest.</p>
 <p>The actionable thresholds (OOV &gt; 5%, KS p-value &lt; 0.05, JS divergence &gt; 0.05) are all operator-configurable. The simulation script accepts <code>--oov-threshold</code>, <code>--length-pvalue</code>, and <code>--js-threshold</code> flags so sensitivity can be tuned without touching code. Different business contexts warrant different sensitivities: a fraud detection system might want hair-trigger drift alerts; a product review classifier might tolerate more variance before escalating.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/simulate_drift.py <span class="at">--output-json</span> reports/drift.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/simulate_drift.py <span class="at">--output-json</span> reports/drift.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The JSON output feeds directly into the dashboard’s drift report panel.</p>
-<hr>
 </section>
 <section id="testing-across-four-layers" class="level2">
 <h2 class="anchored" data-anchor-id="testing-across-four-layers">9. Testing Across Four Layers</h2>
@@ -735,7 +677,6 @@ Overall: DRIFT DETECTED in [text_length, label_dist]</code></pre>
 <p><strong>Drift tests</strong> operate on synthetic datasets with known statistical properties. They verify two things: that comparing a window against itself doesn’t generate a false positive drift alert (specificity), and that a window with a deliberately shifted label distribution does correctly fire (sensitivity). Threshold customization is tested to confirm that changing the JS divergence threshold changes which signals are flagged.</p>
 <p><strong>API tests</strong> confirm that the serving layer behaves correctly at its boundaries. The health endpoint returns 200. An empty <code>text</code> field in a predict request returns 422 before any inference runs. The metrics endpoint correctly tracks status breakdown and rolling averages across a sequence of requests with different outcomes.</p>
 <p>Thirty-plus assertions across these four layers, organized so that each layer can run independently. The unit and drift tests run in CI without any model downloads; integration and API tests require the checkpoint and are gated accordingly.</p>
-<hr>
 </section>
 <section id="what-comes-next" class="level2">
 <h2 class="anchored" data-anchor-id="what-comes-next">10. What Comes Next</h2>
@@ -744,14 +685,12 @@ Overall: DRIFT DETECTED in [text_length, label_dist]</code></pre>
 <p><strong>Horizontal scaling.</strong> Kubernetes with a horizontal pod autoscaler keyed on request rate is the natural next step. The liveness probe is already wired (<code>/health</code>). A readiness probe tied to model-load completion would prevent a pod from receiving traffic before inference is possible.</p>
 <p><strong>Closing the retraining loop.</strong> The human review queue is the seed of a retraining pipeline. Today it’s an append-only JSONL file. The upgrade path: human labelers work through the queue, confirmed records are added to the training set, a weekly fine-tuning run uses the expanded dataset, a new checkpoint is A/B-tested against the current one on held-out reviews, and promoted if macro F1 improves without the confidence distribution regressing. Without this loop, the drift report is just an alert system. With it, the alert becomes a retraining trigger — and the model stays calibrated as the review distribution evolves.</p>
 <p><strong>Model versioning.</strong> The current system loads a single checkpoint. A model registry with semantic versioning, a shadow-scoring mode where the new checkpoint scores requests alongside the current one without serving its predictions, and a promotion workflow tied to a statistical significance test on the F1 difference would make model updates operationally safe at scale.</p>
-<hr>
 </section>
 <section id="closing-thought" class="level2">
 <h2 class="anchored" data-anchor-id="closing-thought">Closing Thought</h2>
 <p>The notebook took two hours to write and got 87% accuracy. The production system took considerably longer — and that’s the right investment ratio for anything that acts on real data and affects real customers.</p>
 <p>The patterns here — a structured return contract that never raises, explicit failure modes enumerated before they happen, a layered fallback chain, drift detection that watches multiple signals independently, an observability layer that reflects what’s actually happening rather than what you hope is happening — aren’t specific to sentiment analysis. They’re the same patterns you’d apply to a fraud classifier, a content moderation system, or a medical risk scorer. The domain changes; the engineering discipline doesn’t.</p>
 <p>If you’ve built something similar or have war stories from the notebook-to-production gap, I’d like to hear them.</p>
-<hr>
 <p><em>The full codebase, including the FastAPI serving layer, drift simulation script, Streamlit observability dashboard, and four-layer test suite, is on <a href="https://github.com/msb/amazon-sentiment-ml-eng">GitHub</a>.</em></p>
 
 

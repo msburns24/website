@@ -6,10 +6,4 @@ Welcome to my Quarto website! I decided to start this as a way to showcase my
 data science projects, but found it a great way to share insights, tips, and
 other helpful information related to data science.
 
-## Projects
-
-- [Titanic][1]
-
 <!-- References -->
-
-[1]: /projects/titanic/

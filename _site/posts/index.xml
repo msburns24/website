@@ -20,6 +20,7 @@
   <category>Sentiment Classification</category>
   <guid>https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/</guid>
   <pubDate>Mon, 25 May 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://msburns.netlify.app/posts/amazon-sentiment-ml-eng/notebook_vs_production.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Stochastic Gradient Descent</title>
