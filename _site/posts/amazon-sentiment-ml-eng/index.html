@@ -413,6 +413,134 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Then someone asks: “Can we deploy this?”</p>
 <p>That question opens a chasm. On one side: a model that works in a notebook. On the other: a system that handles 20,000 reviews a day with 99.9% uptime, degrades gracefully under memory pressure, detects when its training distribution is shifting, and never crashes the service when it encounters bad input. Crossing that chasm is what ML engineering is actually about.</p>
 <p>This post documents the full journey, using the <a href="https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023">Amazon Customer Reviews 2023 dataset</a> as the proving ground.</p>
+<style>
+  .repo-card {
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-body-color) 8%);
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius-lg);
+    padding: 1.1rem 1.25rem;
+    max-width: 560px;
+  }
+
+  .repo-card:hover {
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+  }
+
+  .repo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .repo-icon {
+    color: var(--bs-secondary-color);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .repo-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--bs-link-color);
+    text-decoration: none;
+  }
+
+  .repo-name:hover {
+    text-decoration: underline;
+  }
+
+  .repo-desc {
+    font-size: 13px;
+    color: var(--bs-secondary-color);
+    margin: 0 0 12px;
+    line-height: 1.5;
+  }
+
+  .repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: rgba(var(--bs-info-rgb), 0.15);
+    color: var(--bs-link-color);
+    font-family: var(--bs-font-monospace);
+  }
+
+  .repo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .repo-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+  }
+
+  .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3572A5;
+    flex-shrink: 0;
+  }
+
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius);
+    padding: 5px 10px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .view-btn:hover {
+    background: color-mix(in srgb, var(--bs-body-bg) 85%, var(--bs-body-color) 15%);
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+    color: var(--bs-body-color);
+  }
+</style>
+<div class="repo-card">
+  <div class="repo-top">
+    <i class="bi bi-github repo-icon" aria-hidden="true"></i>
+    <a class="repo-name" href="https://github.com/msburns24/amazon-sentiment-ml-eng">msburns24 /
+      amazon-sentiment-ml-eng</a>
+  </div>
+  <p class="repo-desc">Production-ready sentiment classifier on 130M Amazon reviews — fallback chain, drift detection,
+    FastAPI serving, and Streamlit observability dashboard.</p>
+  <div class="repo-tags">
+    <span class="tag">python</span>
+    <span class="tag">transformers</span>
+    <span class="tag">fastapi</span>
+    <span class="tag">mlops</span>
+    <span class="tag">concept-drift</span>
+  </div>
+  <div class="repo-footer">
+    <div class="repo-lang">
+      <span class="lang-dot"></span>
+      <span>Python</span>
+    </div>
+    <a class="view-btn" href="https://github.com/msburns24/amazon-sentiment-ml-eng">
+      View on GitHub <i class="bi bi-arrow-right" style="font-size:12px" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<br>
+
 <section id="the-gap-between-notebook-accuracy-and-production-readiness" class="level2">
 <h2 class="anchored" data-anchor-id="the-gap-between-notebook-accuracy-and-production-readiness">1. The Gap Between Notebook Accuracy and Production Readiness</h2>
 <p>A notebook-trained model answers one question: <em>given this exact dataset, with this exact preprocessing, can the model learn the signal?</em> It answers nothing about:</p>
@@ -432,6 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before writing a single line of model code, the question is: <em>what does this system need to do?</em></p>
 <p>This isn’t academic process-following. Requirements documents are the artifact that makes engineers and stakeholders talk about the same system. Without them, “production-ready” means something different to everyone in the room.</p>
 <p>Here’s the structure used, working top-down from business intent.</p>
+<p><img src="requirements_hierarchy.svg" class="img-fluid"></p>
 <section id="business-requirements" class="level3">
 <h3 class="anchored" data-anchor-id="business-requirements">Business requirements</h3>
 <p>The scenario: classify customer reviews to trigger retention interventions. A negative review is a signal that a customer might churn. A human agent follows up. The business metric is customer churn rate.</p>
@@ -545,6 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="failure-modes-when-the-amazon-dataset-bites-you" class="level2">
 <h2 class="anchored" data-anchor-id="failure-modes-when-the-amazon-dataset-bites-you">3. Failure Modes: When the Amazon Dataset Bites You</h2>
 <p>With requirements written, the next step is to systematically enumerate what can go wrong. The Amazon dataset is an excellent stress-test because it actually triggers all of these.</p>
+<p><img src="failure_mode_map.svg" class="img-fluid"></p>
 <section id="f1-non-english-input" class="level3">
 <h3 class="anchored" data-anchor-id="f1-non-english-input">F1: Non-English input</h3>
 <p>The dataset contains millions of Spanish, French, German, and Japanese reviews. Pass one of these to a model trained on English text and you get a confident, wrong prediction. There’s no error — just a label.</p>

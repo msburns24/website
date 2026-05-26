@@ -21,6 +21,137 @@ That question opens a chasm. On one side: a model that works in a notebook. On t
 
 This post documents the full journey, using the [Amazon Customer Reviews 2023 dataset](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023) as the proving ground.
 
+```{=html}
+<style>
+  .repo-card {
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-body-color) 8%);
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius-lg);
+    padding: 1.1rem 1.25rem;
+    max-width: 560px;
+  }
+
+  .repo-card:hover {
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+  }
+
+  .repo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .repo-icon {
+    color: var(--bs-secondary-color);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .repo-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--bs-link-color);
+    text-decoration: none;
+  }
+
+  .repo-name:hover {
+    text-decoration: underline;
+  }
+
+  .repo-desc {
+    font-size: 13px;
+    color: var(--bs-secondary-color);
+    margin: 0 0 12px;
+    line-height: 1.5;
+  }
+
+  .repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: rgba(var(--bs-info-rgb), 0.15);
+    color: var(--bs-link-color);
+    font-family: var(--bs-font-monospace);
+  }
+
+  .repo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .repo-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+  }
+
+  .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3572A5;
+    flex-shrink: 0;
+  }
+
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius);
+    padding: 5px 10px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .view-btn:hover {
+    background: color-mix(in srgb, var(--bs-body-bg) 85%, var(--bs-body-color) 15%);
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+    color: var(--bs-body-color);
+  }
+</style>
+<div class="repo-card">
+  <div class="repo-top">
+    <i class="bi bi-github repo-icon" aria-hidden="true"></i>
+    <a class="repo-name" href="https://github.com/msburns24/amazon-sentiment-ml-eng">msburns24 /
+      amazon-sentiment-ml-eng</a>
+  </div>
+  <p class="repo-desc">Production-ready sentiment classifier on 130M Amazon reviews — fallback chain, drift detection,
+    FastAPI serving, and Streamlit observability dashboard.</p>
+  <div class="repo-tags">
+    <span class="tag">python</span>
+    <span class="tag">transformers</span>
+    <span class="tag">fastapi</span>
+    <span class="tag">mlops</span>
+    <span class="tag">concept-drift</span>
+  </div>
+  <div class="repo-footer">
+    <div class="repo-lang">
+      <span class="lang-dot"></span>
+      <span>Python</span>
+    </div>
+    <a class="view-btn" href="https://github.com/msburns24/amazon-sentiment-ml-eng">
+      View on GitHub <i class="bi bi-arrow-right" style="font-size:12px" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<br />
+
+```
+
 ## 1. The Gap Between Notebook Accuracy and Production Readiness
 
 A notebook-trained model answers one question: *given this exact dataset, with this exact preprocessing, can the model learn the signal?* It answers nothing about:
@@ -44,6 +175,8 @@ Before writing a single line of model code, the question is: *what does this sys
 This isn't academic process-following. Requirements documents are the artifact that makes engineers and stakeholders talk about the same system. Without them, "production-ready" means something different to everyone in the room.
 
 Here's the structure used, working top-down from business intent.
+
+![](requirements_hierarchy.svg) 
 
 ### Business requirements
 
@@ -104,6 +237,8 @@ This tradeoff is documented explicitly and treated as a known limitation rather 
 ## 3. Failure Modes: When the Amazon Dataset Bites You
 
 With requirements written, the next step is to systematically enumerate what can go wrong. The Amazon dataset is an excellent stress-test because it actually triggers all of these.
+
+![](failure_mode_map.svg)
 
 ### F1: Non-English input
 

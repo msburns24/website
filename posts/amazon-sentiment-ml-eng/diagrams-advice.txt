@@ -1,7 +1,7 @@
 Diagrams Advice
 
 
-
+![](failure_mode_map.svg)
 
 
 
