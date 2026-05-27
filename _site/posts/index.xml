@@ -19,10 +19,10 @@
 <item>
   <title>Stochastic Gradient Descent</title>
   <link>https://www.matthewburns.net/posts/stochastic-gradient-descent/</link>
-  <description><![CDATA[ <img src="https://www.matthewburns.net/posts/stochastic-gradient-descent/gradient-descent.svg" class="img-fluid"> ]]></description>
+  <description><![CDATA[ <img src="https://www.matthewburns.net/posts/stochastic-gradient-descent/gradient_descent_header.svg" class="img-fluid"> ]]></description>
   <guid>https://www.matthewburns.net/posts/stochastic-gradient-descent/</guid>
   <pubDate>Fri, 05 Sep 2025 04:00:00 GMT</pubDate>
-  <media:content url="https://www.matthewburns.net/posts/stochastic-gradient-descent/gradient-descent.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://www.matthewburns.net/posts/stochastic-gradient-descent/gradient_descent_thumbnail.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Wikidata: A Collaborative, Multilingual Knowledge Graph</title>
@@ -32,7 +32,7 @@
   <category>Knowledge Graphs</category>
   <guid>https://www.matthewburns.net/posts/wikidata-overview/</guid>
   <pubDate>Thu, 31 Jul 2025 04:00:00 GMT</pubDate>
-  <media:content url="https://www.matthewburns.net/posts/wikidata-overview/wikimedia-foundation-subsidiaries.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://www.matthewburns.net/posts/wikidata-overview/wikidata_thumbnail.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Data Lifecycle 101</title>

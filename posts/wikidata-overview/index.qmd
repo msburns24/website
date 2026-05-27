@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Wikidata: A Collaborative, Multilingual Knowledge Graph"
-image: wikimedia-foundation-subsidiaries.svg
+image: wikidata_thumbnail.svg
 date: 2025-07-31
 date-modified: 2025-09-04
 categories:
