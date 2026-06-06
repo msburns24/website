@@ -1,1 +1,12 @@
 /* css styles */
+
+/* Catppuccin per-theme navbar backgrounds.
+   Quarto toggles .quarto-light/.quarto-dark on <body> when the user
+   switches themes, so we target those instead of a static inline style. */
+body.quarto-light .navbar {
+  background-color: #ccd0da; /* Catppuccin Latte – surface0 */
+}
+
+body.quarto-dark .navbar {
+  background-color: #181825; /* Catppuccin Mocha – mantle */
+}

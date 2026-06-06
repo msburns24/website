@@ -15,7 +15,6 @@ website:
     type: overlay
 
   navbar:
-    background: "#343A40"
     title: matthew burns
 
     left:
@@ -37,7 +36,7 @@ website:
 format:
   html:
     link-external-icon: true
-    respect-user-color-scheme: true
+    respect-user-color-scheme: false
     theme:
       light:
         - sandstone

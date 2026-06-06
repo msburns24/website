@@ -4,44 +4,76 @@
 $theme: "sandstone" !default;
 
 //
-// Color system
+// Catppuccin Latte color system
+// https://github.com/catppuccin/catppuccin
 //
 
 $white:    #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #f8f5f0 !default;
-$gray-300: #dfd7ca !default;
-$gray-400: #ced4da !default;
-$gray-500: #98978b !default;
-$gray-600: #8e8c84 !default;
-$gray-700: #495057 !default;
-$gray-800: #3e3f3a !default;
-$gray-900: #212529 !default;
 $black:    #000 !default;
 
-$blue:    #325d88 !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #d9534f !default;
-$orange:  #f47c3c !default;
-$yellow:  #ffc107 !default;
-$green:   #93c54b !default;
-$teal:    #20c997 !default;
-$cyan:    #29abe0 !default;
+// Catppuccin Latte palette
+$ctp-rosewater: #dc8a78 !default;
+$ctp-flamingo:  #dd7878 !default;
+$ctp-pink:      #ea76cb !default;
+$ctp-mauve:     #8839ef !default;
+$ctp-red:       #d20f39 !default;
+$ctp-maroon:    #e64553 !default;
+$ctp-peach:     #fe640b !default;
+$ctp-yellow:    #df8e1d !default;
+$ctp-green:     #40a02b !default;
+$ctp-teal:      #179299 !default;
+$ctp-sky:       #04a5e5 !default;
+$ctp-sapphire:  #209fb5 !default;
+$ctp-blue:      #1e66f5 !default;
+$ctp-lavender:  #7287fd !default;
+$ctp-text:      #4c4f69 !default;
+$ctp-subtext1:  #5c5f77 !default;
+$ctp-subtext0:  #6c6f85 !default;
+$ctp-overlay2:  #7c7f93 !default;
+$ctp-overlay1:  #8c8fa1 !default;
+$ctp-overlay0:  #9ca0b0 !default;
+$ctp-surface2:  #acb0be !default;
+$ctp-surface1:  #bcc0cc !default;
+$ctp-surface0:  #ccd0da !default;
+$ctp-base:      #eff1f5 !default;
+$ctp-mantle:    #e6e9ef !default;
+$ctp-crust:     #dce0e8 !default;
+
+// Bootstrap semantic mappings
+$blue:    $ctp-blue    !default;
+$indigo:  $ctp-lavender !default;
+$purple:  $ctp-mauve   !default;
+$pink:    $ctp-pink    !default;
+$red:     $ctp-red     !default;
+$orange:  $ctp-peach   !default;
+$yellow:  $ctp-yellow  !default;
+$green:   $ctp-green   !default;
+$teal:    $ctp-teal    !default;
+$cyan:    $ctp-sky     !default;
+
+// Gray scale mapped to Latte surface/overlay ramp
+$gray-100: $ctp-mantle   !default;
+$gray-200: $ctp-crust    !default;
+$gray-300: $ctp-surface0 !default;
+$gray-400: $ctp-surface1 !default;
+$gray-500: $ctp-surface2 !default;
+$gray-600: $ctp-overlay0 !default;
+$gray-700: $ctp-overlay2 !default;
+$gray-800: $ctp-subtext1 !default;
+$gray-900: $ctp-text     !default;
 
 // Body
 
-$body-bg:                   $white !default;
-$body-color:                $gray-900 !default;
+$body-bg:                   $ctp-base  !default;
+$body-color:                $ctp-text  !default;
 @function body-mix($weight) {
     @return mix($body-bg, $body-color, $weight);
 }
 
-$primary:       $blue !default;
+$primary:       $ctp-mauve   !default;
 $secondary:     body-mix(85%) !default;
 $success:       $green !default;
-$info:          $cyan !default;
+$info:          $ctp-sapphire !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 // This is inconsistent with Bootstrap semantics. That is, $dark
@@ -54,7 +86,7 @@ $min-contrast-ratio:   2 !default;
 
 // Links
 
-$link-color:                $info !default;
+$link-color:                $ctp-mauve !default;
 
 // Fonts
 
@@ -64,9 +96,9 @@ $headings-font-weight:        400 !default;
 
 // Code
 
-$code-color:                        $cyan !default;
-$code-bg:                           body-mix(95%) !default;
-$code-block-bg:                     body-mix(95%) !default;
+$code-color:                        $ctp-mauve  !default;
+$code-bg:                           $ctp-mantle !default;
+$code-block-bg:                     $ctp-mantle !default;
 $kbd-padding-y:                     .1875rem !default;
 $kbd-padding-x:                     .375rem !default;
 $kbd-color:                         $body-bg !default;
@@ -94,6 +126,7 @@ $nav-pills-link-active-bg:          body-mix(95%) !default;
 
 // Navbar
 
+$navbar-fg:                         $ctp-text !default;
 $navbar-padding-y:                  1rem !default;
 
 // Pagination

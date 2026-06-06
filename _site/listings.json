@@ -1,10 +1,9 @@
 [
   {
-    "listing": "/projects/index.html",
+    "listing": "/index.html",
     "items": [
       "/projects/amazon-sentiment-ml-eng/index.html",
-      "/projects/steam-recommender/index.html",
-      "/projects/titanic/index.html"
+      "/projects/steam-recommender/index.html"
     ]
   },
   {
@@ -16,7 +15,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/projects/index.html",
     "items": [
       "/projects/amazon-sentiment-ml-eng/index.html",
       "/projects/steam-recommender/index.html"
