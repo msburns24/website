@@ -1,0 +1,98 @@
+{
+  "firmed": [
+    {
+      "name": "The Oval Bar",
+      "day": "Sat, Oct 3",
+      "city": "Dublin",
+      "time": "Reservation TBD",
+      "cuisine": "Irish Pub",
+      "phone": "+353 1 872 1264",
+      "michelin": null,
+      "images": [
+        "images/the-oval-bar-exterior.jpg",
+        "images/the-oval-bar-interior.jpg",
+        "images/the-oval-bar-food.jpg"
+      ],
+      "menus": [
+        { "label": "Food menu", "url": "menus/the-oval-food.pdf" },
+        { "label": "Drinks menu", "url": "menus/the-oval-drinks.pdf" }
+      ]
+    },
+    {
+      "name": "Sotto Enoteca & Trattoria",
+      "day": "Sun, Oct 4",
+      "city": "Edinburgh",
+      "time": "6:00 pm",
+      "cuisine": "Italian",
+      "phone": "+44 131 332 3621",
+      "michelin": "https://guide.michelin.com/gb/en/city-of-edinburgh/edinburgh/restaurant/sotto",
+      "images": [
+        "images/sotto-exterior.jpg",
+        "images/sotto-interior.jpg",
+        "images/sotto-food.jpg"
+      ],
+      "menus": [
+        { "label": "Food menu", "url": "menus/sotto-food.pdf" },
+        { "label": "Drinks menu", "url": "menus/sotto-drinks.pdf" }
+      ]
+    },
+    {
+      "name": "The Scran and Scallie",
+      "day": "Tue, Oct 6",
+      "city": "Edinburgh",
+      "time": "5:30 pm",
+      "cuisine": "Scottish · Gastropub",
+      "phone": "+44 131 332 6281",
+      "michelin": "https://guide.michelin.com/gb/en/city-of-edinburgh/edinburgh/restaurant/the-scran-scallie",
+      "images": [
+        "images/scran-and-scallie-exterior.jpg",
+        "images/scran-and-scallie-interior.jpg",
+        "images/scran-and-scallie-food.jpg"
+      ],
+      "menus": [
+        { "label": "Food menu", "url": "menus/scran-and-scallie-food.pdf" },
+        { "label": "Drinks menu", "url": "menus/scran-and-scallie-drinks.pdf" }
+      ]
+    },
+    {
+      "name": "Lyla",
+      "day": "Wed, Oct 7",
+      "city": "Edinburgh",
+      "time": "6:30 pm",
+      "anniversary": true,
+      "cuisine": "Modern British · Creative",
+      "phone": "+44 131 285 8808",
+      "michelin": "https://guide.michelin.com/gb/en/city-of-edinburgh/edinburgh/restaurant/lyla-1210030",
+      "images": [
+        "images/lyla-exterior.jpg",
+        "images/lyla-interior.png",
+        "images/lyla-food.png"
+      ],
+      "menus": [
+        { "label": "Menu", "url": "https://lylaedinburgh.co.uk/homepage-4" }
+      ]
+    }
+  ],
+  "possibilities": {
+    "Edinburgh": [
+      { "name": "Witchery by the Castle", "type": "Dinner", "notes": "Theatrical, candle-lit, opulent — a classic Edinburgh splurge by the castle." },
+      { "name": "Prestonfield House", "type": "High Tea", "notes": "Lavish afternoon tea in a 17th-century country house." },
+      { "name": "Little Capo", "type": "Dinner", "notes": "Cozy Italian small plates." },
+      { "name": "Tempting Tattie", "type": "Lunch", "notes": "Scottish loaded baked potatoes — cheap and hearty." },
+      { "name": "Alby's", "type": "Lunch", "notes": "Cult sandwich shop, big flavors." },
+      { "name": "Lannan Bakery", "type": "Breakfast", "notes": "Acclaimed pastries; go early before they sell out." },
+      { "name": "Gleneagles Townhouse", "type": "Bar", "notes": "Grand bar in a former bank — drinks with a view." },
+      { "name": "Cafe Calton", "type": "Drinks", "notes": "Relaxed neighborhood coffee and drinks." },
+      { "name": "Stramish", "type": "Music & Dancing", "notes": "Traditional Scottish ceilidh music and dancing." },
+      { "name": "Scotsman Hotel & Cinema", "type": "Activity", "notes": "Historic hotel with its own screening room." }
+    ],
+    "Isle of Skye": [
+      { "name": "Dulse & Brose", "type": "Dinner", "notes": "At The Bosville (your hotel) — fresh Skye produce, warm and unfussy. Book ahead." },
+      { "name": "Sea Breezes", "type": "Seafood", "notes": "Quayside institution; local langoustines, hand-dived scallops. Reservations essential." },
+      { "name": "Scorrybreac", "type": "Fine Dining", "notes": "Intimate, creative tasting menu using island ingredients. Tiny — book well ahead." },
+      { "name": "Cafe Arriba", "type": "Lunch", "notes": "Casual harbour-view spot; great Cullen skink." },
+      { "name": "The Isles Inn", "type": "Pub", "notes": "Laid-back pub grub — haggis and pies done well." },
+      { "name": "The Rosedale", "type": "Dinner", "notes": "Harbour-view hotel restaurant; seafood-forward and romantic." }
+    ]
+  }
+}

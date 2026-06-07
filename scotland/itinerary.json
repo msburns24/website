@@ -1,0 +1,126 @@
+[
+  {
+    "date": "Fri Oct 2",
+    "city": "Raleigh → Dublin",
+    "emoji": "✈️",
+    "items": [
+      { "time": "8:25 pm", "type": "flight", "text": "Depart RDU → Dublin (DUB)", "detail": "7h 20m · EI 0084" }
+    ]
+  },
+  {
+    "date": "Sat Oct 3",
+    "city": "Dublin",
+    "emoji": "🍺",
+    "items": [
+      { "time": "8:45 am",   "type": "arrival", "text": "Arrive Dublin", "detail": "Bag drop at The Fleet; check-in 3:00 pm" },
+      { "time": "Afternoon", "type": "sight",   "text": "Temple Bar", "detail": "Historic cultural quarter" },
+      { "time": "Afternoon", "type": "sight",   "text": "Dublin Castle", "detail": "" },
+      { "time": "Evening",   "type": "food",    "text": "The Oval Bar", "detail": "Dinner / drinks — reservation TBD" }
+    ]
+  },
+  {
+    "date": "Sun Oct 4",
+    "city": "Dublin → Edinburgh",
+    "emoji": "✈️",
+    "items": [
+      { "time": "11:25 am",  "type": "flight",  "text": "Depart DUB → Edinburgh (EDI)", "detail": "1h 25m · EI 3254" },
+      { "time": "12:15 pm",  "type": "arrival", "text": "Arrive Edinburgh — check in: The Raeburn, Stockbridge", "detail": "" },
+      { "time": "Afternoon", "type": "sight",   "text": "Explore Stockbridge & Circus Lane", "detail": "Cobbled streets, right near the hotel" },
+      { "time": "6:00 pm",   "type": "food",    "text": "Sotto Enoteca & Trattoria", "detail": "Dinner — Italian" }
+    ]
+  },
+  {
+    "date": "Mon Oct 5",
+    "city": "Edinburgh",
+    "emoji": "🏰",
+    "items": [
+      { "time": "Morning",   "type": "food",     "text": "Lannan Bakery", "detail": "Breakfast" },
+      { "time": "Morning",   "type": "sight",    "text": "Edinburgh Castle", "detail": "Allow 2–3 hours; consider Afternoon Tea add-on" },
+      { "time": "Midday",    "type": "food",     "text": "Tempting Tattie", "detail": "Lunch" },
+      { "time": "Afternoon", "type": "sight",    "text": "The Vennel Viewpoint", "detail": "Best castle views" },
+      { "time": "Afternoon", "type": "sight",    "text": "Victoria Street", "detail": "Diagon Alley inspiration" },
+      { "time": "Evening",   "type": "food",     "text": "Little Capo", "detail": "Dinner" },
+      { "time": "Late",      "type": "activity", "text": "Gleneagles Townhouse", "detail": "Nightcap at the bar" }
+    ]
+  },
+  {
+    "date": "Tue Oct 6",
+    "city": "Edinburgh",
+    "emoji": "🖼️",
+    "items": [
+      { "time": "Morning",   "type": "food",  "text": "Lannan Bakery", "detail": "Breakfast" },
+      { "time": "Morning",   "type": "sight", "text": "National Portrait Gallery", "detail": "Free entry" },
+      { "time": "Midday",    "type": "food",  "text": "Alby's", "detail": "Lunch" },
+      { "time": "Afternoon", "type": "sight", "text": "Royal Mile", "detail": "Historic Old Town walk" },
+      { "time": "Afternoon", "type": "sight", "text": "Palace of Holyroodhouse", "detail": "End of the Royal Mile" },
+      { "time": "Afternoon", "type": "shop",  "text": "Stills Gallery", "detail": "Photography prints" },
+      { "time": "5:30 pm",   "type": "food",  "text": "The Scran and Scallie", "detail": "Dinner — Scottish gastropub" }
+    ]
+  },
+  {
+    "date": "Wed Oct 7",
+    "city": "Edinburgh",
+    "emoji": "🌿",
+    "items": [
+      { "time": "Morning",   "type": "food",     "text": "Cafe Calton", "detail": "Coffee & drinks" },
+      { "time": "Morning",   "type": "sight",    "text": "Dean Village", "detail": "Morning walk along the Water of Leith" },
+      { "time": "Afternoon", "type": "food",     "text": "Prestonfield House", "detail": "High Tea" },
+      { "time": "Afternoon", "type": "shop",     "text": "Tron Kirk Market", "detail": "" },
+      { "time": "6:30 pm",   "type": "food",     "text": "Lyla", "detail": "🎉 Anniversary dinner — Modern British" },
+      { "time": "Late",      "type": "activity", "text": "Stramish", "detail": "Traditional music & dancing" }
+    ]
+  },
+  {
+    "date": "Thu Oct 8",
+    "city": "Edinburgh → Glencoe → Fort William",
+    "emoji": "🚗",
+    "items": [
+      { "time": "9:30 am",   "type": "drive",   "text": "Pick up rental car — Enterprise, Edinburgh Airport", "detail": "Nissan Juke" },
+      { "time": "10:00 am",  "type": "drive",   "text": "Drive to Glencoe", "detail": "~2h 40m via M9/A82" },
+      { "time": "1:00 pm",   "type": "sight",   "text": "Wee White House & Three Sisters", "detail": "Roadside bays; boggy ground" },
+      { "time": "2:45 pm",   "type": "drive",   "text": "Drive to Fort William", "detail": "~30m up the A82" },
+      { "time": "3:00 pm",   "type": "arrival", "text": "Check in: Torlinnhe Guest House", "detail": "Loch-view room" },
+      { "time": "Evening",   "type": "food",    "text": "Dinner in Fort William", "detail": "Torlinnhe has a restaurant" }
+    ]
+  },
+  {
+    "date": "Fri Oct 9",
+    "city": "Glenfinnan → Eilean Donan → Skye",
+    "emoji": "🏔️",
+    "items": [
+      { "time": "9:45 am",  "type": "drive",   "text": "Check out Torlinnhe; drive to Glenfinnan", "detail": "~35m" },
+      { "time": "10:15 am", "type": "sight",   "text": "Glenfinnan Viaduct — Jacobite steam train", "detail": "Crossing ~10:45 am; arrive early, car park fills" },
+      { "time": "11:30 am", "type": "drive",   "text": "Drive to Eilean Donan", "detail": "~2h via A82/A87" },
+      { "time": "1:30 pm",  "type": "sight",   "text": "Eilean Donan Castle", "detail": "~1hr inside; best near low tide" },
+      { "time": "3:15 pm",  "type": "drive",   "text": "Drive to Portree (Skye)", "detail": "~1h 10m over the Skye Bridge" },
+      { "time": "4:30 pm",  "type": "arrival", "text": "Check in: The Bosville, Portree", "detail": "" },
+      { "time": "Evening",  "type": "food",    "text": "Dinner in Portree", "detail": "Sea Breezes / Scorrybreac / Dulse & Brose" }
+    ]
+  },
+  {
+    "date": "Sat Oct 10",
+    "city": "Skye → Edinburgh",
+    "emoji": "🚗",
+    "items": [
+      { "time": "Morning",  "type": "sight",   "text": "Old Man of Storr or Kilt Rock", "detail": "A Skye highlight before the drive" },
+      { "time": "11:00 am", "type": "drive",   "text": "Check out Bosville; drive to Fort William", "detail": "~2h 30m" },
+      { "time": "1:30 pm",  "type": "food",    "text": "Lunch in Fort William", "detail": "Leg-stretch & refuel" },
+      { "time": "2:30 pm",  "type": "drive",   "text": "Drive to Edinburgh", "detail": "~2h 55m" },
+      { "time": "5:30 pm",  "type": "arrival", "text": "Check in: Premier Inn, Edinburgh Park", "detail": "By the airport" },
+      { "time": "Evening",  "type": "food",    "text": "Dinner near the airport", "detail": "Easy night before the flight" }
+    ]
+  },
+  {
+    "date": "Sun Oct 11",
+    "city": "Edinburgh → Home",
+    "emoji": "🏠",
+    "items": [
+      { "time": "9:00 am",  "type": "drive",   "text": "Return rental car — Enterprise, Edinburgh Airport", "detail": "" },
+      { "time": "9:00 am",  "type": "arrival", "text": "At Edinburgh Airport", "detail": "~3h before an international departure" },
+      { "time": "11:55 am", "type": "flight",  "text": "Depart EDI → Dublin (DUB)", "detail": "1h 05m · EI 3253" },
+      { "time": "1:00 pm",  "type": "arrival", "text": "Arrive Dublin", "detail": "Layover ~2h 25m" },
+      { "time": "3:25 pm",  "type": "flight",  "text": "Depart DUB → Raleigh (RDU)", "detail": "8h 30m · EI 0085" },
+      { "time": "6:25 pm",  "type": "arrival", "text": "Arrive RDU", "detail": "Home!" }
+    ]
+  }
+]

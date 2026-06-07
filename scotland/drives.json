@@ -1,0 +1,130 @@
+{
+  "car": {
+    "company": "Enterprise Rent-A-Car",
+    "location": "Jubilee Road, Edinburgh Airport",
+    "vehicle": "Nissan Juke",
+    "image": "images/nissan-juke.jpg",
+    "pickup": "Thu, Oct 8 · 9:30 am",
+    "return": "Sun, Oct 11 · 9:00 am",
+    "phone": "+44 131 341 4000",
+    "notes": "Edinburgh Airport sits on the city's western edge — convenient for picking up on the way out and dropping back before the Sunday flight."
+  },
+  "days": [
+    {
+      "date": "Thu, Oct 8",
+      "title": "Edinburgh → Glencoe → Fort William",
+      "total": "~3h 10m driving",
+      "overallMap": "https://maps.google.com/maps?saddr=Edinburgh+Airport&daddr=Lagangarbh+Hut+Glencoe+to:Torlinnhe+Guest+House+Fort+William&output=embed",
+      "notes": [
+        "Pick up the car at Enterprise (EDI) at 9:30 am, then head straight west.",
+        "October daylight fades around 6:30 pm — front-load the scenic driving."
+      ],
+      "legs": [
+        {
+          "from": "Edinburgh Airport",
+          "to": "Glencoe (Wee White House)",
+          "distance": "~110 mi",
+          "duration": "~2h 40m",
+          "map": "https://maps.google.com/maps?saddr=Edinburgh+Airport&daddr=Lagangarbh+Hut+Glencoe&output=embed",
+          "notes": [
+            "Scenic M9/A82 via Stirling, Loch Lomond and Rannoch Moor.",
+            "At the Wee White House use the roadside bays — the main car park has a notorious pothole, and the ground near the river is boggy.",
+            "Stop at the Three Sisters viewpoint while you're in the glen."
+          ]
+        },
+        {
+          "from": "Glencoe",
+          "to": "Fort William (Torlinnhe Guest House)",
+          "distance": "~16 mi",
+          "duration": "~30m",
+          "map": "https://maps.google.com/maps?saddr=Lagangarbh+Hut+Glencoe&daddr=Torlinnhe+Guest+House+Fort+William&output=embed",
+          "notes": [
+            "Quick run up the A82 along Loch Linnhe.",
+            "Torlinnhe check-in from 3:00 pm — loch-view room."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "Fri, Oct 9",
+      "title": "Glenfinnan → Eilean Donan → Skye",
+      "total": "~3h 45m driving",
+      "overallMap": "https://maps.google.com/maps?saddr=Fort+William&daddr=Glenfinnan+Viaduct+to:Eilean+Donan+Castle+to:Portree+Isle+of+Skye&output=embed",
+      "notes": [
+        "Torlinnhe checkout is 10:00 am — leave promptly to make the steam train.",
+        "Single-track sections on the A87; build in a little buffer."
+      ],
+      "legs": [
+        {
+          "from": "Fort William",
+          "to": "Glenfinnan Viaduct",
+          "distance": "~18 mi",
+          "duration": "~35m",
+          "map": "https://maps.google.com/maps?saddr=Fort+William&daddr=Glenfinnan+Viaduct&output=embed",
+          "notes": [
+            "Be at the viewpoint car park by ~10:15 for the ~10:45 Jacobite steam-train crossing.",
+            "The car park fills fast and closes when full; small National Trust parking fee.",
+            "Confirm the 2026 train schedule on the West Coast Railways site before counting on it."
+          ]
+        },
+        {
+          "from": "Glenfinnan",
+          "to": "Eilean Donan Castle",
+          "distance": "~75 mi",
+          "duration": "~2h",
+          "map": "https://maps.google.com/maps?saddr=Glenfinnan+Viaduct&daddr=Eilean+Donan+Castle&output=embed",
+          "notes": [
+            "Back through Fort William, up the A82 then the A87 through dramatic Glen Shiel.",
+            "Castle open 9–5; allow about an hour inside; best photos near low tide.",
+            "Plockton is a lovely ~20-minute detour if you have time."
+          ]
+        },
+        {
+          "from": "Eilean Donan",
+          "to": "Portree (The Bosville)",
+          "distance": "~45 mi",
+          "duration": "~1h 10m",
+          "map": "https://maps.google.com/maps?saddr=Eilean+Donan+Castle&daddr=The+Bosville+Portree&output=embed",
+          "notes": [
+            "Cross the Skye Bridge at Kyle of Lochalsh.",
+            "The Bosville check-in from 3:00 pm."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "Sat, Oct 10",
+      "title": "Skye → Edinburgh",
+      "total": "~5h 25m driving (split)",
+      "overallMap": "https://maps.google.com/maps?saddr=Portree+Isle+of+Skye&daddr=Fort+William+to:Premier+Inn+Edinburgh+Park&output=embed",
+      "notes": [
+        "Leave Skye by early afternoon so the single-track stretches aren't in the dark.",
+        "Fit in Old Man of Storr or Kilt Rock in the morning before heading off."
+      ],
+      "legs": [
+        {
+          "from": "Portree (Skye)",
+          "to": "Fort William (lunch stop)",
+          "distance": "~110 mi",
+          "duration": "~2h 30m",
+          "map": "https://maps.google.com/maps?saddr=Portree+Isle+of+Skye&daddr=Fort+William&output=embed",
+          "notes": [
+            "Retrace the A87 past Eilean Donan, then south on the A82.",
+            "Stop in Fort William or Glencoe for a late lunch and a leg-stretch."
+          ]
+        },
+        {
+          "from": "Fort William",
+          "to": "Edinburgh (Premier Inn, Edinburgh Park)",
+          "distance": "~145 mi",
+          "duration": "~2h 55m",
+          "map": "https://maps.google.com/maps?saddr=Fort+William&daddr=Premier+Inn+Edinburgh+Park&output=embed",
+          "notes": [
+            "Re-pass Glencoe and Rannoch Moor — completely different in the afternoon light.",
+            "Premier Inn is by the airport; return the car to Enterprise at 9:00 am Sunday."
+          ]
+        }
+      ]
+    }
+  ]
+}

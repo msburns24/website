@@ -1,0 +1,52 @@
+```{=html}
+<!-- ── Countdown Banner ── -->
+<div class="countdown-wrap">
+  <div class="countdown-label">departing rdu in</div>
+  <div class="countdown-tiles">
+    <div class="tile"><span id="cd-days">--</span><small>days</small></div>
+    <div class="tile-sep">:</div>
+    <div class="tile"><span id="cd-hours">--</span><small>hrs</small></div>
+    <div class="tile-sep">:</div>
+    <div class="tile"><span id="cd-mins">--</span><small>min</small></div>
+    <div class="tile-sep">:</div>
+    <div class="tile"><span id="cd-secs">--</span><small>sec</small></div>
+  </div>
+  <div class="countdown-label" id="cd-sub">rdu → dub · fri oct 2, 8:25 pm</div>
+</div>
+
+<script>
+(function() {
+  // Oct 2, 2026 20:25 Eastern (UTC-4 in October)
+  const departure = new Date("2026-10-02T20:25:00-04:00");
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function tick() {
+    const now = new Date();
+    const diff = departure - now;
+
+    if (diff <= 0) {
+      document.getElementById("cd-days").textContent = "✈";
+      document.getElementById("cd-hours").textContent = "00";
+      document.getElementById("cd-mins").textContent = "00";
+      document.getElementById("cd-secs").textContent = "00";
+      document.getElementById("cd-sub").textContent = "bon voyage!";
+      return;
+    }
+
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+
+    document.getElementById("cd-days").textContent  = days;
+    document.getElementById("cd-hours").textContent = pad(hours);
+    document.getElementById("cd-mins").textContent  = pad(mins);
+    document.getElementById("cd-secs").textContent  = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+```

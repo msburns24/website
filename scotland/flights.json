@@ -1,0 +1,50 @@
+[
+  {
+    "date": "Fri, Oct 2",
+    "from": "Raleigh",
+    "fromCode": "RDU",
+    "to": "Dublin",
+    "toCode": "DUB",
+    "depart": "8:25 pm",
+    "arrive": "8:45 am (+1d)",
+    "duration": "7h 20m",
+    "flight": "EI 0084",
+    "track": "ei84"
+  },
+  {
+    "date": "Sun, Oct 4",
+    "from": "Dublin",
+    "fromCode": "DUB",
+    "to": "Edinburgh",
+    "toCode": "EDI",
+    "depart": "11:25 am",
+    "arrive": "12:15 pm",
+    "duration": "1h 25m",
+    "flight": "EI 3254",
+    "track": "ei3254"
+  },
+  {
+    "date": "Sun, Oct 11",
+    "from": "Edinburgh",
+    "fromCode": "EDI",
+    "to": "Dublin",
+    "toCode": "DUB",
+    "depart": "11:55 am",
+    "arrive": "1:00 pm",
+    "duration": "1h 05m",
+    "flight": "EI 3253",
+    "track": "ei3253"
+  },
+  {
+    "date": "Sun, Oct 11",
+    "from": "Dublin",
+    "fromCode": "DUB",
+    "to": "Raleigh",
+    "toCode": "RDU",
+    "depart": "3:25 pm",
+    "arrive": "6:25 pm",
+    "duration": "8h 30m",
+    "flight": "EI 0085",
+    "track": "ei85"
+  }
+]

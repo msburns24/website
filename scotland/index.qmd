@@ -1,0 +1,417 @@
+---
+title: "Scotland & Ireland 2026"
+subtitle: "Matthew & Emma · October 2–11"
+date: "2026-10-02"
+resources:
+  - images/
+  - menus/
+  - "*.json"
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-title: "On this page"
+    page-layout: full
+    css: scotland.css
+    lightbox: auto
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+---
+
+{{< include _countdown.qmd >}}
+
+## Itinerary
+
+Pick a day to see what's on.
+
+```{ojs}
+//| echo: false
+
+itinerary = FileAttachment("itinerary.json").json()
+
+typeIcon = ({
+  "flight":   "✈️",
+  "arrival":  "📍",
+  "food":     "🍽️",
+  "sight":    "👁️",
+  "activity": "🎭",
+  "shop":     "🛍️",
+  "drive":    "🚗",
+})
+
+html`
+<ul class="nav nav-tabs" role="tablist">
+  ${itinerary.map((d, i) => `
+    <li class="nav-item" role="presentation">
+      <button class="nav-link${i === 0 ? ' active' : ''}"
+              data-bs-toggle="tab"
+              data-bs-target="#itin-panel-${i}"
+              type="button" role="tab"
+              aria-controls="itin-panel-${i}"
+              aria-selected="${i === 0 ? 'true' : 'false'}">
+        ${d.emoji}&nbsp;${d.date}
+      </button>
+    </li>
+  `).join("")}
+</ul>
+<div class="tab-content mt-3">
+  ${itinerary.map((d, i) => `
+    <div class="tab-pane fade${i === 0 ? ' show active' : ''}"
+         id="itin-panel-${i}" role="tabpanel">
+      <div class="ojs-day-header">
+        <span class="ojs-day-emoji">${d.emoji}</span>
+        <span class="ojs-day-title">${d.date} — ${d.city}</span>
+      </div>
+      <div class="ojs-timeline">
+        ${d.items.map(item => `
+          <div class="ojs-item ojs-type-${item.type}">
+            <div class="ojs-time">${item.time}</div>
+            <div class="ojs-dot"></div>
+            <div class="ojs-content">
+              <span class="ojs-icon">${typeIcon[item.type] ?? "•"}</span>
+              <span class="ojs-text">${item.text}</span>
+              ${item.detail ? `<span class="ojs-detail">${item.detail}</span>` : ""}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `).join("")}
+</div>
+`
+```
+
+
+## Flights
+
+```{ojs}
+//| echo: false
+
+flights = FileAttachment("flights.json").json()
+
+html`
+<div class="boarding-grid">
+  ${flights.map(f => `
+    <div class="boarding-pass">
+      <div class="bp-stub">
+        <div class="bp-airline">Aer<br>Lingus</div>
+        <div class="bp-flightno">${f.flight}</div>
+      </div>
+      <div class="bp-body">
+        <div class="bp-route">${f.fromCode} <span class="bp-arrow">✈</span> ${f.toCode}</div>
+        <div class="bp-cities">${f.from} → ${f.to}</div>
+        <div class="bp-times">
+          <div><div class="lbl">Depart</div><div class="val">${f.depart}</div></div>
+          <div><div class="lbl">Arrive</div><div class="val">${f.arrive}</div></div>
+          <div><div class="lbl">Duration</div><div class="val">${f.duration}</div></div>
+        </div>
+        <div class="bp-foot">
+          <span class="bp-date">${f.date}</span>
+          <a class="bp-track" href="https://www.flightradar24.com/data/flights/${f.track}"
+             target="_blank" rel="noopener">Track status ↗</a>
+        </div>
+      </div>
+    </div>`).join("")}
+</div>
+`
+```
+
+::: {.callout-note}
+Track links only go live within ~24h of each flight. Aer Lingus's Dublin–Edinburgh hops (EI 3253/3254) are short-haul; if a tracker page is empty, try a quick search for the flight number instead.
+:::
+
+
+## Accommodations
+
+Tap any photo to zoom; use the arrows to flip through each stay.
+
+```{ojs}
+//| echo: false
+
+accommodations = FileAttachment("accommodations.json").json()
+
+html`
+<div class="trip-grid">
+  ${accommodations.map((h, i) => `
+    <div class="trip-card">
+      <div id="lodge-car-${i}" class="carousel slide" data-bs-interval="false">
+        <div class="carousel-inner">
+          ${h.images.map((src, j) => `
+            <div class="carousel-item${j === 0 ? ' active' : ''}">
+              <a href="${src}" class="glightbox" data-gallery="lodge-${i}">
+                <img src="${src}" class="trip-card-img" loading="lazy" alt="${h.name}">
+              </a>
+            </div>`).join("")}
+        </div>
+        ${h.images.length > 1 ? `
+        <button class="carousel-control-prev" type="button" data-bs-target="#lodge-car-${i}" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#lodge-car-${i}" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>` : ``}
+      </div>
+      <div class="trip-card-body">
+        <div class="trip-card-dates">${h.dates}</div>
+        <h3 class="trip-card-name">${h.name}</h3>
+        <div class="trip-card-loc">${h.location}</div>
+        <div class="trip-card-room">${h.room}</div>
+        <ul class="trip-card-amenities">${h.amenities.map(a => `<li>${a}</li>`).join("")}</ul>
+        <div class="trip-card-meta">
+          <span class="trip-card-phone">${h.phone}</span>
+          <a class="trip-link" href="${h.website}" target="_blank" rel="noopener">Website ↗</a>
+        </div>
+      </div>
+    </div>`).join("")}
+</div>
+`
+```
+
+
+## Dining
+
+```{ojs}
+//| echo: false
+diningData = FileAttachment("dining.json").json()
+```
+
+### Reservations
+
+```{ojs}
+//| echo: false
+html`
+<div class="trip-grid">
+  ${diningData.firmed.map((r, i) => `
+    <div class="trip-card">
+      <div id="dine-car-${i}" class="carousel slide" data-bs-interval="false">
+        <div class="carousel-inner">
+          ${r.images.map((src, j) => `
+            <div class="carousel-item${j === 0 ? ' active' : ''}">
+              <a href="${src}" class="glightbox" data-gallery="dine-${i}">
+                <img src="${src}" class="trip-card-img" loading="lazy" alt="${r.name}">
+              </a>
+            </div>`).join("")}
+        </div>
+        ${r.images.length > 1 ? `
+        <button class="carousel-control-prev" type="button" data-bs-target="#dine-car-${i}" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#dine-car-${i}" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>` : ``}
+      </div>
+      <div class="trip-card-body">
+        <div class="dining-row">
+          <span class="trip-card-dates">${r.day} · ${r.city}</span>
+          <span class="dining-time${r.anniversary ? ' is-anniv' : ''}">${r.time}</span>
+        </div>
+        <h3 class="trip-card-name">${r.name}</h3>
+        <div class="dining-cuisine">${r.cuisine}</div>
+        ${r.anniversary ? `<div class="dining-anniv-flag">🎉 Anniversary dinner</div>` : ``}
+        <div class="trip-card-meta" style="border:0;padding-top:0;justify-content:flex-start;gap:1rem;">
+          <span class="trip-card-phone">${r.phone}</span>
+          ${r.michelin ? `<a class="trip-link" href="${r.michelin}" target="_blank" rel="noopener">Michelin ↗</a>` : ``}
+        </div>
+        <div class="menu-btns">
+          ${r.menus.map(m => `<a class="menu-btn" href="${m.url}" target="_blank" rel="noopener">${m.label}</a>`).join("")}
+        </div>
+      </div>
+    </div>`).join("")}
+</div>
+`
+```
+
+### Other possibilities
+
+```{ojs}
+//| echo: false
+{
+  const cities = Object.keys(diningData.possibilities);
+  return html`
+  <ul class="nav nav-tabs" role="tablist">
+    ${cities.map((c, i) => `
+      <li class="nav-item" role="presentation">
+        <button class="nav-link${i === 0 ? ' active' : ''}" data-bs-toggle="tab"
+                data-bs-target="#poss-${i}" type="button" role="tab">${c}</button>
+      </li>`).join("")}
+  </ul>
+  <div class="tab-content mt-3">
+    ${cities.map((c, i) => `
+      <div class="tab-pane fade${i === 0 ? ' show active' : ''}" id="poss-${i}" role="tabpanel">
+        <table class="poss-table">
+          <thead><tr><th>Place</th><th>Type</th><th>Notes</th></tr></thead>
+          <tbody>
+            ${diningData.possibilities[c].map(p => `
+              <tr>
+                <td class="poss-name">${p.name}</td>
+                <td class="poss-type">${p.type}</td>
+                <td>${p.notes}</td>
+              </tr>`).join("")}
+          </tbody>
+        </table>
+      </div>`).join("")}
+  </div>`;
+}
+```
+
+
+## Drives
+
+```{ojs}
+//| echo: false
+drives = FileAttachment("drives.json").json()
+```
+
+### Rental car
+
+```{ojs}
+//| echo: false
+html`
+<div class="car-card">
+  <a href="${drives.car.image}" class="glightbox" data-gallery="car">
+    <img src="${drives.car.image}" alt="${drives.car.vehicle}">
+  </a>
+  <div class="car-card-body">
+    <h3>${drives.car.vehicle}</h3>
+    <div class="car-card-co">${drives.car.company} · ${drives.car.location}</div>
+    <div class="car-card-grid">
+      <div><div class="lbl">Pick-up</div><div class="val">${drives.car.pickup}</div></div>
+      <div><div class="lbl">Return</div><div class="val">${drives.car.return}</div></div>
+      <div><div class="lbl">Phone</div><div class="val">${drives.car.phone}</div></div>
+    </div>
+    <div class="car-card-note">${drives.car.notes}</div>
+  </div>
+</div>
+
+<div class="drive-summary">
+  ${drives.days.map(d => `<span class="pill">${d.date}: <b>${d.total}</b></span>`).join("")}
+</div>
+`
+```
+
+
+### Day-by-day routes
+
+```{ojs}
+//| echo: false
+html`
+${drives.days.map((d, di) => `
+  <div class="drive-day">
+    <div class="drive-day-title">${d.date} — ${d.title} <span class="total">${d.total}</span></div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#d${di}-overall"
+                type="button" role="tab">Overall</button>
+      </li>
+      ${d.legs.map((leg, li) => `
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#d${di}-leg${li}"
+                  type="button" role="tab">${leg.from} → ${leg.to}</button>
+        </li>`).join("")}
+    </ul>
+    <div class="tab-content mt-3">
+      <div class="tab-pane fade show active" id="d${di}-overall" role="tabpanel">
+        <iframe class="drive-map" src="${d.overallMap}" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <ul class="drive-notes">${d.notes.map(n => `<li>${n}</li>`).join("")}</ul>
+      </div>
+      ${d.legs.map((leg, li) => `
+        <div class="tab-pane fade" id="d${di}-leg${li}" role="tabpanel">
+          <div class="drive-leg-meta">
+            <div><div class="lbl">Distance</div><div class="val">${leg.distance}</div></div>
+            <div><div class="lbl">Drive time</div><div class="val">${leg.duration}</div></div>
+          </div>
+          <iframe class="drive-map" src="${leg.map}" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <ul class="drive-notes">${leg.notes.map(n => `<li>${n}</li>`).join("")}</ul>
+        </div>`).join("")}
+    </div>
+  </div>`).join("")}
+`
+```
+
+
+## Dublin
+
+### Places
+- **Temple Bar** — Historic cultural quarter, good for a first-night wander
+- **Guinness Storehouse** — Book tickets in advance
+- **Long Room & Book of Kells** — Trinity College; also book ahead
+- **Dublin Castle** — Free to walk the grounds
+- **Marsh's Library** — Hidden gem, oldest public library in Ireland (1707)
+
+## Edinburgh
+
+### Neighborhoods & Walks
+- **Stockbridge** — Right by the hotel. Cobbled streets, Georgian terraces, the Sunday market
+- **Dean Village** — 10-min walk from Stockbridge along the Water of Leith; very photogenic
+- **Circus Lane** — Quick detour from Stockbridge; best for photos
+- **Royal Mile** — The backbone of Old Town; do it at least once
+- **Victoria Street** — Curved, colorful street; the Harry Potter / Diagon Alley one
+
+### Sights
+- **Edinburgh Castle** — Book tickets online. Consider the Afternoon Tea add-on
+- **The Vennel Viewpoint** — Free, underrated, best castle photo angle in the city
+- **Palace of Holyroodhouse** — Bottom of the Royal Mile; royal residence
+- **National Portrait Gallery** — Free; good for a slower morning
+
+### Shopping
+- **Tron Kirk Market** — Converted church market
+- **Stills Gallery** — Photography prints; good for a keepsake
+- **Museum Context** — 3 floors of magical merchandise (Harry Potter-adjacent)
+
+*Dining ideas for Edinburgh live in the [Dining](#dining) section above.*
+
+## Isle of Skye
+
+::: {.callout-note title="Getting there"}
+You're self-driving from Fort William via Eilean Donan and the Skye Bridge — see the [Drives](#drives) section for legs and timings. Leave Skye by early afternoon on Sat Oct 10 so the return isn't in the dark.
+:::
+
+### Sights
+- **Old Man of Storr** — ~20 min north of Portree; the classic Skye hike/photo
+- **Kilt Rock & Mealt Falls** — Roadside viewpoint, easy stop
+- **The Quiraing** — Otherworldly landslip landscape (longer detour)
+- **Fairy Pools** — Crystal pools below the Cuillins (west side; longer drive)
+
+### Drink & Experiences
+- **Isle of Skye Distillers** — Tasting room in Portree
+- **Untethered Skye** — Experiences & guided activities
+
+*Skye dining ideas are in the [Dining](#dining) section above.*
+
+## Practical Notes
+
+::: {.callout-important title="Visas & Entry"}
+- **Ireland** — US citizens don't need a visa for short stays, but Ireland is **not** in the Schengen Area. Confirm requirements before travel.
+- **Scotland / UK** — No visa required for US citizens for stays under 6 months. You may need to show proof of onward travel at the border.
+:::
+
+::: {.callout-note title="To Do Before Departure"}
+- [ ] Book Guinness Storehouse tickets
+- [ ] Book Book of Kells / Long Room tickets
+- [ ] Confirm The Oval Bar reservation (Dublin)
+- [ ] Confirm the 2026 Jacobite steam-train schedule (West Coast Railways)
+- [ ] Book a Skye dinner (Sea Breezes / Scorrybreac fill up fast)
+- [ ] Download offline maps for Dublin, Edinburgh & the Highlands
+- [ ] Check Enterprise pick-up paperwork (license, credit card)
+:::
+
+```{ojs}
+//| echo: false
+{
+  // Re-bind GLightbox to the dynamically rendered gallery images
+  accommodations; diningData; drives;
+  setTimeout(() => {
+    if (window.GLightbox) {
+      if (window._tripLightbox && window._tripLightbox.reload) window._tripLightbox.reload();
+      else window._tripLightbox = GLightbox({ selector: ".glightbox" });
+    }
+  }, 300);
+  return html`<span style="display:none" aria-hidden="true"></span>`;
+}
+```

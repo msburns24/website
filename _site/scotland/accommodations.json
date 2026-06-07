@@ -1,0 +1,87 @@
+[
+  {
+    "name": "The Fleet Hotel",
+    "location": "19–20 Fleet Street, Temple Bar, Dublin",
+    "dates": "Sat, Oct 3 – Sun, Oct 4",
+    "checkin": "Sat, Oct 3 · 3:00 pm",
+    "checkout": "Sun, Oct 4 · 12:00 pm",
+    "room": "Deluxe Small Double",
+    "amenities": ["Queen bed", "Complimentary bottled water", "Irish breakfast"],
+    "phone": "+353 1 670 8124",
+    "website": "https://www.fleethoteltemplebar.com/",
+    "images": [
+      "images/fleet-exterior.jpg",
+      "images/fleet-lobby.jpg",
+      "images/fleet-room.jpg",
+      "images/fleet-cafe.jpg"
+    ]
+  },
+  {
+    "name": "The Raeburn",
+    "location": "No 112 Raeburn Place, Stockbridge, Edinburgh",
+    "dates": "Sun, Oct 4 – Thu, Oct 8",
+    "checkin": "Sun, Oct 4 · 3:00 pm",
+    "checkout": "Thu, Oct 8 · 11:00 am",
+    "room": "Deluxe Double",
+    "amenities": ["Double bed", "Bar", "Garden Room & Club Room"],
+    "phone": "+44 131 332 7000",
+    "website": "https://www.theraeburn.com/",
+    "images": [
+      "images/raeburn-exterior.jpg",
+      "images/raeburn-room.jpg",
+      "images/raeburn-library.jpg",
+      "images/raeburn-bar.jpg",
+      "images/raeburn-garden.jpg",
+      "images/raeburn-bathroom.jpg"
+    ]
+  },
+  {
+    "name": "Torlinnhe Guest House",
+    "location": "Achintore Road, Fort William",
+    "dates": "Thu, Oct 8 – Fri, Oct 9",
+    "checkin": "Thu, Oct 8 · 3:00 pm",
+    "checkout": "Fri, Oct 9 · 10:00 am",
+    "room": "Small King Double — Loch View",
+    "amenities": ["King bed", "Loch Linnhe view", "Restaurant"],
+    "phone": "+44 1397 702583",
+    "website": "https://torlinnhe.com/",
+    "images": [
+      "images/torlinnhe-guest-house-exterior.jpg",
+      "images/torlinnhe-guest-house-room.jpg",
+      "images/torlinnhe-guest-house-restaurant.jpg"
+    ]
+  },
+  {
+    "name": "The Bosville",
+    "location": "9–11 Bosville Terrace, Portree, Isle of Skye",
+    "dates": "Fri, Oct 9 – Sat, Oct 10",
+    "checkin": "Fri, Oct 9 · 3:00 pm",
+    "checkout": "Sat, Oct 10 · 11:00 am",
+    "room": "Standard Double",
+    "amenities": ["Double bed", "Full Scottish breakfast"],
+    "phone": "+44 1478 612846",
+    "website": "https://perlehotels.com/the-bosville/",
+    "images": [
+      "images/bosville-exterior.jpg",
+      "images/bosville-bed.jpg",
+      "images/bosville-restaurant.jpg"
+    ]
+  },
+  {
+    "name": "Premier Inn — Edinburgh Park Airport",
+    "location": "1 Lochside Court, Edinburgh Park",
+    "dates": "Sat, Oct 10 – Sun, Oct 11",
+    "checkin": "Sat, Oct 10 · 3:00 pm",
+    "checkout": "Sun, Oct 11 · 12:00 pm",
+    "room": "Double Room",
+    "amenities": ["Double room", "Minutes from EDI airport"],
+    "phone": "+44 333 321 9255",
+    "website": "https://www.premierinn.com/gb/en/hotels/scotland/lothian/edinburgh/edinburgh-park-airport.html",
+    "images": [
+      "images/premier-inn-exterior.jpeg",
+      "images/premier-inn-room.jpg",
+      "images/premier-inn-restaurant.jpg",
+      "images/premier-inn-bathroom.webp"
+    ]
+  }
+]

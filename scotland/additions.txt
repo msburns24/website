@@ -1,0 +1,102 @@
+## Accommodations
+
+### Dublin - The Fleet
+
+19 - 20 Fleet Street
+Temple Bar, Dublin, IE D02 WP97
++353 1 670 8124
+https://www.fleethoteltemplebar.com/
+
+- Check-In: Sat, Oct 3 at 3:00 pm
+- Check-Out: Sun, Oct 4 at 12:00 pm
+- Room Type: Deluxe Small Double Room
+    - Queen Bed
+    - Complementary Bottled Water
+    - Irish Breakfast
+
+### Edinburgh - Raeburn
+
+No 112, Raeburn Place
+Stockbridge, Edinburgh, GB EH4 1HG
++44 131 332 7000
+https://www.theraeburn.com/
+
+- Check-In: Sun, Oct 4 at 3:00 pm
+- Check-Out: Thu, Oct 8 at 11:00 am
+- Room Type: Deluxe Double
+    - Double bed
+    - Bar
+    - Garden Room & Club Room
+
+### Fort William - Torlinnhe Guest House
+
+Achintore Road
+Fort William, GB PH33 6RW
++44 1397 702583
+https://torlinnhe.com/
+
+- Check-In: Thu, Oct 8 at 3:00 pm
+- Check-Out: Fri, Oct 9 at 10:00 am
+- Room Type: Small King Double Side Loch view 6
+    - King Bed
+    - Restaurant
+
+### Isle of Skye - The Bosville
+
+9-11 Bosville Terrace
+Portree, GB IV51 9DG
++44 1478 612846
+https://perlehotels.com/the-bosville/
+
+- Check-In: Fri, Oct 9 at 3:00 pm
+- Check-Out: Sat, Oct 10 at 11:00 am
+- Room Type: Standard Double
+    - Double Bed
+    - Full Scottish breakfast
+
+### Premier Inn, Edinburgh Park Airport
+
+1 Lochside Court
+Edinburgh, GB EH12 9FX
++44 333 321 9255
+https://www.premierinn.com/gb/en/hotels/scotland/lothian/edinburgh/edinburgh-park-airport.html
+
+- Check-In: Sat, Oct 10 at 3:00 pm
+- Check-Out: Sun, Oct 11 at 12:00 pm
+- Room Type: Double Room
+
+### Enterprise, Edinburgh Airport
+
+Jubilee Road
+Edinburgh, GB EH12 9FS
++44 131 341 4000
+
+- Pick-Up: Thu, Oct 8 at 9:30 am
+- Return: Sun, Oct 11 at 9:00 am
+- Vehicle Type: Nissan Juke
+
+
+---
+
+## Restaurants
+
+- **Sat, Oct 3 (Dublin)** - The Oval Bar
+    - Reservation: TBD
+    - Phone: +353 1 872 1264
+    - Cuisine: Irish Pub
+- **Sun, Oct 4 (Edinburgh)** - Sotto Enoteca and Trattoria
+    - Reservation: 6:00 pm
+    - Phone: +44 131 332 3621
+    - Cuisine: Italian
+    - Michelin Guide: https://guide.michelin.com/gb/en/city-of-edinburgh/edinburgh/restaurant/sotto
+- **Tue, Oct 6 (Edinburgh)** - The Scran and Scallie
+    - Reservation: 5:30 pm
+    - Phone: +44 131 332 6281
+    - Cuisine: Scottish, Gastropub
+    - Michelin Guide: https://guide.michelin.com/gb/en/city-of-edinburgh/edinburgh/restaurant/the-scran-scallie
+- **Wed, Oct 7 (Edinburgh)** - Lyla
+    - Reservation: 6:30 pm
+    - Phone: +44 131 285 8808
+    - Cuisine: Modern British, Creative
+    - Michelin Guide: https://guide.michelin.com/gb/en/city-of-edinburgh/edinburgh/restaurant/lyla-1210030
+    - Menu: https://lylaedinburgh.co.uk/homepage-4
