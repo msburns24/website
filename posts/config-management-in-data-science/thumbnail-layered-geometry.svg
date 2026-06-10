@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#11111b"/>
+      <stop offset="100%" stop-color="#1e1e2e"/>
+    </linearGradient>
+    <!-- Catppuccin Mocha accent gradients for each layer -->
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2840"/>
+      <stop offset="100%" stop-color="#1e2e48"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#162832"/>
+      <stop offset="100%" stop-color="#1a3040"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#211f3e"/>
+      <stop offset="100%" stop-color="#282545"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#241b3c"/>
+      <stop offset="100%" stop-color="#2c2044"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a1530"/>
+      <stop offset="100%" stop-color="#321838"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#11111b" flood-opacity="0.7"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#11111b" stop-opacity="0.55"/>
+    </radialGradient>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="0.8" fill="#313244"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Layer 1 (back) — blue -->
+  <g filter="url(#shadow)" opacity="0.9">
+    <rect x="110" y="130" width="900" height="390" rx="12" fill="url(#g1)" transform="rotate(-5 560 325)"/>
+  </g>
+  <rect x="110" y="130" width="900" height="390" rx="12" fill="none" stroke="#89b4fa" stroke-width="1" opacity="0.4" transform="rotate(-5 560 325)"/>
+
+  <!-- Layer 2 — sapphire/teal -->
+  <g filter="url(#shadow)" opacity="0.88">
+    <rect x="140" y="148" width="840" height="360" rx="12" fill="url(#g2)" transform="rotate(-2.5 560 328)"/>
+  </g>
+  <rect x="140" y="148" width="840" height="360" rx="12" fill="none" stroke="#74c7ec" stroke-width="1" opacity="0.45" transform="rotate(-2.5 560 328)"/>
+
+  <!-- Layer 3 — lavender -->
+  <g filter="url(#shadow)" opacity="0.85">
+    <rect x="170" y="165" width="780" height="330" rx="12" fill="url(#g3)" transform="rotate(0 560 330)"/>
+  </g>
+  <rect x="170" y="165" width="780" height="330" rx="12" fill="none" stroke="#b4befe" stroke-width="1" opacity="0.50" transform="rotate(0 560 330)"/>
+
+  <!-- Layer 4 — mauve -->
+  <g filter="url(#shadow)" opacity="0.80">
+    <rect x="200" y="182" width="720" height="300" rx="12" fill="url(#g4)" transform="rotate(2.5 560 332)"/>
+  </g>
+  <rect x="200" y="182" width="720" height="300" rx="12" fill="none" stroke="#cba6f7" stroke-width="1" opacity="0.55" transform="rotate(2.5 560 332)"/>
+
+  <!-- Layer 5 (front) — pink -->
+  <g filter="url(#shadow)" opacity="0.75">
+    <rect x="230" y="198" width="660" height="270" rx="12" fill="url(#g5)" transform="rotate(5 560 333)"/>
+  </g>
+  <rect x="230" y="198" width="660" height="270" rx="12" fill="none" stroke="#f5c2e7" stroke-width="1.2" opacity="0.6" transform="rotate(5 560 333)"/>
+
+  <!-- Gleam on top layer -->
+  <ellipse cx="440" cy="248" rx="140" ry="22" fill="white" opacity="0.03" transform="rotate(5 560 333)"/>
+
+  <!-- Layer labels peeking at left edges -->
+  <g opacity="0.55">
+    <text x="95" y="230" fill="#89b4fa" font-family="monospace" font-size="9.5" transform="rotate(-5 95 230)">constants.py</text>
+    <text x="120" y="255" fill="#74c7ec" font-family="monospace" font-size="9.5" transform="rotate(-2.5 120 255)">config.yaml</text>
+    <text x="148" y="278" fill="#b4befe" font-family="monospace" font-size="9.5">dataclasses</text>
+    <text x="174" y="302" fill="#cba6f7" font-family="monospace" font-size="9.5" transform="rotate(2.5 174 302)">pydantic_settings</text>
+    <text x="200" y="325" fill="#f5c2e7" font-family="monospace" font-size="9.5" transform="rotate(5 200 325)">hydra + omegaconf</text>
+  </g>
+
+  <!-- Center text on top layer -->
+  <text x="600" y="308" text-anchor="middle" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="30" font-weight="700" opacity="0.9" transform="rotate(5 600 308)">Configuration Management</text>
+  <text x="600" y="338" text-anchor="middle" fill="#a6adc8" font-family="system-ui,-apple-system,sans-serif" font-size="14" letter-spacing="3" opacity="0.75" transform="rotate(5 600 338)">IN DATA SCIENCE</text>
+
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+</svg>

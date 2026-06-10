@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#11111b"/>
+      <stop offset="100%" stop-color="#1e1e2e"/>
+    </linearGradient>
+    <linearGradient id="keyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#89b4fa"/>
+      <stop offset="100%" stop-color="#74c7ec"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#181825" stroke-width="0.8"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#11111b" stop-opacity="0.55"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Radial glow behind key -->
+  <ellipse cx="600" cy="320" rx="400" ry="210" fill="#89b4fa" opacity="0.06"/>
+  <ellipse cx="600" cy="320" rx="220" ry="130" fill="#cba6f7" opacity="0.05"/>
+
+  <!-- Key shadow/glow (blurred) -->
+  <g opacity="0.3" filter="url(#glow)">
+    <circle cx="360" cy="312" r="165" fill="#89b4fa"/>
+    <rect x="360" y="280" width="630" height="64" fill="#89b4fa"/>
+    <rect x="500" y="344" width="60" height="42" fill="#89b4fa"/>
+    <rect x="616" y="344" width="60" height="58" fill="#89b4fa"/>
+    <rect x="730" y="344" width="60" height="32" fill="#89b4fa"/>
+    <rect x="844" y="344" width="60" height="52" fill="#89b4fa"/>
+    <circle cx="360" cy="312" r="70" fill="#11111b"/>
+  </g>
+
+  <!-- Key body: bow outer -->
+  <circle cx="360" cy="312" r="165" fill="url(#keyGrad)" opacity="0.9"/>
+
+  <!-- Key body: blade -->
+  <rect x="360" y="280" width="630" height="64" fill="url(#keyGrad)" opacity="0.9"/>
+
+  <!-- Teeth -->
+  <rect x="500" y="344" width="60" height="42" fill="url(#keyGrad)" opacity="0.9"/>
+  <rect x="616" y="344" width="60" height="58" fill="url(#keyGrad)" opacity="0.9"/>
+  <rect x="730" y="344" width="60" height="32" fill="url(#keyGrad)" opacity="0.9"/>
+  <rect x="844" y="344" width="60" height="52" fill="url(#keyGrad)" opacity="0.9"/>
+
+  <!-- Bow hole -->
+  <circle cx="360" cy="312" r="72" fill="#11111b"/>
+
+  <!-- YAML lines on blade -->
+  <line x1="460" y1="293" x2="980" y2="293" stroke="#1e1e2e" stroke-width="0.8" opacity="0.4"/>
+  <line x1="460" y1="304" x2="980" y2="304" stroke="#1e1e2e" stroke-width="0.8" opacity="0.35"/>
+  <line x1="460" y1="315" x2="980" y2="315" stroke="#1e1e2e" stroke-width="1.2" opacity="0.5"/>
+  <line x1="460" y1="326" x2="980" y2="326" stroke="#1e1e2e" stroke-width="0.8" opacity="0.35"/>
+  <line x1="460" y1="337" x2="980" y2="337" stroke="#1e1e2e" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Circuit nodes on bow ring -->
+  <circle cx="360" cy="147" r="5" fill="#cba6f7" opacity="0.9"/>
+  <circle cx="476" cy="199" r="4" fill="#b4befe" opacity="0.8"/>
+  <circle cx="509" cy="312" r="4" fill="#89b4fa" opacity="0.7"/>
+  <circle cx="476" cy="425" r="4" fill="#b4befe" opacity="0.8"/>
+  <circle cx="360" cy="477" r="5" fill="#cba6f7" opacity="0.9"/>
+  <circle cx="244" cy="425" r="4" fill="#b4befe" opacity="0.8"/>
+  <circle cx="211" cy="312" r="4" fill="#89b4fa" opacity="0.7"/>
+  <circle cx="244" cy="199" r="4" fill="#b4befe" opacity="0.8"/>
+  <line x1="360" y1="147" x2="360" y2="127" stroke="#cba6f7" stroke-width="1.2" opacity="0.5"/>
+  <line x1="509" y1="312" x2="529" y2="312" stroke="#89b4fa" stroke-width="1.2" opacity="0.5"/>
+  <line x1="211" y1="312" x2="191" y2="312" stroke="#89b4fa" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Highlight arc on bow -->
+  <path d="M 200 312 A 160 160 0 0 1 360 152 A 160 160 0 0 1 520 312" fill="none" stroke="#cdd6f4" stroke-width="1" opacity="0.25"/>
+
+  <!-- Key tip -->
+  <polygon points="990,280 1010,312 990,344" fill="url(#keyGrad)" opacity="0.8"/>
+
+  <!-- Teeth edges highlight -->
+  <rect x="560" y="344" width="2" height="42" fill="#cdd6f4" opacity="0.3"/>
+  <rect x="676" y="344" width="2" height="58" fill="#cdd6f4" opacity="0.3"/>
+  <rect x="790" y="344" width="2" height="32" fill="#cdd6f4" opacity="0.3"/>
+  <rect x="904" y="344" width="2" height="52" fill="#cdd6f4" opacity="0.3"/>
+
+  <!-- Top highlight on blade -->
+  <rect x="360" y="280" width="630" height="2" fill="#cdd6f4" opacity="0.25"/>
+
+  <!-- Title text -->
+  <text x="600" y="550" text-anchor="middle" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">Configuration Management</text>
+  <text x="600" y="585" text-anchor="middle" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="16" letter-spacing="1.5">IN DATA SCIENCE</text>
+
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+</svg>

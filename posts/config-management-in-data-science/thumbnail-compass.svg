@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#11111b"/>
+      <stop offset="100%" stop-color="#1e1e2e"/>
+    </linearGradient>
+    <radialGradient id="centerglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#cba6f7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#11111b" stop-opacity="0.6"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Faint guide rings -->
+  <circle cx="600" cy="315" r="280" fill="none" stroke="#313244" stroke-width="1" opacity="0.5"/>
+  <circle cx="600" cy="315" r="220" fill="none" stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+  <circle cx="600" cy="315" r="160" fill="none" stroke="#313244" stroke-width="0.7" opacity="0.35"/>
+  <circle cx="600" cy="315" r="100" fill="none" stroke="#313244" stroke-width="0.7" opacity="0.35"/>
+
+  <!-- Radial spokes -->
+  <line x1="600" y1="315" x2="600" y2="27"   stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+  <line x1="600" y1="315" x2="842" y2="175"  stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+  <line x1="600" y1="315" x2="842" y2="455"  stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+  <line x1="600" y1="315" x2="600" y2="603"  stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+  <line x1="600" y1="315" x2="358" y2="455"  stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+  <line x1="600" y1="315" x2="358" y2="175"  stroke="#313244" stroke-width="0.7" opacity="0.4"/>
+
+  <!-- Center glow -->
+  <circle cx="600" cy="315" r="300" fill="url(#centerglow)"/>
+
+  <!--
+    6 donut segments, each 57° with 3° gaps, ri=92, ro=255, cx=600, cy=315
+    Seg 1: 1.5-58.5°   — blue       (#89b4fa, bg #1a2840)
+    Seg 2: 61.5-118.5° — sapphire   (#74c7ec, bg #162832)
+    Seg 3: 121.5-178.5°— lavender   (#b4befe, bg #211f3e)
+    Seg 4: 181.5-238.5°— mauve      (#cba6f7, bg #241b3c)
+    Seg 5: 241.5-298.5°— pink       (#f5c2e7, bg #2a1530)
+    Seg 6: 301.5-358.5°— teal/green (#94e2d5, bg #122416)
+  -->
+
+  <!-- Seg 1: 1.5°→58.5° — blue -->
+  <path d="M 692,317.4 L 850,321.7 A 255 255 0 0 1 733.2,532.4 L 648.1,393.4 A 92 92 0 0 0 692,317.4 Z"
+        fill="#1a2840" stroke="#89b4fa" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 692,317.4 L 850,321.7 A 255 255 0 0 1 733.2,532.4 L 648.1,393.4 A 92 92 0 0 0 692,317.4 Z"
+        fill="none" stroke="#89b4fa" stroke-width="0.8" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Seg 2: 61.5°→118.5° — sapphire -->
+  <path d="M 643.9,395.9 L 721.7,539.1 A 255 255 0 0 1 478.3,539.1 L 556.1,395.9 A 92 92 0 0 0 643.9,395.9 Z"
+        fill="#162832" stroke="#74c7ec" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 643.9,395.9 L 721.7,539.1 A 255 255 0 0 1 478.3,539.1 L 556.1,395.9 A 92 92 0 0 0 643.9,395.9 Z"
+        fill="none" stroke="#74c7ec" stroke-width="0.8" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Seg 3: 121.5°→178.5° — lavender -->
+  <path d="M 551.9,393.4 L 466.8,532.4 A 255 255 0 0 1 350.0,321.7 L 508.0,317.4 A 92 92 0 0 0 551.9,393.4 Z"
+        fill="#211f3e" stroke="#b4befe" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 551.9,393.4 L 466.8,532.4 A 255 255 0 0 1 350.0,321.7 L 508.0,317.4 A 92 92 0 0 0 551.9,393.4 Z"
+        fill="none" stroke="#b4befe" stroke-width="0.8" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Seg 4: 181.5°→238.5° — mauve -->
+  <path d="M 508.0,312.6 L 350.0,308.3 A 255 255 0 0 1 466.8,97.6 L 551.9,236.6 A 92 92 0 0 0 508.0,312.6 Z"
+        fill="#241b3c" stroke="#cba6f7" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 508.0,312.6 L 350.0,308.3 A 255 255 0 0 1 466.8,97.6 L 551.9,236.6 A 92 92 0 0 0 508.0,312.6 Z"
+        fill="none" stroke="#cba6f7" stroke-width="0.8" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Seg 5: 241.5°→298.5° — pink -->
+  <path d="M 556.1,234.1 L 478.3,90.9 A 255 255 0 0 1 721.7,90.9 L 643.9,234.1 A 92 92 0 0 0 556.1,234.1 Z"
+        fill="#2a1530" stroke="#f5c2e7" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 556.1,234.1 L 478.3,90.9 A 255 255 0 0 1 721.7,90.9 L 643.9,234.1 A 92 92 0 0 0 556.1,234.1 Z"
+        fill="none" stroke="#f5c2e7" stroke-width="0.8" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Seg 6: 301.5°→358.5° — teal/green -->
+  <path d="M 648.1,236.6 L 733.2,97.6 A 255 255 0 0 1 850.0,308.3 L 692.0,312.6 A 92 92 0 0 0 648.1,236.6 Z"
+        fill="#122416" stroke="#94e2d5" stroke-width="1.5" opacity="0.95"/>
+  <path d="M 648.1,236.6 L 733.2,97.6 A 255 255 0 0 1 850.0,308.3 L 692.0,312.6 A 92 92 0 0 0 648.1,236.6 Z"
+        fill="none" stroke="#94e2d5" stroke-width="0.8" opacity="0.5" filter="url(#glow)"/>
+
+  <!-- Inner circle -->
+  <circle cx="600" cy="315" r="92" fill="#11111b"/>
+  <circle cx="600" cy="315" r="92" fill="none" stroke="#45475a" stroke-width="1.5"/>
+  <circle cx="600" cy="315" r="6" fill="#cba6f7"/>
+  <circle cx="600" cy="315" r="3" fill="#cdd6f4"/>
+
+  <!-- Segment labels at mid-radius ~175px -->
+  <!-- Seg 1 midAngle=30°: 751.6, 402.5 -->
+  <text x="752" y="407" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">Inline</text>
+  <text x="752" y="422" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">Constants</text>
+
+  <!-- Seg 2 midAngle=90°: 600, 490 -->
+  <text x="600" y="492" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">PyYAML</text>
+
+  <!-- Seg 3 midAngle=150°: 448, 402.5 -->
+  <text x="448" y="407" text-anchor="middle" fill="#b4befe" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">data</text>
+  <text x="448" y="422" text-anchor="middle" fill="#b4befe" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">classes</text>
+
+  <!-- Seg 4 midAngle=210°: 448, 227.5 -->
+  <text x="448" y="223" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">Pydantic</text>
+  <text x="448" y="238" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">Settings</text>
+
+  <!-- Seg 5 midAngle=270°: 600, 140 -->
+  <text x="600" y="140" text-anchor="middle" fill="#f5c2e7" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">Dynaconf</text>
+
+  <!-- Seg 6 midAngle=330°: 751.6, 227.5 -->
+  <text x="752" y="223" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">Hydra</text>
+  <text x="752" y="238" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="600">OmegaConf</text>
+
+  <!-- Title text (left side) -->
+  <text x="130" y="538" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="700">Configuration</text>
+  <text x="130" y="568" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="700">Management</text>
+  <text x="130" y="594" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="13" letter-spacing="2">IN DATA SCIENCE</text>
+
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+</svg>

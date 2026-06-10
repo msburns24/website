@@ -15,7 +15,15 @@
 <link>https://www.matthewburns.net/posts/</link>
 </image>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Fri, 05 Sep 2025 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 10 Jun 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Configuration Management in Data Science: A Practitioner’s Guide</title>
+  <link>https://www.matthewburns.net/posts/config-management-in-data-science/</link>
+  <description><![CDATA[ <strong>There is no single “best” tool</strong> — the right choice scales with project complexity: hardcoded constants and a single <code>config.yaml</code> (PyYAML) cover most solo notebooks and small scripts; <strong>Pydantic Settings</strong> is the best default for production ML services that need validation; and <strong>Hydra + OmegaConf</strong> is the de facto standard for multi-experiment deep-learning research, despite a steep learning curve. ]]></description>
+  <category>Data Science</category>
+  <guid>https://www.matthewburns.net/posts/config-management-in-data-science/</guid>
+  <pubDate>Wed, 10 Jun 2026 04:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Stochastic Gradient Descent</title>
   <link>https://www.matthewburns.net/posts/stochastic-gradient-descent/</link>

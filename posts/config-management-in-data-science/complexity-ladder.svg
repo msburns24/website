@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#181825"/>
+      <stop offset="100%" stop-color="#1e1e2e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="420" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700">Configuration Complexity Ladder</text>
+  <text x="400" y="56" text-anchor="middle" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="12">Move up only when the pain of the current rung justifies it</text>
+
+  <!-- Staircase background body -->
+  <path d="M 72,370 L 72,320 L 200,320 L 200,270 L 328,270 L 328,220 L 456,220 L 456,170 L 584,170 L 584,120 L 712,120 L 712,370 Z"
+        fill="#313244" stroke="#45475a" stroke-width="1.5"/>
+
+  <!-- Step 1 — Blue: Inline Constants -->
+  <rect x="72" y="320" width="128" height="50" fill="#1a2840"/>
+  <rect x="72" y="320" width="128" height="3" fill="#89b4fa"/>
+  <text x="136" y="341" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10.5" font-weight="700">1 · INLINE CONSTANTS</text>
+  <text x="136" y="357" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">constants.py</text>
+
+  <!-- Step 2 — Sapphire: YAML / INI -->
+  <rect x="200" y="270" width="128" height="50" fill="#162832"/>
+  <rect x="200" y="270" width="128" height="3" fill="#74c7ec"/>
+  <text x="264" y="291" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="10.5" font-weight="700">2 · YAML / INI FILES</text>
+  <text x="264" y="307" text-anchor="middle" fill="#89dceb" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">PyYAML · configparser</text>
+
+  <!-- Step 3 — Lavender: Typed Containers -->
+  <rect x="328" y="220" width="128" height="50" fill="#211f3e"/>
+  <rect x="328" y="220" width="128" height="3" fill="#b4befe"/>
+  <text x="392" y="241" text-anchor="middle" fill="#b4befe" font-family="system-ui,-apple-system,sans-serif" font-size="10.5" font-weight="700">3 · TYPED CONTAINERS</text>
+  <text x="392" y="257" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">dataclasses</text>
+
+  <!-- Step 4 — Mauve: Validated Settings -->
+  <rect x="456" y="170" width="128" height="50" fill="#241b3c"/>
+  <rect x="456" y="170" width="128" height="3" fill="#cba6f7"/>
+  <text x="520" y="191" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="10.5" font-weight="700">4 · VALIDATED SETTINGS</text>
+  <text x="520" y="207" text-anchor="middle" fill="#f5c2e7" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">Pydantic · Dynaconf</text>
+
+  <!-- Step 5 — Pink: Full Frameworks -->
+  <rect x="584" y="120" width="128" height="50" fill="#2a1530"/>
+  <rect x="584" y="120" width="128" height="3" fill="#f5c2e7"/>
+  <text x="648" y="141" text-anchor="middle" fill="#f5c2e7" font-family="system-ui,-apple-system,sans-serif" font-size="10.5" font-weight="700">5 · FULL FRAMEWORKS</text>
+  <text x="648" y="157" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">Hydra · OmegaConf</text>
+
+  <!-- Complexity arrow -->
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 Z" fill="#45475a"/>
+    </marker>
+  </defs>
+  <line x1="80" y1="398" x2="704" y2="398" stroke="#313244" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="76" y="414" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="11" text-anchor="start">← Simpler</text>
+  <text x="712" y="414" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="11" text-anchor="end">More Complex →</text>
+</svg>

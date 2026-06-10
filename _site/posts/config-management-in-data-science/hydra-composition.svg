@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 Z" fill="#cba6f7"/>
+    </marker>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 Z" fill="#a6e3a1"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="380" fill="#1e1e2e"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700">Hydra Config Composition</text>
+  <text x="400" y="50" text-anchor="middle" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="12">Swap components without editing code — just change the config group</text>
+
+  <!-- File 1: model/resnet.yaml — blue -->
+  <rect x="30" y="75" width="165" height="78" rx="6" fill="#181825" stroke="#89b4fa" stroke-width="1.5"/>
+  <rect x="30" y="75" width="165" height="22" rx="6" fill="#1a2840"/>
+  <rect x="30" y="89" width="165" height="8" fill="#1a2840"/>
+  <text x="113" y="91" text-anchor="middle" fill="#89b4fa" font-family="monospace" font-size="10.5" font-weight="700">conf/model/resnet.yaml</text>
+  <text x="48" y="112" fill="#74c7ec" font-family="monospace" font-size="10">arch: resnet50</text>
+  <text x="48" y="127" fill="#74c7ec" font-family="monospace" font-size="10">pretrained: true</text>
+  <text x="48" y="142" fill="#74c7ec" font-family="monospace" font-size="10">num_classes: 10</text>
+
+  <!-- File 2: dataset/cifar.yaml — sapphire/sky -->
+  <rect x="30" y="170" width="165" height="78" rx="6" fill="#181825" stroke="#74c7ec" stroke-width="1.5"/>
+  <rect x="30" y="170" width="165" height="22" rx="6" fill="#162832"/>
+  <rect x="30" y="184" width="165" height="8" fill="#162832"/>
+  <text x="113" y="186" text-anchor="middle" fill="#74c7ec" font-family="monospace" font-size="10.5" font-weight="700">conf/dataset/cifar.yaml</text>
+  <text x="48" y="207" fill="#89dceb" font-family="monospace" font-size="10">name: cifar10</text>
+  <text x="48" y="222" fill="#89dceb" font-family="monospace" font-size="10">batch_size: 64</text>
+  <text x="48" y="237" fill="#89dceb" font-family="monospace" font-size="10">augment: true</text>
+
+  <!-- File 3: trainer/default.yaml — green -->
+  <rect x="30" y="265" width="165" height="78" rx="6" fill="#181825" stroke="#a6e3a1" stroke-width="1.5"/>
+  <rect x="30" y="265" width="165" height="22" rx="6" fill="#122416"/>
+  <rect x="30" y="279" width="165" height="8" fill="#122416"/>
+  <text x="113" y="281" text-anchor="middle" fill="#a6e3a1" font-family="monospace" font-size="10.5" font-weight="700">conf/trainer/default.yaml</text>
+  <text x="48" y="302" fill="#94e2d5" font-family="monospace" font-size="10">lr: 1e-3</text>
+  <text x="48" y="317" fill="#94e2d5" font-family="monospace" font-size="10">epochs: 50</text>
+  <text x="48" y="332" fill="#94e2d5" font-family="monospace" font-size="10">optimizer: adam</text>
+
+  <!-- Arrows from files to merge box -->
+  <line x1="196" y1="114" x2="295" y2="200" stroke="#cba6f7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="196" y1="209" x2="295" y2="209" stroke="#cba6f7" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="196" y1="304" x2="295" y2="218" stroke="#cba6f7" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Merge box — mauve -->
+  <rect x="295" y="158" width="130" height="100" rx="8" fill="#181825" stroke="#cba6f7" stroke-width="2"/>
+  <text x="360" y="198" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">OmegaConf</text>
+  <text x="360" y="214" text-anchor="middle" fill="#b4befe" font-family="monospace" font-size="10">merge()</text>
+  <text x="360" y="232" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="9">+ CLI overrides</text>
+  <text x="360" y="246" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="9">+ interpolation</text>
+
+  <!-- Arrow from merge to cfg -->
+  <line x1="426" y1="209" x2="480" y2="209" stroke="#a6e3a1" stroke-width="2" marker-end="url(#arr2)"/>
+
+  <!-- cfg DictConfig box — green -->
+  <rect x="482" y="130" width="160" height="158" rx="8" fill="#181825" stroke="#a6e3a1" stroke-width="2"/>
+  <rect x="482" y="130" width="160" height="26" rx="8" fill="#122416"/>
+  <rect x="482" y="148" width="160" height="8" fill="#122416"/>
+  <text x="562" y="148" text-anchor="middle" fill="#a6e3a1" font-family="monospace" font-size="10.5" font-weight="700">cfg (DictConfig)</text>
+  <text x="500" y="171" fill="#89b4fa" font-family="monospace" font-size="9.5">cfg.model.arch</text>
+  <text x="634" y="171" text-anchor="end" fill="#94e2d5" font-family="monospace" font-size="9.5">"resnet50"</text>
+  <text x="500" y="187" fill="#89b4fa" font-family="monospace" font-size="9.5">cfg.dataset.name</text>
+  <text x="634" y="187" text-anchor="end" fill="#94e2d5" font-family="monospace" font-size="9.5">"cifar10"</text>
+  <text x="500" y="203" fill="#89b4fa" font-family="monospace" font-size="9.5">cfg.trainer.lr</text>
+  <text x="634" y="203" text-anchor="end" fill="#94e2d5" font-family="monospace" font-size="9.5">0.001</text>
+  <text x="500" y="219" fill="#89b4fa" font-family="monospace" font-size="9.5">cfg.trainer.epochs</text>
+  <text x="634" y="219" text-anchor="end" fill="#94e2d5" font-family="monospace" font-size="9.5">50</text>
+
+  <!-- CLI override callout -->
+  <rect x="490" y="240" width="144" height="36" rx="4" fill="#11111b" stroke="#313244" stroke-width="1"/>
+  <text x="562" y="256" text-anchor="middle" fill="#7f849c" font-family="monospace" font-size="9">python train.py \</text>
+  <text x="562" y="270" text-anchor="middle" fill="#f9e2af" font-family="monospace" font-size="9">model=vit trainer.lr=1e-4</text>
+
+  <!-- Arrow to Python function -->
+  <line x1="644" y1="209" x2="690" y2="209" stroke="#a6e3a1" stroke-width="2" marker-end="url(#arr2)"/>
+
+  <!-- Python function box — teal -->
+  <rect x="692" y="170" width="90" height="78" rx="6" fill="#181825" stroke="#94e2d5" stroke-width="1.5"/>
+  <text x="737" y="196" text-anchor="middle" fill="#94e2d5" font-family="monospace" font-size="9.5" font-weight="700">@hydra.main</text>
+  <text x="737" y="212" text-anchor="middle" fill="#89dceb" font-family="monospace" font-size="9">def train(</text>
+  <text x="737" y="226" text-anchor="middle" fill="#89dceb" font-family="monospace" font-size="9">  cfg:</text>
+  <text x="737" y="240" text-anchor="middle" fill="#89dceb" font-family="monospace" font-size="9">DictConfig)</text>
+
+  <!-- Column labels -->
+  <text x="113" y="360" text-anchor="middle" fill="#45475a" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">YAML config groups</text>
+  <text x="360" y="360" text-anchor="middle" fill="#45475a" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">composition engine</text>
+  <text x="562" y="360" text-anchor="middle" fill="#45475a" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">merged config object</text>
+  <text x="737" y="360" text-anchor="middle" fill="#45475a" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">your function</text>
+</svg>

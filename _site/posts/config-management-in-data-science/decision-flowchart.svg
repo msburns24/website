@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#181825"/>
+      <stop offset="100%" stop-color="#1e1e2e"/>
+    </linearGradient>
+    <marker id="dn" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 H 10 L 5 9 Z" fill="#45475a"/>
+    </marker>
+    <marker id="rt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 9,5 0,9 Z" fill="#a6e3a1"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="920" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="350" y="34" text-anchor="middle" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700">Which Config Tool Should I Use?</text>
+  <text x="350" y="54" text-anchor="middle" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="11.5">Answer in order — stop at the first "Yes"</text>
+
+  <!-- Q1 diamond — blue -->
+  <polygon points="250,70 370,95 250,120 130,95" fill="#1a2840" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="250" y="91" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="600">Throwaway script?</text>
+  <text x="250" y="105" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">No secrets / no deployment</text>
+  <line x1="370" y1="95" x2="430" y2="95" stroke="#a6e3a1" stroke-width="1.5" marker-end="url(#rt)"/>
+  <text x="400" y="88" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="10">YES</text>
+  <rect x="432" y="75" width="218" height="40" rx="6" fill="#122416" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="541" y="93" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">constants.py</text>
+  <text x="541" y="107" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">top-of-file constants · zero deps</text>
+  <line x1="250" y1="120" x2="250" y2="155" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+  <text x="265" y="142" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10">NO</text>
+
+  <!-- Secrets note — yellow/amber -->
+  <rect x="80" y="158" width="340" height="38" rx="6" fill="#2a2010" stroke="#f9e2af" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="250" y="174" text-anchor="middle" fill="#f9e2af" font-family="system-ui,-apple-system,sans-serif" font-size="10.5" font-weight="600">⚠  If you have credentials or share the repo:</text>
+  <text x="250" y="188" text-anchor="middle" fill="#fab387" font-family="system-ui,-apple-system,sans-serif" font-size="10">add python-dotenv + .gitignore now (regardless of other choices)</text>
+  <line x1="250" y1="197" x2="250" y2="225" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+
+  <!-- Q2 diamond -->
+  <polygon points="250,225 370,250 250,275 130,250" fill="#1a2840" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="250" y="246" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="600">Human-editable hierarchical</text>
+  <text x="250" y="260" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">settings shared across tools?</text>
+  <line x1="370" y1="250" x2="430" y2="250" stroke="#a6e3a1" stroke-width="1.5" marker-end="url(#rt)"/>
+  <text x="400" y="243" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="10">YES</text>
+  <rect x="432" y="230" width="218" height="40" rx="6" fill="#122416" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="541" y="248" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">PyYAML + config.yaml</text>
+  <text x="541" y="262" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">add dataclass layer for dot-access</text>
+  <line x1="250" y1="275" x2="250" y2="310" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+  <text x="265" y="297" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10">NO</text>
+
+  <!-- Q3 diamond -->
+  <polygon points="250,310 370,335 250,360 130,335" fill="#1a2840" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="250" y="331" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="600">Production service / API?</text>
+  <text x="250" y="345" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">Must fail fast on bad config?</text>
+  <line x1="370" y1="335" x2="430" y2="335" stroke="#a6e3a1" stroke-width="1.5" marker-end="url(#rt)"/>
+  <text x="400" y="328" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="10">YES</text>
+  <rect x="432" y="315" width="218" height="40" rx="6" fill="#122416" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="541" y="333" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">Pydantic Settings</text>
+  <text x="541" y="347" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">runtime validation · fail at startup</text>
+  <line x1="250" y1="360" x2="250" y2="395" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+  <text x="265" y="382" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10">NO</text>
+
+  <!-- Q4 diamond -->
+  <polygon points="250,395 370,420 250,445 130,420" fill="#1a2840" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="250" y="416" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="600">ML research with many</text>
+  <text x="250" y="430" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">experiments / sweeps?</text>
+  <line x1="370" y1="420" x2="430" y2="420" stroke="#a6e3a1" stroke-width="1.5" marker-end="url(#rt)"/>
+  <text x="400" y="413" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="10">YES</text>
+  <rect x="432" y="398" width="218" height="44" rx="6" fill="#122416" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="541" y="416" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">Hydra + OmegaConf</text>
+  <text x="541" y="431" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">start from community template</text>
+  <text x="541" y="444" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">consider Hydra + Pydantic hybrid</text>
+  <line x1="250" y1="445" x2="250" y2="480" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+  <text x="265" y="467" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10">NO</text>
+
+  <!-- Q5 diamond -->
+  <polygon points="250,480 370,505 250,530 130,505" fill="#1a2840" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="250" y="501" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="600">Many deploy environments</text>
+  <text x="250" y="515" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">or multiple secret backends?</text>
+  <line x1="370" y1="505" x2="430" y2="505" stroke="#a6e3a1" stroke-width="1.5" marker-end="url(#rt)"/>
+  <text x="400" y="498" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="10">YES</text>
+  <rect x="432" y="485" width="218" height="40" rx="6" fill="#122416" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="541" y="503" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">Dynaconf</text>
+  <text x="541" y="517" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">multi-env · Vault · layered files</text>
+  <line x1="250" y1="530" x2="250" y2="565" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+  <text x="265" y="552" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10">NO</text>
+
+  <!-- Q6 diamond -->
+  <polygon points="250,565 370,590 250,615 130,590" fill="#1a2840" stroke="#89b4fa" stroke-width="1.5"/>
+  <text x="250" y="586" text-anchor="middle" fill="#89b4fa" font-family="system-ui,-apple-system,sans-serif" font-size="10" font-weight="600">Zero dependency? Flat,</text>
+  <text x="250" y="600" text-anchor="middle" fill="#74c7ec" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">Python-only config?</text>
+  <line x1="370" y1="590" x2="430" y2="590" stroke="#a6e3a1" stroke-width="1.5" marker-end="url(#rt)"/>
+  <text x="400" y="583" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="10">YES</text>
+  <rect x="432" y="570" width="218" height="40" rx="6" fill="#122416" stroke="#a6e3a1" stroke-width="1.5"/>
+  <text x="541" y="588" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="700">configparser</text>
+  <text x="541" y="602" text-anchor="middle" fill="#94e2d5" font-family="system-ui,-apple-system,sans-serif" font-size="9.5">stdlib · INI format · typed getters</text>
+  <line x1="250" y1="615" x2="250" y2="650" stroke="#45475a" stroke-width="1.5" marker-end="url(#dn)"/>
+  <text x="265" y="637" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10">NO</text>
+
+  <!-- Fallback -->
+  <rect x="130" y="653" width="240" height="44" rx="6" fill="#313244" stroke="#45475a" stroke-width="1.5"/>
+  <text x="250" y="671" text-anchor="middle" fill="#a6adc8" font-family="system-ui,-apple-system,sans-serif" font-size="11">Re-evaluate from step 1</text>
+  <text x="250" y="687" text-anchor="middle" fill="#6c7086" font-family="system-ui,-apple-system,sans-serif" font-size="10">Your project may combine tools</text>
+
+  <!-- Anti-patterns footer — mauve -->
+  <rect x="30" y="730" width="640" height="162" rx="8" fill="#181825" stroke="#cba6f7" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="350" y="753" text-anchor="middle" fill="#cba6f7" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="700">Anti-patterns to avoid regardless of tool</text>
+  <line x1="50" y1="761" x2="650" y2="761" stroke="#313244" stroke-width="1"/>
+  <text x="50" y="778" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">✗</text>
+  <text x="68" y="778" fill="#bac2de" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Hardcoding secrets in source code</text>
+  <text x="50" y="796" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">✗</text>
+  <text x="68" y="796" fill="#bac2de" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Committing .env to git</text>
+  <text x="50" y="814" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">✗</text>
+  <text x="68" y="814" fill="#bac2de" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Using yaml.load() instead of yaml.safe_load()</text>
+  <text x="50" y="832" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">✗</text>
+  <text x="68" y="832" fill="#bac2de" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Adopting Hydra for a project a single YAML file would serve</text>
+  <text x="50" y="850" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">✗</text>
+  <text x="68" y="850" fill="#bac2de" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Treating config as an afterthought (the technical-debt trap)</text>
+  <text x="50" y="868" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">✗</text>
+  <text x="68" y="868" fill="#bac2de" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Relying on bool(os.getenv("DEBUG")) — truthy on any non-empty string</text>
+</svg>

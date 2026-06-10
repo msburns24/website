@@ -9,6 +9,7 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/config-management-in-data-science/index.html",
       "/posts/stochastic-gradient-descent/index.html",
       "/posts/wikidata-overview/index.html",
       "/posts/data-lifecycle-101/index.html"

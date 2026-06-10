@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-06-10">
+
+<title>Configuration Management in Data Science: A Practitioner’s Guide – Matthew Burns</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7e81a6b3f54773963873350633b40d28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1bbc9d60a5d4c0c4421ec706aca8a8fe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-7e81a6b3f54773963873350633b40d28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Configuration Management in Data Science: A Practitioner’s Guide – Matthew Burns">
+<meta property="og:image" content="https://www.matthewburns.net/posts/config-management-in-data-science/complexity-ladder.svg">
+<meta property="og:site_name" content="Matthew Burns">
+<meta name="twitter:title" content="Configuration Management in Data Science: A Practitioner’s Guide – Matthew Burns">
+<meta name="twitter:image" content="https://www.matthewburns.net/posts/config-management-in-data-science/complexity-ladder.svg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">matthew burns</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthewsburns849/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/msburns24/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link active" data-scroll-target="#key-findings">Key Findings</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a>
+  <ul class="collapse">
+  <li><a href="#what-configuration-management-is" id="toc-what-configuration-management-is" class="nav-link" data-scroll-target="#what-configuration-management-is">What configuration management is</a></li>
+  <li><a href="#why-it-matters-to-data-scientists-specifically" id="toc-why-it-matters-to-data-scientists-specifically" class="nav-link" data-scroll-target="#why-it-matters-to-data-scientists-specifically">Why it matters to data scientists specifically</a></li>
+  <li><a href="#a-survey-of-approaches" id="toc-a-survey-of-approaches" class="nav-link" data-scroll-target="#a-survey-of-approaches">A Survey of approaches</a></li>
+  <li><a href="#how-secrets-fit-in-cross-cutting" id="toc-how-secrets-fit-in-cross-cutting" class="nav-link" data-scroll-target="#how-secrets-fit-in-cross-cutting">How secrets fit in (cross-cutting)</a></li>
+  <li><a href="#a-decision-framework" id="toc-a-decision-framework" class="nav-link" data-scroll-target="#a-decision-framework">A decision framework</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">5. Further reading</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations">Recommendations</a></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats">Caveats</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Configuration Management in Data Science: A Practitioner’s Guide</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data Science</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 10, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 10, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="TL;DR">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TL;DR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>There is no single “best” tool</strong> — the right choice scales with project complexity: hardcoded constants and a single <code>config.yaml</code> (PyYAML) cover most solo notebooks and small scripts; <strong>Pydantic Settings</strong> is the best default for production ML services that need validation; and <strong>Hydra + OmegaConf</strong> is the de facto standard for multi-experiment deep-learning research, despite a steep learning curve.</p></li>
+<li><p><strong>Secrets are a separate concern from configuration.</strong> Non-secret config (hyperparameters, paths, flags) belongs in version-controlled files; secrets (API keys, DB passwords) belong in environment variables, <code>.env</code> files excluded from git, or a dedicated secrets manager (Vault, AWS Secrets Manager). Most config tools delegate secrets handling; only Dynaconf and Pydantic Settings integrate it natively.</p></li>
+<li><p><strong>The most common practitioner complaints</strong>: Hydra is “overkill for solo projects” and confusingly built on the less-documented OmegaConf; PyYAML has the infamous “Norway problem”; configparser can’t nest and returns everything as strings; and hardcoding silently destroys reproducibility.</p></li>
+</ul>
+</div>
+</div>
+<section id="key-findings" class="level2">
+<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
+<ul>
+<li><strong>Configuration management means separating the values that control your code from the code itself</strong> — and in data science it is the difference between reproducible experiments and an untrackable mess of edited-in-place hyperparameters.</li>
+<li>Tools fall on a complexity ladder: inline constants → YAML/INI files → typed containers (dataclasses, Pydantic) → full frameworks (Dynaconf, Hydra/OmegaConf). Move up the ladder only when the pain of the current rung justifies it.</li>
+<li><strong>Hydra dominates the ML research niche</strong> — 10.3k stars on the facebookresearch/hydra repo, and <code>hydra-core</code> logged 15,381,160 downloads in the last month per pypistats.org — largely through the community PyTorch Lightning + Hydra templates (PyTorch Lightning itself logged 10,792,750 downloads last month per pypistats.org, a popularity signal for that niche). Meanwhile <strong>Pydantic</strong> (27K stars; pypistats.org shows pydantic at 1,028,307,353 downloads in the last month, and Pydantic’s own June 2026 post “Pydantic Just Hit 10 Billion Downloads” cites “over 550M downloads per month”) dominates production/API-adjacent ML.</li>
+<li>A recurring expert recommendation is the <strong>hybrid pattern</strong>: use Hydra/OmegaConf or YAML for composition and CLI overrides, then validate the merged config with Pydantic for type safety.</li>
+<li><strong>Secrets management becomes necessary</strong> the moment code is shared, committed to git, or deployed — the “litmus test” from the Twelve-Factor App: could you open-source your repo right now without leaking a credential?</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complexity-ladder.svg" class="img-fluid figure-img"></p>
+<figcaption>The configuration complexity ladder. Move up only when the pain of the current rung justifies it.</figcaption>
+</figure>
+</div>
+</section>
+<section id="details" class="level2">
+<h2 class="anchored" data-anchor-id="details">Details</h2>
+<section id="what-configuration-management-is" class="level3">
+<h3 class="anchored" data-anchor-id="what-configuration-management-is">What configuration management is</h3>
+<p>Configuration is everything that controls <em>how</em> your code runs but isn’t the logic itself: file paths, model hyperparameters, database URLs, API ports, feature flags, and credentials. Configuration management is the discipline of keeping those values <strong>separate from, and external to, your source code</strong>, so they can be changed, tracked, and varied across environments without editing (and re-testing) the code.</p>
+<p>The Twelve-Factor App methodology frames the canonical principle: “Config varies substantially across deploys, code does not,” and a violation is “store[ing] config as constants in the code.” Its litmus test is whether your codebase “could be made open source at any moment, without compromising any credentials.”</p>
+<p>In data science specifically, configuration spans three rough buckets (per Wencong Yang’s “From Data Science to Production”): <strong>data</strong> config (periods, paths, splits), <strong>model</strong> config (hyperparameters, architecture), and <strong>service</strong> config (API ports, replicas). A poor config system, as one ML config paper (confr) notes, “can lead to repetitive code that is hard to maintain, understand, and brittle due to insufficient configuration validation logic.”</p>
+</section>
+<section id="why-it-matters-to-data-scientists-specifically" class="level3">
+<h3 class="anchored" data-anchor-id="why-it-matters-to-data-scientists-specifically">Why it matters to data scientists specifically</h3>
+<p>Google’s famous “Hidden Technical Debt in Machine Learning Systems” paper warns: “both researchers and engineers may treat configuration (and extension of configuration) as an afterthought. Indeed, verification or testing of configurations may not even be seen as important.” This is the core “why should I care.”</p>
+<p>Concretely:</p>
+<ul>
+<li><p><strong>Reproducibility.</strong> The principle traces to Karl Popper, <em>The Logic of Scientific Discovery</em> (1959): “non-reproducible single occurrences are of no significance to science.” The ML community invokes it constantly as the adage “if it isn’t reproducible, it’s not science.” Davis David (Analytics Vidhya) describes the anti-pattern directly: practitioners “change the values of the different parameters directly from the source code and run the experiment again and again… you can lose track of the different experiments you have done previously.” A code-version + config-file pair should uniquely determine a run’s behavior.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="reproducibility-split.svg" class="img-fluid figure-img"></p>
+<figcaption>Hardcoded constants (left) vs.&nbsp;externalized config with git history (right).</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Experiment velocity.</strong> Jesper Dramsch reports that Hydra configs “sped up my machine learning development workflow” by letting him “pass the config and simply add new config settings” instead of “adjusting the function signature for every new part.”</p></li>
+<li><p><strong>Deployment portability.</strong> Wencong Yang notes hardcoding “may work for a quick demo, but it poses two challenges for models in production”: continuous hyperparameter tuning and easy deployment “in different environments.”</p></li>
+<li><p><strong>Collaboration &amp; safety.</strong> The moment your notebook becomes a shared repo, hardcoded credentials become a liability and edited-in-place constants become merge-conflict and reproducibility hazards.</p></li>
+</ul>
+</section>
+<section id="a-survey-of-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="a-survey-of-approaches">A Survey of approaches</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tool-comparison.svg" class="img-fluid figure-img"></p>
+<figcaption>Feature comparison across all eight tools covered in this guide.</figcaption>
+</figure>
+</div>
+<section id="constants-at-the-top-of-a-file-inline-hardcoding" class="level4">
+<h4 class="anchored" data-anchor-id="constants-at-the-top-of-a-file-inline-hardcoding">1. Constants at the top of a file (inline hardcoding)</h4>
+<p><strong>Overview.</strong> Define values as ALL-CAPS constants at the top of a module or in a dedicated <code>constants.py</code>. The simplest possible step above scattering magic numbers through the code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># config.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>TEST_RATIO <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>LEARNING_RATE <span class="op">=</span> <span class="fl">3e-4</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="op">=</span> <span class="st">"data/raw/train.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> Zero dependencies, zero learning curve, centralized, easy to read. IBM’s Data Science Best Practices calls constants “the preferred approach for configuration that is hardly ever changed.” <strong>Cons.</strong> No separation of config from code (a Twelve-Factor violation if it varies across deploys); changing config means a code change and commit; no validation; Python “doesn’t have a hard-enforced visibility concept,” so a “constant” can be mutated accidentally. <strong>Best for.</strong> Tiny solo scripts, notebooks, throwaway prototypes, and genuinely fixed values (e.g., number of RGB channels = 3). <strong>Never for secrets</strong> — IBM is explicit: “it must not be used for secrets!” <strong>Secrets.</strong> Forbidden. Hardcoded secrets are the canonical security anti-pattern.</p>
+</section>
+<section id="config.yaml-pyyaml" class="level4">
+<h4 class="anchored" data-anchor-id="config.yaml-pyyaml">2. config.yaml + PyYAML</h4>
+<p><strong>Overview.</strong> Store config in a human-readable YAML file; load with PyYAML into a Python dict. The most common file-based pattern in ML tutorials.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"config.yaml"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> yaml.safe_load(f)   <span class="co"># always safe_load</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> config[<span class="st">"model"</span>][<span class="st">"learning_rate"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> Highly readable, supports nesting and lists, language-agnostic, near-universal in ML. Easy for non-developers to edit. <strong>Cons.</strong> Several well-documented footguns:</p>
+<ul>
+<li><strong><code>yaml.load()</code> without <code>safe_load</code> can execute arbitrary code</strong> — always use <code>yaml.safe_load</code>.</li>
+<li><strong>The “Norway problem”:</strong> under YAML 1.1 (which PyYAML still follows), the bare scalar <code>NO</code> parses to boolean <code>False</code>, as do <code>yes/no/on/off/y/n</code>. Country codes, and the variable names <code>n</code>/<code>y</code> common in DS code, silently become booleans. Version numbers like <code>9.3</code> become floats. Fix: quote ambiguous strings, or use StrictYAML.</li>
+<li>Whitespace/indentation sensitivity; dict access (<code>config["a"]["b"]</code>) is stringly-typed and refactor-unfriendly; no validation or type enforcement out of the box. <strong>Best for.</strong> Most small-to-medium DS projects; sharing configs across tools/languages; any project where humans hand-edit hierarchical settings. Often paired with <code>python-box</code> for dot-access or a dataclass/Pydantic layer for validation. <strong>Secrets.</strong> YAML files can hold secrets but then must be git-ignored; better to keep secrets out and inject via env vars.</li>
+</ul>
+</section>
+<section id="configparser-.ini-files" class="level4">
+<h4 class="anchored" data-anchor-id="configparser-.ini-files">3. configparser / .ini files</h4>
+<p><strong>Overview.</strong> Python’s standard-library parser for INI-format files (sections of key=value). Zero dependencies.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> configparser <span class="im">import</span> ConfigParser</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> ConfigParser()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>config.read(<span class="st">"app.ini"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> config.getint(<span class="st">"server"</span>, <span class="st">"port"</span>)   <span class="co"># explicit type getter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> Built into Python (no install), simple, human-readable, stable, comments supported. One Medium author calls it “a hidden gem” most developers don’t know exists. <strong>Cons.</strong> <strong>Everything is a string by default</strong> — you must call <code>getint</code>/<code>getfloat</code>/<code>getboolean</code> manually. <strong>No native nested sections</strong> (Guido van Rossum deliberately resisted nesting to discourage mixing config with data). No lists/arrays. Lowercases keys unless you override <code>optionxform</code>. <code>read()</code> silently does nothing if the file is missing. <strong>Best for.</strong> Small, flat, Python-only configs; CLI tools; legacy systems; “zero-dependency” requirements. Falls apart with hierarchical ML configs. <strong>Secrets.</strong> No special support; same git-ignore caveats as any file.</p>
+</section>
+<section id="python-dataclasses-as-config-containers" class="level4">
+<h4 class="anchored" data-anchor-id="python-dataclasses-as-config-containers">4. Python dataclasses as config containers</h4>
+<p><strong>Overview.</strong> Use <code>@dataclass</code> (stdlib, 3.7+) to hold config as typed attributes, giving dot-access and IDE autocompletion. Often loaded from a dict/YAML via <code>from_dict</code> or <code>**unpacking</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ModelConfig:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    learning_rate: <span class="bu">float</span> <span class="op">=</span> <span class="fl">3e-4</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    epochs: <span class="bu">int</span> <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    optimizer: <span class="bu">str</span> <span class="op">=</span> <span class="st">"adam"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> No third-party dependency, type hints, <code>config.model.lr</code> instead of error-prone <code>config["model"]["lr"]</code>, testable, less boilerplate than regular classes. Alexandra Zaharia argues config should be handled “through identifiers rather than strings.” <strong>Cons.</strong> Type hints are <strong>not enforced at runtime</strong> (a dataclass won’t reject <code>epochs="ten"</code>); no built-in file loading, validation, or env-var integration — you build the glue yourself. “Cannot perform complex constructor initialization” cleanly. Extra keys in a source dict raise <code>TypeError</code>. <strong>Best for.</strong> Projects wanting structure and type-hints without a dependency; a clean schema layer on top of YAML/INI. A natural stepping stone to Pydantic when you need <em>enforced</em> validation. <strong>Secrets.</strong> No native support; secrets injected via env vars at construction time.</p>
+</section>
+<section id="pydantic-pydantic-settings" class="level4">
+<h4 class="anchored" data-anchor-id="pydantic-pydantic-settings">5. Pydantic / pydantic-settings</h4>
+<p><strong>Overview.</strong> Pydantic is a runtime validation library using type annotations; <code>pydantic-settings</code> (its <code>BaseSettings</code> class) adds loading from env vars, <code>.env</code> files, secrets directories, and more, with precedence rules.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic_settings <span class="im">import</span> BaseSettings, SettingsConfigDict</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Settings(BaseSettings):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    model_config <span class="op">=</span> SettingsConfigDict(env_file<span class="op">=</span><span class="st">".env"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    db_url: <span class="bu">str</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    learning_rate: <span class="bu">float</span> <span class="op">=</span> <span class="fl">3e-4</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    api_key: <span class="bu">str</span>           <span class="co"># required; errors at startup if missing</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>settings <span class="op">=</span> Settings()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> <strong>Runtime type enforcement and validation</strong> — “the service refuses to start” on bad config, turning “mysterious behavior into clear startup errors.” Rich constrained types (<code>PostgresDsn</code>, <code>RedisDsn</code>, <code>EmailStr</code>), automatic env-var reading, <code>.env</code> support, defaults, nested models. The recommended settings approach in FastAPI. Massive adoption (pydantic at 1,028,307,353 downloads last month per pypistats.org) means a strong ecosystem and autocompletion. <strong>Cons.</strong> “Requires you to write a lot of code if you want features like having different environments, reading from sources that aren’t ENV vars, writing to files.” The “auto ENV var reading breaks down for pydantic if you do nested schemas” (needs <code>env_nested_delimiter</code>). It validates but doesn’t <em>compose/merge</em> configs across files the way Hydra does — practitioners note it lacks expression-based interpolation. Can be “verbose for simple projects.” <strong>Best for.</strong> Production ML services and APIs; anything that must fail fast on misconfiguration; projects already using Pydantic/FastAPI. The validation layer in a Hydra+Pydantic hybrid. <strong>Secrets.</strong> <strong>Best-in-class delegation/integration.</strong> Reads OS env vars and <code>.env</code> (env always overrides <code>.env</code>), supports a <code>secrets_dir</code> for Docker/Kubernetes file-based secrets, and has source classes for AWS Secrets Manager and Google Cloud Secret Manager. Recommended pattern (Redowan Delowar): non-sensitive vars in <code>.env</code> (committed or not), sensitive ones injected as shell env vars.</p>
+</section>
+<section id="dynaconf" class="level4">
+<h4 class="anchored" data-anchor-id="dynaconf">6. Dynaconf</h4>
+<p><strong>Overview.</strong> A layered settings manager that loads and merges config from multiple file formats (TOML, YAML, JSON, INI, .py) and env vars, with first-class multi-environment support and Vault/Redis secret backends.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dynaconf <span class="im">import</span> Dynaconf</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>settings <span class="op">=</span> Dynaconf(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    settings_files<span class="op">=</span>[<span class="st">"settings.toml"</span>, <span class="st">".secrets.toml"</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    environments<span class="op">=</span><span class="va">True</span>,          <span class="co"># [development], [production] sections</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    envvar_prefix<span class="op">=</span><span class="st">"MYAPP"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(settings.database.host)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> Handles dev/staging/prod in a single file via sections; loads from many sources with defined precedence; “lazy loading”; reads secrets from <strong>HashiCorp Vault and Redis</strong>; env-var overrides; Jinja/format-string interpolation. Strong for “config sprawl” in microservices. (4.3k stars; ~3.0M downloads/month per pypistats.org.) <strong>Cons.</strong> <strong>No predefined schema</strong> — “you don’t predefine the structure of your settings in advance,” which makes defaults and validators “a bit more tedious” and is “not as inherently type-safe as Pydantic for direct access.” Steeper learning curve than simple tools. Default <code>DYNACONF_</code> env prefix “may lead to conflicts.” Documented performance issues: a maintainer-filed issue (#713) notes <code>settings.setenv()</code> “takes 0.2 seconds” each call and v3.1.5 ran “nearly 3 times slower” than v2.2.3 on a large (~2,500-line) settings file. <strong>Best for.</strong> Multi-environment apps and microservices; teams wanting one tool for config + secrets across many formats; data-engineering pipelines with many connectors. <strong>Secrets.</strong> <strong>Native.</strong> Encrypted values, Vault and Redis integration, separate <code>.secrets.toml</code> convention.</p>
+</section>
+<section id="hydra-metafair" class="level4">
+<h4 class="anchored" data-anchor-id="hydra-metafair">7. Hydra (Meta/FAIR)</h4>
+<p><strong>Overview.</strong> A framework (built on OmegaConf) for <strong>composing hierarchical configs from multiple YAML files</strong> and overriding them from the command line, with automatic per-run output directories and multi-run parameter sweeps. Created by Facebook/Meta Research; the dominant config tool in deep-learning research.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hydra</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> omegaconf <span class="im">import</span> DictConfig</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">@hydra.main</span>(config_path<span class="op">=</span><span class="st">"conf"</span>, config_name<span class="op">=</span><span class="st">"config"</span>, version_base<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(cfg: DictConfig):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(cfg.model.lr)        <span class="co"># dot-access</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># override at CLI: python train.py model.lr=1e-3 --multirun model.lr=1e-3,1e-4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="hydra-composition.svg" class="img-fluid figure-img"></p>
+<figcaption>How Hydra composes multiple YAML config groups into a single merged DictConfig object.</figcaption>
+</figure>
+</div>
+<p><strong>Pros.</strong> Config <strong>composition</strong> via config groups (swap <code>model=resnet</code> or <code>dataset=v2</code>); powerful CLI overrides distinguishing override (<code>key=val</code>) from add (<code>+key=val</code>); <strong><code>--multirun</code> sweeps</strong> across hyperparameters; automatic timestamped output dir per run capturing exact params (huge for reproducibility); strong ML ecosystem (the PyTorch Lightning + Hydra templates; Lightning itself logged 10,792,750 downloads last month per pypistats.org). Omry Yadan’s “fresh look at configuration for ML” is a foundational reference. <strong>Cons.</strong> The most-criticized tool here. Dan MacKinlay: Hydra is “at a mind-melting intersection of opinionation and flexibility… a profusion of quasi-OOP inheritance patterns,” and “you end up needing to know that it is built upon OmegaConf, which is less maintained and worse documented than Hydra” — “these days I use simpler systems… because hydra made me confused.” Docs “target experienced users, not new users.” Validation is “offloaded largely to application” (no rich runtime validation without Pydantic). Lazy interpolation can resolve at the wrong time (e.g., <code>now:</code> timestamps differing between training and inference). The official PyPI package is <code>hydra-core</code> (the bare <code>hydra</code> is unrelated). Widely called <strong>overkill for solo or simple projects</strong>. <strong>Best for.</strong> Research with many experiments/hyperparameter sweeps; deep learning; teams needing reproducible, composable configs and per-run artifact tracking. The community consensus (lightning-hydra-template authors) is explicit: it’s “a fast experimentation tool,” “not fitted to be a production/deployment environment.” <strong>Secrets.</strong> <strong>Delegates entirely</strong> — no native secrets management. Use env-var interpolation (<code>${oc.env:VAR}</code>) or pair with python-dotenv/a secrets manager.</p>
+</section>
+<section id="omegaconf" class="level4">
+<h4 class="anchored" data-anchor-id="omegaconf">8. OmegaConf</h4>
+<p><strong>Overview.</strong> The hierarchical config engine <strong>underneath Hydra</strong>, usable standalone. Merges configs from YAML, dataclasses, and CLI into one object with a consistent API, and supports variable interpolation. (2.4k stars; omegaconf logged 32,488,956 downloads in the last month per pypistats.org.)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> omegaconf <span class="im">import</span> OmegaConf</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> OmegaConf.load(<span class="st">"config.yaml"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>cli <span class="op">=</span> OmegaConf.from_cli()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>cfg <span class="op">=</span> OmegaConf.merge(base, cli)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cfg.model.lr)   <span class="co"># supports ${...} interpolation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> <strong>Variable interpolation</strong> (<code>${train.num_classes}</code> referenced elsewhere); merges multiple sources cleanly; dot-access; optional type-checking via structured configs (dataclasses); the serialization workhorse (<code>OmegaConf.to_container(cfg, resolve=True)</code>) loggers expect. <strong>Cons.</strong> “Less maintained and worse documented than Hydra” (MacKinlay); interpolation is <strong>lazy</strong>, which can bite you (resolve early before saving checkpoints); the ANTLR dependency for interpolation grammar is heavy enough that alternatives like upsilonconf exist specifically to avoid it; standalone it lacks Hydra’s CLI/composition conveniences. <strong>Best for.</strong> When you want interpolation and merging without Hydra’s full framework; as the layer you reach into when Hydra’s abstractions leak; structured-config type checking. <strong>Secrets.</strong> Supports <code>${oc.env:VAR}</code> env interpolation; otherwise delegates.</p>
+</section>
+<section id="python-dotenv-.env-files" class="level4">
+<h4 class="anchored" data-anchor-id="python-dotenv-.env-files">9. python-dotenv / .env files</h4>
+<p><strong>Overview.</strong> Loads key-value pairs from a <code>.env</code> file into environment variables, which you then read with <code>os.getenv</code>. The standard local-development secrets pattern. (8.8k stars; ~595.7M downloads/month per pypistats.org.)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> os.getenv(<span class="st">"API_KEY"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>db_url <span class="op">=</span> os.getenv(<span class="st">"DATABASE_URL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pros.</strong> Dead simple; keeps secrets out of code; aligns with Twelve-Factor; near-universal; supports per-environment files (<code>.env.development</code>, <code>.env.production</code>). The standard way to load AWS/GCP keys, DB creds in DS notebooks. <strong>Cons.</strong> <strong>No validation or typing</strong> — <code>os.getenv</code> returns strings (<code>bool(os.getenv("DEBUG"))</code> is a classic bug since any non-empty string is truthy). Flat namespace only. It is a <em>secrets/env loader</em>, not a full config system — you’ll outgrow it for structured config. <strong><code>.env</code> must never be committed</strong> (add to <code>.gitignore</code>). <strong>Best for.</strong> Local development secrets and environment-specific values; the secrets half of a “PyYAML/Pydantic for config + dotenv for secrets” split. Production teams inject env vars via Docker/K8s/CI rather than shipping <code>.env</code> files. <strong>Secrets.</strong> This <em>is</em> the entry-level secrets tool. But “in real deployments, .env files are not used — environment variables are injected by Docker, Kubernetes, CI/CD” and secrets live in AWS Secrets Manager / Azure Key Vault / Vault. pydantic-settings layers validation on top of the same <code>.env</code>.</p>
+</section>
+</section>
+<section id="how-secrets-fit-in-cross-cutting" class="level3">
+<h3 class="anchored" data-anchor-id="how-secrets-fit-in-cross-cutting">How secrets fit in (cross-cutting)</h3>
+<ul>
+<li><strong>Config vs.&nbsp;secrets are different problems.</strong> Non-secret config (hyperparameters, paths, flags) is meant to be versioned and shared. Secrets (passwords, API keys, tokens) must never enter git. Most config <em>files</em> can technically hold secrets but shouldn’t.</li>
+<li><strong>When is secrets management necessary?</strong> Per GitGuardian and Twelve-Factor: as soon as code is shared with a team, committed to a repo, or deployed. For a purely local solo notebook with no credentials, it isn’t. The litmus test: could you open-source the repo right now safely?</li>
+<li><strong>The escalation ladder for secrets:</strong> hardcoding (never) → environment variables / <code>.env</code> (local dev) → cloud secret managers (AWS Secrets Manager, Azure Key Vault, GCP Secret Manager) or HashiCorp Vault (production). “Once secrets are pushed to Git, they are already compromised” — rotate immediately.</li>
+<li><strong>Tool integration:</strong> dotenv (load only), Pydantic Settings (env + <code>.env</code> + secrets_dir + cloud manager sources), Dynaconf (Vault/Redis + encrypted values) integrate secrets natively. Hydra, OmegaConf, PyYAML, configparser, dataclasses, and constants <strong>delegate</strong> secrets to env vars or an external manager.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="secrets-ladder.svg" class="img-fluid figure-img"></p>
+<figcaption>The secrets escalation ladder: from hardcoded (never) to .env (local dev) to managed secret stores (production).</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-decision-framework" class="level3">
+<h3 class="anchored" data-anchor-id="a-decision-framework">A decision framework</h3>
+<p>Ask these questions in order:</p>
+<ol type="1">
+<li><strong>Is it a throwaway notebook/script with no secrets and no deployment?</strong> → Constants at the top of the file (or a small <code>config.py</code>). Don’t over-engineer.</li>
+<li><strong>Do you have credentials, or share the repo?</strong> → Add <strong>python-dotenv</strong> + <code>.gitignore</code> for secrets immediately, regardless of what else you use.</li>
+<li><strong>Do humans hand-edit hierarchical settings, shared across tools?</strong> → <strong>config.yaml + PyYAML</strong> (with <code>safe_load</code>, and quote ambiguous strings). Add a <strong>dataclass</strong> layer if you want dot-access/structure without a dependency.</li>
+<li><strong>Is this going to production / an API, and must fail fast on bad config?</strong> → <strong>Pydantic Settings</strong>. It’s the best default for production ML services and validation-critical pipelines.</li>
+<li><strong>Do you run many experiments / hyperparameter sweeps in research DL?</strong> → <strong>Hydra + OmegaConf</strong>, ideally from a community template. Accept the learning curve; reach for the hybrid (Hydra composes, Pydantic validates) if you need strict validation.</li>
+<li><strong>Many deployment environments / microservices / multiple secret backends?</strong> → <strong>Dynaconf</strong> (or Pydantic Settings + a secrets manager).</li>
+<li><strong>Zero-dependency, flat, Python-only config?</strong> → <strong>configparser</strong>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="decision-flowchart.svg" class="img-fluid figure-img"></p>
+<figcaption>Decision flowchart for choosing a configuration tool. Answer in order and stop at the first “Yes”.</figcaption>
+</figure>
+</div>
+<p><strong>Benchmarks that should change your choice:</strong></p>
+<ul>
+<li>If you find yourself editing constants to run a different experiment → move to files (step 3).</li>
+<li>If a string-vs-int config bug reaches production → add validation (Pydantic, step 4).</li>
+<li>If you’re copy-pasting whole YAML files to vary one component, or manually looping over hyperparameter combinations → adopt Hydra composition/multirun (step 5).</li>
+<li>If you maintain more than 2-3 environment variants in parallel → Dynaconf or Pydantic environments (step 6).</li>
+<li>If your config exceeds a few hundred lines or several thousand across environments → watch Dynaconf performance; consider splitting/composition.</li>
+</ul>
+<p><strong>Anti-patterns to avoid regardless of tool:</strong> hardcoding secrets; committing <code>.env</code>; using <code>yaml.load</code> instead of <code>safe_load</code>; treating config as an afterthought (the technical-debt trap); and over-adopting Hydra for a solo project that a single YAML file would serve.</p>
+</section>
+<section id="further-reading" class="level3">
+<h3 class="anchored" data-anchor-id="further-reading">5. Further reading</h3>
+<ul>
+<li>Omry Yadan (Hydra author), “Hydra — A fresh look at configuration for Machine Learning projects” (PyTorch/Medium) — the canonical Hydra rationale.</li>
+<li>Jesper Dramsch, “How Hydra configs have sped up my machine learning development workflow” — pragmatic ML walkthrough with gotchas.</li>
+<li>Dan MacKinlay, “Hydra for configuring and tracking machine learning experiments” — the best critical/skeptical take.</li>
+<li>“Pydra: Pydantic and Hydra for configuration management of model training experiments” (Towards Data Science) — the hybrid pattern.</li>
+<li>Redowan Delowar (rednafi), “Pedantic configuration management with Pydantic” — env/secret separation patterns.</li>
+<li>Wencong Yang, “From Data Science to Production: Configuration Management for ML Code” (Medium) — data/model/service config framing.</li>
+<li>“The Twelve-Factor App,” Factor III: Config (12factor.net) — the foundational principle.</li>
+<li>GitGuardian, “Python Secrets Management: Best Practices for Secure Code” — secrets escalation ladder.</li>
+<li>Ruud van Asseldonk, “The YAML document from hell” — every YAML footgun.</li>
+<li>Leapcell, “Pydantic BaseSettings vs.&nbsp;Dynaconf” — head-to-head decision guidance.</li>
+<li>The lightning-hydra-template (ashleve, GitHub) — reference ML project structure with honest “why you shouldn’t use it” notes.</li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<ul>
+<li>IBM Data Science Best Practices — Configuration Management (constants, files, env vars; “must not be used for secrets!”).</li>
+<li>Wencong Yang, “From Data Science to Production: Configuration Management for ML Code,” Medium (data/model/service buckets; hardcoding’s two production challenges).</li>
+<li>Leo Liu, “Best Practices for Configuration Management in Python Data Analysis Projects,” CodeX/Medium (security/flexibility/scalability/maintainability rationale; Pydantic Settings vs BaseModel; vault retrieval).</li>
+<li>“As a Novice: I Learned That Using Configuration Files… Makes Development More Efficient,” Towards Data Science (YAML for ML scoring; hardcoding comparison).</li>
+<li>Davis David, “How to Write Configuration Files in Your Machine Learning Project,” Analytics Vidhya (changing params in source code anti-pattern; PyYAML/safe_load).</li>
+<li>Krystian Safjan, “Python — Configuration Management” (survey of Hydra, Dynaconf, OmegaConf, ConfigParser, Cerberus, Pydantic).</li>
+<li>“Configuration management for model training experiments using Pydantic and Hydra” (Pydra), Towards Data Science (Hydra strengths/weaknesses; validation offloaded to app; interpolation gaps).</li>
+<li>gaohongnan, “Pydantic And Hydra” (Hydra 1.1 <code>_self_</code> composition; passing Hydra config to Pydantic).</li>
+<li>Leapcell, “Pydantic BaseSettings vs.&nbsp;Dynaconf” (when to choose each; Dynaconf encryption; type-safety tradeoff).</li>
+<li>jsschools, “6 Essential Python Configuration Management Libraries” (per-tool recommendations; Hydra for scientific/research apps).</li>
+<li>Dan MacKinlay, “Hydra for configuring and tracking machine learning experiments” (mind-melting opinionation; OmegaConf less maintained; docs target experienced users; duplication of effort).</li>
+<li>Jesper Dramsch, “How Hydra configs have sped up my ML workflow” (velocity benefits; lazy-resolution timestamp gotcha; OmegaConf.to_container for loggers).</li>
+<li>Decoding ML / “Mastering ML Configurations by leveraging OmegaConf and Hydra” (multi-run example; type validation use cases).</li>
+<li>Typed Settings docs &amp; Stefan Scherfke blog (Dynaconf no-predefined-schema philosophy; DYNACONF_ prefix conflicts; Vault/Redis; single-file environments).</li>
+<li>Dynaconf GitHub issue #713 (setenv 0.2s each; v3.1.5 ~3x slower than v2.2.3 on ~2,500-line settings).</li>
+<li>Dynaconf Discussion #608 (Pydantic BaseSettings boilerplate; nested-schema env reading breaks; community demand for schema validation).</li>
+<li>rednafi (Redowan Delowar), “Pedantic configuration management with Pydantic” (env overrides .env; sensitive vars in shell env, insensitive in .env).</li>
+<li>CodeCut, “Pydantic-settings: Type-Safe Config Management” (string-typing bugs in os.getenv; constrained DSN types).</li>
+<li>Towards Data Science, “Manage Environment Variables with Pydantic” (validation aliases; .env workflow).</li>
+<li>Alexandra Zaharia, “Python configuration and data classes” (identifiers over strings; configparser encapsulation).</li>
+<li>dev.to/eblocha, “Using Dataclasses for Configuration in Python” (dict access error-prone; testability).</li>
+<li>Naren Yellavula, “When to use Python Data classes” (dataclass vs regular class pros/cons; no complex constructor logic).</li>
+<li>Opensource.com, “Use Python to parse configuration files” (INI/JSON/YAML/TOML tradeoffs; configparser + PyYAML).</li>
+<li>Honeybadger, “INI vs.&nbsp;YAML” &amp; pythontutorials.net “ConfigObj vs ConfigParser vs YAML” (configparser strings, no nesting; YAML safe_load; whitespace).</li>
+<li>Medium/The Pythonworld, “Most Developers Don’t Know Python Has a Built-In Config File Parser” (configparser “hidden gem”; best for simple/flat).</li>
+<li>Python Wiki ConfigParserShootout &amp; python.org docs (Guido’s anti-nesting stance; string storage; optionxform lowercasing).</li>
+<li>Ruud van Asseldonk, “The YAML document from hell,” Posit “In Defense of YAML,” HitchDev StrictYAML, bram.us “YAML: The Norway Problem” (Norway problem; YAML 1.1 vs 1.2; arbitrary code execution via tags).</li>
+<li>The Twelve-Factor App, Factor III (12factor.net) (config-in-code violation; open-source litmus test; env vars).</li>
+<li>Karl Popper, <em>The Logic of Scientific Discovery</em> (1959) (“non-reproducible single occurrences are of no significance to science”); Daily Dose of DS, “Ensuring Reproducibility in Machine Learning Systems” (the adage in ML practice).</li>
+<li>Google, “Hidden Technical Debt in Machine Learning Systems” (config as afterthought quote), via Julien Beaulieu’s flexible config system post.</li>
+<li>GitGuardian, “Python Secrets Management” and DZone “How To Handle Secrets in Python” (.env, env vars, cloud managers, Vault/hvac; secrets module vs random).</li>
+<li>GitHub SajixInc Discussion #58 &amp; dev.to (python-dotenv best practices; never commit; per-environment .env files).</li>
+<li>Medium/Vivek, “Managing Secrets in Real-World Production Python Projects” (.env for local only; injected via Docker/K8s/CI in production).</li>
+<li>pydantic-settings docs (secrets_dir for Docker/K8s; AWS &amp; GCP Secret Manager sources; source precedence).</li>
+<li>lightning-hydra-template (ashleve) &amp; “yet another lightning hydra template” (gorodnitskiy), KDnuggets Hydra tutorial, Appsilon (adoption; “not for production”; per-run output dirs; known breakages).</li>
+<li>Adoption metrics (GitHub repo pages and pypistats.org, observed June 10, 2026): Hydra 10.3k stars, hydra-core 15,381,160 downloads last month; OmegaConf 2.4k stars, omegaconf 32,488,956/month; Dynaconf 4.3k stars, ~3.0M/month; Pydantic 27K stars, pydantic 1,028,307,353/month (Pydantic’s June 2026 “10 Billion Downloads” post cites “over 550M/month”); pydantic-settings 1.4k stars, ~91.9M/month; python-dotenv 8.8k stars, ~595.7M/month; PyYAML 2.9k stars, ~1.09B/month; PyTorch Lightning 10,792,750/month.</li>
+</ul>
+</section>
+</section>
+<section id="recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="recommendations">Recommendations</h2>
+<ol type="1">
+<li><strong>Start at the lowest rung that fits.</strong> For a solo notebook, a <code>config.py</code> of constants plus python-dotenv for any keys is enough. Don’t adopt Hydra “because ML papers use it.”</li>
+<li><strong>Add python-dotenv + <code>.gitignore</code> the instant you touch a credential.</strong> This is the single highest-leverage habit for safety. Rotate any secret that ever hit git.</li>
+<li><strong>For production ML services/APIs, default to Pydantic Settings.</strong> The fail-fast validation pays for itself the first time it catches a bad env var at startup instead of mid-pipeline.</li>
+<li><strong>For research with sweeps, adopt Hydra via a community template</strong> (e.g., lightning-hydra-template) rather than from scratch — practitioners universally report the blank-page problem. Resolve configs early to avoid lazy-interpolation bugs, and consider the Hydra-composes/Pydantic-validates hybrid.</li>
+<li><strong>For many environments or secret backends, evaluate Dynaconf</strong>, but benchmark if your settings files are large (thousands of lines) given documented performance regressions.</li>
+<li><strong>Always <code>yaml.safe_load</code>, quote ambiguous YAML scalars, and use configparser’s typed getters.</strong> These eliminate the most common silent-corruption bugs.</li>
+<li><strong>Push secrets to a managed store (Vault / cloud secret manager) before production</strong>; <code>.env</code> is for local dev only.</li>
+</ol>
+</section>
+<section id="caveats" class="level2">
+<h2 class="anchored" data-anchor-id="caveats">Caveats</h2>
+<ul>
+<li><strong>Adoption numbers are point-in-time and noisy.</strong> GitHub stars and PyPI downloads (observed June 10, 2026) overstate real human usage — PyPI counts include CI/mirror/transitive-dependency traffic, which inflates low-level libraries like PyYAML, python-dotenv, and Pydantic disproportionately. Treat them as rough popularity signals, not usage censuses.</li>
+<li><strong>Several sources are vendor or SEO content</strong> (e.g., tool-comparison blogs, a Dynaconf “2025 ML” post making unsourced quantitative claims like “62% of Fortune 500 ML teams” and “reduces failures by 75%”). I have deliberately <strong>excluded those unverifiable statistics</strong>; treat any such precise adoption percentages with skepticism.</li>
+<li><strong>The YAML “Norway problem” is version-dependent.</strong> It stems from YAML 1.1 implicit typing; YAML 1.2’s Core Schema fixes it, but PyYAML still defaults to 1.1 behavior, so the footgun remains live in most Python code today.</li>
+<li><strong>Hydra criticism is partly subjective.</strong> The same flexibility one practitioner finds “mind-melting” another finds essential for sweeps; the strong consensus is narrower: it shines for research experimentation and is poorly suited to production deployment and data-pipeline orchestration.</li>
+<li><strong>Tool boundaries blur.</strong> Many real projects combine tools (YAML + dataclass; Hydra + Pydantic; PyYAML config + dotenv secrets), so “choosing one” is often choosing a primary plus a secrets strategy.</li>
+<li>Experiment-tracking tools (MLflow, Weights &amp; Biases) overlap conceptually with config management but were intentionally excluded from this guide per scope.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.matthewburns\.net\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
