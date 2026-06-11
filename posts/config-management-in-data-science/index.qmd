@@ -56,9 +56,7 @@ categories:
 
 ![The configuration complexity ladder. Move up only when the pain of the current rung justifies it.](complexity-ladder.svg)
 
-## Details
-
-### What configuration management is
+## What configuration management is
 
 Configuration is everything that controls _how_ your code runs but isn't the
 logic itself: file paths, model hyperparameters, database URLs, API ports,
@@ -67,21 +65,20 @@ keeping those values **separate from, and external to, your source code**, so
 they can be changed, tracked, and varied across environments without editing
 (and re-testing) the code.
 
-The Twelve-Factor App methodology frames the canonical principle: "Config
-varies substantially across deploys, code does not," and a violation is
-"store[ing] config as constants in the code." Its litmus test is whether your
-codebase "could be made open source at any moment, without compromising any
-credentials."
+The [Twelve-Factor App methodology](#ref-12factor) frames the canonical
+principle: "Config varies substantially across deploys, code does not," and a
+violation is "storing config as constants in the code." Its litmus test: could
+your codebase "be made open source at any moment, without compromising any
+credentials?"
 
 In data science specifically, configuration spans three rough buckets (per
-Wencong Yang's "From Data Science to Production"): **data** config (periods,
-paths, splits), **model** config (hyperparameters, architecture), and
-**service** config (API ports, replicas). A poor config system, as one ML
-config paper (confr) notes, "can lead to repetitive code that is hard to
-maintain, understand, and brittle due to insufficient configuration validation
-logic."
+[Wencong Yang](#ref-yang)): **data** config (periods, paths, splits), **model**
+config (hyperparameters, architecture), and **service** config (API ports,
+replicas). A poor config system, as one ML config paper notes, "can lead to
+repetitive code that is hard to maintain, understand, and brittle due to
+insufficient configuration validation logic" [[confr paper](#ref-confr)].
 
-### Why it matters to data scientists specifically
+## Why it matters to data scientists specifically
 
 Google's famous "Hidden Technical Debt in Machine Learning Systems" paper
 warns: "both researchers and engineers may treat configuration (and extension
@@ -91,34 +88,32 @@ I care."
 
 Concretely:
 
-- **Reproducibility.** The principle traces to Karl Popper, _The Logic of
-  Scientific Discovery_ (1959): "non-reproducible single occurrences are of no
-  significance to science." The ML community invokes it constantly as the adage
-  "if it isn't reproducible, it's not science." Davis David (Analytics Vidhya)
-  describes the anti-pattern directly: practitioners "change the values of the
-  different parameters directly from the source code and run the experiment
-  again and again... you can lose track of the different experiments you have
-  done previously." A code-version + config-file pair should uniquely determine
-  a run's behavior.
+- **Reproducibility.** [Davis David (Analytics Vidhya)](#ref-davis) describes
+  the anti-pattern directly: practitioners "change the values of the different
+  parameters directly from the source code and run the experiment again and
+  again... you can lose track of the different experiments you have done
+  previously." A code-version + config-file pair should uniquely determine a
+  run's behavior.
 
   ![Hardcoded constants (left) vs. externalized config with git history (right).](reproducibility-split.svg)
 
-- **Experiment velocity.** Jesper Dramsch reports that Hydra configs "sped up
-  my machine learning development workflow" by letting him "pass the config and
-  simply add new config settings" instead of "adjusting the function signature
-  for every new part."
-- **Deployment portability.** Wencong Yang notes hardcoding "may work for a
-  quick demo, but it poses two challenges for models in production": continuous
-  hyperparameter tuning and easy deployment "in different environments."
+- **Experiment velocity.** [Jesper Dramsch](#ref-dramsch) reports that Hydra
+  configs "sped up my machine learning development workflow" by letting him
+  "pass the config and simply add new config settings" instead of "adjusting
+  the function signature for every new part."
+- **Deployment portability.** [Wencong Yang](#ref-yang) notes hardcoding "may
+  work for a quick demo, but it poses two challenges for models in production":
+  continuous hyperparameter tuning and easy deployment "in different
+  environments."
 - **Collaboration & safety.** The moment your notebook becomes a shared repo,
   hardcoded credentials become a liability and edited-in-place constants become
   merge-conflict and reproducibility hazards.
 
-### A Survey of approaches
+## A Survey of approaches
 
 ![Feature comparison across all eight tools covered in this guide.](tool-comparison.svg)
 
-#### 1. Constants at the top of a file (inline hardcoding)
+### 1. Constants at the top of a file (inline hardcoding)
 
 **Overview.** Define values as ALL-CAPS constants at the top of a module or in
 a dedicated `constants.py`. The simplest possible step above scattering magic
@@ -131,20 +126,25 @@ LEARNING_RATE = 3e-4
 DATA_PATH = "data/raw/train.csv"
 ```
 
-**Pros.** Zero dependencies, zero learning curve, centralized, easy to read.
-IBM's Data Science Best Practices calls constants "the preferred approach for
-configuration that is hardly ever changed." **Cons.** No separation of config
-from code (a Twelve-Factor violation if it varies across deploys); changing
-config means a code change and commit; no validation; Python "doesn't have a
-hard-enforced visibility concept," so a "constant" can be mutated accidentally.
-**Best for.** Tiny solo scripts, notebooks, throwaway prototypes, and genuinely
-fixed values (e.g., number of RGB channels = 3). **Never for secrets** — IBM is
-explicit: "it must not be used for secrets!" **Secrets.** Forbidden. Hardcoded
-secrets are the canonical security anti-pattern.
+**Pros:** Zero dependencies, zero learning curve, centralized, easy to read.
+[IBM's Data Science Best Practices](#ref-ibm) calls constants "the preferred
+approach for configuration that is hardly ever changed."
 
-#### 2. config.yaml + PyYAML
+**Cons:** No separation of config from code (a [Twelve-Factor](#ref-12factor)
+violation if it varies across deploys); changing config means a code change and
+commit; no validation; Python "doesn't have a hard-enforced visibility
+concept," so a "constant" can be mutated accidentally.
 
-**Overview.** Store config in a human-readable YAML file; load with PyYAML into
+**Best for:** Tiny solo scripts, notebooks, throwaway prototypes, and genuinely
+fixed values (e.g., number of RGB channels = 3). **Never for secrets** —
+[IBM](#ref-ibm) is explicit: "it must not be used for secrets!"
+
+**Secrets:** Forbidden. Hardcoded secrets are the canonical security
+anti-pattern.
+
+### 2. config.yaml + PyYAML
+
+**Overview:** Store config in a human-readable YAML file; load with PyYAML into
 a Python dict. The most common file-based pattern in ML tutorials.
 
 ```python
@@ -154,27 +154,31 @@ with open("config.yaml") as f:
 lr = config["model"]["learning_rate"]
 ```
 
-**Pros.** Highly readable, supports nesting and lists, language-agnostic,
-near-universal in ML. Easy for non-developers to edit. **Cons.** Several
-well-documented footguns:
+**Pros:** Highly readable, supports nesting and lists, language-agnostic,
+near-universal in ML. Easy for non-developers to edit.
+
+**Cons:** Several well-documented footguns:
 
 - **`yaml.load()` without `safe_load` can execute arbitrary code** — always use
-  `yaml.safe_load`.
+  `yaml.safe_load` [[Davis David](#ref-davis)].
 - **The "Norway problem":** under YAML 1.1 (which PyYAML still follows), the
   bare scalar `NO` parses to boolean `False`, as do `yes/no/on/off/y/n`.
   Country codes, and the variable names `n`/`y` common in DS code, silently
   become booleans. Version numbers like `9.3` become floats. Fix: quote
-  ambiguous strings, or use StrictYAML.
+  ambiguous strings, or use StrictYAML [[bram.us](#ref-norway)].
 - Whitespace/indentation sensitivity; dict access (`config["a"]["b"]`) is
   stringly-typed and refactor-unfriendly; no validation or type enforcement out
-  of the box. **Best for.** Most small-to-medium DS projects; sharing configs
-  across tools/languages; any project where humans hand-edit hierarchical
-  settings. Often paired with `python-box` for dot-access or a
-  dataclass/Pydantic layer for validation. **Secrets.** YAML files can hold
-  secrets but then must be git-ignored; better to keep secrets out and inject
-  via env vars.
+  of the box.
 
-#### 3. configparser / .ini files
+**Best for:** Most small-to-medium DS projects; sharing configs across
+tools/languages; any project where humans hand-edit hierarchical settings.
+Often paired with `python-box` for dot-access or a dataclass/Pydantic layer for
+validation.
+
+**Secrets:** YAML files can hold secrets but then must be git-ignored; better
+to keep secrets out and inject via env vars.
+
+### 3. configparser / .ini files
 
 **Overview.** Python's standard-library parser for INI-format files (sections
 of key=value). Zero dependencies.
@@ -186,18 +190,22 @@ config.read("app.ini")
 port = config.getint("server", "port")   # explicit type getter
 ```
 
-**Pros.** Built into Python (no install), simple, human-readable, stable,
-comments supported. One Medium author calls it "a hidden gem" most developers
-don't know exists. **Cons.** **Everything is a string by default** — you must
-call `getint`/`getfloat`/`getboolean` manually. **No native nested sections**
-(Guido van Rossum deliberately resisted nesting to discourage mixing config
-with data). No lists/arrays. Lowercases keys unless you override `optionxform`.
-`read()` silently does nothing if the file is missing. **Best for.** Small,
-flat, Python-only configs; CLI tools; legacy systems; "zero-dependency"
-requirements. Falls apart with hierarchical ML configs. **Secrets.** No special
-support; same git-ignore caveats as any file.
+**Pros:** Built into Python (no install), simple, human-readable, stable,
+comments supported. [One Medium author](#ref-configparser-medium) calls it "a
+hidden gem" most developers don't know exists.
 
-#### 4. Python dataclasses as config containers
+**Cons:** **Everything is a string by default** — you must call
+`getint`/`getfloat`/`getboolean` manually. **No native nested sections** (Guido
+van Rossum deliberately resisted nesting to discourage mixing config with
+data). No lists/arrays. Lowercases keys unless you override `optionxform`.
+`read()` silently does nothing if the file is missing.
+
+**Best for:** Small, flat, Python-only configs; CLI tools; legacy systems;
+"zero-dependency" requirements. Falls apart with hierarchical ML configs.
+
+**Secrets:** No special support; same git-ignore caveats as any file.
+
+### 4. Python dataclasses as config containers
 
 **Overview.** Use `@dataclass` (stdlib, 3.7+) to hold config as typed
 attributes, giving dot-access and IDE autocompletion. Often loaded from a
@@ -213,19 +221,23 @@ class ModelConfig:
     optimizer: str = "adam"
 ```
 
-**Pros.** No third-party dependency, type hints, `config.model.lr` instead of
+**Pros:** No third-party dependency, type hints, `config.model.lr` instead of
 error-prone `config["model"]["lr"]`, testable, less boilerplate than regular
-classes. Alexandra Zaharia argues config should be handled "through identifiers
-rather than strings." **Cons.** Type hints are **not enforced at runtime** (a
-dataclass won't reject `epochs="ten"`); no built-in file loading, validation,
-or env-var integration — you build the glue yourself. "Cannot perform complex
-constructor initialization" cleanly. Extra keys in a source dict raise
-`TypeError`. **Best for.** Projects wanting structure and type-hints without a
-dependency; a clean schema layer on top of YAML/INI. A natural stepping stone
-to Pydantic when you need _enforced_ validation. **Secrets.** No native
-support; secrets injected via env vars at construction time.
+classes. [Alexandra Zaharia](#ref-zaharia) argues config should be handled
+"through identifiers rather than strings."
 
-#### 5. Pydantic / pydantic-settings
+**Cons:** Type hints are **not enforced at runtime** (a dataclass won't reject
+`epochs="ten"`); no built-in file loading, validation, or env-var integration —
+you build the glue yourself. Extra keys in a source dict raise `TypeError`.
+
+**Best for:** Projects wanting structure and type-hints without a dependency; a
+clean schema layer on top of YAML/INI. A natural stepping stone to Pydantic
+when you need _enforced_ validation.
+
+**Secrets:** No native support; secrets injected via env vars at construction
+time.
+
+### 5. Pydantic / pydantic-settings
 
 **Overview.** Pydantic is a runtime validation library using type annotations;
 `pydantic-settings` (its `BaseSettings` class) adds loading from env vars,
@@ -243,28 +255,34 @@ class Settings(BaseSettings):
 settings = Settings()
 ```
 
-**Pros.** **Runtime type enforcement and validation** — "the service refuses to
-start" on bad config, turning "mysterious behavior into clear startup errors."
-Rich constrained types (`PostgresDsn`, `RedisDsn`, `EmailStr`), automatic
-env-var reading, `.env` support, defaults, nested models. The recommended
-settings approach in FastAPI. Massive adoption (pydantic at 1,028,307,353
-downloads last month per pypistats.org) means a strong ecosystem and
-autocompletion. **Cons.** "Requires you to write a lot of code if you want
-features like having different environments, reading from sources that aren't
-ENV vars, writing to files." The "auto ENV var reading breaks down for pydantic
-if you do nested schemas" (needs `env_nested_delimiter`). It validates but
-doesn't _compose/merge_ configs across files the way Hydra does — practitioners
-note it lacks expression-based interpolation. Can be "verbose for simple
-projects." **Best for.** Production ML services and APIs; anything that must
-fail fast on misconfiguration; projects already using Pydantic/FastAPI. The
-validation layer in a Hydra+Pydantic hybrid. **Secrets.** **Best-in-class
-delegation/integration.** Reads OS env vars and `.env` (env always overrides
-`.env`), supports a `secrets_dir` for Docker/Kubernetes file-based secrets, and
-has source classes for AWS Secrets Manager and Google Cloud Secret Manager.
-Recommended pattern (Redowan Delowar): non-sensitive vars in `.env` (committed
-or not), sensitive ones injected as shell env vars.
+**Pros:** **Runtime type enforcement and validation** — [CodeCut](#ref-codecut)
+notes the service "refuses to start" on bad config, turning "mysterious
+behavior into clear startup errors." Rich constrained types (`PostgresDsn`,
+`RedisDsn`, `EmailStr`), automatic env-var reading, `.env` support, defaults,
+nested models. The recommended settings approach in FastAPI. Massive adoption
+(over 550M downloads/month per
+[Pydantic's own June 2026 post](#ref-pydantic-10b)) means a strong ecosystem
+and autocompletion.
 
-#### 6. Dynaconf
+**Cons:** "Requires you to write a lot of code if you want features like having
+different environments, reading from sources that aren't ENV vars, writing to
+files" [[Dynaconf Discussion #608](#ref-dynaconf-discussion)]. The "auto ENV
+var reading breaks down for pydantic if you do nested schemas" (needs
+`env_nested_delimiter`). It validates but doesn't _compose/merge_ configs
+across files the way Hydra does. Can be "verbose for simple projects."
+
+**Best for:** Production ML services and APIs; anything that must fail fast on
+misconfiguration; projects already using Pydantic/FastAPI. The validation layer
+in a Hydra+Pydantic hybrid.
+
+**Secrets:** Best-in-class delegation/integration. Reads OS env vars and `.env`
+(env always overrides `.env`), supports a `secrets_dir` for Docker/Kubernetes
+file-based secrets, and has source classes for AWS Secrets Manager and Google
+Cloud Secret Manager. Recommended pattern ([Redowan Delowar](#ref-rednafi)):
+non-sensitive vars in `.env` (committed or not), sensitive ones injected as
+shell env vars.
+
+### 6. Dynaconf
 
 **Overview.** A layered settings manager that loads and merges config from
 multiple file formats (TOML, YAML, JSON, INI, .py) and env vars, with
@@ -280,24 +298,28 @@ settings = Dynaconf(
 print(settings.database.host)
 ```
 
-**Pros.** Handles dev/staging/prod in a single file via sections; loads from
-many sources with defined precedence; "lazy loading"; reads secrets from
+**Pros:** Handles dev/staging/prod in a single file via sections; loads from
+many sources with defined precedence; lazy loading; reads secrets from
 **HashiCorp Vault and Redis**; env-var overrides; Jinja/format-string
-interpolation. Strong for "config sprawl" in microservices. (4.3k stars; ~3.0M
-downloads/month per pypistats.org.) **Cons.** **No predefined schema** — "you
-don't predefine the structure of your settings in advance," which makes
-defaults and validators "a bit more tedious" and is "not as inherently
-type-safe as Pydantic for direct access." Steeper learning curve than simple
-tools. Default `DYNACONF_` env prefix "may lead to conflicts." Documented
-performance issues: a maintainer-filed issue (#713) notes `settings.setenv()`
-"takes 0.2 seconds" each call and v3.1.5 ran "nearly 3 times slower" than
-v2.2.3 on a large (~2,500-line) settings file. **Best for.** Multi-environment
-apps and microservices; teams wanting one tool for config + secrets across many
-formats; data-engineering pipelines with many connectors. **Secrets.**
-**Native.** Encrypted values, Vault and Redis integration, separate
+interpolation. Strong for "config sprawl" in microservices.
+
+**Cons:** **No predefined schema** — "you don't predefine the structure of your
+settings in advance," which makes defaults and validators "a bit more tedious"
+and is "not as inherently type-safe as Pydantic" [[Leapcell](#ref-leapcell)].
+Steeper learning curve than simple tools. Default `DYNACONF_` env prefix "may
+lead to conflicts." Documented performance issues: a maintainer-filed
+[GitHub issue #713](#ref-dynaconf-perf) notes `settings.setenv()` "takes 0.2
+seconds" each call and v3.1.5 ran "nearly 3 times slower" than v2.2.3 on a
+large (~2,500-line) settings file.
+
+**Best for:** Multi-environment apps and microservices; teams wanting one tool
+for config + secrets across many formats; data-engineering pipelines with many
+connectors.
+
+**Secrets:** Native. Encrypted values, Vault and Redis integration, separate
 `.secrets.toml` convention.
 
-#### 7. Hydra (Meta/FAIR)
+### 7. Hydra (Meta/FAIR)
 
 **Overview.** A framework (built on OmegaConf) for **composing hierarchical
 configs from multiple YAML files** and overriding them from the command line,
@@ -317,32 +339,32 @@ def train(cfg: DictConfig):
 
 ![How Hydra composes multiple YAML config groups into a single merged DictConfig object.](hydra-composition.svg)
 
-**Pros.** Config **composition** via config groups (swap `model=resnet` or
-`dataset=v2`); powerful CLI overrides distinguishing override (`key=val`) from
-add (`+key=val`); **`--multirun` sweeps** across hyperparameters; automatic
-timestamped output dir per run capturing exact params (huge for
-reproducibility); strong ML ecosystem (the PyTorch Lightning + Hydra templates;
-Lightning itself logged 10,792,750 downloads last month per pypistats.org).
-Omry Yadan's "fresh look at configuration for ML" is a foundational reference.
-**Cons.** The most-criticized tool here. Dan MacKinlay: Hydra is "at a
-mind-melting intersection of opinionation and flexibility... a profusion of
-quasi-OOP inheritance patterns," and "you end up needing to know that it is
-built upon OmegaConf, which is less maintained and worse documented than Hydra"
-— "these days I use simpler systems... because hydra made me confused." Docs
-"target experienced users, not new users." Validation is "offloaded largely to
-application" (no rich runtime validation without Pydantic). Lazy interpolation
-can resolve at the wrong time (e.g., `now:` timestamps differing between
-training and inference). The official PyPI package is `hydra-core` (the bare
-`hydra` is unrelated). Widely called **overkill for solo or simple projects**.
-**Best for.** Research with many experiments/hyperparameter sweeps; deep
-learning; teams needing reproducible, composable configs and per-run artifact
-tracking. The community consensus (lightning-hydra-template authors) is
-explicit: it's "a fast experimentation tool," "not fitted to be a
-production/deployment environment." **Secrets.** **Delegates entirely** — no
-native secrets management. Use env-var interpolation (`${oc.env:VAR}`) or pair
-with python-dotenv/a secrets manager.
+**Pros:** Config **composition** via config groups (swap `model=resnet` or
+`dataset=v2`); powerful CLI overrides; **`--multirun` sweeps** across
+hyperparameters; automatic timestamped output dir per run capturing exact
+params (huge for reproducibility); strong ML ecosystem (the PyTorch Lightning +
+Hydra templates).
 
-#### 8. OmegaConf
+**Cons:** The most-criticized tool here. [Dan MacKinlay](#ref-mackinlay)
+writes: Hydra is "at a mind-melting intersection of opinionation and
+flexibility" and "you end up needing to know that it is built upon OmegaConf,
+which is less maintained and worse documented than Hydra" — "these days I use
+simpler systems... because hydra made me confused." Validation is "offloaded
+largely to application" without Pydantic [[Pydra/TDS](#ref-pydra)]. Lazy
+interpolation can resolve at the wrong time (e.g., `now:` timestamps differing
+between training and inference) [[Dramsch](#ref-dramsch)]. Widely called
+**overkill for solo or simple projects**.
+
+**Best for:** Research with many experiments/hyperparameter sweeps; deep
+learning; teams needing reproducible, composable configs and per-run artifact
+tracking. The [lightning-hydra-template](#ref-lightning-hydra) authors are
+explicit: it's "a fast experimentation tool," "not fitted to be a
+production/deployment environment."
+
+**Secrets:** Delegates entirely. Use env-var interpolation (`${oc.env:VAR}`) or
+pair with python-dotenv/a secrets manager.
+
+### 8. OmegaConf
 
 **Overview.** The hierarchical config engine **underneath Hydra**, usable
 standalone. Merges configs from YAML, dataclasses, and CLI into one object with
@@ -357,20 +379,24 @@ cfg = OmegaConf.merge(base, cli)
 print(cfg.model.lr)   # supports ${...} interpolation
 ```
 
-**Pros.** **Variable interpolation** (`${train.num_classes}` referenced
+**Pros:** **Variable interpolation** (`${train.num_classes}` referenced
 elsewhere); merges multiple sources cleanly; dot-access; optional type-checking
 via structured configs (dataclasses); the serialization workhorse
-(`OmegaConf.to_container(cfg, resolve=True)`) loggers expect. **Cons.** "Less
-maintained and worse documented than Hydra" (MacKinlay); interpolation is
-**lazy**, which can bite you (resolve early before saving checkpoints); the
-ANTLR dependency for interpolation grammar is heavy enough that alternatives
-like upsilonconf exist specifically to avoid it; standalone it lacks Hydra's
-CLI/composition conveniences. **Best for.** When you want interpolation and
-merging without Hydra's full framework; as the layer you reach into when
-Hydra's abstractions leak; structured-config type checking. **Secrets.**
-Supports `${oc.env:VAR}` env interpolation; otherwise delegates.
+(`OmegaConf.to_container(cfg, resolve=True)`) loggers expect
+[[Dramsch](#ref-dramsch)].
 
-#### 9. python-dotenv / .env files
+**Cons:** [MacKinlay](#ref-mackinlay) notes it is "less maintained and worse
+documented than Hydra." Interpolation is **lazy**, which can bite you — resolve
+early before saving checkpoints. The ANTLR dependency for interpolation grammar
+is heavy.
+
+**Best for:** When you want interpolation and merging without Hydra's full
+framework; as the layer you reach into when Hydra's abstractions leak;
+structured-config type checking.
+
+**Secrets:** Supports `${oc.env:VAR}` env interpolation; otherwise delegates.
+
+### 9. python-dotenv / .env files
 
 **Overview.** Loads key-value pairs from a `.env` file into environment
 variables, which you then read with `os.getenv`. The standard local-development
@@ -384,37 +410,41 @@ api_key = os.getenv("API_KEY")
 db_url = os.getenv("DATABASE_URL")
 ```
 
-**Pros.** Dead simple; keeps secrets out of code; aligns with Twelve-Factor;
-near-universal; supports per-environment files (`.env.development`,
-`.env.production`). The standard way to load AWS/GCP keys, DB creds in DS
-notebooks. **Cons.** **No validation or typing** — `os.getenv` returns strings
-(`bool(os.getenv("DEBUG"))` is a classic bug since any non-empty string is
-truthy). Flat namespace only. It is a _secrets/env loader_, not a full config
-system — you'll outgrow it for structured config. **`.env` must never be
-committed** (add to `.gitignore`). **Best for.** Local development secrets and
-environment-specific values; the secrets half of a "PyYAML/Pydantic for
-config + dotenv for secrets" split. Production teams inject env vars via
-Docker/K8s/CI rather than shipping `.env` files. **Secrets.** This _is_ the
-entry-level secrets tool. But "in real deployments, .env files are not used —
-environment variables are injected by Docker, Kubernetes, CI/CD" and secrets
-live in AWS Secrets Manager / Azure Key Vault / Vault. pydantic-settings layers
-validation on top of the same `.env`.
+**Pros:** Dead simple; keeps secrets out of code; aligns with
+[Twelve-Factor](#ref-12factor); near-universal; supports per-environment files
+(`.env.development`, `.env.production`). The standard way to load AWS/GCP keys
+and DB credentials in DS notebooks.
 
-### How secrets fit in (cross-cutting)
+**Cons:** **No validation or typing** — `os.getenv` returns strings
+([CodeCut](#ref-codecut) flags `bool(os.getenv("DEBUG"))` as a classic bug,
+since any non-empty string is truthy). Flat namespace only. It is a
+_secrets/env loader_, not a full config system. **`.env` must never be
+committed** (add to `.gitignore`).
+
+**Best for:** Local development secrets and environment-specific values; the
+secrets half of a "PyYAML/Pydantic for config + dotenv for secrets" split.
+Production teams inject env vars via Docker/K8s/CI rather than shipping `.env`
+files [[Vivek](#ref-vivek)].
+
+**Secrets:** This _is_ the entry-level secrets tool. "In real deployments, .env
+files are not used — environment variables are injected by Docker, Kubernetes,
+CI/CD" and secrets live in AWS Secrets Manager / Azure Key Vault / Vault.
+
+## How secrets fit in (cross-cutting)
 
 - **Config vs. secrets are different problems.** Non-secret config
   (hyperparameters, paths, flags) is meant to be versioned and shared. Secrets
   (passwords, API keys, tokens) must never enter git. Most config _files_ can
   technically hold secrets but shouldn't.
-- **When is secrets management necessary?** Per GitGuardian and Twelve-Factor:
+- **When is secrets management necessary?** Per [Twelve-Factor](#ref-12factor):
   as soon as code is shared with a team, committed to a repo, or deployed. For
   a purely local solo notebook with no credentials, it isn't. The litmus test:
   could you open-source the repo right now safely?
 - **The escalation ladder for secrets:** hardcoding (never) → environment
   variables / `.env` (local dev) → cloud secret managers (AWS Secrets Manager,
-  Azure Key Vault, GCP Secret Manager) or HashiCorp Vault (production). "Once
-  secrets are pushed to Git, they are already compromised" — rotate
-  immediately.
+  Azure Key Vault, GCP Secret Manager) or HashiCorp Vault (production).
+  ["Once secrets are pushed to Git, they are already compromised"](#ref-gitguardian)
+  — rotate immediately.
 - **Tool integration:** dotenv (load only), Pydantic Settings (env + `.env` +
   secrets_dir + cloud manager sources), Dynaconf (Vault/Redis + encrypted
   values) integrate secrets natively. Hydra, OmegaConf, PyYAML, configparser,
@@ -423,7 +453,7 @@ validation on top of the same `.env`.
 
 ![The secrets escalation ladder: from hardcoded (never) to .env (local dev) to managed secret stores (production).](secrets-ladder.svg)
 
-### A decision framework
+## A decision framework
 
 Ask these questions in order:
 
@@ -440,9 +470,10 @@ Ask these questions in order:
    → **Pydantic Settings**. It's the best default for production ML services
    and validation-critical pipelines.
 5. **Do you run many experiments / hyperparameter sweeps in research DL?** →
-   **Hydra + OmegaConf**, ideally from a community template. Accept the
-   learning curve; reach for the hybrid (Hydra composes, Pydantic validates) if
-   you need strict validation.
+   **Hydra + OmegaConf**, ideally from a
+   [community template](#ref-lightning-hydra). Accept the learning curve; reach
+   for the hybrid (Hydra composes, Pydantic validates) if you need strict
+   validation [[Pydra/TDS](#ref-pydra)].
 6. **Many deployment environments / microservices / multiple secret backends?**
    → **Dynaconf** (or Pydantic Settings + a secrets manager).
 7. **Zero-dependency, flat, Python-only config?** → **configparser**.
@@ -467,124 +498,6 @@ Ask these questions in order:
 `.env`; using `yaml.load` instead of `safe_load`; treating config as an
 afterthought (the technical-debt trap); and over-adopting Hydra for a solo
 project that a single YAML file would serve.
-
-### 5. Further reading
-
-- Omry Yadan (Hydra author), "Hydra — A fresh look at configuration for Machine
-  Learning projects" (PyTorch/Medium) — the canonical Hydra rationale.
-- Jesper Dramsch, "How Hydra configs have sped up my machine learning
-  development workflow" — pragmatic ML walkthrough with gotchas.
-- Dan MacKinlay, "Hydra for configuring and tracking machine learning
-  experiments" — the best critical/skeptical take.
-- "Pydra: Pydantic and Hydra for configuration management of model training
-  experiments" (Towards Data Science) — the hybrid pattern.
-- Redowan Delowar (rednafi), "Pedantic configuration management with Pydantic"
-  — env/secret separation patterns.
-- Wencong Yang, "From Data Science to Production: Configuration Management for
-  ML Code" (Medium) — data/model/service config framing.
-- "The Twelve-Factor App," Factor III: Config (12factor.net) — the foundational
-  principle.
-- GitGuardian, "Python Secrets Management: Best Practices for Secure Code" —
-  secrets escalation ladder.
-- Ruud van Asseldonk, "The YAML document from hell" — every YAML footgun.
-- Leapcell, "Pydantic BaseSettings vs. Dynaconf" — head-to-head decision
-  guidance.
-- The lightning-hydra-template (ashleve, GitHub) — reference ML project
-  structure with honest "why you shouldn't use it" notes.
-
-### References
-
-- IBM Data Science Best Practices — Configuration Management (constants, files,
-  env vars; "must not be used for secrets!").
-- Wencong Yang, "From Data Science to Production: Configuration Management for
-  ML Code," Medium (data/model/service buckets; hardcoding's two production
-  challenges).
-- Leo Liu, "Best Practices for Configuration Management in Python Data Analysis
-  Projects," CodeX/Medium (security/flexibility/scalability/maintainability
-  rationale; Pydantic Settings vs BaseModel; vault retrieval).
-- "As a Novice: I Learned That Using Configuration Files... Makes Development
-  More Efficient," Towards Data Science (YAML for ML scoring; hardcoding
-  comparison).
-- Davis David, "How to Write Configuration Files in Your Machine Learning
-  Project," Analytics Vidhya (changing params in source code anti-pattern;
-  PyYAML/safe_load).
-- Krystian Safjan, "Python — Configuration Management" (survey of Hydra,
-  Dynaconf, OmegaConf, ConfigParser, Cerberus, Pydantic).
-- "Configuration management for model training experiments using Pydantic and
-  Hydra" (Pydra), Towards Data Science (Hydra strengths/weaknesses; validation
-  offloaded to app; interpolation gaps).
-- gaohongnan, "Pydantic And Hydra" (Hydra 1.1 `_self_` composition; passing
-  Hydra config to Pydantic).
-- Leapcell, "Pydantic BaseSettings vs. Dynaconf" (when to choose each; Dynaconf
-  encryption; type-safety tradeoff).
-- jsschools, "6 Essential Python Configuration Management Libraries" (per-tool
-  recommendations; Hydra for scientific/research apps).
-- Dan MacKinlay, "Hydra for configuring and tracking machine learning
-  experiments" (mind-melting opinionation; OmegaConf less maintained; docs
-  target experienced users; duplication of effort).
-- Jesper Dramsch, "How Hydra configs have sped up my ML workflow" (velocity
-  benefits; lazy-resolution timestamp gotcha; OmegaConf.to_container for
-  loggers).
-- Decoding ML / "Mastering ML Configurations by leveraging OmegaConf and Hydra"
-  (multi-run example; type validation use cases).
-- Typed Settings docs & Stefan Scherfke blog (Dynaconf no-predefined-schema
-  philosophy; DYNACONF\_ prefix conflicts; Vault/Redis; single-file
-  environments).
-- Dynaconf GitHub issue #713 (setenv 0.2s each; v3.1.5 ~3x slower than v2.2.3
-  on ~2,500-line settings).
-- Dynaconf Discussion #608 (Pydantic BaseSettings boilerplate; nested-schema
-  env reading breaks; community demand for schema validation).
-- rednafi (Redowan Delowar), "Pedantic configuration management with Pydantic"
-  (env overrides .env; sensitive vars in shell env, insensitive in .env).
-- CodeCut, "Pydantic-settings: Type-Safe Config Management" (string-typing bugs
-  in os.getenv; constrained DSN types).
-- Towards Data Science, "Manage Environment Variables with Pydantic"
-  (validation aliases; .env workflow).
-- Alexandra Zaharia, "Python configuration and data classes" (identifiers over
-  strings; configparser encapsulation).
-- dev.to/eblocha, "Using Dataclasses for Configuration in Python" (dict access
-  error-prone; testability).
-- Naren Yellavula, "When to use Python Data classes" (dataclass vs regular
-  class pros/cons; no complex constructor logic).
-- Opensource.com, "Use Python to parse configuration files" (INI/JSON/YAML/TOML
-  tradeoffs; configparser + PyYAML).
-- Honeybadger, "INI vs. YAML" & pythontutorials.net "ConfigObj vs ConfigParser
-  vs YAML" (configparser strings, no nesting; YAML safe_load; whitespace).
-- Medium/The Pythonworld, "Most Developers Don't Know Python Has a Built-In
-  Config File Parser" (configparser "hidden gem"; best for simple/flat).
-- Python Wiki ConfigParserShootout & python.org docs (Guido's anti-nesting
-  stance; string storage; optionxform lowercasing).
-- Ruud van Asseldonk, "The YAML document from hell," Posit "In Defense of
-  YAML," HitchDev StrictYAML, bram.us "YAML: The Norway Problem" (Norway
-  problem; YAML 1.1 vs 1.2; arbitrary code execution via tags).
-- The Twelve-Factor App, Factor III (12factor.net) (config-in-code violation;
-  open-source litmus test; env vars).
-- Karl Popper, _The Logic of Scientific Discovery_ (1959) ("non-reproducible
-  single occurrences are of no significance to science"); Daily Dose of DS,
-  "Ensuring Reproducibility in Machine Learning Systems" (the adage in ML
-  practice).
-- Google, "Hidden Technical Debt in Machine Learning Systems" (config as
-  afterthought quote), via Julien Beaulieu's flexible config system post.
-- GitGuardian, "Python Secrets Management" and DZone "How To Handle Secrets in
-  Python" (.env, env vars, cloud managers, Vault/hvac; secrets module vs
-  random).
-- GitHub SajixInc Discussion #58 & dev.to (python-dotenv best practices; never
-  commit; per-environment .env files).
-- Medium/Vivek, "Managing Secrets in Real-World Production Python Projects"
-  (.env for local only; injected via Docker/K8s/CI in production).
-- pydantic-settings docs (secrets_dir for Docker/K8s; AWS & GCP Secret Manager
-  sources; source precedence).
-- lightning-hydra-template (ashleve) & "yet another lightning hydra template"
-  (gorodnitskiy), KDnuggets Hydra tutorial, Appsilon (adoption; "not for
-  production"; per-run output dirs; known breakages).
-- Adoption metrics (GitHub repo pages and pypistats.org, observed June 10,
-  2026): Hydra 10.3k stars, hydra-core 15,381,160 downloads last month;
-  OmegaConf 2.4k stars, omegaconf 32,488,956/month; Dynaconf 4.3k stars,
-  ~3.0M/month; Pydantic 27K stars, pydantic 1,028,307,353/month (Pydantic's
-  June 2026 "10 Billion Downloads" post cites "over 550M/month");
-  pydantic-settings 1.4k stars, ~91.9M/month; python-dotenv 8.8k stars,
-  ~595.7M/month; PyYAML 2.9k stars, ~1.09B/month; PyTorch Lightning
-  10,792,750/month.
 
 ## Recommendations
 
@@ -636,3 +549,120 @@ project that a single YAML file would serve.
 - Experiment-tracking tools (MLflow, Weights & Biases) overlap conceptually
   with config management but were intentionally excluded from this guide per
   scope.
+
+## Further reading
+
+- Omry Yadan (Hydra author),
+  ["Hydra — A fresh look at configuration for Machine Learning projects"](https://medium.com/pytorch/hydra-a-fresh-look-at-configuration-for-machine-learning-projects-50583187b710)
+  — the canonical Hydra rationale.
+- Jesper Dramsch,
+  ["How Hydra configs have sped up my machine learning development workflow"](https://dramsch.net/articles/config-driven-machine-learning-development-with-hydra/)
+  — pragmatic ML walkthrough with gotchas.
+- Dan MacKinlay,
+  ["Hydra for configuring and tracking machine learning experiments"](https://danmackinlay.name/notebook/hydra_ml)
+  — the best critical/skeptical take.
+- "Pydra: Configuration management for model training experiments using
+  Pydantic and Hydra,"
+  [Towards Data Science](https://towardsdatascience.com/configuration-management-for-model-training-experiments-using-pydantic-and-hydra-d14a6ae84c13/)
+  — the hybrid pattern in detail.
+- Redowan Delowar,
+  ["Pedantic configuration management with Pydantic"](https://rednafi.com/python/config-management-with-pydantic/)
+  — env/secret separation patterns.
+- Wencong Yang,
+  ["From Data Science to Production: Configuration Management for ML Code"](https://medium.com/@yangwconion/from-data-science-to-production-configuration-management-d4926021e369)
+  — data/model/service config framing.
+- ["The Twelve-Factor App," Factor III: Config](https://12factor.net/config) —
+  the foundational principle.
+- GitGuardian,
+  ["How to Handle Secrets in Python"](https://blog.gitguardian.com/how-to-handle-secrets-in-python/)
+  — the secrets escalation ladder.
+- Ruud van Asseldonk,
+  ["The YAML document from hell"](https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell)
+  — every YAML footgun.
+- Leapcell,
+  ["Pydantic BaseSettings vs. Dynaconf"](https://leapcell.io/blog/pydantic-basesettings-vs-dynaconf-a-modern-guide-to-application-configuration)
+  — head-to-head decision guidance.
+- [lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template)
+  (ashleve, GitHub) — reference ML project structure with honest "why you
+  shouldn't use it" notes.
+
+## References
+
+<a id="ref-12factor"></a> **[Twelve-Factor App]** Wiggins, A. _The
+Twelve-Factor App_, Factor III: Config. https://12factor.net/config
+
+<a id="ref-yang"></a> **[Yang 2023]** Yang, W. "From Data Science to
+Production: Configuration Management for ML Code." _Medium_, Dec 2023.
+https://medium.com/@yangwconion/from-data-science-to-production-configuration-management-d4926021e369
+
+<a id="ref-confr"></a> **[confr paper]** Arro, M. "confr – A Configuration
+System for Machine Learning Projects." _CEUR Workshop Proceedings_, Vol. 3226.
+https://ceur-ws.org/Vol-3226/paper10.pdf
+
+<a id="ref-ibm"></a> **[IBM Best Practices]** IBM. "Configuration Management."
+_IBM Data Science Best Practices_.
+https://ibm.github.io/data-science-best-practices/configuration_management.html
+
+<a id="ref-davis"></a> **[Davis 2021]** David, D. "How to Write Configuration
+Files in Your Machine Learning Project." _Analytics Vidhya / Medium_, 2021.
+https://medium.com/analytics-vidhya/how-to-write-configuration-files-in-your-machine-learning-project-47bc840acc19
+
+<a id="ref-dramsch"></a> **[Dramsch]** Dramsch, J. "How Hydra configs have sped
+up my machine learning development workflow." _dramsch.net_.
+https://dramsch.net/articles/config-driven-machine-learning-development-with-hydra/
+
+<a id="ref-norway"></a> **[Norway Problem]** bram.us. "YAML: The Norway
+Problem." Jan 2022. https://www.bram.us/2022/01/11/yaml-the-norway-problem/
+
+<a id="ref-configparser-medium"></a> **[Kumar]** Kumar, A. "Most Developers
+Don't Know Python Has a Built-In Config File Parser." _The Pythonworld /
+Medium_.
+https://medium.com/the-pythonworld/most-developers-dont-know-python-has-a-built-in-config-file-parser-ff0a850c8cb3
+
+<a id="ref-zaharia"></a> **[Zaharia]** Zaharia, A. "Python configuration and
+data classes." _alexandra-zaharia.github.io_.
+https://alexandra-zaharia.github.io/posts/python-configuration-and-dataclasses/
+
+<a id="ref-codecut"></a> **[CodeCut]** "Pydantic-settings: Type-Safe Config
+Management." _CodeCut_.
+https://codecut.ai/pydantic-settings-type-safe-config-management/
+
+<a id="ref-pydantic-10b"></a> **[Pydantic 10B]** Pydantic. "Pydantic Just Hit
+10 Billion Downloads." _pydantic.dev_, Jun 2026.
+https://pydantic.dev/articles/pydantic-10-billion-downloads
+
+<a id="ref-dynaconf-discussion"></a> **[Dynaconf Discussion #608]**
+dynaconf/dynaconf. "Dynaconf 4.0 changes and ideas." _GitHub Discussions_,
+#608. https://github.com/dynaconf/dynaconf/discussions/608
+
+<a id="ref-rednafi"></a> **[Rednafi]** Delowar, R. "Pedantic configuration
+management with Pydantic." _rednafi.com_.
+https://rednafi.com/python/config-management-with-pydantic/
+
+<a id="ref-leapcell"></a> **[Leapcell]** "Pydantic BaseSettings vs. Dynaconf: A
+Modern Guide to Application Configuration." _Leapcell_.
+https://leapcell.io/blog/pydantic-basesettings-vs-dynaconf-a-modern-guide-to-application-configuration
+
+<a id="ref-dynaconf-perf"></a> **[Dynaconf Issue #713]** dynaconf/dynaconf.
+"Performance concerns." _GitHub Issues_, #713.
+https://github.com/dynaconf/dynaconf/issues/713
+
+<a id="ref-mackinlay"></a> **[MacKinlay]** MacKinlay, D. "Hydra for configuring
+and tracking machine learning experiments." _danmackinlay.name_.
+https://danmackinlay.name/notebook/hydra_ml
+
+<a id="ref-pydra"></a> **[Pydra/TDS]** "Configuration management for model
+training experiments using Pydantic and Hydra." _Towards Data Science_.
+https://towardsdatascience.com/configuration-management-for-model-training-experiments-using-pydantic-and-hydra-d14a6ae84c13/
+
+<a id="ref-lightning-hydra"></a> **[lightning-hydra-template]** Ashleve.
+"PyTorch Lightning + Hydra template." _GitHub_.
+https://github.com/ashleve/lightning-hydra-template
+
+<a id="ref-vivek"></a> **[Vivek]** Vivek. "Managing Secrets in Real-World
+Production Python Projects." _Medium_.
+https://medium.com/@vivekmcm1/managing-secrets-in-real-world-production-python-projects-0a260574f33e
+
+<a id="ref-gitguardian"></a> **[GitGuardian]** GitGuardian. "How to Handle
+Secrets in Python." _blog.gitguardian.com_.
+https://blog.gitguardian.com/how-to-handle-secrets-in-python/

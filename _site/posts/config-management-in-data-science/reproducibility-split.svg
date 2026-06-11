@@ -1,104 +1,567 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  <rect width="800" height="400" fill="#1e1e2e"/>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 400"
+   version="1.1"
+   id="svg60"
+   sodipodi:docname="reproducibility-split.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs60" />
+  <sodipodi:namedview
+     id="namedview60"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="true"
+     inkscape:zoom="1.8725"
+     inkscape:cx="345.52737"
+     inkscape:cy="122.83044"
+     inkscape:window-width="2560"
+     inkscape:window-height="1334"
+     inkscape:window-x="2549"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg60" />
+  <rect
+     width="800"
+     height="400"
+     fill="#1e1e2e"
+     id="rect1" />
   <!-- Title -->
-  <text x="400" y="32" text-anchor="middle" fill="#cdd6f4" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="700">Reproducibility: The Core Problem</text>
-
+  <text
+     x="400"
+     y="32"
+     text-anchor="middle"
+     fill="#cdd6f4"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="17"
+     font-weight="700"
+     id="text1">Reproducibility: The Core Problem</text>
   <!-- ===== LEFT PANEL: Bad (hardcoded) ===== -->
-  <rect x="30" y="52" width="355" height="316" rx="8" fill="#181825" stroke="#f38ba8" stroke-width="1.5" stroke-opacity="0.5"/>
+  <rect
+     x="30"
+     y="52"
+     width="355"
+     height="316"
+     rx="8"
+     fill="#181825"
+     stroke="#f38ba8"
+     stroke-width="1.5"
+     stroke-opacity="0.5"
+     id="rect2" />
   <!-- Panel header -->
-  <rect x="30" y="52" width="355" height="36" rx="8" fill="#2a1520"/>
-  <rect x="30" y="72" width="355" height="16" fill="#2a1520"/>
-  <text x="207" y="76" text-anchor="middle" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="700">✗  Hardcoded Constants</text>
+  <rect
+     x="30"
+     y="52"
+     width="355"
+     height="36"
+     rx="8"
+     fill="#2a1520"
+     id="rect3" />
+  <rect
+     x="30"
+     y="72"
+     width="355"
+     height="16"
+     fill="#2a1520"
+     id="rect4" />
+  <text
+     x="207"
+     y="76"
+     text-anchor="middle"
+     fill="#f38ba8"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="12"
+     font-weight="700"
+     id="text4">✗  Hardcoded Constants</text>
   <!-- Window dots -->
-  <circle cx="50" cy="70" r="5" fill="#f38ba8" opacity="0.8"/>
-  <circle cx="66" cy="70" r="5" fill="#45475a" opacity="0.8"/>
-  <circle cx="82" cy="70" r="5" fill="#45475a" opacity="0.8"/>
-
+  <circle
+     cx="50"
+     cy="70"
+     r="5"
+     fill="#f38ba8"
+     opacity="0.8"
+     id="circle4" />
+  <circle
+     cx="66"
+     cy="70"
+     r="5"
+     fill="#45475a"
+     opacity="0.8"
+     id="circle5" />
+  <circle
+     cx="82"
+     cy="70"
+     r="5"
+     fill="#45475a"
+     opacity="0.8"
+     id="circle6" />
   <!-- Code lines -->
-  <text x="50" y="108" fill="#45475a" font-family="monospace" font-size="11">1</text>
-  <text x="75" y="108" fill="#6c7086" font-family="monospace" font-size="11"># train.py</text>
-
-  <text x="50" y="126" fill="#45475a" font-family="monospace" font-size="11">2</text>
-  <text x="75" y="126" fill="#a6adc8" font-family="monospace" font-size="11">LEARNING_RATE = </text>
-  <text x="235" y="126" fill="#f38ba8" font-family="monospace" font-size="11">0.001</text>
-  <text x="272" y="126" fill="#45475a" font-family="monospace" font-size="9">  # try 0.01?</text>
-
-  <text x="50" y="144" fill="#45475a" font-family="monospace" font-size="11">3</text>
-  <text x="75" y="144" fill="#a6adc8" font-family="monospace" font-size="11">EPOCHS = </text>
-  <text x="163" y="144" fill="#f38ba8" font-family="monospace" font-size="11">50</text>
-  <text x="184" y="144" fill="#45475a" font-family="monospace" font-size="9">  # was 100 yesterday</text>
-
-  <text x="50" y="162" fill="#45475a" font-family="monospace" font-size="11">4</text>
-  <text x="75" y="162" fill="#a6adc8" font-family="monospace" font-size="11">BATCH_SIZE = </text>
-  <text x="186" y="162" fill="#f38ba8" font-family="monospace" font-size="11">32</text>
-
-  <text x="50" y="180" fill="#45475a" font-family="monospace" font-size="11">5</text>
-  <text x="75" y="180" fill="#a6adc8" font-family="monospace" font-size="11">MODEL = </text>
-  <text x="155" y="180" fill="#fab387" font-family="monospace" font-size="11">"resnet50"</text>
-  <text x="247" y="180" fill="#45475a" font-family="monospace" font-size="9">  # or resnet18?</text>
-
-  <text x="50" y="198" fill="#45475a" font-family="monospace" font-size="11">6</text>
-  <text x="75" y="198" fill="#a6adc8" font-family="monospace" font-size="11">DATA_PATH = </text>
-  <text x="182" y="198" fill="#fab387" font-family="monospace" font-size="11">"/home/me/data"</text>
-
+  <text
+     x="50"
+     y="108"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text6">1</text>
+  <text
+     x="76.144043"
+     y="108"
+     fill="#6c7086"
+     font-family="monospace"
+     font-size="11px"
+     id="text7"># train.py</text>
+  <text
+     x="50"
+     y="126"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text8">2</text>
+  <text
+     x="75"
+     y="126"
+     fill="#a6adc8"
+     font-family="monospace"
+     font-size="11"
+     id="text9">LEARNING_RATE = </text>
+  <text
+     x="180.62695"
+     y="126"
+     fill="#f38ba8"
+     font-family="monospace"
+     font-size="11px"
+     id="text10">0.001</text>
+  <text
+     x="219.7244"
+     y="124.39966"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="9px"
+     id="text11"># try 0.01?</text>
+  <text
+     x="50"
+     y="144"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text12">3</text>
+  <text
+     x="75"
+     y="144"
+     fill="#a6adc8"
+     font-family="monospace"
+     font-size="11"
+     id="text13">EPOCHS = </text>
+  <text
+     x="134.12334"
+     y="144"
+     fill="#f38ba8"
+     font-family="monospace"
+     font-size="11px"
+     id="text14">50</text>
+  <text
+     x="154.46149"
+     y="142.47876"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="9px"
+     id="text15"># was 100 yesterday</text>
+  <text
+     x="50"
+     y="162"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text16">4</text>
+  <text
+     x="75.263184"
+     y="162"
+     fill="#a6adc8"
+     font-family="monospace"
+     font-size="11px"
+     id="text17">BATCH_SIZE =</text>
+  <text
+     x="160.26073"
+     y="162.09753"
+     fill="#f38ba8"
+     font-family="monospace"
+     font-size="11px"
+     id="text18">32</text>
+  <text
+     x="50"
+     y="180"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text19">5</text>
+  <text
+     x="75.692871"
+     y="180"
+     fill="#a6adc8"
+     font-family="monospace"
+     font-size="11px"
+     id="text20">MODEL =</text>
+  <text
+     x="126.54968"
+     y="180"
+     fill="#fab387"
+     font-family="monospace"
+     font-size="11px"
+     id="text21">&quot;resnet50&quot;</text>
+  <text
+     x="200.14552"
+     y="180.02832"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="9px"
+     id="text22"># or resnet18?</text>
+  <text
+     x="50"
+     y="198"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text23">6</text>
+  <text
+     x="75.418945"
+     y="198"
+     fill="#a6adc8"
+     font-family="monospace"
+     font-size="11px"
+     id="text24">DATA_PATH =</text>
+  <text
+     x="152.65485"
+     y="198.33838"
+     fill="#fab387"
+     font-family="monospace"
+     font-size="11px"
+     id="text25">&quot;/home/me/data&quot;</text>
   <!-- Warning badge -->
-  <rect x="50" y="220" width="316" height="48" rx="6" fill="#2a1520" stroke="#f38ba8" stroke-width="1" stroke-opacity="0.5"/>
-  <text x="208" y="240" text-anchor="middle" fill="#f38ba8" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="600">What experiment was run last Tuesday?</text>
-  <text x="208" y="258" text-anchor="middle" fill="#7f849c" font-family="system-ui,-apple-system,sans-serif" font-size="10">Unknown — values changed in-place, no record</text>
-
-  <text x="208" y="302" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Edit code → re-run → repeat → lose track</text>
-  <text x="208" y="320" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Config changes = code changes = git noise</text>
-  <text x="208" y="338" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Secrets risk if API keys live here</text>
-  <text x="208" y="356" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Merging branches = merge conflict hell</text>
-
+  <rect
+     x="50"
+     y="220"
+     width="316"
+     height="48"
+     rx="6"
+     fill="#2a1520"
+     stroke="#f38ba8"
+     stroke-width="1"
+     stroke-opacity="0.5"
+     id="rect25" />
+  <text
+     x="208"
+     y="240"
+     text-anchor="middle"
+     fill="#f38ba8"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="11"
+     font-weight="600"
+     id="text26">What experiment was run last Tuesday?</text>
+  <text
+     x="208"
+     y="258"
+     text-anchor="middle"
+     fill="#7f849c"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10"
+     id="text27">Unknown — values changed in-place, no record</text>
+  <text
+     x="208"
+     y="302"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text28">Edit code → re-run → repeat → lose track</text>
+  <text
+     x="208"
+     y="320"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text29">Config changes = code changes = git noise</text>
+  <text
+     x="208"
+     y="338"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text30">Secrets risk if API keys live here</text>
+  <text
+     x="208"
+     y="356"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text31">Merging branches = merge conflict hell</text>
   <!-- ===== RIGHT PANEL: Good (config file) ===== -->
-  <rect x="415" y="52" width="355" height="316" rx="8" fill="#181825" stroke="#a6e3a1" stroke-width="1.5" stroke-opacity="0.5"/>
+  <rect
+     x="415"
+     y="52"
+     width="355"
+     height="316"
+     rx="8"
+     fill="#181825"
+     stroke="#a6e3a1"
+     stroke-width="1.5"
+     stroke-opacity="0.5"
+     id="rect31" />
   <!-- Panel header -->
-  <rect x="415" y="52" width="355" height="36" rx="8" fill="#122416"/>
-  <rect x="415" y="72" width="355" height="16" fill="#122416"/>
-  <text x="592" y="76" text-anchor="middle" fill="#a6e3a1" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="700">✓  Externalized Config</text>
-  <circle cx="435" cy="70" r="5" fill="#a6e3a1" opacity="0.8"/>
-  <circle cx="451" cy="70" r="5" fill="#45475a" opacity="0.8"/>
-  <circle cx="467" cy="70" r="5" fill="#45475a" opacity="0.8"/>
-
+  <rect
+     x="415"
+     y="52"
+     width="355"
+     height="36"
+     rx="8"
+     fill="#122416"
+     id="rect32" />
+  <rect
+     x="415"
+     y="72"
+     width="355"
+     height="16"
+     fill="#122416"
+     id="rect33" />
+  <text
+     x="592"
+     y="76"
+     text-anchor="middle"
+     fill="#a6e3a1"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="12"
+     font-weight="700"
+     id="text33">✓  Externalized Config</text>
+  <circle
+     cx="435"
+     cy="70"
+     r="5"
+     fill="#a6e3a1"
+     opacity="0.8"
+     id="circle33" />
+  <circle
+     cx="451"
+     cy="70"
+     r="5"
+     fill="#45475a"
+     opacity="0.8"
+     id="circle34" />
+  <circle
+     cx="467"
+     cy="70"
+     r="5"
+     fill="#45475a"
+     opacity="0.8"
+     id="circle35" />
   <!-- config.yaml label -->
-  <text x="435" y="104" fill="#6c7086" font-family="monospace" font-size="10">config.yaml</text>
-
-  <text x="435" y="122" fill="#45475a" font-family="monospace" font-size="11">1</text>
-  <text x="460" y="122" fill="#cba6f7" font-family="monospace" font-size="11">model:</text>
-
-  <text x="435" y="140" fill="#45475a" font-family="monospace" font-size="11">2</text>
-  <text x="460" y="140" fill="#89b4fa" font-family="monospace" font-size="11">  learning_rate: </text>
-  <text x="604" y="140" fill="#94e2d5" font-family="monospace" font-size="11">0.001</text>
-
-  <text x="435" y="158" fill="#45475a" font-family="monospace" font-size="11">3</text>
-  <text x="460" y="158" fill="#89b4fa" font-family="monospace" font-size="11">  epochs: </text>
-  <text x="549" y="158" fill="#94e2d5" font-family="monospace" font-size="11">50</text>
-
-  <text x="435" y="176" fill="#45475a" font-family="monospace" font-size="11">4</text>
-  <text x="460" y="176" fill="#89b4fa" font-family="monospace" font-size="11">  batch_size: </text>
-  <text x="565" y="176" fill="#94e2d5" font-family="monospace" font-size="11">32</text>
-
-  <text x="435" y="194" fill="#45475a" font-family="monospace" font-size="11">5</text>
-  <text x="460" y="194" fill="#89b4fa" font-family="monospace" font-size="11">  arch: </text>
-  <text x="521" y="194" fill="#fab387" font-family="monospace" font-size="11">"resnet50"</text>
-
+  <text
+     x="435"
+     y="104"
+     fill="#6c7086"
+     font-family="monospace"
+     font-size="10"
+     id="text35">config.yaml</text>
+  <text
+     x="435"
+     y="122"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text36">1</text>
+  <text
+     x="460"
+     y="122"
+     fill="#cba6f7"
+     font-family="monospace"
+     font-size="11"
+     id="text37">model:</text>
+  <text
+     x="435"
+     y="140"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text38">2</text>
+  <text
+     x="460"
+     y="140"
+     fill="#89b4fa"
+     font-family="monospace"
+     font-size="11"
+     id="text39">  learning_rate: </text>
+  <text
+     x="560.1001"
+     y="140"
+     fill="#94e2d5"
+     font-family="monospace"
+     font-size="11px"
+     id="text40">0.001</text>
+  <text
+     x="435"
+     y="158"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text41">3</text>
+  <text
+     x="460"
+     y="158"
+     fill="#89b4fa"
+     font-family="monospace"
+     font-size="11"
+     id="text42">  epochs: </text>
+  <text
+     x="513.84515"
+     y="158.96948"
+     fill="#94e2d5"
+     font-family="monospace"
+     font-size="11px"
+     id="text43">50</text>
+  <text
+     x="435"
+     y="176"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text44">4</text>
+  <text
+     x="460"
+     y="176"
+     fill="#89b4fa"
+     font-family="monospace"
+     font-size="11"
+     id="text45">  batch_size: </text>
+  <text
+     x="540.4057"
+     y="175.80664"
+     fill="#94e2d5"
+     font-family="monospace"
+     font-size="11px"
+     id="text46">32</text>
+  <text
+     x="435"
+     y="194"
+     fill="#45475a"
+     font-family="monospace"
+     font-size="11"
+     id="text47">5</text>
+  <text
+     x="460"
+     y="194"
+     fill="#89b4fa"
+     font-family="monospace"
+     font-size="11"
+     id="text48">  arch: </text>
+  <text
+     x="499.50256"
+     y="194"
+     fill="#fab387"
+     font-family="monospace"
+     font-size="11px"
+     id="text49">&quot;resnet50&quot;</text>
   <!-- git log snippet -->
-  <rect x="435" y="214" width="316" height="72" rx="6" fill="#11111b" stroke="#313244" stroke-width="1"/>
-  <text x="448" y="230" fill="#6c7086" font-family="monospace" font-size="9.5">$ git log --oneline config.yaml</text>
-  <text x="448" y="248" fill="#f9e2af" font-family="monospace" font-size="9.5">a3f7c2e</text>
-  <text x="505" y="248" fill="#a6e3a1" font-family="monospace" font-size="9.5"> lr=0.001, epochs=50 (best so far)</text>
-  <text x="448" y="264" fill="#f9e2af" font-family="monospace" font-size="9.5">b18d941</text>
-  <text x="505" y="264" fill="#a6e3a1" font-family="monospace" font-size="9.5"> try lr=0.01, epochs=100</text>
-  <text x="448" y="280" fill="#f9e2af" font-family="monospace" font-size="9.5">c9e5312</text>
-  <text x="505" y="280" fill="#a6e3a1" font-family="monospace" font-size="9.5"> baseline run, resnet18</text>
-
-  <text x="592" y="318" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Code + config = reproducible experiment</text>
-  <text x="592" y="336" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Every run is traceable in git history</text>
-  <text x="592" y="354" text-anchor="middle" fill="#585b70" font-family="system-ui,-apple-system,sans-serif" font-size="10.5">Change env without touching source code</text>
-
+  <rect
+     x="435"
+     y="214"
+     width="316"
+     height="72"
+     rx="6"
+     fill="#11111b"
+     stroke="#313244"
+     stroke-width="1"
+     id="rect49" />
+  <text
+     x="448"
+     y="230"
+     fill="#6c7086"
+     font-family="monospace"
+     font-size="9.5"
+     id="text50">$ git log --oneline config.yaml</text>
+  <text
+     x="448"
+     y="248"
+     fill="#f9e2af"
+     font-family="monospace"
+     font-size="9.5"
+     id="text51">a3f7c2e</text>
+  <text
+     x="505"
+     y="248"
+     fill="#a6e3a1"
+     font-family="monospace"
+     font-size="9.5"
+     id="text52"> lr=0.001, epochs=50 (best so far)</text>
+  <text
+     x="448"
+     y="264"
+     fill="#f9e2af"
+     font-family="monospace"
+     font-size="9.5"
+     id="text53">b18d941</text>
+  <text
+     x="505"
+     y="264"
+     fill="#a6e3a1"
+     font-family="monospace"
+     font-size="9.5"
+     id="text54"> try lr=0.01, epochs=100</text>
+  <text
+     x="448"
+     y="280"
+     fill="#f9e2af"
+     font-family="monospace"
+     font-size="9.5"
+     id="text55">c9e5312</text>
+  <text
+     x="505"
+     y="280"
+     fill="#a6e3a1"
+     font-family="monospace"
+     font-size="9.5"
+     id="text56"> baseline run, resnet18</text>
+  <text
+     x="592"
+     y="318"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text57">Code + config = reproducible experiment</text>
+  <text
+     x="592"
+     y="336"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text58">Every run is traceable in git history</text>
+  <text
+     x="592"
+     y="354"
+     text-anchor="middle"
+     fill="#585b70"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="10.5"
+     id="text59">Change env without touching source code</text>
   <!-- VS divider -->
-  <text x="400" y="218" text-anchor="middle" fill="#45475a" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700">vs</text>
+  <text
+     x="400"
+     y="218"
+     text-anchor="middle"
+     fill="#45475a"
+     font-family="system-ui,-apple-system,sans-serif"
+     font-size="16"
+     font-weight="700"
+     id="text60">vs</text>
 </svg>
