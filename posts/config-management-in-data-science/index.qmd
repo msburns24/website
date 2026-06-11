@@ -2,7 +2,7 @@
 layout: post
 title: "Configuration Management in Data Science: A Practitioner's Guide"
 date: 2026-06-10
-date-modified: 2026-06-10
+date-modified: 2026-06-11
 categories:
   - Data Science
 ---
