@@ -12,7 +12,9 @@ format:
     toc-location: left
     toc-title: "On this page"
     page-layout: full
-    css: scotland.scss
+    theme:
+      light: [sandstone, ../theme-light.scss, scotland.scss]
+      dark: [sandstone, ../theme-dark.scss, scotland.scss]
     lightbox: auto
     include-in-header:
       text: |
