@@ -5,8 +5,8 @@
     "fromCode": "RDU",
     "to": "Dublin",
     "toCode": "DUB",
-    "depart": "8:25 pm",
-    "arrive": "8:45 am (+1d)",
+    "depart": "8:25p",
+    "arrive": "8:45a (+1d)",
     "duration": "7h 20m",
     "flight": "EI 0084",
     "track": "ei84"
@@ -17,8 +17,8 @@
     "fromCode": "DUB",
     "to": "Edinburgh",
     "toCode": "EDI",
-    "depart": "11:25 am",
-    "arrive": "12:15 pm",
+    "depart": "11:25a",
+    "arrive": "12:15p",
     "duration": "1h 25m",
     "flight": "EI 3254",
     "track": "ei3254"
@@ -29,8 +29,8 @@
     "fromCode": "EDI",
     "to": "Dublin",
     "toCode": "DUB",
-    "depart": "11:55 am",
-    "arrive": "1:00 pm",
+    "depart": "11:55a",
+    "arrive": "1:00p",
     "duration": "1h 05m",
     "flight": "EI 3253",
     "track": "ei3253"
@@ -41,8 +41,8 @@
     "fromCode": "DUB",
     "to": "Raleigh",
     "toCode": "RDU",
-    "depart": "3:25 pm",
-    "arrive": "6:25 pm",
+    "depart": "3:25p",
+    "arrive": "6:25p",
     "duration": "8h 30m",
     "flight": "EI 0085",
     "track": "ei85"

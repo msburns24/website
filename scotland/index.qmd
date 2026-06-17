@@ -12,7 +12,7 @@ format:
     toc-location: left
     toc-title: "On this page"
     page-layout: full
-    css: scotland.css
+    css: scotland.scss
     lightbox: auto
     include-in-header:
       text: |
@@ -34,10 +34,12 @@ Pick a day to see what's on.
 itinerary = FileAttachment("itinerary.json").json()
 
 typeIcon = ({
-  "flight":   "✈️",
-  "arrival":  "📍",
+  "flight":   "🛫",
+  "arrival":  "🛬",
   "food":     "🍽️",
-  "sight":    "👁️",
+  "drinks":   "🍺",
+  "hotel":    "🛎️",
+  "sight":    "📍",
   "activity": "🎭",
   "shop":     "🛍️",
   "drive":    "🚗",
@@ -62,19 +64,27 @@ html`
   ${itinerary.map((d, i) => `
     <div class="tab-pane fade${i === 0 ? ' show active' : ''}"
          id="itin-panel-${i}" role="tabpanel">
-      <div class="ojs-day-header">
-        <span class="ojs-day-emoji">${d.emoji}</span>
-        <span class="ojs-day-title">${d.date} — ${d.city}</span>
+      <div class="itinerary-day-header">
+        <span class="itinerary-day-emoji">${d.emoji}</span>
+        <span class="itinerary-day-title">${d.date} — ${d.city}</span>
       </div>
-      <div class="ojs-timeline">
+      <div class="itinerary-timeline">
         ${d.items.map(item => `
-          <div class="ojs-item ojs-type-${item.type}">
-            <div class="ojs-time">${item.time}</div>
-            <div class="ojs-dot"></div>
-            <div class="ojs-content">
-              <span class="ojs-icon">${typeIcon[item.type] ?? "•"}</span>
-              <span class="ojs-text">${item.text}</span>
-              ${item.detail ? `<span class="ojs-detail">${item.detail}</span>` : ""}
+          <div class="itinerary-item itinerary-type-${item.type}">
+            <div class="itinerary-time">${item.time}</div>
+            <div class="itinerary-dot"></div>
+            <div class="itinerary-content">
+              <span class="itinerary-icon">${typeIcon[item.type] ?? ""}</span>
+              ${item.website ?
+                `<a href="${item.website}" target="_blank" rel="noopener"
+                    class="itinerary-link">${item.text ?? ""}</a>`
+                : `<span class="itinerary-text">${item.text}</span>`}
+              ${item.detail ?
+                `<span class="itinerary-detail">${item.detail}</span>`
+                : ""}
+              ${item.needsBooking ?
+                `<span class="itinerary-needs-booking">Needs Booking</span>`
+                : ""}
             </div>
           </div>
         `).join("")}
@@ -86,7 +96,7 @@ html`
 ```
 
 
-## Flights
+## Flights 
 
 ```{ojs}
 //| echo: false

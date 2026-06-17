@@ -1,0 +1,683 @@
+/* ---- General Page Tweaks ------------------------------------------------- */
+
+.callout {
+  border-radius: 8px;
+}
+
+table {
+  font-size: 0.88rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .countdown-tiles {
+    gap: 0.25rem;
+  }
+  .tile {
+    min-width: 55px;
+  }
+  .tile span {
+    font-size: 2.2rem;
+  }
+  .itinerary-item {
+    grid-template-columns: 65px 18px 1fr;
+  }
+}
+
+/* ---- Countdown Banner ---------------------------------------------------- */
+
+.countdown-wrap {
+  background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 60%, #1e3a2e 100%);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  margin: 1.5rem 0 2.5rem 0;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.countdown-label {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8fbc8f;
+  margin-bottom: 1rem;
+}
+
+.countdown-label:last-child {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  color: #6a9e6a;
+}
+
+.countdown-tiles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+}
+
+.tile span {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e8f5e8;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tile small {
+  font-family: "Lato", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7ab87a;
+  margin-top: 0.3rem;
+}
+
+.tile-sep {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #4a7a4a;
+  line-height: 1;
+  margin-bottom: 1.1rem;
+}
+
+/* ---- Itinerary ────────────────────────────────────-------------------──── */
+
+.itinerary-day-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--bs-border-color);
+}
+
+.itinerary-day-emoji {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.itinerary-day-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+.itinerary-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.itinerary-item {
+  display: grid;
+  grid-template-columns: 80px 24px 1fr;
+  align-items: start;
+  gap: 0 0.75rem;
+  padding: 0.55rem 0;
+  position: relative;
+}
+
+.itinerary-time {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--bs-secondary-color);
+  text-align: right;
+  padding-top: 2px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.itinerary-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2d4a2d;
+  margin-top: 4px;
+  justify-self: center;
+  position: relative;
+  flex-shrink: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+    width: 2px;
+    height: calc(100% + 1.1rem + 4px);
+    background: var(--bs-border-color);
+  }
+}
+
+.itinerary-item:last-child .itinerary-dot::after {
+  display: none;
+}
+
+.itinerary-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.4rem;
+}
+
+.itinerary-icon {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.itinerary-text {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.itinerary-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1e6e3a;
+  &:hover { text-decoration: underline; }
+}
+
+.itinerary-detail {
+  font-size: 0.78rem;
+  color: var(--bs-secondary-color);
+  font-style: italic;
+  &::before { content: "— "; }
+}
+
+.itinerary-needs-booking {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: #e64553;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.15rem 0.6rem;
+  white-space: nowrap;
+}
+
+/* OJS select widget inherits site font */
+
+/* ---- Flights: boarding-pass cards ---------------------------------------- */
+.boarding-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.boarding-pass {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.bp-stub {
+  background: linear-gradient(160deg, #1a2e1a 0%, #2d4a2d 100%);
+  color: #e8f5e8;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 64px;
+  text-align: center;
+}
+.bp-stub .bp-airline {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8fbc8f;
+}
+.bp-stub .bp-flightno {
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.bp-body {
+  flex: 1;
+  padding: 0.9rem 1.1rem;
+}
+.bp-route {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+
+  .bp-arrow {
+    color: #1e6e3a;
+    font-size: 1.1rem;
+  }
+}
+.bp-cities {
+  font-size: 0.78rem;
+  color: var(--bs-secondary-color);
+  margin: 0.15rem 0 0.7rem;
+}
+
+.bp-times {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.7rem;
+
+  .lbl {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bs-secondary-color);
+  }
+  .val {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+}
+
+.bp-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-top: 1px dashed var(--bs-border-color);
+  padding-top: 0.6rem;
+}
+.bp-date {
+  font-size: 0.76rem;
+  color: var(--bs-secondary-color);
+}
+.bp-track {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid #1e6e3a;
+  color: #1e6e3a;
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+}
+.bp-track:hover {
+  background: #1e6e3a;
+  color: #fff;
+}
+
+/* ---- Shared card grid (accommodations + dining) -------------------------- */
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.trip-card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bs-body-bg);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.trip-card .carousel {
+  background: #0a0a0a;
+}
+
+.trip-card-img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  cursor: zoom-in;
+}
+
+.trip-card-body {
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+/* ---- Accommodations / dining card text ----------------------------------- */
+
+.trip-card-dates {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5a8a5a;
+  margin-bottom: 0.25rem;
+}
+
+.trip-card-name {
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 0 0 0.2rem 0;
+}
+
+.trip-card-loc {
+  font-size: 0.82rem;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.6rem;
+}
+
+.trip-card-room {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.trip-card-amenities {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.5rem;
+}
+
+.trip-card-amenities li {
+  font-size: 0.72rem;
+  background: var(--bs-tertiary-bg);
+  border-radius: 20px;
+  padding: 0.15rem 0.6rem;
+  color: var(--bs-body-color);
+}
+
+.trip-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  border-top: 1px solid var(--bs-border-color);
+  padding-top: 0.7rem;
+}
+
+.trip-card-phone {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+}
+
+.trip-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1e6e3a;
+}
+.trip-link:hover {
+  text-decoration: underline;
+}
+
+/* ---- Dining-specific bits ------------------------------------------------ */
+
+.dining-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.dining-time {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #1e6e3a;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.2rem 0.7rem;
+  white-space: nowrap;
+}
+
+.dining-time.is-anniv {
+  background: #922b6e;
+}
+
+.dining-cuisine {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.6rem;
+}
+
+.dining-anniv-flag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #922b6e;
+  margin-bottom: 0.5rem;
+}
+
+.menu-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.menu-btn {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+  color: var(--bs-body-color);
+  background: var(--bs-tertiary-bg);
+}
+.menu-btn:hover {
+  border-color: #1e6e3a;
+  color: #1e6e3a;
+}
+
+/* ---- Dining possibilities table ------------------------------------------ */
+
+.poss-table {
+  width: 100%;
+  font-size: 0.86rem;
+  border-collapse: collapse;
+}
+.poss-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+  border-bottom: 2px solid var(--bs-border-color);
+  padding: 0.4rem 0.6rem;
+}
+.poss-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  vertical-align: top;
+}
+.poss-name {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.poss-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5a8a5a;
+  white-space: nowrap;
+}
+
+/* ---- Drives: rental car card --------------------------------------------- */
+
+.car-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bs-body-bg);
+  margin: 1.25rem 0 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+.car-card img {
+  width: 240px;
+  height: 170px;
+  object-fit: cover;
+  cursor: zoom-in;
+}
+.car-card-body {
+  flex: 1;
+  min-width: 240px;
+  padding: 1rem 1.15rem;
+}
+.car-card-body h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  margin: 0 0 0.1rem;
+}
+.car-card-co {
+  font-size: 0.82rem;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.7rem;
+}
+.car-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 2rem;
+  margin-bottom: 0.6rem;
+}
+.car-card-grid .lbl {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+}
+.car-card-grid .val {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.car-card-note {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+  font-style: italic;
+}
+
+/* ---- Drives: daily total summary pills ----------------------------------- */
+
+.drive-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1.5rem;
+}
+.drive-summary .pill {
+  font-size: 0.78rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  background: var(--bs-tertiary-bg);
+}
+.drive-summary .pill b {
+  color: #0f6e56;
+}
+
+/* ---- Drives: per-day block & nested tabs --------------------------------- */
+
+.drive-day {
+  margin-bottom: 2rem;
+}
+.drive-day-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.drive-day-title .total {
+  font-family: "Lato", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f6e56;
+}
+
+.drive-map {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  border-radius: 10px;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.drive-leg-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0.25rem 0 0.5rem;
+}
+.drive-leg-meta .lbl {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+}
+.drive-leg-meta .val {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.drive-notes {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+.drive-notes li {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.45;
+}
+
+/* Nested drive tabs sit tighter than the page tabs */
+.drive-day .nav-tabs .nav-link {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.7rem;
+}
+
+@media (max-width: 600px) {
+  .drive-map {
+    height: 260px;
+  }
+  .car-card img {
+    width: 100%;
+    height: 200px;
+  }
+  .bp-route {
+    font-size: 1.25rem;
+  }
+}

@@ -1,24 +1,6 @@
 {
   "firmed": [
     {
-      "name": "The Oval Bar",
-      "day": "Sat, Oct 3",
-      "city": "Dublin",
-      "time": "Reservation TBD",
-      "cuisine": "Irish Pub",
-      "phone": "+353 1 872 1264",
-      "michelin": null,
-      "images": [
-        "images/the-oval-bar-exterior.jpg",
-        "images/the-oval-bar-interior.jpg",
-        "images/the-oval-bar-food.jpg"
-      ],
-      "menus": [
-        { "label": "Food menu", "url": "menus/the-oval-food.pdf" },
-        { "label": "Drinks menu", "url": "menus/the-oval-drinks.pdf" }
-      ]
-    },
-    {
       "name": "Sotto Enoteca & Trattoria",
       "day": "Sun, Oct 4",
       "city": "Edinburgh",
@@ -74,6 +56,10 @@
     }
   ],
   "possibilities": {
+    "Dublin": [
+      { "name": "Johnnie Fox's Pub", "type": "Dinner", "notes": "" },
+      { "name": "Spitalfields Pub and Restaurant", "type": "Dinner", "notes": "" }
+    ],
     "Edinburgh": [
       { "name": "Witchery by the Castle", "type": "Dinner", "notes": "Theatrical, candle-lit, opulent — a classic Edinburgh splurge by the castle." },
       { "name": "Prestonfield House", "type": "High Tea", "notes": "Lavish afternoon tea in a 17th-century country house." },
