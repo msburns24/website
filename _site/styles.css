@@ -10,3 +10,59 @@ body.quarto-light .navbar {
 body.quarto-dark .navbar {
   background-color: #181825; /* Catppuccin Mocha – mantle */
 }
+
+/* Theme-reactive palette for hand-authored inline SVG diagrams.
+   Inline SVG (unlike an <img src="….svg">) inherits CSS custom properties,
+   so a diagram styled from these vars follows the light/dark toggle with no
+   JS. Shared rather than page-local so the dashboard can reuse it. */
+.ccr-diagram {
+  --ccr-fg: var(--bs-body-color);
+  --ccr-muted: rgba(var(--bs-body-color-rgb), 0.85);
+  --ccr-line: rgba(var(--bs-body-color-rgb), 0.22);
+  --ccr-card: color-mix(in srgb, var(--bs-body-bg) 93%, var(--bs-body-color) 7%);
+  /* Latte accents, darkened from the chart palette: these carry small
+     semibold text on a card, which needs 4.5:1, not the 3:1 a chart mark
+     gets away with. Mocha's pastels already clear it and are unchanged. */
+  --ccr-l1: #7d2ce0;
+  --ccr-l2: #0b6f85;
+  --ccr-l3: #2f7320;
+  --ccr-l4: #a8430b;
+  width: 100%;
+  height: auto;
+  max-width: 46rem;
+  margin: 0 auto;
+  display: block;
+}
+
+body.quarto-dark .ccr-diagram {
+  --ccr-l1: #cba6f7;
+  --ccr-l2: #74c7ec;
+  --ccr-l3: #a6e3a1;
+  --ccr-l4: #fab387;
+}
+
+.ccr-diagram text {
+  font-family: var(--bs-body-font-family, Roboto, system-ui, sans-serif);
+  fill: var(--ccr-fg);
+}
+
+.ccr-diagram .ccr-label {
+  fill: var(--ccr-muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.ccr-diagram .ccr-body {
+  font-size: 13px;
+}
+
+.ccr-diagram .ccr-card {
+  fill: var(--ccr-card);
+  stroke: var(--ccr-line);
+  stroke-width: 1;
+}
+
+.ccr-diagram .ccr-rule {
+  stroke: var(--ccr-line);
+  stroke-width: 1;
+}

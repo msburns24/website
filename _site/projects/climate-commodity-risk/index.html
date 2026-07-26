@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-07-26">
+<meta name="description" content="El Niño pushes rubber up and cotton down. Building an early-warning system for climate-driven commodity price shocks — and finding the places it fails.">
+
+<title>Same Signal, Opposite Signs: Climate Risk in Cotton and Rubber Prices – Matthew Burns</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-871f49e4c9c1a578d82ef3b2756b9ae0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-bd296ebb763e3605f7cdcdbb3a6f0f73.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-871f49e4c9c1a578d82ef3b2756b9ae0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Same Signal, Opposite Signs: Climate Risk in Cotton and Rubber Prices – Matthew Burns">
+<meta property="og:description" content="El Niño pushes rubber up and cotton down. Building an early-warning system for climate-driven commodity price shocks — and finding the places it fails.">
+<meta property="og:image" content="https://www.matthewburns.net/projects/climate-commodity-risk/climate_commodity_thumbnail.svg">
+<meta property="og:site_name" content="Matthew Burns">
+<meta name="twitter:title" content="Same Signal, Opposite Signs: Climate Risk in Cotton and Rubber Prices – Matthew Burns">
+<meta name="twitter:description" content="El Niño pushes rubber up and cotton down. Building an early-warning system for climate-driven commodity price shocks — and finding the places it fails.">
+<meta name="twitter:image" content="https://www.matthewburns.net/projects/climate-commodity-risk/climate_commodity_thumbnail.svg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">matthew burns</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthewsburns849/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/msburns24/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-question-behind-the-question" id="toc-the-question-behind-the-question" class="nav-link active" data-scroll-target="#the-question-behind-the-question">1. The question behind the question</a></li>
+  <li><a href="#a-pooled-model-is-wrong-by-design" id="toc-a-pooled-model-is-wrong-by-design" class="nav-link" data-scroll-target="#a-pooled-model-is-wrong-by-design">2. A pooled model is wrong by design</a></li>
+  <li><a href="#climate-leads-price-by-about-two-quarters" id="toc-climate-leads-price-by-about-two-quarters" class="nav-link" data-scroll-target="#climate-leads-price-by-about-two-quarters">3. Climate leads price by about two quarters</a></li>
+  <li><a href="#the-alarm-works-for-rubber-and-only-at-three-months-for-cotton" id="toc-the-alarm-works-for-rubber-and-only-at-three-months-for-cotton" class="nav-link" data-scroll-target="#the-alarm-works-for-rubber-and-only-at-three-months-for-cotton">4. The alarm works for rubber — and only at three months for cotton</a></li>
+  <li><a href="#the-finding-i-did-not-go-looking-for" id="toc-the-finding-i-did-not-go-looking-for" class="nav-link" data-scroll-target="#the-finding-i-did-not-go-looking-for">5. The finding I did not go looking for</a></li>
+  <li><a href="#what-to-actually-budget" id="toc-what-to-actually-budget" class="nav-link" data-scroll-target="#what-to-actually-budget">6. What to actually budget</a></li>
+  <li><a href="#where-this-breaks" id="toc-where-this-breaks" class="nav-link" data-scroll-target="#where-this-breaks">7. Where this breaks</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#closing-thought" id="toc-closing-thought" class="nav-link" data-scroll-target="#closing-thought">Closing thought</a></li>
+  <li><a href="#reproducing-this-analysis" id="toc-reproducing-this-analysis" class="nav-link" data-scroll-target="#reproducing-this-analysis">Reproducing this analysis</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<img src="climate_commodity_header.svg" style="width:100%; margin-bottom:1rem;">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Same Signal, Opposite Signs: Climate Risk in Cotton and Rubber Prices</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Time Series</div>
+    <div class="quarto-category">Econometrics</div>
+    <div class="quarto-category">Climate Risk</div>
+    <div class="quarto-category">Forecasting</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    El Niño pushes rubber up and cotton down. Building an early-warning system for climate-driven commodity price shocks — and finding the places it fails.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 26, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="TL;DR">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>TL;DR
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Problem:</strong> A footwear manufacturer buys cotton and natural rubber from two dozen countries. Climate shocks move both prices, but nobody could say which shocks, how far ahead, or by how much — so hedging and forward-buying decisions were made on instinct.</p></li>
+<li><p><strong>What I built:</strong> Three stacked layers over a 300-month panel of prices, ERA5 climate reanalysis, ENSO indices and disaster counts — SARIMAX and VAR/Granger for the causal story, gradient-boosted and logistic classifiers for a 3/6/9-month spike alarm, and a Monte Carlo scenario engine for planning ranges.</p></li>
+<li><p><strong>Key result:</strong> The same El Niño shock moves the two commodities in <em>opposite</em> directions — rubber <strong>+36.9%</strong> at 12 months, cotton <strong>−10.9%</strong> — so any pooled “climate risk” model is wrong by construction. The alarm is genuinely skillful for rubber (AUC <strong>0.775</strong>, Brier skill <strong>+0.182</strong>) and weak for cotton. The most useful thing I found is a negative result: the relative alarm rule everyone reaches for first goes <strong>silent exactly when the risk is highest</strong>.</p></li>
+</ul>
+</div>
+</div>
+<section id="the-question-behind-the-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-question-behind-the-question">1. The question behind the question</h2>
+<p>The obvious question — <em>does climate affect commodity prices?</em> — is not useful. Of course it does. A procurement team already believes that. What they can’t do is act on it, because acting requires three specific numbers that “yes” doesn’t contain: <strong>which</strong> driver, at <strong>what lag</strong>, and <strong>how big</strong>.</p>
+<p>So the project was scoped to the decisions a sourcing team actually makes. Do I forward-buy this quarter? What price goes in next year’s budget? How wrong could that number be? Those questions have different shapes, and they don’t collapse into one model. They became three layers:</p>
+<svg class="ccr-diagram" viewbox="0 0 820 452" role="img" aria-label="The three analysis layers, the question each answers, and the shared monthly panel beneath them.">
+  <defs>
+    <marker id="ccrArrow" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="6" markerheight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ccr-line)"></path>
+    </marker>
+  </defs>
+
+  <!-- Layer 1 -->
+  <rect class="ccr-card" x="12" y="14" width="256" height="268" rx="8"></rect>
+  <rect x="12" y="14" width="256" height="4" rx="2" fill="var(--ccr-l1)"></rect>
+  <text x="32" y="48" font-size="15" font-weight="600" fill="var(--ccr-l1)">1 · Econometrics</text>
+  <text class="ccr-label" x="32" y="80">QUESTION</text>
+  <text class="ccr-body" x="32" y="100">Does climate move price —</text>
+  <text class="ccr-body" x="32" y="118">which way, at what lag?</text>
+  <line class="ccr-rule" x1="32" y1="136" x2="248" y2="136"></line>
+  <text class="ccr-label" x="32" y="160">METHOD</text>
+  <text class="ccr-body" x="32" y="180">ADF · Granger · SARIMAX</text>
+  <text class="ccr-body" x="32" y="198">VAR with orthogonalised IRFs</text>
+  <line class="ccr-rule" x1="32" y1="216" x2="248" y2="216"></line>
+  <text class="ccr-label" x="32" y="240">OUTPUT</text>
+  <text class="ccr-body" x="32" y="260">Signed elasticities and a</text>
+  <text class="ccr-body" x="32" y="272">two-quarter lead</text>
+
+  <!-- Layer 2 -->
+  <rect class="ccr-card" x="282" y="14" width="256" height="268" rx="8"></rect>
+  <rect x="282" y="14" width="256" height="4" rx="2" fill="var(--ccr-l2)"></rect>
+  <text x="302" y="48" font-size="15" font-weight="600" fill="var(--ccr-l2)">2 · Early warning</text>
+  <text class="ccr-label" x="302" y="80">QUESTION</text>
+  <text class="ccr-body" x="302" y="100">Is a +10% spike coming</text>
+  <text class="ccr-body" x="302" y="118">within the next h months?</text>
+  <line class="ccr-rule" x1="302" y1="136" x2="518" y2="136"></line>
+  <text class="ccr-label" x="302" y="160">METHOD</text>
+  <text class="ccr-body" x="302" y="180">XGBoost · regularised logistic</text>
+  <text class="ccr-body" x="302" y="198">Walk-forward, OOS from 2016</text>
+  <line class="ccr-rule" x1="302" y1="216" x2="518" y2="216"></line>
+  <text class="ccr-label" x="302" y="240">OUTPUT</text>
+  <text class="ccr-body" x="302" y="260">A monthly alarm probability</text>
+  <text class="ccr-body" x="302" y="272">at h = 3, 6, 9</text>
+
+  <!-- Layer 3 -->
+  <rect class="ccr-card" x="552" y="14" width="256" height="268" rx="8"></rect>
+  <rect x="552" y="14" width="256" height="4" rx="2" fill="var(--ccr-l3)"></rect>
+  <text x="572" y="48" font-size="15" font-weight="600" fill="var(--ccr-l3)">3 · Scenarios</text>
+  <text class="ccr-label" x="572" y="80">QUESTION</text>
+  <text class="ccr-body" x="572" y="100">What number goes in the</text>
+  <text class="ccr-body" x="572" y="118">budget, and how wrong is it?</text>
+  <line class="ccr-rule" x1="572" y1="136" x2="788" y2="136"></line>
+  <text class="ccr-label" x="572" y="160">METHOD</text>
+  <text class="ccr-body" x="572" y="180">Bootstrapped residual Monte</text>
+  <text class="ccr-body" x="572" y="198">Carlo — 10,000 paths, 12 months</text>
+  <line class="ccr-rule" x1="572" y1="216" x2="788" y2="216"></line>
+  <text class="ccr-label" x="572" y="240">OUTPUT</text>
+  <text class="ccr-body" x="572" y="260">Percentile planning prices</text>
+  <text class="ccr-body" x="572" y="272">and P(+10% by h)</text>
+
+  <!-- dependency: L1 -> L3 -->
+  <path d="M 140 292 C 140 322, 680 322, 680 292" fill="none" stroke="var(--ccr-line)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ccrArrow)"></path>
+  <text class="ccr-label" x="410" y="340" text-anchor="middle">LAYER 3 REFITS LAYER 1’S SARIMAX SPEC — ONLY LAYER 2 IS INDEPENDENT</text>
+
+  <!-- shared panel -->
+  <rect class="ccr-card" x="12" y="368" width="796" height="72" rx="8"></rect>
+  <rect x="12" y="368" width="4" height="72" rx="2" fill="var(--ccr-l4)"></rect>
+  <text class="ccr-label" x="36" y="396">ONE MONTHLY PANEL · 300 MONTHS · 2001-01 → 2025-12</text>
+  <text class="ccr-body" x="36" y="420">World Bank Pink Sheet prices · ERA5 anomalies · NOAA CPC ONI · EM-DAT disaster counts</text>
+
+  <line class="ccr-rule" x1="140" y1="368" x2="140" y2="356" marker-end="url(#ccrArrow)"></line>
+  <line class="ccr-rule" x1="410" y1="368" x2="410" y2="356" marker-end="url(#ccrArrow)"></line>
+  <line class="ccr-rule" x1="680" y1="368" x2="680" y2="356" marker-end="url(#ccrArrow)"></line>
+</svg>
+<p>Three layers over one panel — and the dashed arrow is the part that matters. Layer 3 is Layer 1’s SARIMAX specification refit, so when a scenario shifts a driver and the price moves, it moves <em>because of</em> Layer 1’s coefficient. That is arithmetic, not corroboration. Only Layer 2 can vote independently, and section 7 leans on that distinction.</p>
+<p>The panel underneath is 300 months, <strong>2001-01 through 2025-12</strong>, joined monthly from four public sources: ERA5 reanalysis for temperature, precipitation and drought balance; NOAA’s Oceanic Niño Index for ENSO state; EM-DAT for disaster counts; and the World Bank Pink Sheet for prices. Climate enters as <strong>anomalies</strong> — z-scores against each region’s own climatology — so Xinjiang and Sumatra can sit in the same regression without one drowning the other. Each driver carries lags at 1, 2, 3, 4 and 6 months plus 3- and 6-month rolling means, because a drought doesn’t reach a harvest instantly.</p>
+<p>Getting there is a Delta Lake medallion pipeline, which matters less for the findings than for the fact that any of this can be re-run:</p>
+<svg class="ccr-diagram" viewbox="0 0 820 268" role="img" aria-label="The bronze, silver and gold pipeline stages from raw sources through to fitted models.">
+  <defs>
+    <marker id="ccrArrow2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="6" markerheight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ccr-line)"></path>
+    </marker>
+  </defs>
+
+  <!-- sources -->
+  <rect class="ccr-card" x="10" y="34" width="140" height="150" rx="8"></rect>
+  <rect x="10" y="34" width="140" height="4" rx="2" fill="var(--ccr-l4)"></rect>
+  <text class="ccr-label" x="26" y="60">SOURCES</text>
+  <text class="ccr-body" x="26" y="84">World Bank</text>
+  <text class="ccr-body" x="26" y="104">ERA5 / CDS</text>
+  <text class="ccr-body" x="26" y="124">NOAA CPC</text>
+  <text class="ccr-body" x="26" y="144">EM-DAT</text>
+  <text class="ccr-body" x="26" y="164">FRED (BLS)</text>
+
+  <!-- bronze -->
+  <rect class="ccr-card" x="182" y="34" width="140" height="150" rx="8"></rect>
+  <rect x="182" y="34" width="140" height="4" rx="2" fill="var(--ccr-l4)"></rect>
+  <text x="198" y="60" font-size="14" font-weight="600" fill="var(--ccr-l4)">Bronze</text>
+  <text class="ccr-body" x="198" y="86">Raw files exactly</text>
+  <text class="ccr-body" x="198" y="104">as fetched, cached</text>
+  <text class="ccr-body" x="198" y="122">by filename.</text>
+  <text class="ccr-label" x="198" y="156">NOTHING IS</text>
+  <text class="ccr-label" x="198" y="172">PARSED YET</text>
+
+  <!-- silver -->
+  <rect class="ccr-card" x="354" y="34" width="140" height="150" rx="8"></rect>
+  <rect x="354" y="34" width="140" height="4" rx="2" fill="var(--ccr-l2)"></rect>
+  <text x="370" y="60" font-size="14" font-weight="600" fill="var(--ccr-l2)">Silver</text>
+  <text class="ccr-body" x="370" y="86">Parsed and typed,</text>
+  <text class="ccr-body" x="370" y="104">one row per series</text>
+  <text class="ccr-body" x="370" y="122">× month.</text>
+  <text class="ccr-label" x="370" y="156">SHARED</text>
+  <text class="ccr-label" x="370" y="172">MONTHLY KEY</text>
+
+  <!-- gold -->
+  <rect class="ccr-card" x="526" y="34" width="140" height="150" rx="8"></rect>
+  <rect x="526" y="34" width="140" height="4" rx="2" fill="var(--ccr-l3)"></rect>
+  <text x="542" y="60" font-size="14" font-weight="600" fill="var(--ccr-l3)">Gold</text>
+  <text class="ccr-body" x="542" y="86">Anomalies, lags,</text>
+  <text class="ccr-body" x="542" y="104">rolling means, spike</text>
+  <text class="ccr-body" x="542" y="122">labels.</text>
+  <text class="ccr-label" x="542" y="156">300 × 62</text>
+  <text class="ccr-label" x="542" y="172">PER COMMODITY</text>
+
+  <!-- models -->
+  <rect class="ccr-card" x="698" y="34" width="112" height="150" rx="8"></rect>
+  <rect x="698" y="34" width="112" height="4" rx="2" fill="var(--ccr-l1)"></rect>
+  <text x="714" y="60" font-size="14" font-weight="600" fill="var(--ccr-l1)">Models</text>
+  <text class="ccr-body" x="714" y="86">SARIMAX,</text>
+  <text class="ccr-body" x="714" y="104">classifiers,</text>
+  <text class="ccr-body" x="714" y="122">scenarios.</text>
+  <text class="ccr-label" x="714" y="156">VERSIONED</text>
+  <text class="ccr-label" x="714" y="172">ARTIFACTS</text>
+
+  <!-- arrows -->
+  <line class="ccr-rule" x1="152" y1="109" x2="178" y2="109" marker-end="url(#ccrArrow2)"></line>
+  <line class="ccr-rule" x1="324" y1="109" x2="350" y2="109" marker-end="url(#ccrArrow2)"></line>
+  <line class="ccr-rule" x1="496" y1="109" x2="522" y2="109" marker-end="url(#ccrArrow2)"></line>
+  <line class="ccr-rule" x1="668" y1="109" x2="694" y2="109" marker-end="url(#ccrArrow2)"></line>
+
+  <text class="ccr-label" x="410" y="222" text-anchor="middle">BRONZE CACHES BY FILENAME — WHICH IS ALSO HOW UPSTREAM URL ROT HIDES</text>
+</svg>
+<p>That caching rule is worth dwelling on, because it cost me a rebuild. Bronze skips the download when the file is already there, which is exactly what you want for a reproducible pipeline — and it means a <strong>stale source URL never raises anything.</strong> The Pink Sheet download was pinned to a document ID the World Bank froze in 2021; it still resolves, still parses, and still returns a clean monthly series that simply stops in <strong>2024-12</strong>. Nothing in the pipeline can tell that apart from a source that has no newer data.</p>
+<p>Re-pointing at the current document brought prices through <strong>2026-06</strong> and meant refitting all three layers. Every number in this post moved slightly; all six scenario signs, and every qualitative finding, held.</p>
+<p>One caveat belongs up front rather than in a limitations section, because it shapes everything below: the panels are region-matched to where each material is actually grown, and <strong>cotton’s climate coverage is Xinjiang only — roughly 20% of world production.</strong> Rubber’s covers mainland Southeast Asia and Sumatra, which is most of the crop. Cotton’s models are working with one-fifth of the picture, blind to the US, Brazil, India and West Africa.</p>
+</section>
+<section id="a-pooled-model-is-wrong-by-design" class="level2">
+<h2 class="anchored" data-anchor-id="a-pooled-model-is-wrong-by-design">2. A pooled model is wrong by design</h2>
+<p>The first result reframed the rest of the project.</p>
+<p>Relative to a baseline scenario, a strong El Niño raises rubber’s simulated 12-month median price by <strong>+36.9%</strong> and pushes cotton’s <strong>down 10.9%</strong>. It isn’t a one-off, either. Every scenario splits the same way:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th style="text-align: right;">Cotton, +12m vs baseline</th>
+<th style="text-align: right;">Rubber, +12m vs baseline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Drought</td>
+<td style="text-align: right;"><strong>−22.8%</strong></td>
+<td style="text-align: right;"><strong>+11.3%</strong></td>
+</tr>
+<tr class="even">
+<td>El Niño</td>
+<td style="text-align: right;"><strong>−10.9%</strong></td>
+<td style="text-align: right;"><strong>+36.9%</strong></td>
+</tr>
+<tr class="odd">
+<td>Flood</td>
+<td style="text-align: right;"><strong>+20.5%</strong></td>
+<td style="text-align: right;"><strong>−19.4%</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_3_scenario_shift.png" class="img-fluid figure-img"></p>
+<figcaption>Scenario shift at 12 months, both commodities</figcaption>
+</figure>
+</div>
+<p>Six cells, six sign disagreements. A single “climate risk” model pooled across both materials would average those effects toward zero and report that climate doesn’t matter much — a confident, well-validated, completely wrong answer. So each commodity gets its own driver set, its own lag structure, and its own horizons, and nothing is shared but the pipeline.</p>
+<p>There’s a second asymmetry worth stating, because it changes the modelling target. A manufacturer that <em>buys</em> these materials is structurally short both: only <em>upward</em> moves hurt. A symmetric price forecast spends half its capacity on the half of the distribution nobody is exposed to. That’s why Layer 2 predicts spikes rather than prices.</p>
+</section>
+<section id="climate-leads-price-by-about-two-quarters" class="level2">
+<h2 class="anchored" data-anchor-id="climate-leads-price-by-about-two-quarters">3. Climate leads price by about two quarters</h2>
+<p>Before modelling returns, the series have to justify it. Augmented Dickey-Fuller puts cotton’s price level at <strong>−3.36</strong> (<code>p=0.012</code>) and rubber’s at <strong>−2.82</strong> (<code>p=0.056</code>) — rubber fails to reject a unit root at 5%, cotton barely clears it — while log returns reject overwhelmingly (<strong>−5.35</strong> and <strong>−12.84</strong>). So everything downstream models returns: SARIMAX(0,0,1) for cotton, SARIMAX(1,0,0) for rubber, each with a curated exogenous set.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_1_sarimax_coefficients.png" class="img-fluid figure-img"></p>
+<figcaption>SARIMAX driver coefficients</figcaption>
+</figure>
+</div>
+<p><strong>For rubber, the causal test is clean.</strong> ONI leads returns at <strong>lag 6</strong> (<code>p=0.006</code>) while the reverse test sits at <code>p=0.45</code> — rubber returns show no sign of causing El Niño, which is the sanity check you want. The SARIMAX coefficient agrees: <code>oni_lag6</code> is <strong>+0.0143</strong> (<code>p=0.094</code>). Two quarters is a lag a procurement team can actually work inside.</p>
+<p><strong>For cotton it looks similar and isn’t.</strong> Flood counts lead returns at lag 3 (<code>p=0.033</code>), ONI at lag 5 (<code>p=0.050</code>) — and then the reverse placebo comes back <strong>significant too</strong> (<code>p=0.030</code>). Cotton returns cannot cause floods. When a test fires in both directions, it’s describing a shared seasonal or macro confound, not causation. So the cotton Granger evidence is reported as <strong>suggestive, not directional</strong>, and I don’t lean on it later.</p>
+<p>The most interesting coefficient is one I expected to have the opposite sign. <code>drought_3m_lag6</code> is <strong>+0.0126</strong> (<code>p=0.019</code>) for cotton: <em>wetter</em> anomalies raise prices six months later. Most people — I did — expect drought to spike cotton. In Xinjiang’s heavily irrigated system the mechanism appears to run the other way, with excess rain at the wrong point in the cycle disrupting harvest and quality. The temperature term keeps its negative sign (<code>t2m_anom_lag6</code> <strong>−0.0028</strong>) but at <code>p=0.325</code> it carries no weight, and I don’t give it any.</p>
+<p><strong>Rubber is not purely a climate story, and it would be dishonest to imply otherwise.</strong> <code>brent_ret_lag1</code> at <strong>+0.1158</strong> (<code>p=0.022</code>) is the largest coefficient in either model — an order of magnitude above the ENSO term. Oil raises the cost of synthetic rubber and drags natural rubber up with it. A meaningful share of what looks like climate predictability is an oil-substitution channel.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_1_irf_rubber_oni.png" class="img-fluid figure-img"></p>
+<figcaption>Rubber ← ONI</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_1_irf_rubber_precip_anom.png" class="img-fluid figure-img"></p>
+<figcaption>Rubber ← precipitation anomaly</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_1_irf_cotton_oni.png" class="img-fluid figure-img"></p>
+<figcaption>Cotton ← ONI</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_1_irf_cotton_drought_3m.png" class="img-fluid figure-img"></p>
+<figcaption>Cotton ← drought balance</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><strong>The impulse responses are an honest null.</strong> Across VAR(6) for rubber and VAR(8) for cotton, no orthogonalised IRF is distinguishable from zero at any horizon — every confidence band contains it. They’re shown because they corroborate direction, and they are explicitly <em>not</em> used to justify any forecast horizon. Those rest on the Granger lags and the SARIMAX coefficients.</p>
+</section>
+<section id="the-alarm-works-for-rubber-and-only-at-three-months-for-cotton" class="level2">
+<h2 class="anchored" data-anchor-id="the-alarm-works-for-rubber-and-only-at-three-months-for-cotton">4. The alarm works for rubber — and only at three months for cotton</h2>
+<p>Layer 2 asks a different question of the same panel: <strong>what is the probability the price rises more than 10% at any point in the next <code>h</code> months?</strong> The label is a maximum over the window, not the end-to-end change, because a spike that happens and reverses still hits a buyer who had to purchase during it.</p>
+<p>Models are scored the way a weather warning is: not on accuracy, but on whether they beat the base rate procurement already knows. Evaluation is walk-forward on an expanding window, out-of-sample from 2016, against an expanding climatology baseline.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Commodity</th>
+<th style="text-align: center;">h</th>
+<th>Model</th>
+<th style="text-align: right;">AUC</th>
+<th style="text-align: right;">Brier skill</th>
+<th style="text-align: right;">Base rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Rubber</strong></td>
+<td style="text-align: center;"><strong>9</strong></td>
+<td>Logistic</td>
+<td style="text-align: right;"><strong>0.775</strong></td>
+<td style="text-align: right;"><strong>+0.182</strong></td>
+<td style="text-align: right;">56%</td>
+</tr>
+<tr class="even">
+<td><strong>Rubber</strong></td>
+<td style="text-align: center;"><strong>6</strong></td>
+<td>Logistic</td>
+<td style="text-align: right;"><strong>0.740</strong></td>
+<td style="text-align: right;"><strong>+0.111</strong></td>
+<td style="text-align: right;">45%</td>
+</tr>
+<tr class="odd">
+<td>Rubber</td>
+<td style="text-align: center;">3</td>
+<td>Logistic</td>
+<td style="text-align: right;">0.642</td>
+<td style="text-align: right;">−0.000</td>
+<td style="text-align: right;">28%</td>
+</tr>
+<tr class="even">
+<td><strong>Cotton</strong></td>
+<td style="text-align: center;"><strong>3</strong></td>
+<td>XGBoost</td>
+<td style="text-align: right;"><strong>0.622</strong></td>
+<td style="text-align: right;"><strong>+0.030</strong></td>
+<td style="text-align: right;">19%</td>
+</tr>
+<tr class="odd">
+<td>Cotton</td>
+<td style="text-align: center;">9</td>
+<td>XGBoost</td>
+<td style="text-align: right;">0.573</td>
+<td style="text-align: right;">−0.001</td>
+<td style="text-align: right;">41%</td>
+</tr>
+<tr class="even">
+<td>Cotton</td>
+<td style="text-align: center;">6</td>
+<td>XGBoost</td>
+<td style="text-align: right;">0.562</td>
+<td style="text-align: right;">+0.017</td>
+<td style="text-align: right;">37%</td>
+</tr>
+</tbody>
+</table>
+<p>Climatology sits at AUC 0.47–0.55 throughout, which is what a null should look like. Cotton beyond three months is at or below it, and its logistic Brier skill is outright <strong>negative</strong> at h=6 (−0.039) and h=9 (−0.100). <strong>I don’t recommend acting on the cotton alarm at 6 or 9 months</strong> — a negative Brier skill score means you’d have been better off quoting the base rate.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_2_alarm_timeline.png" class="img-fluid figure-img"></p>
+<figcaption>Alarm timeline against realised spike windows</figcaption>
+</figure>
+</div>
+<p>Shaded bands mark months where a +10% move did occur inside the horizon. A useful alarm rises inside the shading and stays low outside it — visibly true for rubber, visibly weak for cotton.</p>
+<p><strong>Read every AUC against its own base rate.</strong> They climb with the horizon: cotton 19% → 41%, rubber 28% → <strong>56%</strong>. Rubber’s h=9 skill is real, but a +10% move within nine months is close to rubber’s normal state, so the <em>value</em> of knowing is lower than 0.775 suggests. That gap between skill and usefulness turns out to be the whole story of the next section.</p>
+<p>The drivers explain the split. For rubber, SHAP puts <strong>three ENSO features in the top four</strong> — <code>oni</code>, <code>oni_lag6</code>, <code>oni_lag3</code> — with high ONI pushing the alarm up, the same direction as SARIMAX’s <code>+0.0143</code>, recovered by a different model class on a different target. For cotton, the top driver is <code>mom_6m</code>, six-month price momentum, at mean |SHAP| <strong>0.194</strong>, ahead of <code>oni</code> at <strong>0.139</strong>. Price momentum outranks every climate feature.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_2_shap_rubber.png" class="img-fluid figure-img"></p>
+<figcaption>Rubber alarm drivers</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_2_shap_cotton.png" class="img-fluid figure-img"></p>
+<figcaption>Cotton alarm drivers</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>A climate early-warning system whose cotton model is partly a momentum model is a finding, not a bug. With only Xinjiang in view the climate signal is thin, and the model falls back on what the price series says about itself.</p>
+<p>Probabilities are conservative and rarely reach 50%, so the alarm fires at <strong>1.25× the historical base rate</strong> rather than a fixed cutoff — “spike risk is elevated 25% above normal.” At that operating point, cotton h=3 crosses at τ=0.24 and fires <strong>54 alarms against 22 real events</strong>, catching 13 with 41 false alarms. Rubber h=6 crosses at τ=0.56: <strong>55 alarms, 51 events, 34 hits, 21 false</strong> — a 67% hit rate.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_2_calibration.png" class="img-fluid figure-img"></p>
+<figcaption>Calibration curves</figcaption>
+</figure>
+</div>
+<p>That cotton row is noisy on purpose. The rule is tuned to catch spikes, not to avoid crying wolf, which is defensible only because forward-buying is cheap relative to a missed +10% move. A team with expensive hedges would want a higher multiple.</p>
+</section>
+<section id="the-finding-i-did-not-go-looking-for" class="level2">
+<h2 class="anchored" data-anchor-id="the-finding-i-did-not-go-looking-for">5. The finding I did not go looking for</h2>
+<p>Two results that started as footnotes turned out to be the same result, and it’s the most useful thing in the project.</p>
+<p>Rubber’s h=9 alarm has the study’s best AUC — <strong>0.775</strong> — against a <strong>56%</strong> base rate. Multiply that base rate by 1.25 and the firing threshold lands at <strong>70%</strong>. A well-calibrated model asked about a coin-flip event essentially never emits 70%. The skill is real and the alarm is nearly mute.</p>
+<p>Then the historical stress test made the same point, harder. I refit everything through 2009-12 only and replayed the 2010-11 commodity spike — the most extreme cotton move in a century — using the <em>actual</em> climate drivers of those months.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_3_alarm_replay.png" class="img-fluid figure-img"></p>
+<figcaption>2010–11 alarm replay</figcaption>
+</figure>
+</div>
+<p>The alarm fired <strong>0 times in 24 months, for both commodities.</strong> But for opposite reasons, and the difference matters:</p>
+<ul>
+<li><strong>Rubber’s replay ranked the episode well.</strong> Episode AUC <strong>0.786</strong>, peaking at <strong>0.820</strong> in November 2010. It never fired because the pre-2010 base rate was 69%, putting the 1.25× bar at <strong>0.858</strong> — and the peak missed it by <strong>0.038</strong>. The signal was there. The rule suppressed it.</li>
+<li><strong>Cotton’s replay ranked it weakly.</strong> Episode AUC <strong>0.643</strong>, peak 0.585 against a 0.600 bar. Closer in absolute terms, but on a near-uninformative ranking — firing would have been luck, not foresight.</li>
+</ul>
+<p>Both are one mechanism: <strong>multiplying a high base rate by a constant produces a threshold the model cannot reach.</strong> The relative rule is sound for rare events — cotton at h=3, base rate 19%, threshold 0.24, perfectly reachable — and it degrades precisely as the event becomes common, which is precisely when a buyer most needs the warning.</p>
+<p><strong>The fix is the alarm rule, not the model.</strong> A fixed threshold, or one that adapts sub-linearly to the base rate, would have fired for rubber in 2010-11. A naive post-mortem would have blamed the data or the model; the operating rule was vetoing a model that had the signal.</p>
+</section>
+<section id="what-to-actually-budget" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-actually-budget">6. What to actually budget</h2>
+<p>Layer 3 turns all of it into numbers you can put in a plan. The SARIMAX spec is refit, residuals are bootstrapped, and 10,000 paths run 12 months forward under four named scenarios.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_3_fan_charts.png" class="img-fluid figure-img"></p>
+<figcaption>Fan charts, both commodities</figcaption>
+</figure>
+</div>
+<p><strong>Even the baseline is wide, and the width is the point.</strong> At 12 months the 95% band spans roughly −30% to +39% for cotton and −40% to +65% for rubber around the median. Scenarios shift that distribution; they don’t narrow it. Any single-number forecast at this horizon is false precision.</p>
+<p>The planning numbers, from today’s anchor:</p>
+<ul>
+<li><strong>Rubber under a strong El Niño.</strong> Six-month probability of a +10% move rises from a <strong>35%</strong> baseline to <strong>69%</strong>, and to <strong>85%</strong> at twelve months. Budget for <strong>+61% at p95 within six months</strong>, +118% at twelve.</li>
+<li><strong>Cotton’s dangerous scenario is flood, not drought.</strong> Six-month spike risk of <strong>54%</strong> against a 23% baseline — while drought <em>suppresses</em> it to about 3%. At p95, plan for <strong>+34% at six months</strong>, +62% at twelve.</li>
+</ul>
+<p>That cotton line is the practical payoff of the counterintuitive coefficient in section 3. A team hedging cotton against drought is hedging the wrong tail.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="What the forecast is anchored to">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>What the forecast is anchored to
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every scenario above starts from a <strong>2025-12</strong> forecast origin — the last month the full modelling panel covers, since the World Bank annual indicators and one BLS producer price series both end there. Observed prices in the charts run through <strong>2026-06</strong>, so the first six months of every forecast band already have actuals sitting on top of them. That’s deliberate and it’s free out-of-sample evidence, but read it as such: the model did not see those months.</p>
+</div>
+</div>
+<p><strong>The stress test is credible for rubber and humbling for cotton.</strong> Replaying 2010-11 from a 2009-12 fit, rubber’s realised path stayed inside the 95% band in <strong>92%</strong> of months. Cotton managed <strong>63%</strong> — the peak of that spike escaped even the widest band.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/modeling_3_stress_test_2010.png" class="img-fluid figure-img"></p>
+<figcaption>2010–11 stress test</figcaption>
+</figure>
+</div>
+<p>Bands built from bootstrapped historical residuals cannot anticipate a move without precedent in the sample. Tail percentiles are planning aids, not guarantees, and 2010-11 is the reminder.</p>
+<p>Converting alarms to money: forward-buying on the XGBoost alarm at the 1.25× rule would have saved <strong>2.1%</strong> of rubber procurement cost at h=6 and <strong>1.9%</strong> at h=3, against <strong>5.1%</strong> under perfect foresight at h=6. Cotton is negligible — <strong>0.5%</strong> at h=3, <strong>0.4%</strong> at h=6 — consistent with its weaker skill. These are directional figures, not a business case: they ignore inventory carrying cost, liquidity and counterparty limits.</p>
+</section>
+<section id="where-this-breaks" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-breaks">7. Where this breaks</h2>
+<p>The layers were built to be redundant — different targets, different methods, different windows — so that agreement would mean something. But <strong>they are not equally independent, and it would be easy to over-claim.</strong> Layer 3’s engine <em>is</em> the Layer 1 SARIMAX spec, refit. When a scenario shifts a driver and the price moves, it moves <em>because of</em> Layer 1’s coefficient. That’s arithmetic, not confirmation. Only Layer 2 is genuinely independent: different model class, different target, sharing nothing but the input panel.</p>
+<p>Applying that test honestly splits the two headline findings:</p>
+<ul>
+<li><strong>“ENSO drives rubber” survives it.</strong> Layer 1 has the Granger lag and the coefficient; Layer 2 independently puts three ENSO terms in its top four with the same sign. Two methods sharing only an input panel agree on the material, the direction, and roughly the lag. This is the strongest result in the study.</li>
+<li><strong>“Wet is bullish for cotton” is corroborated, but weakly.</strong> The alarm model does now lean on <code>drought_3m_lag6</code> — it ranks 5th among cotton’s drivers at mean |SHAP| <strong>0.057</strong>. That is genuine cross-method agreement rather than one coefficient carrying the claim alone. Two things keep it short of settled: a feature ranking inside a <em>weak</em> model is weak corroboration, and cotton’s Granger evidence is non-directional. The mechanism is plausible and now has two methods behind it; the causal claim rests on the mechanism, not on the identification.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="Key Results">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key Results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>The same signal, opposite signs.</strong> El Niño: rubber <strong>+36.9%</strong>, cotton <strong>−10.9%</strong> at 12 months. Six scenario cells, six sign disagreements — a pooled model would report that climate doesn’t matter.</li>
+<li><strong>Climate leads price by about two quarters</strong>, cleanly for rubber (ONI at lag 6, <code>p=0.006</code>, reverse <code>p=0.45</code>) and non-directionally for cotton.</li>
+<li><strong>The rubber alarm is skillful</strong> — AUC <strong>0.775</strong>, Brier skill <strong>+0.182</strong> at h=9 — and worth about <strong>2.1%</strong> of procurement cost at h=6. <strong>Cotton’s works only at three months.</strong></li>
+<li><strong>A relative alarm rule fails at high base rates.</strong> A model that ranked the 2010-11 spike at AUC <strong>0.786</strong> fired <strong>0 of 24 months</strong>, because scaling a 69% base rate put the bar at 0.858. The fix is the rule, not the model.</li>
+<li><strong>Cotton’s climate coverage is Xinjiang only, ~20% of world production</strong>, and nearly every cotton weakness above descends from it.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p><strong>Cotton’s coverage is the root cause of most of the rest.</strong> Weak alarm skill, a model whose top driver is price momentum, a stress test containing only 63% of months — all downstream of seeing one-fifth of the crop. <strong>The remedy is data, not method:</strong> extending ERA5 coverage to the US, Brazil, India and West Africa is the single highest-value next step.</p>
+<p><strong>Only one of three layers is an independent check.</strong> Layer 3 inherits Layer 1’s coefficients, so its agreement is arithmetic. A future revision should give the scenario engine a specification not borrowed from the econometrics.</p>
+<p><strong>The relative alarm rule is mis-specified at high base rates</strong> — diagnosed in section 5, not fixed here.</p>
+<p><strong>The most extreme move in a century escaped the 95% band</strong>, and the IRFs establish nothing. Neither is a reason to distrust the bands; both are reasons not to treat them as coverage guarantees.</p>
+<p><strong>Scope is narrower than the numbers imply.</strong> Rubber is partly an oil story (<code>brent_ret_lag1</code> +0.1158 is the largest coefficient anywhere in the model); the procurement backtest ignores carry cost; and leather and petroleum-derived synthetics are too sparse monthly to model at all.</p>
+</section>
+<section id="closing-thought" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thought">Closing thought</h2>
+<p>The result I’d keep if I could keep only one isn’t the +36.9%. It’s that a model can be right and still be silent.</p>
+<p>Rubber’s 2010-11 replay had the signal — it ranked the episode at AUC 0.786 and peaked within 0.038 of firing. Everything downstream of the model worked. The thing that failed was a single line of business logic that multiplies a base rate by 1.25, chosen because it was intuitive and never stress-tested at the base rates where it would actually be used. A post-mortem that stopped at “the alarm didn’t fire” would have concluded the data was inadequate and gone looking for more of it.</p>
+<p>Most of the effort in a project like this goes into the model. The failure was in the two-line rule sitting on top of it — and it was only visible because the stress test replayed the <em>decision</em>, not just the <em>prediction</em>.</p>
+</section>
+<section id="reproducing-this-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="reproducing-this-analysis">Reproducing this analysis</h2>
+<p>Everything above runs from one public repository. There is no Databricks dependency, no private package install, and no live API call in the modelling path.</p>
+<style>
+  .repo-card {
+    background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-body-color) 8%);
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius-lg);
+    padding: 1.1rem 1.25rem;
+    max-width: 560px;
+  }
+
+  .repo-card:hover {
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+  }
+
+  .repo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .repo-icon {
+    color: var(--bs-secondary-color);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .repo-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--bs-link-color);
+    text-decoration: none;
+  }
+
+  .repo-name:hover {
+    text-decoration: underline;
+  }
+
+  .repo-desc {
+    font-size: 13px;
+    color: var(--bs-secondary-color);
+    margin: 0 0 12px;
+    line-height: 1.5;
+  }
+
+  .repo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: rgba(var(--bs-info-rgb), 0.15);
+    color: var(--bs-link-color);
+    font-family: var(--bs-font-monospace);
+  }
+
+  .repo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .repo-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+  }
+
+  .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #3572A5;
+    flex-shrink: 0;
+  }
+
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+    border-radius: var(--bs-border-radius);
+    padding: 5px 10px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .view-btn:hover {
+    background: color-mix(in srgb, var(--bs-body-bg) 85%, var(--bs-body-color) 15%);
+    border-color: rgba(var(--bs-body-color-rgb), 0.4);
+    color: var(--bs-body-color);
+  }
+</style>
+<div class="repo-card">
+  <div class="repo-top">
+    <i class="bi bi-github repo-icon" aria-hidden="true"></i>
+    <a class="repo-name" href="https://github.com/msburns24/climate-commodity-risk">msburns24 /
+      climate-commodity-risk</a>
+  </div>
+  <p class="repo-desc">Climate-driven price risk for cotton and natural rubber — a medallion ingestion
+    pipeline, SARIMAX and VAR econometrics, walk-forward spike classifiers, and a Monte Carlo scenario
+    engine. Run locally: <code>pip install -e . &amp;&amp; make features</code></p>
+  <div class="repo-tags">
+    <span class="tag">python</span>
+    <span class="tag">time-series</span>
+    <span class="tag">econometrics</span>
+    <span class="tag">xgboost</span>
+    <span class="tag">monte-carlo</span>
+  </div>
+  <div class="repo-footer">
+    <div class="repo-lang">
+      <span class="lang-dot"></span>
+      <span>Python</span>
+    </div>
+    <a class="view-btn" href="https://github.com/msburns24/climate-commodity-risk">
+      View on GitHub <i class="bi bi-arrow-right" style="font-size:12px" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<br>
+<p>From a clean clone:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> features                  <span class="co"># bronze -&gt; silver -&gt; gold</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> src.modeling.train   <span class="co"># SARIMAX + walk-forward classifiers</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> src.modeling.predict <span class="co"># Monte Carlo scenarios</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every figure and number in this post is produced by a cell in one of three notebooks, each ending in a Findings cell whose values trace to a cell output in the same run:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Notebook</th>
+<th>Produces</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/msburns24/climate-commodity-risk/blob/main/notebooks/modeling_1_econometrics.ipynb"><code>modeling_1_econometrics.ipynb</code></a></td>
+<td>ADF, Granger, SARIMAX coefficients, IRFs</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/msburns24/climate-commodity-risk/blob/main/notebooks/modeling_2_early_warning.ipynb"><code>modeling_2_early_warning.ipynb</code></a></td>
+<td>Skill table, alarm timeline, SHAP, calibration, backtest</td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/msburns24/climate-commodity-risk/blob/main/notebooks/modeling_3_scenarios.ipynb"><code>modeling_3_scenarios.ipynb</code></a></td>
+<td>Fan charts, scenario shifts, stress test, alarm replay</td>
+</tr>
+</tbody>
+</table>
+<p>Every tunable — driver sets, lags, horizons, the +10% threshold, the 1.25× alarm multiple, hyperparameters — lives in <code>src/config.py</code>, so none of the numbers above are hardcoded in a notebook.</p>
+<p><strong>No raw data ships with the repo.</strong> Each source carries its own licence, and two need care: EM-DAT permits publishing aggregate statistics but not redistribution, and the IMF commodity price series distributed through FRED can’t be republished at all — which is why the prices here come from the World Bank Pink Sheet instead. <a href="https://github.com/msburns24/climate-commodity-risk/blob/main/DATA.md"><code>DATA.md</code></a> carries the full table, the attribution strings, and instructions for regenerating everything yourself.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it yourself">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try it yourself
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong><a href="dashboard.qmd">interactive dashboard</a></strong> runs every model in this post in your browser: drag a severity dial through the scenario grid, move the alarm threshold and watch the confusion counts recompute, and replay the procurement backtest at your own spend. No server, no login — the whole payload is 383 KB of static CSV.</p>
+</div>
+</div>
+</section>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data sources</h2>
+<ul>
+<li><strong>ERA5 reanalysis</strong> — Copernicus Climate Change Service (C3S) Climate Data Store, DOI <code>10.24381/cds.adbb2d47</code>. Licensed CC-BY.</li>
+<li><strong>World Bank Commodity Price Data (“Pink Sheet”)</strong> — cotton A Index and rubber RSS3, monthly, in $/kg. Licensed CC-BY 4.0.</li>
+<li><strong>NOAA Climate Prediction Center</strong> — Oceanic Niño Index. Public domain.</li>
+<li><strong>EM-DAT</strong>, the International Disaster Database — Emergency Events Database, UCLouvain / CRED, Brussels, Belgium, accessed 2026-07-25, <a href="https://www.emdat.be">www.emdat.be</a>. Used as monthly aggregate counts only.</li>
+<li><strong>U.S. Bureau of Labor Statistics via FRED</strong> — producer price indices and CPI-U. Public domain.</li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This began as a graduate capstone project at UNC’s School of Data Science and Society, with teammates who built the Streamlit application and the country-level data exploration. It is an independent academic project, not affiliated with or endorsed by Nike.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.matthewburns\.net\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

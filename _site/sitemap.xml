@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.matthewburns.net/scotland/index.html</loc>
-    <lastmod>2026-06-17T18:01:04.655Z</lastmod>
+    <loc>https://www.matthewburns.net/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.478Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/projects/steam-recommender/index.html</loc>
-    <lastmod>2026-05-26T18:38:20.211Z</lastmod>
+    <loc>https://www.matthewburns.net/projects/climate-commodity-risk/index.html</loc>
+    <lastmod>2026-07-26T10:56:03.589Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/index.html</loc>
-    <lastmod>2026-05-26T18:32:53.459Z</lastmod>
+    <lastmod>2026-06-27T11:51:48.491Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/posts/stochastic-gradient-descent/index.html</loc>
-    <lastmod>2026-05-27T10:57:25.341Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/posts/data-lifecycle-101/index.html</loc>
-    <lastmod>2025-09-04T14:38:51.848Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/about.html</loc>
-    <lastmod>2026-05-26T16:16:20.801Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/index.html</loc>
-    <lastmod>2026-05-26T18:39:41.646Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/posts/index.html</loc>
-    <lastmod>2026-05-26T08:46:14.678Z</lastmod>
+    <lastmod>2026-06-27T11:51:48.480Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/posts/wikidata-overview/index.html</loc>
-    <lastmod>2026-05-27T11:11:12.790Z</lastmod>
+    <lastmod>2026-06-27T11:51:48.486Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/projects/index.html</loc>
-    <lastmod>2025-09-06T17:07:07.075Z</lastmod>
+    <loc>https://www.matthewburns.net/scotland/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.502Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/data-lifecycle-101/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.479Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/posts/config-management-in-data-science/index.html</loc>
-    <lastmod>2026-06-11T16:16:18.319Z</lastmod>
+    <lastmod>2026-06-27T11:51:48.479Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.479Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/steam-recommender/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.491Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.491Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/about.html</loc>
+    <lastmod>2026-06-27T11:51:48.476Z</lastmod>
   </url>
 </urlset>

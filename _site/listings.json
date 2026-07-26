@@ -18,6 +18,7 @@
   {
     "listing": "/projects/index.html",
     "items": [
+      "/projects/climate-commodity-risk/index.html",
       "/projects/amazon-sentiment-ml-eng/index.html",
       "/projects/steam-recommender/index.html"
     ]
