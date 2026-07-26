@@ -8,6 +8,7 @@ listing:
     contents:
       - "projects/amazon-sentiment-ml-eng/*.qmd"
       - "projects/steam-recommender/*.qmd"
+      - "projects/climate-commodity-risk/index.qmd"
     sort: "date desc"
     type: default
     image-align: left

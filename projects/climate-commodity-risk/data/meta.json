@@ -1,0 +1,153 @@
+{
+  "commodities": {
+    "cotton": {
+      "alarm_threshold": 0.1,
+      "alarm_horizons": [
+        3,
+        6,
+        9
+      ],
+      "clf_features": [
+        "drought_3m_lag3",
+        "drought_3m_lag6",
+        "t2m_anom_lag6",
+        "t2m_anom_roll6",
+        "oni",
+        "oni_lag4",
+        "el_nino",
+        "n_storm_lag6",
+        "n_flood_lag6",
+        "brent_ret_lag1",
+        "mom_3m",
+        "mom_6m"
+      ],
+      "current_alarm": {
+        "clf_xgb_h3": 0.1974751502275467,
+        "clf_logit_h3": 0.13713406024138547,
+        "clf_xgb_h6": 0.21450339257717133,
+        "clf_logit_h6": 0.2802696466763494,
+        "clf_xgb_h9": 0.29101428389549255,
+        "clf_logit_h9": 0.3659248540933254,
+        "as_of": "2025-12"
+      },
+      "sarimax_exog": [
+        "drought_3m_lag6",
+        "t2m_anom_lag6",
+        "oni_lag4",
+        "n_storm_lag6",
+        "brent_ret_lag1"
+      ],
+      "sarimax_order": [
+        0,
+        0,
+        1
+      ],
+      "sarimax_resid_std": 0.04897332442737444,
+      "last_month": "2025-12",
+      "last_price": 1.63
+    },
+    "rubber": {
+      "alarm_threshold": 0.1,
+      "alarm_horizons": [
+        3,
+        6,
+        9
+      ],
+      "clf_features": [
+        "t2m_anom_lag1",
+        "t2m_anom_roll3",
+        "precip_anom_lag2",
+        "precip_anom_roll3",
+        "drought_3m_lag3",
+        "oni",
+        "oni_lag3",
+        "oni_lag6",
+        "el_nino",
+        "n_flood_lag1",
+        "n_flood_lag3",
+        "brent_ret_lag1",
+        "mom_3m",
+        "mom_6m"
+      ],
+      "current_alarm": {
+        "clf_xgb_h3": 0.31934237480163574,
+        "clf_logit_h3": 0.32719394788404904,
+        "clf_xgb_h6": 0.33002880215644836,
+        "clf_logit_h6": 0.3822870510602442,
+        "clf_xgb_h9": 0.41734975576400757,
+        "clf_logit_h9": 0.46355388724896385,
+        "as_of": "2025-12"
+      },
+      "sarimax_exog": [
+        "t2m_anom_lag1",
+        "precip_anom_lag2",
+        "oni_lag6",
+        "n_flood_lag1",
+        "brent_ret_lag1"
+      ],
+      "sarimax_order": [
+        1,
+        0,
+        0
+      ],
+      "sarimax_resid_std": 0.07504896467852676,
+      "last_month": "2025-12",
+      "last_price": 2.06
+    }
+  },
+  "price_units": {
+    "cotton": "($/kg)",
+    "brent": "($/bbl)",
+    "rubber": "($/kg)"
+  },
+  "price_source": "World Bank Pink Sheet (CC-BY 4.0)",
+  "alarm_threshold": 0.1,
+  "horizons": [
+    3,
+    6,
+    9
+  ],
+  "oos_start_month": "2016-01",
+  "commodity_groups": {
+    "Cotton": [
+      "Brazil",
+      "China",
+      "India",
+      "Pakistan",
+      "T\u00fcrkiye",
+      "Uzbekistan"
+    ],
+    "Rubber": [
+      "Bangladesh",
+      "Cambodia",
+      "China",
+      "India",
+      "Indonesia",
+      "Lao People's Democratic Republic",
+      "Malaysia",
+      "Myanmar",
+      "Philippines",
+      "Sri Lanka",
+      "Thailand",
+      "Viet Nam"
+    ],
+    "Hides": [
+      "China",
+      "India",
+      "Republic of Korea",
+      "T\u00fcrkiye"
+    ],
+    "Brent Crude Oil": [
+      "China",
+      "Iran (Islamic Republic of)",
+      "Iraq",
+      "Kuwait",
+      "United Arab Emirates"
+    ]
+  },
+  "data_sources": {
+    "prices": "World Bank Commodity Price Data (The Pink Sheet), CC-BY 4.0",
+    "disasters": "Emergency Events Database (EM-DAT), UCLouvain / CRED, Brussels, Belgium, accessed on 2026-07-25, www.emdat.be \u2014 monthly aggregate counts only",
+    "cpi": "U.S. Bureau of Labor Statistics, CPIAUCSL, via FRED (public domain)"
+  }
+}

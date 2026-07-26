@@ -215,3 +215,12 @@ __marimo__/
 /.quarto/
 **/*.quarto_ipynb
 **/data/
+
+# ...except the climate-commodity-risk dashboard payload, which is the whole
+# point of that page: dashboard.qmd loads these CSVs client-side, so they must
+# ship in the source tree AND in the committed _site build. Without this the
+# page renders and every FileAttachment 404s.
+!projects/climate-commodity-risk/data/
+!projects/climate-commodity-risk/data/**
+!_site/projects/climate-commodity-risk/data/
+!_site/projects/climate-commodity-risk/data/**

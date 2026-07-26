@@ -1,0 +1,1091 @@
+---
+title: "Climate Commodity Risk — Interactive Dashboard"
+description: "Drive the scenario engine, the alarm threshold and the procurement backtest from cotton and rubber's real model artifacts, entirely in the browser."
+date: 2026-07-26
+resources:
+  - data/
+format:
+  html:
+    toc: true
+---
+
+Five panels over ten years of cotton and natural rubber prices, the climate
+that moved them, and a spike alarm you can push until it breaks. Every one runs
+on the same artifacts as the write-up — no server, no database, no data API.
+The whole payload is 400 KB of static CSV, loaded once and recomputed in your
+browser as you move the controls.
+
+Each panel carries a collapsed **"how to read this"** note. Open them: several
+of these charts have a caveat that changes what the numbers mean.
+
+::: {.callout-tip collapse="true" title="Start here if you haven't read the write-up"}
+The short version. Cotton and natural rubber both respond to climate, in
+**opposite directions** — a strong El Niño lifts rubber's 12-month median price
+**+36.9%** while pushing cotton's **−10.9%** — so they get separate models
+throughout. Climate leads price by about two quarters.
+
+A classifier then asks a narrower question each month: *what is the probability
+this price rises more than 10% within the next h months?* It has real skill for
+rubber (AUC 0.775 at nine months) and little for cotton beyond three, which
+traces to cotton's climate coverage being **Xinjiang only, ~20% of world
+production**.
+
+The panel worth your time is the **alarm explorer**. The operating rule fires at
+`k × the historical base rate`, and that rule breaks in a way that is easy to
+miss and easy to reproduce here: where the base rate is already high, the
+threshold outruns anything a calibrated model can emit, and a skillful model
+goes silent. The [full write-up](index.qmd) has the method, the limitations and
+the numbers.
+:::
+
+::: {.callout-note collapse="true" title="Anchoring, in one place"}
+Models are fitted through **2025-12**, the last month of the joined panel, so
+every forecast starts there. Observed prices run to **2026-06** because the
+World Bank Pink Sheet publishes further than the slowest input — so the first
+six months of every forecast band already have actuals drawn over them. That is
+a free out-of-sample look, not fitted values, and the charts distinguish the
+two.
+
+Prices are World Bank Pink Sheet levels in **US$/kg** (Brent in US$/bbl), CC-BY
+4.0. Disaster counts are **EM-DAT monthly aggregates** — national counts by
+type, never event records. Alarm probabilities are walk-forward
+out-of-sample from **2016-01**.
+:::
+
+```{ojs}
+//| echo: false
+prices = FileAttachment("data/prices.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+meta = FileAttachment("data/meta.json").json()
+```
+
+```{ojs}
+//| echo: false
+// Quarto toggles `quarto-light` / `quarto-dark` on <body>. Watch the class
+// list rather than the toggle button, so this survives any future change to
+// the navbar markup, and so it also picks up the initial state on load.
+theme = Generators.observe(notify => {
+  const body = document.body;
+  const read = () => body.classList.contains("quarto-dark") ? "dark" : "light";
+  notify(read());
+  const observer = new MutationObserver(() => notify(read()));
+  observer.observe(body, {attributes: true, attributeFilter: ["class"]});
+  return () => observer.disconnect();
+})
+```
+
+```{ojs}
+//| echo: false
+// One source of truth for colour: the palette is declared in styles.css and
+// read back here, rather than restating the hex in JS where it could drift.
+// `theme` is referenced purely to make this cell recompute on every toggle.
+palette = {
+  theme;
+  const cs = getComputedStyle(document.body);
+  const v = name => cs.getPropertyValue(name).trim();
+  return {
+    cotton: v("--ccr-cotton"),
+    rubber: v("--ccr-rubber"),
+    brent: v("--ccr-brent"),
+    fg: v("--ccr-fg"),
+    muted: v("--ccr-muted"),
+    line: v("--ccr-line")
+  };
+}
+```
+
+## Observed prices
+
+```{ojs}
+//| echo: false
+// `month` arrives as a Date, not a string: d3.autoType matches "2026-01"
+// against its ISO-date regex and parses it as UTC midnight. Every scale and
+// formatter here is therefore UTC — a local-time axis would label every point
+// one month early in any negative-offset timezone.
+recent = prices.filter(d => d.month >= new Date(Date.UTC(2015, 0, 1)))
+```
+
+```{ojs}
+//| echo: false
+anchor = {
+  const lm = meta.commodities.cotton.last_month; // a string; JSON gets no autoType
+  return new Date(Date.UTC(+lm.slice(0, 4), +lm.slice(5, 7) - 1, 1));
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  height: 320,
+  marginLeft: 52,
+  // Drives axis text, tick marks and grid lines, which inherit currentColor.
+  style: {color: palette.fg, background: "transparent", fontFamily: "inherit"},
+  x: {type: "utc", label: null},
+  y: {label: "US$ / kg", grid: true},
+  color: {
+    domain: ["cotton", "rubber"],
+    range: [palette.cotton, palette.rubber],
+    legend: true
+  },
+  marks: [
+    Plot.ruleY([0], {stroke: palette.line}),
+    Plot.lineY(recent.filter(d => d.commodity !== "brent"), {
+      x: "month", y: "price", stroke: "commodity", strokeWidth: 2.2
+    }),
+    Plot.ruleX([anchor], {stroke: palette.muted, strokeDasharray: "4 4"}),
+    Plot.text([anchor], {
+      x: d => d, y: 0.15, text: ["forecast origin"],
+      textAnchor: "end", dx: -6, fill: palette.muted, fontSize: 11
+    })
+  ]
+})
+```
+
+The dashed rule marks the **forecast origin**, read from `meta.json` rather
+than hardcoded. Observed price continues past it: the models anchor at
+`{ojs} meta.commodities.cotton.last_month` while the price series runs to
+`{ojs} d3.utcFormat("%Y-%m")(d3.max(prices, d => d.month))`.
+
+::: {.callout-note collapse="true" title="How to read this"}
+Two series, one axis, both in US$/kg — which is only fair because cotton and
+rubber happen to trade in the same units and the same order of magnitude. Brent
+is loaded but not drawn here; it enters the models as a driver, since oil price
+raises the cost of synthetic rubber and pulls natural rubber with it.
+
+The interesting feature is how differently the two series move. Rubber's
+2010–11 spike and cotton's are close in time but not in cause, and the
+scenario explorer below shows why: the same climate shock pushes them in
+opposite directions.
+:::
+
+```{ojs}
+//| echo: false
+md`**Loaded:** ${prices.length.toLocaleString()} price rows ·
+${d3.utcFormat("%Y-%m")(d3.min(prices, d => d.month))} to
+${d3.utcFormat("%Y-%m")(d3.max(prices, d => d.month))} ·
+${new Set(prices.map(d => d.commodity)).size} series ·
+month parsed as **${prices[0].month.constructor.name}**`
+```
+
+
+## Scenario explorer
+
+```{ojs}
+//| echo: false
+grid = FileAttachment("data/scenario_grid.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+exceedance = FileAttachment("data/scenario_exceedance.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+viewof commodity = Inputs.radio(["cotton", "rubber"], {
+  label: "Commodity", value: "rubber"
+})
+```
+
+```{ojs}
+//| echo: false
+viewof scenario = Inputs.select(
+  new Map([
+    ["Baseline (no shock)", "baseline"],
+    ["El Niño", "el_nino"],
+    ["Drought", "drought"],
+    ["Flood", "flood"]
+  ]),
+  {label: "Scenario", value: "el_nino"}
+)
+```
+
+```{ojs}
+//| echo: false
+// Severities are the nine values the grid was simulated at, so the slider
+// selects rather than interpolates — no synthetic points between cells.
+viewof severity = Inputs.range([0, 2], {
+  label: "Severity", step: 0.25, value: 1
+})
+```
+
+```{ojs}
+//| echo: false
+viewof horizon = Inputs.radio([3, 6, 12], {
+  label: "Horizon (months)", value: 6, format: h => `${h}m`
+})
+```
+
+```{ojs}
+//| echo: false
+cell = grid.filter(d =>
+  d.commodity === commodity &&
+  d.scenario === scenario &&
+  Math.abs(d.severity - severity) < 1e-9
+)
+```
+
+```{ojs}
+//| echo: false
+// The anchor is the last month the model saw. Observed price runs past it, so
+// history and out-of-sample actuals are drawn as two separate marks — a single
+// line would imply the model had seen the later months.
+observed = prices.filter(d => d.commodity === commodity)
+```
+
+```{ojs}
+//| echo: false
+history = {
+  const cutoff = new Date(Date.UTC(anchor.getUTCFullYear() - 2, anchor.getUTCMonth(), 1));
+  return observed.filter(d => +d.month >= +cutoff && +d.month <= +anchor);
+}
+```
+
+```{ojs}
+//| echo: false
+actualsAfterAnchor = observed.filter(d => +d.month > +anchor)
+```
+
+```{ojs}
+//| echo: false
+today = observed.find(d => +d.month === +anchor).price
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  height: 380,
+  marginLeft: 56,
+  marginRight: 16,
+  style: {color: palette.fg, background: "transparent", fontFamily: "inherit"},
+  x: {type: "utc", label: null},
+  y: {label: `${commodity} · US$ / kg`, grid: true},
+  marks: [
+    // 95% band, then the interquartile band on top of it
+    Plot.areaY(cell, {
+      x: "month", y1: "p2.5", y2: "p97.5",
+      fill: palette[commodity], fillOpacity: 0.14
+    }),
+    Plot.areaY(cell, {
+      x: "month", y1: "p25", y2: "p75",
+      fill: palette[commodity], fillOpacity: 0.26
+    }),
+    Plot.lineY(cell, {
+      x: "month", y: "p50",
+      stroke: palette[commodity], strokeWidth: 2.4, strokeDasharray: "6 3"
+    }),
+    // observed history, up to and including the anchor
+    Plot.lineY(history, {
+      x: "month", y: "price", stroke: palette.fg, strokeWidth: 2
+    }),
+    // observed months the model never saw
+    Plot.lineY(actualsAfterAnchor, {
+      x: "month", y: "price", stroke: palette.fg,
+      strokeWidth: 2, strokeOpacity: 0.55, strokeDasharray: "2 3"
+    }),
+    Plot.dot(actualsAfterAnchor, {
+      x: "month", y: "price", r: 2.4, fill: palette.fg, fillOpacity: 0.7
+    }),
+    Plot.ruleX([anchor], {stroke: palette.muted, strokeDasharray: "4 4"}),
+    Plot.ruleY([today], {stroke: palette.muted, strokeOpacity: 0.5}),
+    Plot.tip(cell, Plot.pointerX({
+      x: "month", y: "p50",
+      title: d => [
+        d3.utcFormat("%B %Y")(d.month),
+        `median  ${d.p50.toFixed(2)}`,
+        `p25–p75  ${d.p25.toFixed(2)} – ${d.p75.toFixed(2)}`,
+        `95% band  ${d["p2.5"].toFixed(2)} – ${d["p97.5"].toFixed(2)}`
+      ].join("\n")
+    }))
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+// P(+10%) comes from the grid's own re-simulation, not from predict.py, so
+// that it stays consistent as the severity dial moves. See the caption.
+pExceed = {
+  const row = exceedance.find(d =>
+    d.commodity === commodity &&
+    d.scenario === scenario &&
+    Math.abs(d.severity - severity) < 1e-9 &&
+    d.horizon_months === horizon &&
+    Math.abs(d.threshold - meta.alarm_threshold) < 1e-9
+  );
+  return row ? row.prob_exceed : NaN;
+}
+```
+
+```{ojs}
+//| echo: false
+atHorizon = cell.find(d => d.month_offset === horizon)
+```
+
+```{ojs}
+//| echo: false
+tile = (label, value, sub) => html`<div style="
+  flex:1 1 10rem; min-width:10rem;
+  background:${palette.card}; border:1px solid ${palette.line};
+  border-radius:0.5rem; padding:0.85rem 1rem">
+  <div style="font-size:0.72rem; letter-spacing:0.06em; color:${palette.muted}">
+    ${label.toUpperCase()}</div>
+  <div style="font-size:1.6rem; font-weight:500; color:${palette.fg}; line-height:1.4">
+    ${value}</div>
+  <div style="font-size:0.78rem; color:${palette.muted}">${sub}</div>
+</div>`
+```
+
+```{ojs}
+//| echo: false
+html`<div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin:0.5rem 0 1rem">
+  ${tile(
+    `P(+${(meta.alarm_threshold * 100).toFixed(0)}%) by ${horizon}m`,
+    Number.isFinite(pExceed) ? `${(pExceed * 100).toFixed(0)}%` : "—",
+    `vs ${(baselineExceed * 100).toFixed(0)}% under baseline`
+  )}
+  ${tile(
+    `p90 planning price (${horizon}m)`,
+    `$${atHorizon.p90.toFixed(2)}`,
+    `${pct(atHorizon.p90 / today - 1)} vs $${today.toFixed(2)} today`
+  )}
+  ${tile(
+    `p95 planning price (${horizon}m)`,
+    `$${atHorizon.p95.toFixed(2)}`,
+    `${pct(atHorizon.p95 / today - 1)} vs $${today.toFixed(2)} today`
+  )}
+</div>`
+```
+
+```{ojs}
+//| echo: false
+pct = x => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(1)}%`
+```
+
+```{ojs}
+//| echo: false
+baselineExceed = {
+  const row = exceedance.find(d =>
+    d.commodity === commodity &&
+    d.scenario === "baseline" &&
+    Math.abs(d.severity - severity) < 1e-9 &&
+    d.horizon_months === horizon &&
+    Math.abs(d.threshold - meta.alarm_threshold) < 1e-9
+  );
+  return row ? row.prob_exceed : NaN;
+}
+```
+
+::: {.callout-warning title="What this chart is anchored to" collapse="true"}
+The forecast origin is **`{ojs} meta.commodities[commodity].last_month`** — the
+last month in the modelling panel. The solid line is observed price up to that
+point; the **dotted line past the rule is real price the model never saw**,
+because the Pink Sheet runs six months further than the panel. Treat that
+overlap as a free out-of-sample look, not as fitted values.
+
+Percentiles come from 10,000 bootstrapped-residual paths per cell. Severity
+scales every driver shock in the scenario, so severity 0 collapses all four
+scenarios onto the same baseline.
+
+**On the probability tile:** it reads from this dial's own simulation, which
+re-seeds per cell so the severity slider moves smoothly rather than jittering.
+That is a different random stream from the pipeline run the write-up quotes, so
+the two are not bit-identical — measured across all 24 scenario × horizon cells,
+they agree to within **0.9 percentage points** (mean 0.3). Medians and planning
+percentiles agree to within half a point.
+:::
+
+
+## Alarm explorer
+
+The alarm fires when the predicted probability clears **k × the historical base
+rate** — a relative rule, not a fixed cutoff, because the models are calibrated
+and rarely emit high absolute probabilities. Move `k` and watch what it costs.
+
+```{ojs}
+//| echo: false
+alarmProbs = FileAttachment("data/alarm_probs.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+// Only the two fitted models carry per-month probabilities. Climatology is a
+// constant base-rate baseline and appears in the skill table, not here — it has
+// no probability series to plot.
+viewof model = Inputs.select(
+  new Map([
+    ["XGBoost", "clf_xgb"],
+    ["Logistic regression", "clf_logit"]
+  ]),
+  {label: "Model", value: "clf_xgb"}
+)
+```
+
+```{ojs}
+//| echo: false
+viewof alarmHorizon = Inputs.select([3, 6, 9], {
+  label: "Alarm horizon", value: 6, format: h => `${h} months`
+})
+```
+
+```{ojs}
+//| echo: false
+viewof k = Inputs.range([1, 2], {
+  label: "Alarm multiple k", step: 0.05, value: 1.25
+})
+```
+
+```{ojs}
+//| echo: false
+series = alarmProbs
+  .filter(d => d.commodity === commodity &&
+               d.model === model &&
+               d.horizon === alarmHorizon)
+  .sort((a, b) => a.month - b.month)
+```
+
+```{ojs}
+//| echo: false
+// The base rate is the realised frequency of a +10% move inside the horizon,
+// over the out-of-sample window itself.
+baseRate = d3.mean(series, d => d.label)
+```
+
+```{ojs}
+//| echo: false
+tau = Math.min(k * baseRate, 1)
+```
+
+```{ojs}
+//| echo: false
+confusion = {
+  const alarms = series.filter(d => d.prob >= tau);
+  const events = series.filter(d => d.label === 1);
+  const hits = alarms.filter(d => d.label === 1).length;
+  return {
+    n: series.length,
+    alarms: alarms.length,
+    events: events.length,
+    hits,
+    falseAlarms: alarms.length - hits,
+    missed: events.length - hits,
+    hitRate: events.length ? hits / events.length : NaN
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+// Contiguous runs of label === 1, so the shading is one rectangle per episode
+// rather than one per month.
+eventBands = {
+  const out = [];
+  let start = null, prev = null;
+  for (const d of series) {
+    if (d.label === 1 && start === null) start = d.month;
+    if (d.label !== 1 && start !== null) { out.push({x1: start, x2: d.month}); start = null; }
+    prev = d;
+  }
+  if (start !== null && prev) {
+    out.push({x1: start, x2: d3.utcMonth.offset(prev.month, 1)});
+  }
+  return out;
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  height: 300,
+  marginLeft: 46,
+  style: {color: palette.fg, background: "transparent", fontFamily: "inherit"},
+  x: {type: "utc", label: null},
+  y: {label: "P(+10% within horizon)", domain: [0, 1], grid: true, percent: false},
+  marks: [
+    Plot.rect(eventBands, {
+      x1: "x1", x2: "x2", y1: 0, y2: 1,
+      fill: palette.fg, fillOpacity: 0.09
+    }),
+    Plot.ruleY([tau], {stroke: palette[commodity], strokeDasharray: "5 3", strokeWidth: 1.6}),
+    Plot.lineY(series, {x: "month", y: "prob", stroke: palette.fg, strokeWidth: 1.6}),
+    Plot.dot(series.filter(d => d.prob >= tau), {
+      x: "month", y: "prob", r: 3, fill: palette[commodity]
+    }),
+    Plot.tip(series, Plot.pointerX({
+      x: "month", y: "prob",
+      title: d => [
+        d3.utcFormat("%B %Y")(d.month),
+        `probability  ${d.prob.toFixed(3)}`,
+        `spike occurred  ${d.label === 1 ? "yes" : "no"}`,
+        `alarm  ${d.prob >= tau ? "fires" : "silent"}`
+      ].join("\n")
+    }))
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin:0.5rem 0 0.25rem">
+  ${tile("threshold τ", tau.toFixed(2),
+         `${k.toFixed(2)} × ${(baseRate * 100).toFixed(0)}% base rate`)}
+  ${tile("alarms", confusion.alarms,
+         `of ${confusion.n} months`)}
+  ${tile("hits", confusion.hits,
+         `${confusion.falseAlarms} false · ${confusion.missed} missed`)}
+  ${tile("hit rate", Number.isFinite(confusion.hitRate)
+           ? `${(confusion.hitRate * 100).toFixed(0)}%`
+           : "—",
+         `${confusion.events} real events`)}
+</div>`
+```
+
+```{ojs}
+//| echo: false
+md`Shaded bands are months where a **+${(meta.alarm_threshold * 100).toFixed(0)}%**
+move did occur inside the next ${alarmHorizon} months. A useful alarm rises
+inside the shading and stays low outside it.`
+```
+
+::: {.callout-important title="Push k up and watch the rule break" collapse="true"}
+This panel is where the study's most transferable finding lives, and you can
+drive it into failure yourself.
+
+Select **rubber, XGBoost, h=9** — the study's most skillful cell — and push `k`
+to **1.50**. The alarm count drops to **zero**, and it stays there. The base
+rate is **56%**, so the bar sits at 0.84, while the highest probability this
+model ever emitted across ten years is **0.821**. Past k ≈ **1.47** the alarm
+is not merely conservative, it is *arithmetically incapable of firing*. No
+amount of signal helps.
+
+Now select **cotton, XGBoost, h=3**, base rate **19%**. The same slider keeps
+producing alarms until k ≈ **1.87**. The relative rule is fine where the event
+is genuinely rare and degrades exactly where it becomes common — which is where
+a buyer most needs the warning.
+
+That is the mechanism that silenced the alarm through the 2010–11 spike: a 69%
+base rate put the bar at 0.858, the model peaked at 0.820, and it missed by
+0.038 on an episode it had ranked at AUC 0.786. **The fix is the rule, not the
+model.**
+:::
+
+
+## What the alarm would have been worth
+
+A crude procurement rule: buy one month of material every month; when the alarm
+fires, forward-buy the whole horizon at today's price instead, then skip ahead.
+Savings are the fraction of spend avoided against buying monthly throughout.
+
+```{ojs}
+//| echo: false
+viewof monthlySpend = Inputs.range([100e3, 10e6], {
+  label: "Assumed monthly spend (US$)",
+  step: 100e3, value: 1e6,
+  format: x => x.toLocaleString("en-US", {style: "currency", currency: "USD", maximumFractionDigits: 0})
+})
+```
+
+```{ojs}
+//| echo: false
+priceByMonth = new Map(
+  prices.filter(d => d.commodity === commodity).map(d => [+d.month, d.price])
+)
+```
+
+```{ojs}
+//| echo: false
+// Port of src/modeling/backtest.py::backtest_savings. Walk the months in
+// order; on an alarm, buy `horizon` months at today's price and jump forward,
+// otherwise buy one month. Returns the fraction of spend avoided.
+backtestSavings = function (rows, alarmOf, horizon) {
+  const px = rows.map(d => priceByMonth.get(+d.month));
+  if (px.some(p => p === undefined)) return NaN;
+
+  const baseCost = d3.sum(px);
+  let alarmCost = 0, i = 0;
+  while (i < rows.length) {
+    if (alarmOf(rows[i])) {
+      const nMonths = Math.min(horizon, rows.length - i);
+      alarmCost += nMonths * px[i];
+      i += nMonths;
+    } else {
+      alarmCost += px[i];
+      i += 1;
+    }
+  }
+  return 1 - alarmCost / baseCost;
+}
+```
+
+```{ojs}
+//| echo: false
+savings = backtestSavings(series, d => d.prob >= tau, alarmHorizon)
+```
+
+```{ojs}
+//| echo: false
+// Buying whenever a spike actually followed. Note this is a perfect *detector*,
+// not an optimal *buyer* — see the caption. It is a benchmark, not a bound.
+perfectForesight = backtestSavings(series, d => d.label === 1, alarmHorizon)
+```
+
+```{ojs}
+//| echo: false
+usd = x => x.toLocaleString("en-US", {style: "currency", currency: "USD", maximumFractionDigits: 0})
+```
+
+```{ojs}
+//| echo: false
+html`<div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin:0.5rem 0 0.25rem">
+  ${tile("cost avoided", `${(savings * 100).toFixed(1)}%`,
+         `k = ${k.toFixed(2)} · h = ${alarmHorizon}m`)}
+  ${tile("over the window", usd(savings * monthlySpend * series.length),
+         `${usd(monthlySpend)}/mo × ${series.length} months`)}
+  ${tile("perfect foresight", `${(perfectForesight * 100).toFixed(1)}%`,
+         "buying only before real spikes")}
+  ${tile("vs perfect detection",
+         perfectForesight > 0 ? `${(100 * savings / perfectForesight).toFixed(0)}%` : "—",
+         "can exceed 100% — see below")}
+</div>`
+```
+
+```{ojs}
+//| echo: false
+horizonComparison = [3, 6, 9].map(h => {
+  const rows = alarmProbs
+    .filter(d => d.commodity === commodity && d.model === model && d.horizon === h)
+    .sort((a, b) => a.month - b.month);
+  const base = d3.mean(rows, d => d.label);
+  const t = Math.min(k * base, 1);
+  return {
+    horizon: `${h} months`,
+    "base rate": `${(base * 100).toFixed(0)}%`,
+    "τ": t.toFixed(2),
+    alarms: rows.filter(d => d.prob >= t).length,
+    "cost avoided": `${(backtestSavings(rows, d => d.prob >= t, h) * 100).toFixed(2)}%`,
+    "perfect foresight": `${(backtestSavings(rows, d => d.label === 1, h) * 100).toFixed(2)}%`
+  };
+})
+```
+
+```{ojs}
+//| echo: false
+Inputs.table(horizonComparison, {
+  rows: 3,
+  layout: "auto",
+  header: {horizon: "Horizon"}
+})
+```
+
+::: {.callout-note title="How to read this — and how not to" collapse="true"}
+These are **directional figures, not a business case.** The rule assumes a
+forward purchase costs the same per unit as a spot purchase: no inventory
+carrying cost, no storage, no liquidity limit, no counterparty constraint. Real
+procurement has all four, and carrying cost in particular scales with exactly
+the thing this rule does more of.
+
+What the number does answer honestly is *did the alarm point the right way* —
+and it separates the two commodities the same way every other panel does.
+Rubber clears **2%** of spend at the default operating point; cotton is under
+half a percent, which is noise against the assumptions above.
+
+**"Perfect detection" is a benchmark, not a ceiling, and the difference is
+instructive.** It buys forward on every month a spike actually followed — a
+flawless *detector*. But this rule buys at the alarm month's own price, and the
+month a spike begins is not necessarily a cheap month to buy in. A detector with
+worse recall that happens to fire at local price minima can beat it, and here
+one does: rubber XGBoost at h=9 clears **9.4%** at k=1.20 against perfect
+detection's **7.5%**. That is not the model outperforming omniscience; it is the
+metric rewarding *when* you buy as much as *whether* you saw the spike coming —
+one more reason to read the whole panel as directional.
+(Verified against the Python implementation, which reproduces the same
+crossover: the port is faithful.)
+:::
+
+
+## Skill against the null
+
+```{ojs}
+//| echo: false
+alarmMetrics = FileAttachment("data/alarm_metrics.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+modelLabel = new Map([
+  ["clf_xgb", "XGBoost"],
+  ["clf_logit", "Logistic"],
+  ["climatology", "· climatology (null)"]
+])
+```
+
+```{ojs}
+//| echo: false
+// Every AUC is only meaningful next to the climatology row for the same
+// commodity and horizon, so that comparison becomes a column rather than
+// something the reader has to do by eye.
+climatologyAuc = new Map(
+  alarmMetrics
+    .filter(d => d.model === "climatology")
+    .map(d => [`${d.commodity}-${d.horizon}`, d.auc])
+)
+```
+
+```{ojs}
+//| echo: false
+skillRows = alarmMetrics
+  .map(d => ({
+    commodity: d.commodity,
+    h: d.horizon,
+    model: modelLabel.get(d.model),
+    auc: d.auc,
+    "vs null": d.model === "climatology"
+      ? null
+      : d.auc - climatologyAuc.get(`${d.commodity}-${d.horizon}`),
+    "brier skill": d.brier_skill,
+    "base rate": d.n_events / d.n_observed,
+    "hit rate": d.hit_rate,
+    "false alarm": d.false_alarm_rate,
+    n: d.n_observed
+  }))
+  .sort((a, b) =>
+    d3.ascending(a.commodity, b.commodity) ||
+    d3.ascending(a.h, b.h) ||
+    d3.descending(a.auc, b.auc)
+  )
+```
+
+```{ojs}
+//| echo: false
+num = (x, digits = 3, signed = false) =>
+  x === null || x === undefined || Number.isNaN(x)
+    ? ""
+    : `${signed && x >= 0 ? "+" : ""}${x.toFixed(digits)}`
+```
+
+```{ojs}
+//| echo: false
+pctOrBlank = x =>
+  x === null || x === undefined || Number.isNaN(x) ? "" : `${(x * 100).toFixed(0)}%`
+```
+
+```{ojs}
+//| echo: false
+Inputs.table(skillRows, {
+  rows: 18,
+  layout: "auto",
+  header: {
+    h: "h",
+    auc: "AUC",
+    "vs null": "AUC − null",
+    "brier skill": "Brier skill",
+    "base rate": "base rate",
+    "hit rate": "hit rate",
+    "false alarm": "false alarm"
+  },
+  format: {
+    h: h => `${h}m`,
+    auc: x => num(x, 3),
+    "vs null": x => num(x, 3, true),
+    "brier skill": x => num(x, 3, true),
+    "base rate": pctOrBlank,
+    "hit rate": pctOrBlank,
+    "false alarm": pctOrBlank
+  },
+  align: {commodity: "left", model: "left"}
+})
+```
+
+::: {.callout-note title="How to read this table" collapse="true"}
+Rows are grouped by commodity and horizon, and **ranked by AUC inside each
+group**, with the climatology null marked by a leading dot. That ordering is
+doing work: an AUC means nothing on its own — the null runs 0.47–0.55
+throughout — so any model sorted *below* its own climatology row failed to beat
+chance. **Cotton logistic at h=9 is exactly that case**, at 0.496 against a null
+of 0.553. `AUC − null` is the column that says whether a model learned
+anything, and **Brier skill** is scored against the same null, so a negative
+value means you would have done better quoting the base rate. Both cotton
+logistic cells at h=6 (−0.039) and h=9 (−0.100) are negative.
+
+**Base rate climbs with the horizon** — cotton 19% → 41%, rubber 28% → 56% —
+which is why rubber's best AUC (0.775 at h=9) is worth less than it looks: a
++10% move within nine months is close to rubber's normal state. That is the same
+observation the alarm explorer turns into a slider.
+
+Two things about the last two columns, because they will otherwise mislead:
+
+- They are computed at a **fixed 0.50 probability cutoff**, not at the relative
+  `k × base rate` rule the alarm explorer uses. The two panels answer different
+  questions and their hit rates are not comparable.
+- **Blank means undefined, not zero.** In five cells the model never once
+  crossed 0.50, so the false-alarm rate is 0 ÷ 0. Cotton's h=3 XGBoost is the
+  clearest case: its highest probability across ten years is 0.352, so at a 0.50
+  cutoff it is silent — which is precisely why the operating rule is relative.
+:::
+
+
+## Disasters and price
+
+```{ojs}
+//| echo: false
+disasters = FileAttachment("data/disasters.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+cpi = FileAttachment("data/cpi.csv").csv({typed: true})
+```
+
+```{ojs}
+//| echo: false
+// Sourcing-country scope per commodity, exported from src.config rather than
+// restated here. Only commodities with a price series are offered.
+priceable = ["Cotton", "Rubber", "Brent Crude Oil"]
+```
+
+```{ojs}
+//| echo: false
+viewof group = Inputs.select(priceable, {label: "Commodity", value: "Rubber"})
+```
+
+```{ojs}
+//| echo: false
+priceKey = ({Cotton: "cotton", Rubber: "rubber", "Brent Crude Oil": "brent"})[group]
+```
+
+```{ojs}
+//| echo: false
+viewof countries = Inputs.select(meta.commodity_groups[group], {
+  label: "Countries", multiple: 8, value: meta.commodity_groups[group]
+})
+```
+
+```{ojs}
+//| echo: false
+viewof climateOnly = Inputs.toggle({label: "Climate-related only", value: false})
+```
+
+```{ojs}
+//| echo: false
+// `is_climate_related` survives autoType as the STRING "True"/"False" — d3 does
+// not coerce booleans, and pandas wrote Python's capitalised form. A bare
+// `=== true` silently matches nothing, which made the climate-only toggle
+// return an empty type list. Coerce once, tolerating either representation.
+isClimate = d => d.is_climate_related === true || d.is_climate_related === "True"
+```
+
+```{ojs}
+//| echo: false
+// Type options depend on the countries actually selected, as in the Streamlit
+// original — picking Laos should not offer disaster types Laos never had.
+availableTypes = Array.from(new Set(
+  disasters
+    .filter(d => countries.includes(d.country))
+    .filter(d => !climateOnly || isClimate(d))
+    .map(d => d.disaster_type)
+)).sort(d3.ascending)
+```
+
+```{ojs}
+//| echo: false
+viewof types = Inputs.select(availableTypes, {
+  label: "Disaster types", multiple: 6, value: availableTypes
+})
+```
+
+```{ojs}
+//| echo: false
+viewof inflationAdjust = Inputs.toggle({label: "Adjust for inflation (CPI-U)", value: false})
+```
+
+```{ojs}
+//| echo: false
+viewof impactWindow = Inputs.range([1, 12], {label: "Impact window (months)", step: 1, value: 3})
+```
+
+```{ojs}
+//| echo: false
+viewof startYear = Inputs.select(d3.range(2000, 2027), {label: "Start year", value: 2000})
+```
+
+```{ojs}
+//| echo: false
+viewof startMonthNum = Inputs.select(d3.range(1, 13), {
+  label: "Start month", value: 1,
+  format: m => new Date(Date.UTC(2000, m - 1, 1)).toLocaleString("en", {month: "long", timeZone: "UTC"})
+})
+```
+
+```{ojs}
+//| echo: false
+// Mirrors adjust_for_inflation: align CPI on year-month, forward-fill then
+// back-fill, and rebase on the last available month. The forward-fill is not
+// optional — cpi.csv has no 2025-10 row because BLS never published it.
+deflated = {
+  const rows = prices
+    .filter(d => d.commodity === priceKey && d.month >= new Date(Date.UTC(1995, 0, 1)))
+    .sort((a, b) => a.month - b.month);
+  if (!inflationAdjust) return rows;
+
+  const byMonth = new Map(cpi.map(d => [+d.month, d.cpi]));
+  const aligned = new Map();
+  let carried = null;
+  for (const r of rows) {
+    const v = byMonth.get(+r.month);
+    if (v != null) carried = v;
+    aligned.set(+r.month, carried);
+  }
+  const firstKnown = rows.map(r => aligned.get(+r.month)).find(v => v != null);
+  for (const r of rows) if (aligned.get(+r.month) == null) aligned.set(+r.month, firstKnown);
+
+  const baseCpi = aligned.get(+rows[rows.length - 1].month);
+  return rows.map(r => ({...r, price: r.price * (baseCpi / aligned.get(+r.month))}));
+}
+```
+
+```{ojs}
+//| echo: false
+eventsByMonth = {
+  const m = new Map();
+  for (const d of disasters) {
+    if (!countries.includes(d.country)) continue;
+    if (climateOnly && !isClimate(d)) continue;
+    if (!types.includes(d.disaster_type)) continue;
+    const k = +d.period_month;
+    if (!m.has(k)) m.set(k, {count: 0, byType: new Map()});
+    const e = m.get(k);
+    e.count += d.n_events;
+    e.byType.set(d.disaster_type, (e.byType.get(d.disaster_type) || 0) + d.n_events);
+  }
+  return m;
+}
+```
+
+```{ojs}
+//| echo: false
+// pct_change_after is computed on the FULL series first, so months at the edge
+// of the selected window still find real future prices; only then is the
+// window applied. Same order as the Streamlit page.
+mergedSeries = {
+  const rows = deflated.map(r => ({
+    month: r.month,
+    price: r.price,
+    event_count: eventsByMonth.get(+r.month)?.count ?? 0,
+    byType: eventsByMonth.get(+r.month)?.byType ?? new Map()
+  }));
+  for (let i = 0; i < rows.length; i++) {
+    const future = rows[i + impactWindow];
+    rows[i].pct = future ? (future.price - rows[i].price) / rows[i].price * 100 : null;
+  }
+  return rows;
+}
+```
+
+```{ojs}
+//| echo: false
+windowRows = {
+  const start = new Date(Date.UTC(startYear, startMonthNum - 1, 1));
+  const end = new Date(Date.UTC(startYear, startMonthNum - 1 + impactWindow, 1));
+  return mergedSeries.filter(r => +r.month >= +start && +r.month <= +end);
+}
+```
+
+```{ojs}
+//| echo: false
+impact = {
+  const withPct = rs => rs.filter(r => r.pct !== null);
+  const ev = withPct(windowRows.filter(r => r.event_count > 0));
+  const non = withPct(windowRows.filter(r => r.event_count === 0));
+  return {
+    afterDisaster: ev.length ? d3.mean(ev, r => r.pct) : null,
+    afterQuiet: non.length ? d3.mean(non, r => r.pct) : null,
+    afterAny: withPct(windowRows).length ? d3.mean(withPct(windowRows), r => r.pct) : null,
+    events: d3.sum(windowRows, r => r.event_count),
+    months: windowRows.length
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+signedPct = x => x === null || Number.isNaN(x) ? "n/a" : `${x >= 0 ? "+" : "−"}${Math.abs(x).toFixed(1)}%`
+```
+
+```{ojs}
+//| echo: false
+html`<div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin:0.5rem 0 1rem">
+  ${tile(`${impactWindow}mo after a disaster month`, signedPct(impact.afterDisaster),
+         `${impact.events} events in the window`)}
+  ${tile(`${impactWindow}mo after a quiet month`, signedPct(impact.afterQuiet),
+         impact.afterQuiet === null ? "no disaster-free month in window" : "no recorded disaster")}
+  ${tile(`${impactWindow}mo after any month`, signedPct(impact.afterAny),
+         `${impact.months} months in the window`)}
+  ${tile("price basis", inflationAdjust ? "constant $" : "nominal $",
+         inflationAdjust ? "CPI-U, rebased to the latest month" : "as published")}
+</div>`
+```
+
+```{ojs}
+//| echo: false
+eventPoints = mergedSeries.filter(r => r.event_count > 0)
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  height: 360,
+  marginLeft: 56,
+  style: {color: palette.fg, background: "transparent", fontFamily: "inherit"},
+  x: {type: "utc", label: null},
+  y: {label: `${group} · ${inflationAdjust ? "constant" : "nominal"} US$`, grid: true},
+  r: {range: [2, 16]},
+  marks: [
+    Plot.lineY(mergedSeries, {x: "month", y: "price", stroke: palette[priceKey] ?? palette.fg, strokeWidth: 1.6}),
+    // Streamlit sized the marker min(8 + sqrt(count) * 5, 32) in diameter;
+    // Plot's r channel is a radius, so the same formula is halved.
+    Plot.dot(eventPoints, {
+      x: "month", y: "price",
+      r: d => Math.min(8 + Math.sqrt(d.event_count) * 5, 32) / 2,
+      fill: palette.fg, fillOpacity: 0.28, stroke: palette.fg, strokeOpacity: 0.5,
+      title: d => [
+        d3.utcFormat("%B %Y")(d.month),
+        `${d.event_count} event(s)`,
+        ...Array.from(d.byType, ([t, n]) => `  ${t}: ${n}`)
+      ].join("\n")
+    }),
+    Plot.ruleX(
+      [new Date(Date.UTC(startYear, startMonthNum - 1, 1))],
+      {stroke: palette.muted, strokeDasharray: "4 4"}
+    )
+  ]
+})
+```
+
+::: {.callout-warning title="The metric window is narrower than it looks" collapse="true"}
+This panel is a faithful port of the team's Streamlit page, including one
+behaviour worth stating plainly: the three averages are computed **only over
+the months from the start date to start date + impact window** — four months at
+the defaults, not the whole series. That is why the "after a quiet month" tile
+often reads `n/a`: in a 12-country scope, every month in the window had at
+least one recorded disaster.
+
+Widen the picture by moving the start date, or read the full-series comparison
+instead: over 1995–2026 with all rubber-sourcing countries, price is **+2.6%**
+on average three months after a disaster month against **−3.9%** after a quiet
+one. The bubbles show every event regardless of the window.
+
+Disaster counts are EM-DAT aggregates — monthly national counts by type, never
+event records. Bubble area scales with the count, capped so a bad month doesn't
+swallow the chart.
+:::
+
+---
+
+That is the whole dashboard. The reasoning behind it — why the two commodities
+need separate models, what the Granger tests do and don't establish, why the
+2010–11 replay is the most useful failure in the project, and where the analysis
+breaks down — is in the
+**[full write-up](index.qmd)**, along with the source and reproduction steps.

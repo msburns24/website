@@ -1,0 +1,2573 @@
+period_month,country,disaster_type,is_climate_related,n_events
+2000-01,Bangladesh,Earthquake,False,1
+2000-01,Bangladesh,Extreme temperature,True,1
+2000-01,China,Earthquake,False,3
+2000-01,China,Storm,True,1
+2000-01,India,Extreme temperature,True,1
+2000-01,Indonesia,Epidemic,False,1
+2000-01,Iran (Islamic Republic of),Storm,True,1
+2000-01,Lao People's Democratic Republic,Epidemic,False,1
+2000-01,Malaysia,Epidemic,False,1
+2000-01,Philippines,Flood,True,2
+2000-01,Thailand,Epidemic,False,1
+2000-02,Indonesia,Mass movement (wet),False,1
+2000-02,Indonesia,Wildfire,True,1
+2000-02,Iran (Islamic Republic of),Earthquake,False,2
+2000-02,Philippines,Volcanic activity,False,1
+2000-03,Bangladesh,Epidemic,False,1
+2000-03,Bangladesh,Storm,True,1
+2000-03,China,Storm,True,1
+2000-03,Pakistan,Epidemic,False,1
+2000-03,Republic of Korea,Epidemic,False,1
+2000-04,Bangladesh,Storm,True,2
+2000-04,China,Drought,True,1
+2000-04,China,Flood,True,1
+2000-04,India,Drought,True,1
+2000-04,Republic of Korea,Wildfire,True,1
+2000-04,Türkiye,Wildfire,True,1
+2000-05,Bangladesh,Storm,True,2
+2000-05,China,Flood,True,1
+2000-05,China,Storm,True,1
+2000-05,India,Epidemic,False,2
+2000-05,Indonesia,Earthquake,False,1
+2000-05,Indonesia,Epidemic,False,1
+2000-05,Indonesia,Flood,True,1
+2000-05,Iran (Islamic Republic of),Epidemic,False,1
+2000-05,Philippines,Storm,True,1
+2000-05,Türkiye,Earthquake,False,1
+2000-05,Türkiye,Flood,True,1
+2000-06,Bangladesh,Flood,True,1
+2000-06,Bangladesh,Storm,True,1
+2000-06,China,Earthquake,False,1
+2000-06,China,Flood,True,3
+2000-06,China,Mass movement (wet),False,1
+2000-06,China,Storm,True,1
+2000-06,India,Flood,True,1
+2000-06,India,Mass movement (wet),False,1
+2000-06,Indonesia,Earthquake,False,2
+2000-06,Indonesia,Mass movement (wet),False,1
+2000-06,Lao People's Democratic Republic,Epidemic,False,1
+2000-06,Pakistan,Epidemic,False,1
+2000-06,Pakistan,Extreme temperature,True,1
+2000-06,Thailand,Flood,True,1
+2000-06,Türkiye,Earthquake,False,1
+2000-06,Türkiye,Extreme temperature,True,1
+2000-06,Viet Nam,Storm,True,1
+2000-07,Bangladesh,Epidemic,False,1
+2000-07,Cambodia,Flood,True,1
+2000-07,China,Flood,True,2
+2000-07,China,Storm,True,1
+2000-07,India,Epidemic,False,1
+2000-07,India,Flood,True,1
+2000-07,India,Mass movement (wet),False,1
+2000-07,Indonesia,Earthquake,False,1
+2000-07,Philippines,Mass movement (wet),False,1
+2000-07,Philippines,Storm,True,2
+2000-07,Republic of Korea,Flood,True,1
+2000-07,Thailand,Flood,True,1
+2000-07,Viet Nam,Flood,True,1
+2000-07,Viet Nam,Mass movement (wet),False,1
+2000-07,Viet Nam,Storm,True,1
+2000-08,Bangladesh,Flood,True,1
+2000-08,China,Drought,True,1
+2000-08,China,Earthquake,False,1
+2000-08,China,Mass movement (wet),False,1
+2000-08,China,Storm,True,3
+2000-08,India,Epidemic,False,2
+2000-08,India,Flood,True,2
+2000-08,India,Mass movement (wet),False,1
+2000-08,Iran (Islamic Republic of),Flood,True,1
+2000-08,Republic of Korea,Flood,True,1
+2000-08,Republic of Korea,Storm,True,1
+2000-08,Thailand,Storm,True,1
+2000-08,Uzbekistan,Drought,True,1
+2000-08,Viet Nam,Storm,True,4
+2000-09,Bangladesh,Flood,True,1
+2000-09,China,Drought,True,1
+2000-09,China,Storm,True,2
+2000-09,India,Flood,True,1
+2000-09,Lao People's Democratic Republic,Flood,True,1
+2000-09,Malaysia,Storm,True,1
+2000-09,Pakistan,Epidemic,False,1
+2000-09,Philippines,Flood,True,1
+2000-09,Republic of Korea,Storm,True,1
+2000-09,Sri Lanka,Epidemic,False,1
+2000-09,Sri Lanka,Flood,True,1
+2000-09,Thailand,Flood,True,1
+2000-09,Viet Nam,Storm,True,1
+2000-10,Bangladesh,Epidemic,False,1
+2000-10,Bangladesh,Storm,True,1
+2000-10,China,Flood,True,1
+2000-10,India,Epidemic,False,3
+2000-10,India,Flood,True,1
+2000-10,Indonesia,Earthquake,False,1
+2000-10,Indonesia,Mass movement (wet),False,1
+2000-10,Malaysia,Epidemic,False,1
+2000-10,Philippines,Storm,True,1
+2000-10,Viet Nam,Mass movement (wet),False,1
+2000-11,India,Storm,True,1
+2000-11,Indonesia,Flood,True,1
+2000-11,Indonesia,Mass movement (wet),False,1
+2000-11,Malaysia,Flood,True,1
+2000-11,Philippines,Epidemic,False,1
+2000-11,Philippines,Mass movement (dry),False,1
+2000-11,Philippines,Storm,True,2
+2000-11,Sri Lanka,Flood,True,1
+2000-11,Thailand,Flood,True,1
+2000-11,Viet Nam,Flood,True,1
+2000-12,Indonesia,Flood,True,1
+2000-12,Sri Lanka,Storm,True,1
+2001-01,China,Storm,True,1
+2001-01,India,Earthquake,False,1
+2001-01,India,Extreme temperature,True,1
+2001-01,Indonesia,Mass movement (wet),False,1
+2001-01,Pakistan,Earthquake,False,1
+2001-01,Philippines,Flood,True,1
+2001-01,Republic of Korea,Storm,True,1
+2001-02,China,Drought,True,1
+2001-02,China,Earthquake,False,1
+2001-02,India,Epidemic,False,1
+2001-02,Indonesia,Earthquake,False,1
+2001-02,Indonesia,Flood,True,1
+2001-02,Indonesia,Mass movement (wet),False,1
+2001-02,Philippines,Storm,True,1
+2001-02,Sri Lanka,Flood,True,1
+2001-03,China,Drought,True,1
+2001-03,China,Storm,True,1
+2001-03,Pakistan,Storm,True,1
+2001-03,Thailand,Flood,True,1
+2001-03,Türkiye,Flood,True,1
+2001-04,Bangladesh,Storm,True,2
+2001-04,China,Earthquake,False,1
+2001-04,China,Flood,True,1
+2001-05,Bangladesh,Storm,True,1
+2001-05,China,Earthquake,False,1
+2001-05,China,Mass movement (wet),False,1
+2001-05,India,Storm,True,1
+2001-05,Iran (Islamic Republic of),Flood,True,1
+2001-05,Philippines,Volcanic activity,False,1
+2001-05,Thailand,Flood,True,1
+2001-05,Türkiye,Flood,True,1
+2001-06,Bangladesh,Flood,True,1
+2001-06,China,Flood,True,4
+2001-06,China,Infestation,False,1
+2001-06,China,Storm,True,2
+2001-06,India,Epidemic,False,1
+2001-06,India,Flood,True,2
+2001-06,Indonesia,Earthquake,False,1
+2001-06,Myanmar,Flood,True,1
+2001-06,Republic of Korea,Drought,True,1
+2001-06,Thailand,Flood,True,1
+2001-06,Thailand,Storm,True,1
+2001-06,Türkiye,Earthquake,False,1
+2001-06,Viet Nam,Flood,True,1
+2001-07,China,Earthquake,False,1
+2001-07,China,Flood,True,1
+2001-07,China,Mass movement (wet),False,2
+2001-07,China,Storm,True,4
+2001-07,India,Epidemic,False,1
+2001-07,India,Flood,True,2
+2001-07,India,Mass movement (wet),False,1
+2001-07,Indonesia,Flood,True,1
+2001-07,Iran (Islamic Republic of),Flood,True,1
+2001-07,Pakistan,Flood,True,1
+2001-07,Pakistan,Mass movement (wet),False,2
+2001-07,Philippines,Storm,True,1
+2001-07,Philippines,Volcanic activity,False,1
+2001-07,Republic of Korea,Flood,True,2
+2001-07,Türkiye,Earthquake,False,1
+2001-07,Viet Nam,Storm,True,1
+2001-08,Bangladesh,Flood,True,1
+2001-08,Cambodia,Flood,True,1
+2001-08,China,Flood,True,1
+2001-08,China,Mass movement (wet),False,1
+2001-08,China,Storm,True,1
+2001-08,India,Epidemic,False,1
+2001-08,India,Flood,True,3
+2001-08,India,Mass movement (wet),False,1
+2001-08,Iran (Islamic Republic of),Flood,True,1
+2001-08,Lao People's Democratic Republic,Flood,True,1
+2001-08,Malaysia,Flood,True,1
+2001-08,Philippines,Flood,True,1
+2001-08,Philippines,Storm,True,1
+2001-08,Thailand,Flood,True,2
+2001-08,Viet Nam,Flood,True,1
+2001-08,Viet Nam,Storm,True,1
+2001-09,Cambodia,Drought,True,1
+2001-09,China,Flood,True,1
+2001-09,China,Mass movement (wet),False,2
+2001-09,China,Storm,True,1
+2001-09,India,Flood,True,2
+2001-09,Philippines,Storm,True,1
+2001-09,Sri Lanka,Drought,True,1
+2001-10,Bangladesh,Storm,True,1
+2001-10,China,Earthquake,False,1
+2001-10,India,Storm,True,1
+2001-10,Indonesia,Mass movement (wet),False,2
+2001-10,Iran (Islamic Republic of),Earthquake,False,1
+2001-10,Iran (Islamic Republic of),Flood,True,1
+2001-10,Malaysia,Flood,True,2
+2001-10,Philippines,Flood,True,1
+2001-10,Viet Nam,Flood,True,1
+2001-11,India,Mass movement (wet),False,1
+2001-11,Pakistan,Epidemic,False,1
+2001-11,Philippines,Storm,True,1
+2001-11,Türkiye,Mass movement (wet),False,1
+2001-11,Viet Nam,Flood,True,1
+2001-11,Viet Nam,Storm,True,1
+2001-12,Bangladesh,Extreme temperature,True,1
+2001-12,China,Flood,True,1
+2001-12,India,Extreme temperature,True,1
+2001-12,Indonesia,Flood,True,1
+2001-12,Malaysia,Flood,True,1
+2001-12,Philippines,Storm,True,1
+2001-12,Türkiye,Extreme temperature,True,1
+2001-12,Türkiye,Flood,True,1
+2002-01,Cambodia,Drought,True,1
+2002-01,China,Epidemic,False,1
+2002-01,Indonesia,Epidemic,False,1
+2002-01,Indonesia,Flood,True,3
+2002-01,Iran (Islamic Republic of),Flood,True,1
+2002-01,Malaysia,Mass movement (wet),False,1
+2002-01,Philippines,Flood,True,1
+2002-01,Thailand,Storm,True,1
+2002-02,Iran (Islamic Republic of),Earthquake,False,1
+2002-02,Thailand,Drought,True,1
+2002-02,Türkiye,Earthquake,False,1
+2002-03,Bangladesh,Storm,True,1
+2002-03,China,Storm,True,1
+2002-03,India,Epidemic,False,1
+2002-03,Indonesia,Flood,True,1
+2002-03,Malaysia,Storm,True,1
+2002-03,Pakistan,Earthquake,False,1
+2002-03,Philippines,Drought,True,1
+2002-03,Philippines,Earthquake,False,1
+2002-03,Philippines,Flood,True,1
+2002-03,Philippines,Storm,True,1
+2002-03,Viet Nam,Wildfire,True,1
+2002-04,Bangladesh,Storm,True,1
+2002-04,China,Drought,True,1
+2002-04,India,Storm,True,3
+2002-04,Indonesia,Flood,True,1
+2002-04,Iran (Islamic Republic of),Earthquake,False,1
+2002-04,Iran (Islamic Republic of),Flood,True,1
+2002-04,Thailand,Storm,True,1
+2002-05,China,Flood,True,3
+2002-05,India,Epidemic,False,1
+2002-05,India,Extreme temperature,True,1
+2002-05,Indonesia,Flood,True,1
+2002-05,Pakistan,Extreme temperature,True,1
+2002-05,Pakistan,Storm,True,1
+2002-05,Viet Nam,Drought,True,1
+2002-06,Bangladesh,Epidemic,False,1
+2002-06,China,Drought,True,1
+2002-06,China,Flood,True,1
+2002-06,China,Mass movement (wet),False,1
+2002-06,India,Flood,True,1
+2002-06,Iran (Islamic Republic of),Earthquake,False,1
+2002-06,Iran (Islamic Republic of),Wildfire,True,1
+2002-06,Philippines,Storm,True,1
+2002-07,Bangladesh,Flood,True,1
+2002-07,Bangladesh,Storm,True,1
+2002-07,China,Epidemic,False,1
+2002-07,China,Extreme temperature,True,1
+2002-07,China,Flood,True,1
+2002-07,China,Storm,True,2
+2002-07,India,Drought,True,1
+2002-07,Philippines,Flood,True,1
+2002-07,Philippines,Storm,True,3
+2002-07,Republic of Korea,Storm,True,2
+2002-07,Türkiye,Flood,True,1
+2002-07,Viet Nam,Flood,True,1
+2002-08,Cambodia,Flood,True,1
+2002-08,China,Earthquake,False,1
+2002-08,China,Flood,True,4
+2002-08,China,Mass movement (wet),False,1
+2002-08,India,Epidemic,False,1
+2002-08,India,Flood,True,2
+2002-08,Indonesia,Earthquake,False,1
+2002-08,Indonesia,Wildfire,True,1
+2002-08,Iran (Islamic Republic of),Flood,True,1
+2002-08,Lao People's Democratic Republic,Flood,True,1
+2002-08,Myanmar,Flood,True,1
+2002-08,Pakistan,Flood,True,2
+2002-08,Philippines,Flood,True,1
+2002-08,Philippines,Storm,True,1
+2002-08,Republic of Korea,Flood,True,1
+2002-08,Republic of Korea,Storm,True,1
+2002-09,China,Drought,True,1
+2002-09,China,Mass movement (wet),False,1
+2002-09,China,Storm,True,2
+2002-09,India,Earthquake,False,1
+2002-09,India,Epidemic,False,1
+2002-09,India,Flood,True,1
+2002-09,Indonesia,Earthquake,False,1
+2002-09,Iran (Islamic Republic of),Earthquake,False,1
+2002-09,Pakistan,Flood,True,1
+2002-09,Thailand,Flood,True,1
+2002-09,Thailand,Mass movement (wet),False,1
+2002-09,Viet Nam,Flood,True,2
+2002-10,China,Flood,True,1
+2002-10,China,Mass movement (wet),False,1
+2002-10,India,Flood,True,2
+2002-10,Indonesia,Earthquake,False,1
+2002-10,Thailand,Flood,True,1
+2002-10,Viet Nam,Storm,True,1
+2002-11,Bangladesh,Storm,True,1
+2002-11,India,Storm,True,1
+2002-11,Indonesia,Earthquake,False,1
+2002-11,Indonesia,Flood,True,1
+2002-11,Indonesia,Volcanic activity,False,1
+2002-11,Pakistan,Earthquake,False,2
+2002-12,Bangladesh,Extreme temperature,True,1
+2002-12,China,Earthquake,False,1
+2002-12,China,Storm,True,1
+2002-12,India,Extreme temperature,True,1
+2002-12,Indonesia,Mass movement (wet),False,1
+2002-12,Iran (Islamic Republic of),Earthquake,False,1
+2002-12,Pakistan,Extreme temperature,True,1
+2002-12,Sri Lanka,Flood,True,1
+2002-12,Türkiye,Storm,True,1
+2003-01,China,Drought,True,1
+2003-01,Indonesia,Earthquake,False,1
+2003-01,Indonesia,Flood,True,4
+2003-01,Indonesia,Mass movement (wet),False,2
+2003-01,Iran (Islamic Republic of),Earthquake,False,1
+2003-02,China,Earthquake,False,1
+2003-02,India,Storm,True,3
+2003-02,Indonesia,Flood,True,1
+2003-02,Iran (Islamic Republic of),Mass movement (wet),False,1
+2003-02,Pakistan,Storm,True,1
+2003-03,India,Mass movement (wet),False,1
+2003-03,India,Storm,True,1
+2003-03,Indonesia,Mass movement (wet),False,2
+2003-03,Iran (Islamic Republic of),Flood,True,1
+2003-04,China,Earthquake,False,1
+2003-04,China,Storm,True,1
+2003-04,China,Wildfire,True,1
+2003-04,India,Storm,True,2
+2003-04,Iraq,Epidemic,False,1
+2003-04,Thailand,Storm,True,1
+2003-04,Türkiye,Earthquake,False,1
+2003-05,Bangladesh,Extreme temperature,True,1
+2003-05,Bangladesh,Storm,True,1
+2003-05,China,Earthquake,False,1
+2003-05,China,Flood,True,1
+2003-05,China,Mass movement (wet),False,1
+2003-05,India,Extreme temperature,True,1
+2003-05,Indonesia,Earthquake,False,1
+2003-05,Pakistan,Extreme temperature,True,1
+2003-05,Pakistan,Mass movement (wet),False,1
+2003-05,Philippines,Flood,True,1
+2003-05,Philippines,Storm,True,1
+2003-05,Sri Lanka,Flood,True,1
+2003-05,Türkiye,Earthquake,False,1
+2003-06,Bangladesh,Flood,True,2
+2003-06,China,Flood,True,2
+2003-06,India,Epidemic,False,1
+2003-06,India,Flood,True,1
+2003-06,Philippines,Storm,True,1
+2003-07,Bangladesh,Earthquake,False,1
+2003-07,China,Drought,True,1
+2003-07,China,Earthquake,False,1
+2003-07,China,Flood,True,1
+2003-07,China,Storm,True,2
+2003-07,India,Flood,True,2
+2003-07,Iran (Islamic Republic of),Earthquake,False,2
+2003-07,Pakistan,Flood,True,2
+2003-07,Philippines,Storm,True,3
+2003-07,Türkiye,Earthquake,False,1
+2003-07,Viet Nam,Storm,True,1
+2003-08,China,Earthquake,False,1
+2003-08,China,Flood,True,1
+2003-08,China,Mass movement (wet),False,1
+2003-08,India,Flood,True,2
+2003-08,Indonesia,Drought,True,1
+2003-08,Indonesia,Earthquake,False,1
+2003-08,Philippines,Storm,True,3
+2003-09,China,Flood,True,1
+2003-09,China,Storm,True,1
+2003-09,India,Flood,True,1
+2003-09,Pakistan,Flood,True,1
+2003-09,Republic of Korea,Storm,True,1
+2003-09,Viet Nam,Flood,True,1
+2003-10,China,Earthquake,False,2
+2003-10,Malaysia,Flood,True,1
+2003-10,Thailand,Epidemic,False,1
+2003-10,Thailand,Flood,True,2
+2003-10,Viet Nam,Epidemic,False,1
+2003-10,Viet Nam,Flood,True,1
+2003-11,China,Earthquake,False,3
+2003-11,China,Storm,True,1
+2003-11,Indonesia,Flood,True,2
+2003-11,Malaysia,Flood,True,1
+2003-11,Viet Nam,Flood,True,1
+2003-12,Bangladesh,Extreme temperature,True,1
+2003-12,Bangladesh,Storm,True,1
+2003-12,China,Earthquake,False,1
+2003-12,India,Extreme temperature,True,1
+2003-12,India,Storm,True,1
+2003-12,Indonesia,Flood,True,1
+2003-12,Iran (Islamic Republic of),Earthquake,False,2
+2003-12,Malaysia,Flood,True,1
+2003-12,Philippines,Mass movement (wet),False,1
+2003-12,Thailand,Flood,True,1
+2004-01,Bangladesh,Epidemic,False,1
+2004-01,Indonesia,Earthquake,False,1
+2004-01,Indonesia,Epidemic,False,1
+2004-01,Indonesia,Mass movement (wet),False,1
+2004-01,Indonesia,Volcanic activity,False,1
+2004-01,Malaysia,Flood,True,1
+2004-01,Philippines,Flood,True,1
+2004-01,Türkiye,Extreme temperature,True,1
+2004-01,Türkiye,Storm,True,1
+2004-02,Bangladesh,Epidemic,False,1
+2004-02,Indonesia,Earthquake,False,2
+2004-02,Indonesia,Flood,True,1
+2004-02,Indonesia,Storm,True,1
+2004-02,Iran (Islamic Republic of),Storm,True,1
+2004-02,Pakistan,Earthquake,False,1
+2004-02,Philippines,Flood,True,1
+2004-03,China,Earthquake,False,1
+2004-03,Indonesia,Mass movement (wet),False,1
+2004-03,Indonesia,Storm,True,1
+2004-03,Malaysia,Flood,True,1
+2004-03,Republic of Korea,Storm,True,1
+2004-03,Republic of Korea,Wildfire,True,1
+2004-03,Türkiye,Earthquake,False,2
+2004-03,Türkiye,Flood,True,1
+2004-04,Bangladesh,Storm,True,1
+2004-04,China,Storm,True,1
+2004-04,India,Flood,True,1
+2004-04,Indonesia,Mass movement (wet),False,2
+2004-04,Viet Nam,Flood,True,1
+2004-05,Bangladesh,Storm,True,1
+2004-05,China,Earthquake,False,1
+2004-05,China,Flood,True,2
+2004-05,China,Storm,True,2
+2004-05,Iran (Islamic Republic of),Earthquake,False,1
+2004-05,Myanmar,Storm,True,1
+2004-05,Philippines,Storm,True,1
+2004-05,Thailand,Storm,True,1
+2004-06,Bangladesh,Flood,True,1
+2004-06,Bangladesh,Storm,True,1
+2004-06,China,Flood,True,5
+2004-06,China,Mass movement (wet),False,1
+2004-06,China,Storm,True,2
+2004-06,India,Flood,True,2
+2004-06,Indonesia,Volcanic activity,False,2
+2004-06,Philippines,Flood,True,1
+2004-06,Philippines,Storm,True,2
+2004-06,Republic of Korea,Storm,True,1
+2004-06,Thailand,Storm,True,1
+2004-06,Türkiye,Storm,True,1
+2004-06,Viet Nam,Storm,True,1
+2004-07,Bangladesh,Storm,True,1
+2004-07,China,Extreme temperature,True,1
+2004-07,China,Flood,True,1
+2004-07,Malaysia,Storm,True,1
+2004-07,Pakistan,Flood,True,1
+2004-07,Sri Lanka,Epidemic,False,1
+2004-07,Türkiye,Earthquake,False,1
+2004-07,Viet Nam,Flood,True,1
+2004-08,Cambodia,Flood,True,1
+2004-08,China,Earthquake,False,1
+2004-08,China,Storm,True,2
+2004-08,India,Flood,True,1
+2004-08,Pakistan,Flood,True,1
+2004-08,Philippines,Storm,True,1
+2004-08,Republic of Korea,Flood,True,1
+2004-08,Republic of Korea,Storm,True,1
+2004-08,Thailand,Flood,True,1
+2004-08,Türkiye,Flood,True,1
+2004-08,Viet Nam,Flood,True,1
+2004-09,Bangladesh,Flood,True,1
+2004-09,China,Earthquake,False,1
+2004-09,China,Flood,True,1
+2004-09,India,Flood,True,1
+2004-09,Indonesia,Volcanic activity,False,1
+2004-09,Republic of Korea,Flood,True,1
+2004-09,Republic of Korea,Storm,True,1
+2004-09,Thailand,Flood,True,1
+2004-09,Viet Nam,Mass movement (wet),False,1
+2004-10,Bangladesh,Flood,True,1
+2004-10,China,Earthquake,False,1
+2004-10,India,Flood,True,1
+2004-10,Pakistan,Epidemic,False,1
+2004-10,Philippines,Epidemic,False,1
+2004-10,Thailand,Mass movement (wet),False,1
+2004-11,Indonesia,Earthquake,False,2
+2004-11,Malaysia,Storm,True,1
+2004-11,Philippines,Storm,True,4
+2004-11,Türkiye,Storm,True,1
+2004-11,Viet Nam,Storm,True,1
+2004-12,Bangladesh,Earthquake,False,1
+2004-12,China,Mass movement (dry),False,1
+2004-12,India,Earthquake,False,1
+2004-12,Indonesia,Earthquake,False,1
+2004-12,Iran (Islamic Republic of),Flood,True,1
+2004-12,Malaysia,Earthquake,False,1
+2004-12,Malaysia,Flood,True,1
+2004-12,Myanmar,Earthquake,False,1
+2004-12,Philippines,Mass movement (wet),False,1
+2004-12,Sri Lanka,Earthquake,False,1
+2004-12,Sri Lanka,Flood,True,1
+2004-12,Thailand,Earthquake,False,1
+2004-12,Thailand,Flood,True,1
+2005-01,Indonesia,Earthquake,False,1
+2005-01,Iran (Islamic Republic of),Earthquake,False,1
+2005-01,Pakistan,Storm,True,1
+2005-01,Thailand,Drought,True,1
+2005-01,Türkiye,Earthquake,False,1
+2005-01,Türkiye,Storm,True,1
+2005-02,China,Storm,True,1
+2005-02,India,Mass movement (wet),False,1
+2005-02,Indonesia,Mass movement (wet),False,1
+2005-02,Iran (Islamic Republic of),Earthquake,False,1
+2005-02,Iran (Islamic Republic of),Storm,True,1
+2005-02,Pakistan,Flood,True,1
+2005-02,Uzbekistan,Flood,True,1
+2005-03,Bangladesh,Storm,True,2
+2005-03,China,Storm,True,1
+2005-03,India,Storm,True,1
+2005-03,Indonesia,Earthquake,False,1
+2005-03,Iran (Islamic Republic of),Earthquake,False,1
+2005-03,Iran (Islamic Republic of),Flood,True,1
+2005-03,Pakistan,Flood,True,2
+2005-03,Philippines,Storm,True,1
+2005-03,Türkiye,Earthquake,False,1
+2005-03,Türkiye,Mass movement (wet),False,1
+2005-04,Cambodia,Drought,True,1
+2005-04,China,Storm,True,1
+2005-04,Indonesia,Flood,True,1
+2005-04,Indonesia,Volcanic activity,False,1
+2005-04,Republic of Korea,Wildfire,True,1
+2005-05,Bangladesh,Flood,True,1
+2005-05,Bangladesh,Storm,True,3
+2005-05,China,Flood,True,1
+2005-05,China,Storm,True,2
+2005-05,India,Epidemic,False,1
+2005-05,India,Flood,True,1
+2005-05,India,Storm,True,2
+2005-05,Philippines,Flood,True,1
+2005-05,Thailand,Storm,True,1
+2005-05,Viet Nam,Drought,True,1
+2005-05,Viet Nam,Flood,True,1
+2005-06,Bangladesh,Storm,True,1
+2005-06,China,Epidemic,False,1
+2005-06,China,Flood,True,4
+2005-06,China,Storm,True,2
+2005-06,India,Extreme temperature,True,1
+2005-06,India,Flood,True,2
+2005-06,Indonesia,Epidemic,False,1
+2005-06,Pakistan,Extreme temperature,True,1
+2005-06,Pakistan,Flood,True,1
+2005-06,Türkiye,Earthquake,False,1
+2005-07,Bangladesh,Extreme temperature,True,1
+2005-07,Bangladesh,Flood,True,1
+2005-07,China,Drought,True,1
+2005-07,China,Extreme temperature,True,1
+2005-07,China,Flood,True,2
+2005-07,China,Storm,True,3
+2005-07,India,Epidemic,False,2
+2005-07,India,Flood,True,7
+2005-07,Iran (Islamic Republic of),Flood,True,1
+2005-07,Malaysia,Flood,True,1
+2005-07,Pakistan,Flood,True,1
+2005-07,Türkiye,Flood,True,1
+2005-08,China,Earthquake,False,1
+2005-08,China,Flood,True,2
+2005-08,India,Epidemic,False,1
+2005-08,India,Flood,True,1
+2005-08,India,Mass movement (wet),False,1
+2005-08,Indonesia,Wildfire,True,1
+2005-08,Iran (Islamic Republic of),Flood,True,2
+2005-08,Malaysia,Wildfire,True,1
+2005-08,Republic of Korea,Flood,True,1
+2005-08,Republic of Korea,Storm,True,1
+2005-08,Thailand,Flood,True,1
+2005-08,Thailand,Wildfire,True,1
+2005-08,Türkiye,Flood,True,1
+2005-08,Viet Nam,Storm,True,1
+2005-09,Bangladesh,Storm,True,1
+2005-09,Cambodia,Flood,True,1
+2005-09,China,Flood,True,1
+2005-09,China,Storm,True,3
+2005-09,India,Flood,True,3
+2005-09,India,Storm,True,1
+2005-09,Indonesia,Mass movement (wet),False,1
+2005-09,Myanmar,Mass movement (wet),False,1
+2005-09,Philippines,Storm,True,1
+2005-09,Republic of Korea,Storm,True,1
+2005-09,Thailand,Storm,True,1
+2005-09,Viet Nam,Flood,True,1
+2005-09,Viet Nam,Storm,True,2
+2005-10,Bangladesh,Flood,True,1
+2005-10,China,Drought,True,1
+2005-10,China,Flood,True,1
+2005-10,China,Storm,True,1
+2005-10,India,Earthquake,False,1
+2005-10,India,Flood,True,2
+2005-10,Indonesia,Flood,True,1
+2005-10,Pakistan,Earthquake,False,1
+2005-10,Pakistan,Epidemic,False,1
+2005-10,Viet Nam,Flood,True,2
+2005-11,China,Earthquake,False,1
+2005-11,Iran (Islamic Republic of),Earthquake,False,1
+2005-11,Malaysia,Flood,True,1
+2005-11,Sri Lanka,Flood,True,1
+2005-11,Thailand,Flood,True,1
+2005-11,Viet Nam,Storm,True,1
+2005-12,Bangladesh,Extreme temperature,True,1
+2005-12,India,Epidemic,False,1
+2005-12,India,Extreme temperature,True,1
+2005-12,India,Flood,True,1
+2005-12,Indonesia,Flood,True,1
+2005-12,Pakistan,Epidemic,False,1
+2005-12,Pakistan,Mass movement (wet),False,1
+2005-12,Philippines,Flood,True,1
+2005-12,Republic of Korea,Storm,True,1
+2005-12,Türkiye,Extreme temperature,True,1
+2005-12,Viet Nam,Epidemic,False,1
+2005-12,Viet Nam,Flood,True,1
+2006-01,China,Earthquake,False,1
+2006-01,China,Storm,True,1
+2006-01,Indonesia,Flood,True,1
+2006-01,Indonesia,Mass movement (wet),False,2
+2006-01,Malaysia,Flood,True,1
+2006-01,Philippines,Flood,True,1
+2006-01,Türkiye,Epidemic,False,1
+2006-02,Indonesia,Flood,True,1
+2006-02,Iran (Islamic Republic of),Earthquake,False,1
+2006-02,Iraq,Flood,True,1
+2006-02,Malaysia,Flood,True,1
+2006-02,Philippines,Mass movement (wet),False,2
+2006-02,Thailand,Flood,True,1
+2006-03,Bangladesh,Storm,True,1
+2006-03,India,Flood,True,1
+2006-03,Indonesia,Earthquake,False,1
+2006-03,Iran (Islamic Republic of),Earthquake,False,1
+2006-03,Philippines,Flood,True,1
+2006-04,Bangladesh,Storm,True,3
+2006-04,China,Flood,True,2
+2006-04,China,Storm,True,1
+2006-04,India,Flood,True,1
+2006-04,Indonesia,Flood,True,1
+2006-04,Indonesia,Volcanic activity,False,1
+2006-04,Malaysia,Flood,True,1
+2006-04,Myanmar,Storm,True,1
+2006-04,Viet Nam,Storm,True,1
+2006-05,Bangladesh,Flood,True,1
+2006-05,China,Drought,True,1
+2006-05,China,Flood,True,3
+2006-05,China,Storm,True,1
+2006-05,India,Extreme temperature,True,1
+2006-05,India,Flood,True,3
+2006-05,India,Storm,True,1
+2006-05,Indonesia,Earthquake,False,1
+2006-05,Iran (Islamic Republic of),Earthquake,False,1
+2006-05,Iran (Islamic Republic of),Flood,True,1
+2006-05,Pakistan,Extreme temperature,True,1
+2006-05,Philippines,Storm,True,1
+2006-05,Thailand,Flood,True,1
+2006-05,Viet Nam,Storm,True,1
+2006-06,China,Earthquake,False,1
+2006-06,China,Flood,True,8
+2006-06,China,Mass movement (dry),False,1
+2006-06,India,Flood,True,1
+2006-06,Indonesia,Flood,True,4
+2006-06,Philippines,Storm,True,1
+2006-07,Cambodia,Flood,True,1
+2006-07,China,Earthquake,False,1
+2006-07,China,Flood,True,5
+2006-07,China,Mass movement (wet),False,1
+2006-07,China,Storm,True,2
+2006-07,India,Flood,True,4
+2006-07,Indonesia,Earthquake,False,1
+2006-07,Pakistan,Flood,True,3
+2006-07,Pakistan,Mass movement (wet),False,1
+2006-07,Philippines,Storm,True,2
+2006-07,Republic of Korea,Flood,True,1
+2006-07,Türkiye,Flood,True,1
+2006-07,Viet Nam,Flood,True,2
+2006-07,Viet Nam,Storm,True,1
+2006-08,Bangladesh,Flood,True,1
+2006-08,Cambodia,Flood,True,1
+2006-08,China,Earthquake,False,1
+2006-08,China,Flood,True,1
+2006-08,China,Storm,True,2
+2006-08,India,Flood,True,5
+2006-08,Indonesia,Wildfire,True,1
+2006-08,Pakistan,Flood,True,3
+2006-08,Philippines,Flood,True,1
+2006-08,Philippines,Mass movement (wet),False,1
+2006-08,Philippines,Storm,True,1
+2006-08,Philippines,Volcanic activity,False,1
+2006-08,Thailand,Flood,True,1
+2006-08,Viet Nam,Flood,True,2
+2006-09,Bangladesh,Storm,True,1
+2006-09,India,Storm,True,1
+2006-09,Myanmar,Flood,True,1
+2006-09,Philippines,Storm,True,1
+2006-09,Viet Nam,Storm,True,1
+2006-10,China,Earthquake,False,1
+2006-10,China,Flood,True,1
+2006-10,China,Storm,True,1
+2006-10,India,Flood,True,2
+2006-10,Philippines,Flood,True,2
+2006-10,Philippines,Storm,True,1
+2006-10,Sri Lanka,Flood,True,1
+2006-10,Türkiye,Flood,True,1
+2006-10,Viet Nam,Flood,True,1
+2006-11,China,Earthquake,False,1
+2006-11,Iraq,Flood,True,1
+2006-11,Philippines,Storm,True,2
+2006-11,Viet Nam,Storm,True,2
+2006-12,Indonesia,Earthquake,False,2
+2006-12,Indonesia,Flood,True,1
+2006-12,Indonesia,Mass movement (wet),False,1
+2006-12,Malaysia,Flood,True,1
+2006-12,Pakistan,Flood,True,1
+2006-12,Philippines,Flood,True,1
+2006-12,Philippines,Storm,True,1
+2007-01,Bangladesh,Extreme temperature,True,1
+2007-01,Indonesia,Flood,True,1
+2007-01,Indonesia,Mass movement (wet),False,2
+2007-01,Malaysia,Flood,True,1
+2007-01,Pakistan,Mass movement (wet),False,1
+2007-01,Philippines,Flood,True,1
+2007-01,Sri Lanka,Flood,True,1
+2007-02,India,Flood,True,1
+2007-02,Indonesia,Epidemic,False,2
+2007-03,India,Extreme temperature,True,1
+2007-03,Indonesia,Earthquake,False,1
+2007-03,Indonesia,Flood,True,1
+2007-03,Pakistan,Mass movement (wet),False,2
+2007-04,China,Storm,True,1
+2007-04,India,Extreme temperature,True,1
+2007-04,Thailand,Flood,True,1
+2007-05,Bangladesh,Storm,True,1
+2007-05,China,Flood,True,1
+2007-05,Indonesia,Flood,True,1
+2007-05,Myanmar,Flood,True,1
+2007-05,Sri Lanka,Flood,True,1
+2007-05,Thailand,Flood,True,1
+2007-05,Türkiye,Flood,True,1
+2007-06,Bangladesh,Flood,True,1
+2007-06,China,Earthquake,False,1
+2007-06,China,Flood,True,2
+2007-06,India,Flood,True,3
+2007-06,Iran (Islamic Republic of),Flood,True,1
+2007-06,Iran (Islamic Republic of),Storm,True,1
+2007-06,Myanmar,Flood,True,1
+2007-06,Pakistan,Flood,True,3
+2007-06,Pakistan,Storm,True,1
+2007-06,Türkiye,Extreme temperature,True,1
+2007-07,Bangladesh,Epidemic,False,2
+2007-07,Bangladesh,Flood,True,1
+2007-07,Cambodia,Epidemic,False,1
+2007-07,China,Flood,True,4
+2007-07,China,Storm,True,1
+2007-07,India,Flood,True,6
+2007-07,Indonesia,Epidemic,False,1
+2007-07,Indonesia,Flood,True,3
+2007-07,Indonesia,Volcanic activity,False,1
+2007-07,Malaysia,Epidemic,False,1
+2007-07,Myanmar,Epidemic,False,1
+2007-07,Myanmar,Flood,True,1
+2007-07,Pakistan,Flood,True,1
+2007-07,Philippines,Volcanic activity,False,1
+2007-07,Viet Nam,Epidemic,False,1
+2007-08,Cambodia,Flood,True,1
+2007-08,China,Flood,True,3
+2007-08,China,Storm,True,2
+2007-08,India,Flood,True,3
+2007-08,Iraq,Epidemic,False,1
+2007-08,Myanmar,Flood,True,1
+2007-08,Pakistan,Flood,True,2
+2007-08,Philippines,Drought,True,1
+2007-08,Philippines,Storm,True,2
+2007-08,Türkiye,Flood,True,1
+2007-08,Viet Nam,Flood,True,1
+2007-09,China,Storm,True,1
+2007-09,India,Flood,True,2
+2007-09,Indonesia,Earthquake,False,2
+2007-09,Indonesia,Flood,True,1
+2007-09,Philippines,Storm,True,3
+2007-09,Republic of Korea,Flood,True,1
+2007-09,Republic of Korea,Storm,True,1
+2007-09,Thailand,Flood,True,1
+2007-09,Viet Nam,Storm,True,1
+2007-10,China,Storm,True,1
+2007-10,India,Flood,True,1
+2007-10,Indonesia,Volcanic activity,False,1
+2007-10,Philippines,Flood,True,1
+2007-10,Thailand,Flood,True,1
+2007-10,Viet Nam,Flood,True,3
+2007-11,Bangladesh,Storm,True,1
+2007-11,China,Mass movement (wet),False,1
+2007-11,India,Storm,True,1
+2007-11,Indonesia,Earthquake,False,1
+2007-11,Philippines,Flood,True,2
+2007-11,Philippines,Storm,True,3
+2007-11,Türkiye,Flood,True,1
+2007-11,Viet Nam,Flood,True,1
+2007-12,India,Extreme temperature,True,1
+2007-12,Indonesia,Flood,True,1
+2007-12,Malaysia,Flood,True,1
+2007-12,Philippines,Flood,True,1
+2007-12,Sri Lanka,Flood,True,1
+2007-12,Thailand,Flood,True,1
+2008-01,China,Extreme temperature,True,1
+2008-01,Indonesia,Flood,True,2
+2008-01,Iran (Islamic Republic of),Storm,True,1
+2008-01,Philippines,Flood,True,1
+2008-02,China,Extreme temperature,True,1
+2008-02,India,Mass movement (wet),False,1
+2008-02,Indonesia,Flood,True,3
+2008-02,Philippines,Flood,True,1
+2008-03,Bangladesh,Storm,True,1
+2008-03,China,Mass movement (wet),False,1
+2008-03,India,Flood,True,1
+2008-03,Indonesia,Flood,True,2
+2008-03,Sri Lanka,Flood,True,1
+2008-04,China,Storm,True,2
+2008-04,Indonesia,Flood,True,1
+2008-04,Indonesia,Volcanic activity,False,1
+2008-04,Philippines,Storm,True,1
+2008-04,Sri Lanka,Storm,True,1
+2008-04,Thailand,Drought,True,1
+2008-05,China,Earthquake,False,2
+2008-05,China,Flood,True,2
+2008-05,India,Storm,True,1
+2008-05,Indonesia,Mass movement (wet),False,1
+2008-05,Iran (Islamic Republic of),Earthquake,False,1
+2008-05,Myanmar,Storm,True,1
+2008-05,Pakistan,Flood,True,1
+2008-05,Philippines,Storm,True,2
+2008-05,Republic of Korea,Flood,True,1
+2008-05,Sri Lanka,Flood,True,1
+2008-05,Thailand,Storm,True,1
+2008-05,Viet Nam,Flood,True,1
+2008-06,Bangladesh,Flood,True,1
+2008-06,China,Flood,True,1
+2008-06,China,Mass movement (wet),False,1
+2008-06,China,Storm,True,2
+2008-06,India,Flood,True,1
+2008-06,Philippines,Flood,True,2
+2008-06,Philippines,Storm,True,1
+2008-07,China,Flood,True,1
+2008-07,China,Mass movement (wet),False,1
+2008-07,China,Storm,True,1
+2008-07,India,Flood,True,2
+2008-07,Philippines,Storm,True,2
+2008-08,Bangladesh,Flood,True,1
+2008-08,Bangladesh,Mass movement (wet),False,1
+2008-08,China,Earthquake,False,3
+2008-08,China,Flood,True,1
+2008-08,China,Storm,True,2
+2008-08,India,Flood,True,1
+2008-08,Iran (Islamic Republic of),Flood,True,1
+2008-08,Iraq,Epidemic,False,1
+2008-08,Lao People's Democratic Republic,Flood,True,1
+2008-08,Pakistan,Flood,True,2
+2008-08,Philippines,Flood,True,1
+2008-08,Philippines,Storm,True,2
+2008-08,Thailand,Storm,True,1
+2008-08,Türkiye,Wildfire,True,1
+2008-08,Viet Nam,Flood,True,1
+2008-08,Viet Nam,Storm,True,1
+2008-09,China,Mass movement (wet),False,1
+2008-09,China,Storm,True,2
+2008-09,India,Flood,True,2
+2008-09,Indonesia,Earthquake,False,1
+2008-09,Indonesia,Flood,True,1
+2008-09,Iran (Islamic Republic of),Earthquake,False,1
+2008-09,Iran (Islamic Republic of),Flood,True,1
+2008-09,Iraq,Flood,True,1
+2008-09,Philippines,Flood,True,1
+2008-09,Philippines,Mass movement (wet),False,1
+2008-09,Philippines,Storm,True,2
+2008-09,Thailand,Flood,True,1
+2008-09,Viet Nam,Storm,True,2
+2008-10,Bangladesh,Storm,True,1
+2008-10,China,Earthquake,False,1
+2008-10,China,Flood,True,2
+2008-10,Indonesia,Flood,True,1
+2008-10,Pakistan,Earthquake,False,1
+2008-10,Viet Nam,Flood,True,2
+2008-11,China,Drought,True,1
+2008-11,India,Flood,True,1
+2008-11,Indonesia,Earthquake,False,1
+2008-11,Indonesia,Flood,True,1
+2008-11,Philippines,Flood,True,1
+2008-11,Philippines,Storm,True,1
+2008-11,Sri Lanka,Flood,True,1
+2008-11,Thailand,Flood,True,1
+2008-11,Viet Nam,Storm,True,2
+2008-12,China,Earthquake,False,1
+2008-12,India,Extreme temperature,True,1
+2008-12,Indonesia,Flood,True,1
+2008-12,Malaysia,Flood,True,2
+2008-12,Philippines,Flood,True,1
+2008-12,Thailand,Flood,True,1
+2008-12,Viet Nam,Flood,True,1
+2009-01,China,Earthquake,False,1
+2009-01,India,Epidemic,False,1
+2009-01,Indonesia,Earthquake,False,1
+2009-01,Indonesia,Flood,True,1
+2009-01,Indonesia,Mass movement (wet),False,1
+2009-01,Philippines,Flood,True,3
+2009-01,Sri Lanka,Epidemic,False,1
+2009-01,Türkiye,Mass movement (wet),False,1
+2009-02,Indonesia,Earthquake,False,1
+2009-03,India,Storm,True,1
+2009-03,Indonesia,Flood,True,1
+2009-04,Bangladesh,Storm,True,1
+2009-04,China,Flood,True,1
+2009-04,India,Extreme temperature,True,1
+2009-04,Pakistan,Flood,True,1
+2009-04,Philippines,Storm,True,1
+2009-05,Bangladesh,Storm,True,1
+2009-05,India,Storm,True,2
+2009-05,Philippines,Flood,True,2
+2009-05,Philippines,Mass movement (wet),False,1
+2009-05,Philippines,Storm,True,2
+2009-06,China,Drought,True,1
+2009-06,China,Flood,True,2
+2009-06,China,Mass movement (wet),False,1
+2009-06,China,Storm,True,2
+2009-06,India,Storm,True,2
+2009-07,Bangladesh,Drought,True,1
+2009-07,Bangladesh,Flood,True,2
+2009-07,China,Earthquake,False,1
+2009-07,China,Flood,True,3
+2009-07,China,Mass movement (wet),False,2
+2009-07,India,Drought,True,1
+2009-07,India,Flood,True,2
+2009-07,Myanmar,Mass movement (wet),False,1
+2009-07,Pakistan,Flood,True,1
+2009-07,Philippines,Flood,True,2
+2009-07,Philippines,Storm,True,2
+2009-07,Türkiye,Flood,True,1
+2009-07,Viet Nam,Flood,True,1
+2009-08,China,Flood,True,1
+2009-08,China,Mass movement (wet),False,1
+2009-08,China,Storm,True,4
+2009-08,India,Flood,True,1
+2009-08,India,Mass movement (wet),False,1
+2009-08,Lao People's Democratic Republic,Flood,True,1
+2009-08,Pakistan,Flood,True,1
+2009-08,Philippines,Flood,True,1
+2009-08,Philippines,Storm,True,2
+2009-08,Sri Lanka,Flood,True,1
+2009-09,Cambodia,Storm,True,1
+2009-09,China,Storm,True,1
+2009-09,India,Flood,True,1
+2009-09,India,Mass movement (wet),False,1
+2009-09,Indonesia,Earthquake,False,2
+2009-09,Indonesia,Flood,True,1
+2009-09,Lao People's Democratic Republic,Storm,True,1
+2009-09,Philippines,Earthquake,False,1
+2009-09,Philippines,Storm,True,5
+2009-09,Türkiye,Flood,True,1
+2009-09,Viet Nam,Flood,True,1
+2009-09,Viet Nam,Storm,True,1
+2009-10,China,Drought,True,1
+2009-10,China,Storm,True,1
+2009-10,India,Flood,True,1
+2009-10,Indonesia,Flood,True,1
+2009-10,Iraq,Flood,True,1
+2009-10,Philippines,Storm,True,1
+2009-10,Viet Nam,Storm,True,1
+2009-11,Cambodia,Storm,True,1
+2009-11,China,Mass movement (wet),False,1
+2009-11,China,Storm,True,2
+2009-11,India,Flood,True,1
+2009-11,India,Storm,True,1
+2009-11,Indonesia,Earthquake,False,1
+2009-11,Indonesia,Mass movement (wet),False,1
+2009-11,Iran (Islamic Republic of),Earthquake,False,1
+2009-11,Malaysia,Flood,True,2
+2009-11,Philippines,Storm,True,1
+2009-11,Sri Lanka,Flood,True,1
+2009-11,Thailand,Flood,True,1
+2009-11,Viet Nam,Mass movement (wet),False,1
+2009-11,Viet Nam,Storm,True,1
+2009-12,Bangladesh,Extreme temperature,True,1
+2009-12,Indonesia,Flood,True,1
+2009-12,Philippines,Volcanic activity,False,1
+2009-12,Sri Lanka,Flood,True,1
+2010-01,China,Earthquake,False,1
+2010-01,China,Storm,True,1
+2010-01,India,Extreme temperature,True,1
+2010-01,Indonesia,Flood,True,2
+2010-01,Iran (Islamic Republic of),Earthquake,False,1
+2010-01,Pakistan,Mass movement (wet),False,1
+2010-01,Philippines,Epidemic,False,1
+2010-01,Philippines,Flood,True,2
+2010-01,Philippines,Mass movement (wet),False,1
+2010-02,China,Earthquake,False,1
+2010-02,India,Mass movement (wet),False,1
+2010-02,Indonesia,Flood,True,1
+2010-02,Pakistan,Flood,True,1
+2010-02,Pakistan,Mass movement (wet),False,1
+2010-03,China,Mass movement (wet),False,1
+2010-03,India,Extreme temperature,True,1
+2010-03,Thailand,Drought,True,1
+2010-03,Türkiye,Earthquake,False,1
+2010-04,Bangladesh,Storm,True,2
+2010-04,China,Earthquake,False,1
+2010-04,India,Storm,True,2
+2010-04,Myanmar,Extreme temperature,True,1
+2010-05,Bangladesh,Storm,True,1
+2010-05,China,Flood,True,1
+2010-05,China,Mass movement (wet),False,1
+2010-05,China,Storm,True,1
+2010-05,India,Flood,True,1
+2010-05,India,Storm,True,3
+2010-05,Philippines,Flood,True,1
+2010-05,Sri Lanka,Flood,True,1
+2010-06,Bangladesh,Flood,True,1
+2010-06,Bangladesh,Mass movement (wet),False,1
+2010-06,China,Flood,True,1
+2010-06,China,Mass movement (wet),False,1
+2010-06,Indonesia,Earthquake,False,1
+2010-06,Myanmar,Mass movement (wet),False,1
+2010-06,Pakistan,Flood,True,1
+2010-06,Pakistan,Storm,True,1
+2010-06,Philippines,Flood,True,1
+2010-07,China,Mass movement (wet),False,1
+2010-07,China,Storm,True,1
+2010-07,India,Flood,True,2
+2010-07,Indonesia,Flood,True,1
+2010-07,Iran (Islamic Republic of),Earthquake,False,1
+2010-07,Pakistan,Flood,True,2
+2010-07,Philippines,Flood,True,1
+2010-07,Philippines,Storm,True,1
+2010-07,Viet Nam,Storm,True,2
+2010-08,China,Earthquake,False,1
+2010-08,China,Flood,True,2
+2010-08,China,Mass movement (wet),False,3
+2010-08,India,Flood,True,1
+2010-08,India,Storm,True,1
+2010-08,Indonesia,Volcanic activity,False,1
+2010-08,Iran (Islamic Republic of),Earthquake,False,1
+2010-08,Philippines,Flood,True,1
+2010-08,Philippines,Storm,True,1
+2010-08,Thailand,Epidemic,False,1
+2010-08,Türkiye,Mass movement (wet),False,1
+2010-08,Viet Nam,Storm,True,1
+2010-09,China,Mass movement (wet),False,1
+2010-09,China,Storm,True,2
+2010-09,India,Flood,True,3
+2010-09,Indonesia,Flood,True,1
+2010-09,Philippines,Flood,True,1
+2010-09,Republic of Korea,Storm,True,1
+2010-10,Bangladesh,Flood,True,1
+2010-10,Cambodia,Flood,True,1
+2010-10,China,Flood,True,1
+2010-10,China,Storm,True,1
+2010-10,India,Storm,True,1
+2010-10,Indonesia,Earthquake,False,1
+2010-10,Indonesia,Flood,True,1
+2010-10,Indonesia,Mass movement (wet),False,1
+2010-10,Indonesia,Volcanic activity,False,1
+2010-10,Myanmar,Storm,True,1
+2010-10,Philippines,Storm,True,1
+2010-10,Thailand,Flood,True,1
+2010-10,Viet Nam,Flood,True,3
+2010-11,India,Flood,True,1
+2010-11,Indonesia,Flood,True,1
+2010-11,Iran (Islamic Republic of),Earthquake,False,1
+2010-11,Philippines,Flood,True,1
+2010-11,Philippines,Volcanic activity,False,1
+2010-11,Sri Lanka,Flood,True,1
+2010-11,Viet Nam,Flood,True,1
+2010-12,China,Drought,True,1
+2010-12,China,Wildfire,True,1
+2010-12,Iran (Islamic Republic of),Earthquake,False,1
+2010-12,Philippines,Flood,True,1
+2011-01,Bangladesh,Extreme temperature,True,1
+2011-01,China,Extreme temperature,True,1
+2011-01,India,Extreme temperature,True,1
+2011-01,Indonesia,Flood,True,1
+2011-01,Malaysia,Flood,True,1
+2011-01,Pakistan,Earthquake,False,1
+2011-01,Philippines,Epidemic,False,1
+2011-01,Philippines,Flood,True,1
+2011-01,Sri Lanka,Epidemic,False,1
+2011-01,Sri Lanka,Flood,True,1
+2011-02,China,Earthquake,False,1
+2011-02,Indonesia,Flood,True,1
+2011-02,Philippines,Flood,True,1
+2011-02,Philippines,Volcanic activity,False,1
+2011-02,Sri Lanka,Flood,True,1
+2011-03,China,Earthquake,False,2
+2011-03,Indonesia,Earthquake,False,1
+2011-03,Indonesia,Flood,True,2
+2011-03,Myanmar,Earthquake,False,1
+2011-03,Philippines,Epidemic,False,1
+2011-03,Philippines,Flood,True,2
+2011-03,Philippines,Volcanic activity,False,1
+2011-03,Thailand,Earthquake,False,1
+2011-03,Thailand,Flood,True,1
+2011-04,Bangladesh,Storm,True,1
+2011-04,China,Storm,True,1
+2011-04,India,Storm,True,1
+2011-04,Indonesia,Flood,True,1
+2011-04,Iraq,Flood,True,1
+2011-04,Philippines,Mass movement (wet),False,1
+2011-05,China,Mass movement (wet),False,1
+2011-05,India,Storm,True,1
+2011-05,Indonesia,Mass movement (wet),False,1
+2011-05,Malaysia,Mass movement (wet),False,1
+2011-05,Philippines,Flood,True,2
+2011-05,Philippines,Storm,True,2
+2011-05,Sri Lanka,Flood,True,1
+2011-05,Türkiye,Earthquake,False,1
+2011-06,China,Earthquake,False,1
+2011-06,China,Flood,True,2
+2011-06,China,Storm,True,2
+2011-06,India,Flood,True,1
+2011-06,Lao People's Democratic Republic,Flood,True,1
+2011-06,Philippines,Flood,True,1
+2011-06,Philippines,Storm,True,3
+2011-06,Viet Nam,Storm,True,2
+2011-07,Bangladesh,Flood,True,1
+2011-07,Bangladesh,Mass movement (wet),False,1
+2011-07,China,Flood,True,1
+2011-07,China,Mass movement (wet),False,1
+2011-07,India,Flood,True,1
+2011-07,Indonesia,Volcanic activity,False,1
+2011-07,Philippines,Flood,True,1
+2011-07,Philippines,Mass movement (wet),False,1
+2011-07,Philippines,Storm,True,1
+2011-07,Republic of Korea,Flood,True,2
+2011-07,Republic of Korea,Mass movement (wet),False,1
+2011-07,Uzbekistan,Earthquake,False,1
+2011-08,Cambodia,Flood,True,1
+2011-08,China,Earthquake,False,1
+2011-08,China,Flood,True,1
+2011-08,China,Storm,True,1
+2011-08,India,Flood,True,3
+2011-08,Lao People's Democratic Republic,Flood,True,1
+2011-08,Pakistan,Flood,True,1
+2011-08,Philippines,Flood,True,1
+2011-08,Philippines,Mass movement (wet),False,1
+2011-08,Philippines,Storm,True,2
+2011-08,Thailand,Flood,True,1
+2011-08,Thailand,Storm,True,1
+2011-09,China,Earthquake,False,1
+2011-09,China,Flood,True,1
+2011-09,China,Storm,True,1
+2011-09,India,Earthquake,False,1
+2011-09,India,Flood,True,2
+2011-09,Indonesia,Earthquake,False,1
+2011-09,Philippines,Flood,True,1
+2011-09,Philippines,Storm,True,1
+2011-09,Thailand,Epidemic,False,1
+2011-09,Viet Nam,Flood,True,2
+2011-10,Myanmar,Flood,True,1
+2011-10,Philippines,Epidemic,False,1
+2011-10,Philippines,Flood,True,1
+2011-10,Philippines,Storm,True,2
+2011-10,Türkiye,Earthquake,False,1
+2011-10,Viet Nam,Flood,True,1
+2011-11,China,Earthquake,False,1
+2011-11,Indonesia,Mass movement (wet),False,1
+2011-11,Philippines,Earthquake,False,1
+2011-11,Philippines,Flood,True,2
+2011-11,Sri Lanka,Storm,True,1
+2011-11,Türkiye,Earthquake,False,1
+2011-12,Bangladesh,Extreme temperature,True,1
+2011-12,India,Extreme temperature,True,1
+2011-12,India,Storm,True,1
+2011-12,Indonesia,Flood,True,1
+2011-12,Indonesia,Volcanic activity,False,1
+2011-12,Philippines,Flood,True,2
+2011-12,Philippines,Storm,True,1
+2012-01,India,Extreme temperature,True,1
+2012-01,Indonesia,Storm,True,1
+2012-01,Iran (Islamic Republic of),Earthquake,False,1
+2012-01,Philippines,Epidemic,False,1
+2012-01,Philippines,Flood,True,1
+2012-01,Philippines,Mass movement (wet),False,1
+2012-01,Sri Lanka,Drought,True,1
+2012-02,China,Extreme temperature,True,1
+2012-02,India,Mass movement (dry),False,1
+2012-02,Indonesia,Storm,True,1
+2012-02,Philippines,Earthquake,False,1
+2012-02,Philippines,Flood,True,2
+2012-03,China,Earthquake,False,1
+2012-03,Philippines,Flood,True,1
+2012-04,Bangladesh,Storm,True,1
+2012-04,China,Flood,True,1
+2012-04,China,Storm,True,2
+2012-04,Indonesia,Earthquake,False,1
+2012-04,Pakistan,Mass movement (wet),False,1
+2012-04,Thailand,Drought,True,1
+2012-05,China,Flood,True,2
+2012-05,Indonesia,Flood,True,1
+2012-05,Indonesia,Mass movement (wet),False,2
+2012-06,Bangladesh,Flood,True,1
+2012-06,China,Earthquake,False,2
+2012-06,China,Flood,True,1
+2012-06,India,Flood,True,1
+2012-06,Philippines,Flood,True,3
+2012-07,China,Earthquake,False,1
+2012-07,China,Flood,True,5
+2012-07,China,Storm,True,1
+2012-07,Indonesia,Flood,True,2
+2012-07,Myanmar,Flood,True,1
+2012-07,Philippines,Storm,True,1
+2012-07,Türkiye,Flood,True,1
+2012-07,Viet Nam,Storm,True,1
+2012-08,China,Flood,True,2
+2012-08,China,Storm,True,4
+2012-08,India,Flood,True,3
+2012-08,Indonesia,Earthquake,False,1
+2012-08,Indonesia,Flood,True,1
+2012-08,Iran (Islamic Republic of),Earthquake,False,1
+2012-08,Pakistan,Flood,True,2
+2012-08,Philippines,Earthquake,False,1
+2012-08,Philippines,Flood,True,1
+2012-08,Philippines,Storm,True,2
+2012-08,Republic of Korea,Storm,True,2
+2012-08,Thailand,Flood,True,1
+2012-08,Viet Nam,Storm,True,1
+2012-09,Bangladesh,Flood,True,1
+2012-09,Cambodia,Flood,True,1
+2012-09,China,Earthquake,False,1
+2012-09,China,Flood,True,1
+2012-09,India,Flood,True,2
+2012-09,Indonesia,Flood,True,1
+2012-09,Pakistan,Flood,True,1
+2012-09,Philippines,Earthquake,False,1
+2012-09,Philippines,Storm,True,2
+2012-09,Republic of Korea,Storm,True,1
+2012-09,Viet Nam,Flood,True,1
+2012-10,Bangladesh,Storm,True,1
+2012-10,China,Mass movement (wet),False,1
+2012-10,China,Storm,True,1
+2012-10,Iran (Islamic Republic of),Flood,True,1
+2012-10,Philippines,Storm,True,2
+2012-10,Sri Lanka,Storm,True,1
+2012-10,Viet Nam,Storm,True,1
+2012-11,India,Storm,True,1
+2012-11,Indonesia,Flood,True,1
+2012-11,Myanmar,Earthquake,False,1
+2012-11,Pakistan,Mass movement (wet),False,1
+2012-12,Bangladesh,Extreme temperature,True,1
+2012-12,China,Earthquake,False,1
+2012-12,India,Extreme temperature,True,1
+2012-12,Indonesia,Flood,True,1
+2012-12,Iran (Islamic Republic of),Earthquake,False,1
+2012-12,Iraq,Flood,True,1
+2012-12,Philippines,Storm,True,2
+2012-12,Sri Lanka,Flood,True,1
+2013-01,China,Drought,True,1
+2013-01,China,Mass movement (dry),False,1
+2013-01,Indonesia,Earthquake,False,1
+2013-01,Indonesia,Flood,True,2
+2013-01,Indonesia,Mass movement (wet),False,1
+2013-01,Lao People's Democratic Republic,Epidemic,False,1
+2013-01,Philippines,Flood,True,1
+2013-01,Philippines,Storm,True,1
+2013-01,Sri Lanka,Flood,True,1
+2013-02,China,Storm,True,1
+2013-02,Indonesia,Flood,True,2
+2013-02,Pakistan,Flood,True,1
+2013-02,Philippines,Storm,True,1
+2013-03,Bangladesh,Storm,True,2
+2013-03,China,Earthquake,False,1
+2013-03,China,Mass movement (wet),False,1
+2013-03,China,Storm,True,2
+2013-03,India,Storm,True,1
+2013-03,Indonesia,Mass movement (wet),False,1
+2013-04,China,Earthquake,False,2
+2013-04,China,Mass movement (wet),False,1
+2013-04,China,Storm,True,1
+2013-04,India,Extreme temperature,True,1
+2013-04,Indonesia,Flood,True,1
+2013-04,Iran (Islamic Republic of),Earthquake,False,2
+2013-04,Pakistan,Earthquake,False,1
+2013-05,Bangladesh,Storm,True,1
+2013-05,China,Flood,True,4
+2013-05,India,Earthquake,False,1
+2013-05,India,Storm,True,1
+2013-05,Myanmar,Mass movement (wet),False,1
+2013-05,Sri Lanka,Storm,True,1
+2013-06,China,Flood,True,3
+2013-06,China,Storm,True,1
+2013-06,India,Flood,True,2
+2013-06,Lao People's Democratic Republic,Flood,True,1
+2013-06,Philippines,Storm,True,1
+2013-06,Sri Lanka,Flood,True,1
+2013-07,China,Earthquake,False,1
+2013-07,China,Extreme temperature,True,1
+2013-07,China,Flood,True,3
+2013-07,China,Mass movement (wet),False,1
+2013-07,China,Storm,True,3
+2013-07,India,Flood,True,1
+2013-07,Indonesia,Earthquake,False,1
+2013-07,Indonesia,Flood,True,1
+2013-07,Myanmar,Flood,True,1
+2013-07,Thailand,Flood,True,1
+2013-07,Viet Nam,Flood,True,1
+2013-08,China,Earthquake,False,1
+2013-08,China,Flood,True,2
+2013-08,China,Storm,True,3
+2013-08,India,Flood,True,1
+2013-08,Pakistan,Flood,True,1
+2013-08,Philippines,Flood,True,2
+2013-08,Philippines,Storm,True,1
+2013-08,Viet Nam,Storm,True,1
+2013-09,Cambodia,Flood,True,1
+2013-09,China,Flood,True,1
+2013-09,China,Storm,True,2
+2013-09,Indonesia,Flood,True,1
+2013-09,Indonesia,Volcanic activity,False,1
+2013-09,Lao People's Democratic Republic,Flood,True,1
+2013-09,Pakistan,Earthquake,False,2
+2013-09,Philippines,Flood,True,1
+2013-09,Philippines,Storm,True,1
+2013-09,Thailand,Flood,True,1
+2013-09,Viet Nam,Flood,True,4
+2013-09,Viet Nam,Storm,True,1
+2013-10,China,Storm,True,1
+2013-10,India,Flood,True,1
+2013-10,India,Storm,True,2
+2013-10,Indonesia,Earthquake,False,1
+2013-10,Indonesia,Flood,True,1
+2013-10,Philippines,Earthquake,False,1
+2013-10,Philippines,Flood,True,1
+2013-10,Philippines,Storm,True,2
+2013-10,Viet Nam,Storm,True,1
+2013-11,China,Earthquake,False,1
+2013-11,China,Storm,True,1
+2013-11,India,Storm,True,1
+2013-11,Iran (Islamic Republic of),Earthquake,False,1
+2013-11,Iraq,Flood,True,1
+2013-11,Philippines,Storm,True,1
+2013-11,Thailand,Flood,True,1
+2013-11,Viet Nam,Flood,True,1
+2013-11,Viet Nam,Storm,True,1
+2013-12,China,Earthquake,False,2
+2013-12,China,Flood,True,1
+2013-12,Indonesia,Flood,True,2
+2013-12,Malaysia,Flood,True,1
+2014-01,India,Extreme temperature,True,1
+2014-01,Indonesia,Flood,True,4
+2014-01,Indonesia,Mass movement (wet),False,1
+2014-01,Iran (Islamic Republic of),Earthquake,False,1
+2014-01,Pakistan,Extreme temperature,True,1
+2014-01,Philippines,Storm,True,2
+2014-01,Sri Lanka,Drought,True,1
+2014-01,Thailand,Extreme temperature,True,1
+2014-02,China,Earthquake,False,1
+2014-02,China,Storm,True,1
+2014-02,Indonesia,Flood,True,1
+2014-02,Indonesia,Volcanic activity,False,2
+2014-02,Republic of Korea,Storm,True,1
+2014-02,Sri Lanka,Flood,True,1
+2014-03,China,Storm,True,2
+2014-03,India,Storm,True,2
+2014-03,Malaysia,Drought,True,1
+2014-03,Thailand,Drought,True,1
+2014-03,Thailand,Storm,True,1
+2014-04,Bangladesh,Storm,True,1
+2014-04,China,Earthquake,False,1
+2014-04,China,Storm,True,3
+2014-04,India,Storm,True,1
+2014-05,China,Earthquake,False,2
+2014-05,China,Flood,True,2
+2014-05,India,Storm,True,1
+2014-05,Thailand,Earthquake,False,1
+2014-05,Türkiye,Earthquake,False,1
+2014-06,Bangladesh,Storm,True,1
+2014-06,China,Drought,True,1
+2014-06,China,Flood,True,4
+2014-06,China,Storm,True,2
+2014-06,India,Flood,True,1
+2014-06,Iran (Islamic Republic of),Flood,True,1
+2014-06,Philippines,Flood,True,1
+2014-06,Sri Lanka,Flood,True,1
+2014-07,Cambodia,Flood,True,1
+2014-07,China,Flood,True,3
+2014-07,China,Storm,True,3
+2014-07,India,Flood,True,1
+2014-07,India,Mass movement (wet),False,1
+2014-07,Philippines,Storm,True,2
+2014-07,Viet Nam,Storm,True,1
+2014-08,Bangladesh,Flood,True,1
+2014-08,China,Drought,True,1
+2014-08,China,Earthquake,False,1
+2014-08,China,Flood,True,2
+2014-08,China,Mass movement (wet),False,1
+2014-08,China,Storm,True,1
+2014-08,India,Flood,True,3
+2014-08,Iran (Islamic Republic of),Earthquake,False,1
+2014-08,Lao People's Democratic Republic,Flood,True,1
+2014-08,Myanmar,Flood,True,1
+2014-08,Pakistan,Storm,True,1
+2014-08,Philippines,Flood,True,2
+2014-08,Republic of Korea,Flood,True,1
+2014-08,Republic of Korea,Storm,True,1
+2014-09,Bangladesh,Flood,True,1
+2014-09,China,Flood,True,2
+2014-09,China,Mass movement (wet),False,1
+2014-09,China,Storm,True,3
+2014-09,India,Flood,True,2
+2014-09,Myanmar,Flood,True,1
+2014-09,Pakistan,Flood,True,1
+2014-09,Philippines,Storm,True,2
+2014-09,Philippines,Volcanic activity,False,1
+2014-09,Thailand,Flood,True,1
+2014-09,Viet Nam,Storm,True,1
+2014-10,China,Earthquake,False,1
+2014-10,India,Storm,True,1
+2014-10,Sri Lanka,Mass movement (wet),False,3
+2014-11,China,Earthquake,False,1
+2014-11,Indonesia,Flood,True,1
+2014-11,Philippines,Storm,True,1
+2014-11,Thailand,Flood,True,1
+2014-11,Viet Nam,Storm,True,1
+2014-12,China,Earthquake,False,1
+2014-12,China,Storm,True,1
+2014-12,India,Extreme temperature,True,2
+2014-12,Indonesia,Mass movement (wet),False,1
+2014-12,Malaysia,Flood,True,1
+2014-12,Philippines,Storm,True,2
+2014-12,Sri Lanka,Flood,True,1
+2014-12,Thailand,Flood,True,2
+2015-01,India,Drought,True,1
+2015-01,Indonesia,Flood,True,2
+2015-01,Malaysia,Flood,True,1
+2015-01,Philippines,Storm,True,1
+2015-01,Thailand,Drought,True,1
+2015-01,Türkiye,Flood,True,1
+2015-02,China,Earthquake,False,1
+2015-02,Indonesia,Flood,True,2
+2015-02,Pakistan,Flood,True,1
+2015-03,China,Earthquake,False,1
+2015-03,China,Storm,True,2
+2015-03,India,Flood,True,1
+2015-03,India,Storm,True,1
+2015-03,Indonesia,Flood,True,1
+2015-03,Indonesia,Mass movement (wet),False,1
+2015-03,Iran (Islamic Republic of),Flood,True,2
+2015-04,Bangladesh,Earthquake,False,1
+2015-04,Bangladesh,Storm,True,1
+2015-04,China,Earthquake,False,1
+2015-04,China,Storm,True,4
+2015-04,India,Earthquake,False,1
+2015-04,India,Storm,True,2
+2015-04,Myanmar,Storm,True,1
+2015-04,Pakistan,Flood,True,1
+2015-04,Philippines,Storm,True,1
+2015-05,Bangladesh,Storm,True,2
+2015-05,China,Drought,True,1
+2015-05,China,Earthquake,False,1
+2015-05,China,Flood,True,3
+2015-05,China,Storm,True,1
+2015-05,India,Earthquake,False,1
+2015-05,India,Extreme temperature,True,1
+2015-05,India,Flood,True,1
+2015-05,India,Storm,True,1
+2015-05,Indonesia,Mass movement (wet),False,1
+2015-05,Philippines,Storm,True,1
+2015-05,Republic of Korea,Epidemic,False,1
+2015-06,Bangladesh,Flood,True,1
+2015-06,China,Flood,True,4
+2015-06,China,Storm,True,2
+2015-06,India,Flood,True,2
+2015-06,India,Mass movement (wet),False,1
+2015-06,Malaysia,Earthquake,False,1
+2015-06,Myanmar,Flood,True,1
+2015-06,Pakistan,Extreme temperature,True,1
+2015-06,Pakistan,Flood,True,2
+2015-06,Viet Nam,Storm,True,1
+2015-07,Bangladesh,Flood,True,1
+2015-07,Bangladesh,Mass movement (wet),False,1
+2015-07,Bangladesh,Storm,True,1
+2015-07,China,Earthquake,False,1
+2015-07,China,Flood,True,1
+2015-07,China,Storm,True,3
+2015-07,India,Flood,True,3
+2015-07,Indonesia,Drought,True,1
+2015-07,Indonesia,Flood,True,1
+2015-07,Iran (Islamic Republic of),Flood,True,1
+2015-07,Myanmar,Flood,True,1
+2015-07,Pakistan,Flood,True,2
+2015-07,Philippines,Flood,True,4
+2015-07,Philippines,Storm,True,2
+2015-07,Viet Nam,Flood,True,1
+2015-08,China,Flood,True,2
+2015-08,China,Storm,True,1
+2015-08,India,Flood,True,2
+2015-08,Lao People's Democratic Republic,Flood,True,1
+2015-08,Philippines,Drought,True,1
+2015-08,Philippines,Flood,True,1
+2015-08,Philippines,Storm,True,2
+2015-09,Cambodia,Flood,True,1
+2015-09,Cambodia,Storm,True,1
+2015-09,China,Flood,True,1
+2015-09,China,Storm,True,1
+2015-09,India,Storm,True,1
+2015-09,Indonesia,Earthquake,False,1
+2015-09,Indonesia,Wildfire,True,1
+2015-09,Iran (Islamic Republic of),Flood,True,1
+2015-09,Iraq,Epidemic,False,1
+2015-09,Lao People's Democratic Republic,Flood,True,1
+2015-09,Sri Lanka,Flood,True,1
+2015-09,Thailand,Storm,True,1
+2015-09,Viet Nam,Flood,True,1
+2015-09,Viet Nam,Storm,True,1
+2015-10,China,Storm,True,2
+2015-10,India,Earthquake,False,1
+2015-10,India,Storm,True,1
+2015-10,Iraq,Flood,True,1
+2015-10,Myanmar,Flood,True,1
+2015-10,Myanmar,Mass movement (wet),False,2
+2015-10,Pakistan,Earthquake,False,1
+2015-10,Pakistan,Mass movement (dry),False,1
+2015-10,Philippines,Storm,True,2
+2015-11,China,Flood,True,1
+2015-11,China,Mass movement (wet),False,1
+2015-11,China,Storm,True,1
+2015-11,India,Flood,True,1
+2015-11,Iran (Islamic Republic of),Flood,True,1
+2015-11,Sri Lanka,Flood,True,1
+2015-12,Indonesia,Mass movement (wet),False,1
+2015-12,Pakistan,Earthquake,False,1
+2015-12,Philippines,Storm,True,1
+2015-12,Viet Nam,Drought,True,1
+2016-01,Bangladesh,Earthquake,False,1
+2016-01,China,Extreme temperature,True,1
+2016-01,China,Flood,True,1
+2016-01,India,Earthquake,False,1
+2016-01,Indonesia,Earthquake,False,1
+2016-01,Republic of Korea,Extreme temperature,True,1
+2016-01,Thailand,Extreme temperature,True,1
+2016-01,Viet Nam,Epidemic,False,1
+2016-02,India,Mass movement (wet),False,1
+2016-02,India,Wildfire,True,1
+2016-02,Indonesia,Flood,True,2
+2016-02,Malaysia,Flood,True,1
+2016-03,China,Flood,True,1
+2016-03,Indonesia,Flood,True,2
+2016-03,Pakistan,Flood,True,1
+2016-03,Philippines,Earthquake,False,1
+2016-04,China,Flood,True,1
+2016-04,China,Storm,True,1
+2016-04,India,Extreme temperature,True,1
+2016-04,India,Flood,True,1
+2016-04,Myanmar,Storm,True,2
+2016-04,Pakistan,Earthquake,False,1
+2016-04,Pakistan,Flood,True,1
+2016-05,Bangladesh,Storm,True,2
+2016-05,Cambodia,Drought,True,1
+2016-05,China,Earthquake,False,1
+2016-05,China,Flood,True,2
+2016-05,China,Mass movement (wet),False,1
+2016-05,India,Mass movement (wet),False,1
+2016-05,Indonesia,Mass movement (wet),False,1
+2016-05,Myanmar,Mass movement (wet),False,1
+2016-05,Sri Lanka,Flood,True,1
+2016-06,China,Drought,True,1
+2016-06,China,Flood,True,4
+2016-06,China,Storm,True,3
+2016-06,India,Flood,True,1
+2016-06,India,Storm,True,2
+2016-06,Indonesia,Mass movement (wet),False,1
+2016-06,Myanmar,Flood,True,1
+2016-06,Pakistan,Storm,True,1
+2016-07,Bangladesh,Flood,True,1
+2016-07,China,Flood,True,1
+2016-07,China,Mass movement (wet),False,2
+2016-07,China,Storm,True,1
+2016-07,India,Flood,True,4
+2016-07,Indonesia,Flood,True,1
+2016-07,Malaysia,Flood,True,1
+2016-07,Myanmar,Flood,True,1
+2016-07,Pakistan,Flood,True,2
+2016-07,Philippines,Storm,True,2
+2016-07,Viet Nam,Storm,True,1
+2016-08,China,Flood,True,1
+2016-08,China,Storm,True,3
+2016-08,India,Flood,True,1
+2016-08,Indonesia,Earthquake,False,1
+2016-08,Lao People's Democratic Republic,Flood,True,1
+2016-08,Myanmar,Earthquake,False,1
+2016-08,Myanmar,Epidemic,False,1
+2016-08,Pakistan,Flood,True,3
+2016-08,Philippines,Flood,True,2
+2016-08,Thailand,Flood,True,1
+2016-08,Viet Nam,Flood,True,1
+2016-08,Viet Nam,Storm,True,2
+2016-09,China,Flood,True,1
+2016-09,China,Storm,True,3
+2016-09,India,Flood,True,1
+2016-09,Indonesia,Flood,True,1
+2016-09,Iran (Islamic Republic of),Storm,True,1
+2016-09,Philippines,Storm,True,2
+2016-09,Republic of Korea,Earthquake,False,1
+2016-10,China,Storm,True,2
+2016-10,Indonesia,Flood,True,1
+2016-10,Philippines,Storm,True,2
+2016-10,Republic of Korea,Storm,True,1
+2016-10,Sri Lanka,Drought,True,1
+2016-10,Thailand,Flood,True,1
+2016-10,Viet Nam,Flood,True,2
+2016-10,Viet Nam,Storm,True,1
+2016-11,China,Earthquake,False,1
+2016-11,Indonesia,Flood,True,2
+2016-11,Malaysia,Flood,True,1
+2016-11,Philippines,Storm,True,1
+2016-12,China,Earthquake,False,1
+2016-12,India,Storm,True,1
+2016-12,Indonesia,Earthquake,False,1
+2016-12,Indonesia,Flood,True,1
+2016-12,Malaysia,Flood,True,1
+2016-12,Philippines,Storm,True,1
+2016-12,Thailand,Flood,True,1
+2016-12,Viet Nam,Flood,True,1
+2017-01,China,Mass movement (wet),False,1
+2017-01,India,Mass movement (wet),False,1
+2017-01,Malaysia,Flood,True,1
+2017-01,Pakistan,Flood,True,1
+2017-01,Philippines,Flood,True,1
+2017-01,Sri Lanka,Epidemic,False,1
+2017-01,Thailand,Flood,True,1
+2017-02,Indonesia,Flood,True,1
+2017-02,Indonesia,Mass movement (wet),False,1
+2017-02,Pakistan,Mass movement (wet),False,1
+2017-02,Philippines,Earthquake,False,1
+2017-02,Philippines,Flood,True,1
+2017-03,Bangladesh,Flood,True,1
+2017-03,China,Earthquake,False,1
+2017-03,China,Storm,True,1
+2017-03,India,Storm,True,1
+2017-03,Indonesia,Flood,True,1
+2017-04,China,Drought,True,1
+2017-04,China,Flood,True,1
+2017-04,China,Storm,True,1
+2017-04,India,Extreme temperature,True,1
+2017-04,Indonesia,Flood,True,1
+2017-04,Indonesia,Mass movement (wet),False,1
+2017-04,Iran (Islamic Republic of),Flood,True,1
+2017-04,Pakistan,Storm,True,1
+2017-04,Philippines,Earthquake,False,1
+2017-04,Philippines,Storm,True,1
+2017-05,Bangladesh,Storm,True,2
+2017-05,China,Earthquake,False,1
+2017-05,China,Flood,True,1
+2017-05,China,Storm,True,1
+2017-05,India,Storm,True,2
+2017-05,Indonesia,Flood,True,1
+2017-05,Iran (Islamic Republic of),Earthquake,False,1
+2017-05,Sri Lanka,Flood,True,1
+2017-06,Bangladesh,Mass movement (wet),False,1
+2017-06,China,Flood,True,3
+2017-06,China,Mass movement (wet),False,1
+2017-06,India,Flood,True,4
+2017-06,Indonesia,Flood,True,1
+2017-06,Myanmar,Storm,True,1
+2017-06,Pakistan,Flood,True,1
+2017-06,Pakistan,Storm,True,1
+2017-06,Viet Nam,Flood,True,1
+2017-07,China,Flood,True,3
+2017-07,China,Storm,True,3
+2017-07,India,Flood,True,1
+2017-07,India,Mass movement (wet),False,1
+2017-07,India,Storm,True,1
+2017-07,Lao People's Democratic Republic,Storm,True,1
+2017-07,Myanmar,Flood,True,1
+2017-07,Philippines,Earthquake,False,1
+2017-07,Philippines,Storm,True,1
+2017-07,Thailand,Flood,True,1
+2017-07,Thailand,Storm,True,1
+2017-07,Türkiye,Earthquake,False,1
+2017-07,Türkiye,Storm,True,1
+2017-07,Viet Nam,Flood,True,1
+2017-07,Viet Nam,Storm,True,1
+2017-08,Bangladesh,Flood,True,1
+2017-08,China,Earthquake,False,1
+2017-08,China,Flood,True,2
+2017-08,China,Mass movement (wet),False,2
+2017-08,China,Storm,True,3
+2017-08,India,Flood,True,3
+2017-08,India,Mass movement (wet),False,1
+2017-08,Iran (Islamic Republic of),Flood,True,1
+2017-08,Pakistan,Epidemic,False,1
+2017-08,Philippines,Storm,True,1
+2017-08,Viet Nam,Flood,True,1
+2017-08,Viet Nam,Storm,True,1
+2017-09,China,Flood,True,1
+2017-09,Indonesia,Volcanic activity,False,1
+2017-09,Philippines,Flood,True,1
+2017-09,Philippines,Storm,True,1
+2017-09,Thailand,Storm,True,1
+2017-09,Viet Nam,Storm,True,1
+2017-10,China,Flood,True,1
+2017-10,India,Flood,True,1
+2017-10,Philippines,Storm,True,1
+2017-10,Thailand,Flood,True,1
+2017-10,Viet Nam,Flood,True,1
+2017-11,Bangladesh,Epidemic,False,1
+2017-11,China,Earthquake,False,1
+2017-11,Indonesia,Flood,True,2
+2017-11,Indonesia,Storm,True,1
+2017-11,Iran (Islamic Republic of),Earthquake,False,1
+2017-11,Iraq,Earthquake,False,1
+2017-11,Malaysia,Flood,True,2
+2017-11,Philippines,Storm,True,1
+2017-11,Republic of Korea,Earthquake,False,1
+2017-11,Sri Lanka,Flood,True,1
+2017-11,Sri Lanka,Storm,True,1
+2017-11,Thailand,Flood,True,1
+2017-11,Viet Nam,Flood,True,1
+2017-11,Viet Nam,Storm,True,1
+2017-12,India,Storm,True,1
+2017-12,Indonesia,Earthquake,False,1
+2017-12,Iran (Islamic Republic of),Earthquake,False,1
+2017-12,Malaysia,Storm,True,1
+2017-12,Philippines,Storm,True,2
+2017-12,United Arab Emirates,Flood,True,1
+2018-01,Bangladesh,Extreme temperature,True,1
+2018-01,China,Storm,True,2
+2018-01,India,Extreme temperature,True,1
+2018-01,Indonesia,Earthquake,False,1
+2018-01,Indonesia,Volcanic activity,False,1
+2018-01,Malaysia,Flood,True,1
+2018-01,Philippines,Epidemic,False,2
+2018-01,Philippines,Flood,True,1
+2018-01,Philippines,Storm,True,1
+2018-01,Philippines,Volcanic activity,False,1
+2018-02,Indonesia,Flood,True,1
+2018-02,Indonesia,Mass movement (wet),False,1
+2018-02,Malaysia,Flood,True,1
+2018-02,Philippines,Storm,True,1
+2018-03,China,Storm,True,1
+2018-03,India,Wildfire,True,1
+2018-03,Indonesia,Flood,True,2
+2018-04,Bangladesh,Storm,True,1
+2018-04,India,Storm,True,2
+2018-05,Bangladesh,Flood,True,1
+2018-05,China,Earthquake,False,1
+2018-05,China,Flood,True,4
+2018-05,India,Flood,True,2
+2018-05,India,Storm,True,4
+2018-05,Myanmar,Mass movement (dry),False,1
+2018-05,Pakistan,Extreme temperature,True,1
+2018-05,Pakistan,Flood,True,1
+2018-05,Sri Lanka,Flood,True,1
+2018-06,Bangladesh,Flood,True,1
+2018-06,China,Flood,True,1
+2018-06,India,Flood,True,1
+2018-06,India,Storm,True,2
+2018-06,Myanmar,Flood,True,1
+2018-06,Viet Nam,Flood,True,1
+2018-06,Viet Nam,Storm,True,1
+2018-07,Cambodia,Flood,True,1
+2018-07,China,Flood,True,2
+2018-07,China,Storm,True,3
+2018-07,India,Flood,True,2
+2018-07,Indonesia,Earthquake,False,1
+2018-07,Iran (Islamic Republic of),Earthquake,False,1
+2018-07,Lao People's Democratic Republic,Flood,True,1
+2018-07,Lao People's Democratic Republic,Storm,True,1
+2018-07,Myanmar,Flood,True,1
+2018-07,Myanmar,Mass movement (wet),False,1
+2018-07,Philippines,Storm,True,1
+2018-07,Republic of Korea,Extreme temperature,True,1
+2018-07,Türkiye,Mass movement (wet),False,1
+2018-07,Viet Nam,Storm,True,1
+2018-08,China,Earthquake,False,1
+2018-08,China,Flood,True,1
+2018-08,China,Storm,True,4
+2018-08,India,Flood,True,2
+2018-08,Indonesia,Earthquake,False,2
+2018-08,Iran (Islamic Republic of),Earthquake,False,1
+2018-08,Lao People's Democratic Republic,Storm,True,1
+2018-08,Myanmar,Flood,True,1
+2018-08,Viet Nam,Flood,True,1
+2018-08,Viet Nam,Storm,True,1
+2018-09,China,Storm,True,1
+2018-09,India,Drought,True,1
+2018-09,India,Flood,True,2
+2018-09,Indonesia,Earthquake,False,1
+2018-09,Philippines,Storm,True,2
+2018-10,India,Storm,True,1
+2018-10,Indonesia,Flood,True,1
+2018-10,Iran (Islamic Republic of),Flood,True,1
+2018-10,Philippines,Storm,True,1
+2018-10,Sri Lanka,Flood,True,1
+2018-11,India,Storm,True,1
+2018-11,Indonesia,Flood,True,1
+2018-11,Iran (Islamic Republic of),Earthquake,False,1
+2018-11,Iraq,Flood,True,1
+2018-11,Kuwait,Flood,True,1
+2018-11,Viet Nam,Storm,True,1
+2018-12,China,Storm,True,1
+2018-12,India,Storm,True,1
+2018-12,Indonesia,Flood,True,1
+2018-12,Indonesia,Mass movement (wet),False,1
+2018-12,Indonesia,Volcanic activity,False,1
+2018-12,Philippines,Storm,True,1
+2018-12,Sri Lanka,Flood,True,1
+2018-12,Viet Nam,Flood,True,1
+2019-01,India,Epidemic,False,1
+2019-01,Indonesia,Flood,True,1
+2019-01,Indonesia,Mass movement (wet),False,1
+2019-01,Pakistan,Drought,True,1
+2019-01,Pakistan,Epidemic,False,1
+2019-01,Philippines,Epidemic,False,2
+2019-01,Philippines,Storm,True,1
+2019-01,Sri Lanka,Epidemic,False,1
+2019-01,Thailand,Storm,True,1
+2019-02,China,Earthquake,False,1
+2019-02,Indonesia,Earthquake,False,1
+2019-02,Indonesia,Wildfire,True,1
+2019-02,Pakistan,Flood,True,1
+2019-03,Bangladesh,Storm,True,1
+2019-03,Indonesia,Earthquake,False,1
+2019-03,Indonesia,Flood,True,2
+2019-03,Indonesia,Mass movement (wet),False,1
+2019-03,Iran (Islamic Republic of),Flood,True,2
+2019-03,Iraq,Flood,True,1
+2019-03,Philippines,Drought,True,1
+2019-04,China,Flood,True,1
+2019-04,China,Wildfire,True,1
+2019-04,India,Storm,True,1
+2019-04,Indonesia,Flood,True,2
+2019-04,Pakistan,Flood,True,1
+2019-04,Pakistan,Storm,True,1
+2019-04,Philippines,Earthquake,False,1
+2019-04,Republic of Korea,Wildfire,True,1
+2019-05,Bangladesh,Storm,True,1
+2019-05,India,Storm,True,1
+2019-05,Viet Nam,Flood,True,1
+2019-06,Bangladesh,Flood,True,1
+2019-06,China,Earthquake,False,1
+2019-06,China,Flood,True,1
+2019-06,India,Extreme temperature,True,2
+2019-06,India,Flood,True,1
+2019-06,India,Storm,True,2
+2019-06,Indonesia,Flood,True,2
+2019-06,Malaysia,Flood,True,1
+2019-06,Philippines,Flood,True,1
+2019-06,Türkiye,Flood,True,1
+2019-07,Bangladesh,Mass movement (wet),False,1
+2019-07,China,Flood,True,2
+2019-07,China,Mass movement (wet),False,1
+2019-07,China,Storm,True,1
+2019-07,India,Flood,True,1
+2019-07,Indonesia,Earthquake,False,1
+2019-07,Iran (Islamic Republic of),Earthquake,False,1
+2019-07,Lao People's Democratic Republic,Drought,True,1
+2019-07,Myanmar,Flood,True,1
+2019-07,Myanmar,Mass movement (wet),False,1
+2019-07,Pakistan,Flood,True,3
+2019-07,Philippines,Earthquake,False,2
+2019-07,Philippines,Storm,True,1
+2019-07,Thailand,Drought,True,1
+2019-07,Türkiye,Flood,True,1
+2019-07,Viet Nam,Drought,True,1
+2019-08,China,Flood,True,1
+2019-08,China,Mass movement (wet),False,1
+2019-08,China,Storm,True,1
+2019-08,India,Flood,True,1
+2019-08,Indonesia,Earthquake,False,1
+2019-08,Lao People's Democratic Republic,Flood,True,1
+2019-08,Myanmar,Flood,True,1
+2019-08,Pakistan,Flood,True,2
+2019-08,Philippines,Storm,True,1
+2019-08,Sri Lanka,Drought,True,1
+2019-08,Türkiye,Flood,True,1
+2019-08,Viet Nam,Flood,True,2
+2019-09,Cambodia,Flood,True,1
+2019-09,China,Earthquake,False,1
+2019-09,China,Storm,True,1
+2019-09,Indonesia,Earthquake,False,1
+2019-09,Pakistan,Earthquake,False,1
+2019-09,Pakistan,Flood,True,1
+2019-09,Republic of Korea,Storm,True,2
+2019-09,Sri Lanka,Flood,True,1
+2019-09,Thailand,Flood,True,1
+2019-09,Türkiye,Earthquake,False,1
+2019-09,Viet Nam,Flood,True,1
+2019-10,China,Flood,True,1
+2019-10,China,Storm,True,1
+2019-10,India,Epidemic,False,1
+2019-10,India,Flood,True,1
+2019-10,Indonesia,Flood,True,1
+2019-10,Iran (Islamic Republic of),Flood,True,1
+2019-10,Malaysia,Flood,True,1
+2019-10,Philippines,Earthquake,False,3
+2019-10,Republic of Korea,Storm,True,1
+2019-10,Sri Lanka,Flood,True,1
+2019-10,Viet Nam,Flood,True,1
+2019-11,Bangladesh,Extreme temperature,True,1
+2019-11,Bangladesh,Storm,True,1
+2019-11,India,Flood,True,1
+2019-11,India,Storm,True,1
+2019-11,Iran (Islamic Republic of),Earthquake,False,1
+2019-11,Malaysia,Flood,True,1
+2019-11,Philippines,Storm,True,2
+2019-11,Sri Lanka,Flood,True,1
+2019-11,Viet Nam,Storm,True,2
+2019-12,Indonesia,Flood,True,3
+2019-12,Malaysia,Flood,True,1
+2019-12,Philippines,Earthquake,False,1
+2019-12,Philippines,Storm,True,2
+2019-12,Sri Lanka,Flood,True,2
+2020-01,India,Storm,True,1
+2020-01,Indonesia,Flood,True,4
+2020-01,Iran (Islamic Republic of),Flood,True,1
+2020-01,Pakistan,Infestation,False,1
+2020-01,Pakistan,Storm,True,1
+2020-01,Philippines,Volcanic activity,False,1
+2020-01,Türkiye,Earthquake,False,1
+2020-01,Türkiye,Storm,True,1
+2020-02,Indonesia,Flood,True,3
+2020-02,Iran (Islamic Republic of),Earthquake,False,1
+2020-02,Iran (Islamic Republic of),Flood,True,2
+2020-02,Türkiye,Earthquake,False,1
+2020-02,Türkiye,Mass movement (wet),False,1
+2020-03,China,Wildfire,True,1
+2020-03,Indonesia,Flood,True,3
+2020-03,Iraq,Flood,True,1
+2020-03,Pakistan,Flood,True,2
+2020-03,Viet Nam,Storm,True,1
+2020-04,Indonesia,Flood,True,4
+2020-04,Iran (Islamic Republic of),Flood,True,1
+2020-04,Iran (Islamic Republic of),Infestation,False,1
+2020-04,Malaysia,Flood,True,1
+2020-04,Thailand,Storm,True,1
+2020-04,Viet Nam,Storm,True,1
+2020-05,Bangladesh,Storm,True,1
+2020-05,China,Earthquake,False,1
+2020-05,China,Flood,True,1
+2020-05,China,Storm,True,1
+2020-05,India,Flood,True,2
+2020-05,India,Mass movement (wet),False,1
+2020-05,India,Storm,True,1
+2020-05,Indonesia,Flood,True,2
+2020-05,Philippines,Storm,True,1
+2020-05,Sri Lanka,Storm,True,1
+2020-05,Uzbekistan,Flood,True,1
+2020-06,Bangladesh,Flood,True,1
+2020-06,China,Flood,True,2
+2020-06,China,Mass movement (wet),False,1
+2020-06,India,Flood,True,2
+2020-06,India,Storm,True,1
+2020-06,Indonesia,Earthquake,False,1
+2020-06,Indonesia,Flood,True,3
+2020-06,Malaysia,Flood,True,2
+2020-06,Pakistan,Flood,True,1
+2020-06,Türkiye,Earthquake,False,2
+2020-06,Türkiye,Flood,True,2
+2020-07,Indonesia,Flood,True,1
+2020-07,Myanmar,Flood,True,1
+2020-07,Myanmar,Mass movement (wet),False,1
+2020-07,Republic of Korea,Flood,True,1
+2020-07,Viet Nam,Flood,True,1
+2020-07,Viet Nam,Storm,True,1
+2020-08,China,Flood,True,1
+2020-08,China,Storm,True,2
+2020-08,India,Mass movement (wet),False,1
+2020-08,Indonesia,Flood,True,1
+2020-08,Lao People's Democratic Republic,Storm,True,1
+2020-08,Pakistan,Flood,True,1
+2020-08,Philippines,Earthquake,False,1
+2020-08,Republic of Korea,Flood,True,1
+2020-08,Republic of Korea,Storm,True,1
+2020-08,Thailand,Flood,True,1
+2020-08,Thailand,Storm,True,1
+2020-08,Türkiye,Flood,True,1
+2020-09,Cambodia,Storm,True,1
+2020-09,Indonesia,Mass movement (wet),False,1
+2020-09,Republic of Korea,Storm,True,2
+2020-09,Sri Lanka,Flood,True,1
+2020-09,Thailand,Storm,True,1
+2020-09,Viet Nam,Storm,True,1
+2020-10,Cambodia,Storm,True,1
+2020-10,China,Storm,True,1
+2020-10,India,Flood,True,1
+2020-10,Indonesia,Flood,True,1
+2020-10,Lao People's Democratic Republic,Storm,True,1
+2020-10,Malaysia,Flood,True,1
+2020-10,Pakistan,Mass movement (wet),False,1
+2020-10,Philippines,Storm,True,3
+2020-10,Thailand,Storm,True,1
+2020-10,Türkiye,Earthquake,False,1
+2020-10,Viet Nam,Storm,True,3
+2020-11,China,Flood,True,1
+2020-11,India,Storm,True,1
+2020-11,Indonesia,Volcanic activity,False,1
+2020-11,Iran (Islamic Republic of),Flood,True,2
+2020-11,Philippines,Storm,True,1
+2020-11,Thailand,Flood,True,1
+2020-11,Viet Nam,Storm,True,2
+2020-12,Indonesia,Flood,True,3
+2020-12,Indonesia,Volcanic activity,False,1
+2020-12,Iran (Islamic Republic of),Mass movement (wet),False,1
+2020-12,Malaysia,Flood,True,1
+2020-12,Philippines,Mass movement (wet),False,1
+2020-12,Philippines,Storm,True,1
+2020-12,Sri Lanka,Flood,True,1
+2020-12,Thailand,Flood,True,1
+2020-12,Viet Nam,Storm,True,1
+2021-01,China,Drought,True,1
+2021-01,Indonesia,Earthquake,False,1
+2021-01,Indonesia,Flood,True,2
+2021-01,Indonesia,Volcanic activity,False,1
+2021-01,Iraq,Drought,True,1
+2021-01,Malaysia,Flood,True,3
+2021-01,Philippines,Flood,True,2
+2021-01,Philippines,Storm,True,1
+2021-01,Sri Lanka,Flood,True,1
+2021-01,Thailand,Flood,True,1
+2021-02,India,Glacial lake outburst flood,False,1
+2021-02,Indonesia,Flood,True,3
+2021-02,Indonesia,Mass movement (wet),False,1
+2021-02,Iran (Islamic Republic of),Earthquake,False,1
+2021-02,Philippines,Flood,True,1
+2021-02,Philippines,Storm,True,1
+2021-03,China,Earthquake,False,1
+2021-03,China,Storm,True,1
+2021-03,Indonesia,Flood,True,2
+2021-03,Pakistan,Flood,True,1
+2021-03,Thailand,Storm,True,1
+2021-03,Viet Nam,Storm,True,1
+2021-04,Cambodia,Storm,True,1
+2021-04,China,Storm,True,1
+2021-04,India,Earthquake,False,1
+2021-04,India,Glacial lake outburst flood,False,1
+2021-04,Indonesia,Earthquake,False,1
+2021-04,Indonesia,Mass movement (wet),False,1
+2021-04,Indonesia,Storm,True,1
+2021-04,Iran (Islamic Republic of),Earthquake,False,1
+2021-04,Philippines,Flood,True,1
+2021-04,Philippines,Storm,True,1
+2021-04,Viet Nam,Flood,True,1
+2021-05,Bangladesh,Storm,True,1
+2021-05,China,Earthquake,False,1
+2021-05,China,Storm,True,2
+2021-05,India,Storm,True,2
+2021-05,Indonesia,Flood,True,1
+2021-05,Iran (Islamic Republic of),Flood,True,1
+2021-05,Malaysia,Flood,True,1
+2021-05,Pakistan,Storm,True,1
+2021-05,Sri Lanka,Flood,True,1
+2021-05,Sri Lanka,Storm,True,1
+2021-06,China,Earthquake,False,1
+2021-06,China,Flood,True,2
+2021-06,India,Flood,True,2
+2021-06,Indonesia,Earthquake,False,1
+2021-06,Lao People's Democratic Republic,Storm,True,1
+2021-06,Philippines,Storm,True,1
+2021-06,Viet Nam,Storm,True,1
+2021-07,Bangladesh,Flood,True,1
+2021-07,China,Storm,True,1
+2021-07,India,Flood,True,2
+2021-07,India,Mass movement (wet),False,1
+2021-07,Indonesia,Flood,True,1
+2021-07,Iran (Islamic Republic of),Storm,True,1
+2021-07,Myanmar,Flood,True,1
+2021-07,Pakistan,Flood,True,2
+2021-07,Pakistan,Storm,True,1
+2021-07,Philippines,Volcanic activity,False,1
+2021-07,Türkiye,Flood,True,1
+2021-07,Türkiye,Wildfire,True,1
+2021-07,Uzbekistan,Mass movement (wet),False,1
+2021-08,China,Flood,True,1
+2021-08,India,Mass movement (wet),False,1
+2021-08,Indonesia,Flood,True,1
+2021-08,Malaysia,Flood,True,1
+2021-08,Republic of Korea,Storm,True,1
+2021-08,Thailand,Flood,True,1
+2021-08,Türkiye,Flood,True,1
+2021-09,Cambodia,Flood,True,1
+2021-09,China,Earthquake,False,1
+2021-09,India,Flood,True,1
+2021-09,India,Storm,True,1
+2021-09,Indonesia,Flood,True,1
+2021-09,Malaysia,Flood,True,1
+2021-09,Pakistan,Flood,True,1
+2021-09,Philippines,Storm,True,1
+2021-09,Thailand,Flood,True,1
+2021-09,Viet Nam,Flood,True,1
+2021-09,Viet Nam,Storm,True,1
+2021-10,Cambodia,Flood,True,2
+2021-10,China,Flood,True,1
+2021-10,China,Storm,True,1
+2021-10,India,Flood,True,2
+2021-10,India,Storm,True,1
+2021-10,Indonesia,Earthquake,False,1
+2021-10,Indonesia,Flood,True,2
+2021-10,Iran (Islamic Republic of),Storm,True,1
+2021-10,Iraq,Flood,True,1
+2021-10,Malaysia,Flood,True,1
+2021-10,Pakistan,Earthquake,False,1
+2021-10,Pakistan,Epidemic,False,1
+2021-10,Philippines,Flood,True,1
+2021-10,Philippines,Storm,True,2
+2021-10,Sri Lanka,Flood,True,1
+2021-10,Thailand,Flood,True,1
+2021-10,Viet Nam,Storm,True,1
+2021-11,China,Storm,True,1
+2021-11,India,Flood,True,2
+2021-11,Indonesia,Flood,True,2
+2021-11,Iran (Islamic Republic of),Earthquake,False,1
+2021-11,Sri Lanka,Flood,True,1
+2021-11,Thailand,Flood,True,1
+2021-11,Viet Nam,Flood,True,1
+2021-12,China,Earthquake,False,1
+2021-12,India,Storm,True,1
+2021-12,Indonesia,Earthquake,False,1
+2021-12,Indonesia,Flood,True,3
+2021-12,Indonesia,Volcanic activity,False,1
+2021-12,Iraq,Flood,True,1
+2021-12,Lao People's Democratic Republic,Earthquake,False,1
+2021-12,Malaysia,Flood,True,1
+2021-12,Philippines,Storm,True,1
+2021-12,Viet Nam,Storm,True,1
+2022-01,China,Drought,True,1
+2022-01,China,Earthquake,False,2
+2022-01,China,Mass movement (wet),False,1
+2022-01,Indonesia,Earthquake,False,2
+2022-01,Indonesia,Flood,True,1
+2022-01,Iran (Islamic Republic of),Flood,True,2
+2022-01,Pakistan,Storm,True,1
+2022-02,Indonesia,Earthquake,False,1
+2022-02,Indonesia,Flood,True,2
+2022-02,Malaysia,Flood,True,1
+2022-02,Republic of Korea,Wildfire,True,1
+2022-02,Thailand,Flood,True,1
+2022-03,India,Extreme temperature,True,1
+2022-03,Indonesia,Flood,True,1
+2022-03,Indonesia,Volcanic activity,False,1
+2022-03,Malaysia,Flood,True,1
+2022-03,Pakistan,Extreme temperature,True,1
+2022-03,Philippines,Volcanic activity,False,1
+2022-03,Viet Nam,Flood,True,1
+2022-04,India,Storm,True,1
+2022-04,Philippines,Flood,True,1
+2022-04,Philippines,Storm,True,1
+2022-04,Thailand,Flood,True,1
+2022-04,Uzbekistan,Flood,True,1
+2022-05,Bangladesh,Flood,True,1
+2022-05,China,Flood,True,1
+2022-05,India,Flood,True,1
+2022-05,Indonesia,Flood,True,1
+2022-05,Iraq,Storm,True,1
+2022-05,Pakistan,Wildfire,True,1
+2022-05,Sri Lanka,Storm,True,1
+2022-05,Thailand,Flood,True,2
+2022-05,Thailand,Storm,True,1
+2022-05,Viet Nam,Flood,True,1
+2022-05,Viet Nam,Storm,True,1
+2022-06,China,Earthquake,False,2
+2022-06,India,Mass movement (wet),False,1
+2022-06,Pakistan,Earthquake,False,1
+2022-06,Pakistan,Flood,True,1
+2022-06,Türkiye,Flood,True,1
+2022-07,China,Flood,True,1
+2022-07,China,Storm,True,1
+2022-07,Indonesia,Flood,True,1
+2022-07,Iran (Islamic Republic of),Earthquake,False,1
+2022-07,Iran (Islamic Republic of),Flood,True,1
+2022-07,Malaysia,Flood,True,1
+2022-07,Philippines,Earthquake,False,1
+2022-07,Republic of Korea,Extreme temperature,True,1
+2022-07,Thailand,Flood,True,1
+2022-08,China,Flood,True,2
+2022-08,India,Flood,True,1
+2022-08,Lao People's Democratic Republic,Flood,True,1
+2022-08,Philippines,Storm,True,1
+2022-08,Republic of Korea,Flood,True,1
+2022-08,Sri Lanka,Flood,True,1
+2022-08,Thailand,Flood,True,1
+2022-08,Viet Nam,Flood,True,1
+2022-09,Cambodia,Flood,True,1
+2022-09,Cambodia,Storm,True,1
+2022-09,China,Earthquake,False,1
+2022-09,India,Flood,True,1
+2022-09,Indonesia,Earthquake,False,1
+2022-09,Philippines,Storm,True,1
+2022-09,Republic of Korea,Storm,True,1
+2022-09,Sri Lanka,Flood,True,1
+2022-09,Thailand,Flood,True,1
+2022-09,Thailand,Storm,True,1
+2022-09,Viet Nam,Storm,True,1
+2022-10,Bangladesh,Storm,True,1
+2022-10,Indonesia,Flood,True,2
+2022-10,Iran (Islamic Republic of),Earthquake,False,1
+2022-10,Philippines,Earthquake,False,1
+2022-10,Philippines,Mass movement (wet),False,1
+2022-10,Philippines,Storm,True,3
+2022-10,Sri Lanka,Flood,True,1
+2022-10,Viet Nam,Flood,True,1
+2022-10,Viet Nam,Storm,True,1
+2022-11,Indonesia,Earthquake,False,1
+2022-11,Indonesia,Flood,True,3
+2022-11,Malaysia,Flood,True,1
+2022-11,Thailand,Flood,True,1
+2022-11,Türkiye,Earthquake,False,1
+2022-12,India,Storm,True,1
+2022-12,Indonesia,Flood,True,2
+2022-12,Indonesia,Volcanic activity,False,1
+2022-12,Malaysia,Flood,True,1
+2022-12,Malaysia,Mass movement (wet),False,1
+2022-12,Philippines,Flood,True,1
+2022-12,Sri Lanka,Storm,True,1
+2022-12,Thailand,Flood,True,1
+2022-12,Türkiye,Flood,True,1
+2022-12,Viet Nam,Flood,True,1
+2023-01,Bangladesh,Epidemic,False,1
+2023-01,China,Drought,True,1
+2023-01,China,Mass movement (wet),False,1
+2023-01,Indonesia,Earthquake,False,1
+2023-01,Indonesia,Flood,True,2
+2023-01,Iran (Islamic Republic of),Earthquake,False,2
+2023-01,Malaysia,Flood,True,1
+2023-01,Philippines,Flood,True,1
+2023-02,Indonesia,Earthquake,False,1
+2023-02,Malaysia,Flood,True,1
+2023-02,Philippines,Flood,True,2
+2023-02,Türkiye,Earthquake,False,3
+2023-03,India,Storm,True,1
+2023-03,Indonesia,Mass movement (wet),False,1
+2023-03,Indonesia,Storm,True,1
+2023-03,Iran (Islamic Republic of),Earthquake,False,1
+2023-03,Pakistan,Earthquake,False,1
+2023-03,Pakistan,Flood,True,3
+2023-03,Türkiye,Flood,True,1
+2023-04,Bangladesh,Storm,True,1
+2023-04,Cambodia,Storm,True,1
+2023-04,India,Extreme temperature,True,2
+2023-04,Indonesia,Mass movement (wet),False,1
+2023-04,Iran (Islamic Republic of),Storm,True,1
+2023-04,Iraq,Storm,True,1
+2023-04,Myanmar,Storm,True,1
+2023-04,Pakistan,Extreme temperature,True,1
+2023-04,Pakistan,Flood,True,1
+2023-04,Philippines,Storm,True,1
+2023-04,Republic of Korea,Wildfire,True,1
+2023-04,Sri Lanka,Storm,True,1
+2023-04,Thailand,Storm,True,1
+2023-04,Türkiye,Storm,True,1
+2023-04,Viet Nam,Flood,True,1
+2023-05,Bangladesh,Storm,True,1
+2023-05,China,Earthquake,False,1
+2023-05,China,Flood,True,1
+2023-05,India,Storm,True,1
+2023-05,Myanmar,Storm,True,1
+2023-05,Pakistan,Mass movement (wet),False,1
+2023-05,Philippines,Storm,True,1
+2023-06,China,Flood,True,1
+2023-06,China,Mass movement (wet),False,1
+2023-06,India,Flood,True,3
+2023-06,India,Storm,True,1
+2023-06,Indonesia,Drought,True,1
+2023-06,Indonesia,Earthquake,False,1
+2023-06,Indonesia,Storm,True,1
+2023-06,Iran (Islamic Republic of),Storm,True,1
+2023-06,Pakistan,Flood,True,2
+2023-06,Pakistan,Storm,True,1
+2023-06,Philippines,Volcanic activity,False,1
+2023-07,China,Flood,True,1
+2023-07,China,Storm,True,1
+2023-07,India,Flood,True,1
+2023-07,India,Mass movement (wet),False,1
+2023-07,Indonesia,Flood,True,1
+2023-07,Lao People's Democratic Republic,Flood,True,1
+2023-07,Pakistan,Flood,True,1
+2023-07,Philippines,Storm,True,2
+2023-07,Republic of Korea,Flood,True,1
+2023-07,Sri Lanka,Storm,True,1
+2023-07,Thailand,Flood,True,1
+2023-07,Viet Nam,Flood,True,1
+2023-07,Viet Nam,Storm,True,1
+2023-08,Bangladesh,Flood,True,1
+2023-08,China,Earthquake,False,1
+2023-08,China,Flood,True,3
+2023-08,China,Storm,True,1
+2023-08,India,Mass movement (wet),False,2
+2023-08,Myanmar,Flood,True,1
+2023-08,Myanmar,Mass movement (wet),False,1
+2023-08,Pakistan,Flood,True,1
+2023-08,Philippines,Storm,True,1
+2023-08,Republic of Korea,Storm,True,1
+2023-08,Viet Nam,Flood,True,1
+2023-09,China,Flood,True,1
+2023-09,China,Storm,True,1
+2023-09,India,Storm,True,1
+2023-09,Indonesia,Flood,True,1
+2023-09,Iran (Islamic Republic of),Storm,True,1
+2023-09,Pakistan,Flood,True,1
+2023-09,Philippines,Earthquake,False,1
+2023-09,Sri Lanka,Flood,True,1
+2023-09,Türkiye,Flood,True,1
+2023-10,Bangladesh,Storm,True,1
+2023-10,China,Storm,True,1
+2023-10,India,Glacial lake outburst flood,False,1
+2023-10,Myanmar,Flood,True,1
+2023-10,Philippines,Storm,True,1
+2023-10,Viet Nam,Flood,True,1
+2023-11,India,Storm,True,1
+2023-11,Indonesia,Flood,True,1
+2023-11,Malaysia,Flood,True,1
+2023-11,Philippines,Earthquake,False,1
+2023-11,Philippines,Flood,True,1
+2023-11,Sri Lanka,Storm,True,1
+2023-11,Türkiye,Storm,True,2
+2023-11,Viet Nam,Storm,True,1
+2023-12,China,Earthquake,False,1
+2023-12,India,Flood,True,1
+2023-12,India,Storm,True,1
+2023-12,Indonesia,Volcanic activity,False,2
+2023-12,Malaysia,Flood,True,1
+2023-12,Philippines,Earthquake,False,1
+2023-12,Philippines,Storm,True,1
+2023-12,Sri Lanka,Storm,True,1
+2023-12,Thailand,Flood,True,1
+2024-01,China,Drought,True,1
+2024-01,China,Earthquake,False,1
+2024-01,China,Mass movement (wet),False,1
+2024-01,Philippines,Flood,True,1
+2024-01,Philippines,Mass movement (wet),False,1
+2024-01,Sri Lanka,Flood,True,1
+2024-01,Viet Nam,Drought,True,1
+2024-02,Indonesia,Flood,True,1
+2024-02,Iran (Islamic Republic of),Flood,True,1
+2024-02,Pakistan,Flood,True,1
+2024-02,Philippines,Mass movement (wet),False,1
+2024-02,Thailand,Storm,True,1
+2024-02,Türkiye,Flood,True,1
+2024-02,United Arab Emirates,Flood,True,1
+2024-03,China,Wildfire,True,1
+2024-03,India,Extreme temperature,True,1
+2024-03,India,Storm,True,1
+2024-03,Indonesia,Earthquake,False,1
+2024-03,Indonesia,Mass movement (wet),False,1
+2024-03,Iraq,Flood,True,1
+2024-03,Pakistan,Storm,True,1
+2024-04,Bangladesh,Extreme temperature,True,1
+2024-04,Cambodia,Extreme temperature,True,1
+2024-04,China,Flood,True,1
+2024-04,China,Storm,True,1
+2024-04,Indonesia,Earthquake,False,1
+2024-04,Indonesia,Flood,True,2
+2024-04,Indonesia,Mass movement (wet),False,2
+2024-04,Indonesia,Volcanic activity,False,1
+2024-04,Iran (Islamic Republic of),Flood,True,1
+2024-04,Lao People's Democratic Republic,Extreme temperature,True,1
+2024-04,Myanmar,Extreme temperature,True,1
+2024-04,Pakistan,Storm,True,1
+2024-04,Philippines,Extreme temperature,True,1
+2024-04,Thailand,Extreme temperature,True,1
+2024-04,Thailand,Storm,True,1
+2024-04,United Arab Emirates,Flood,True,1
+2024-04,Viet Nam,Extreme temperature,True,1
+2024-04,Viet Nam,Storm,True,1
+2024-05,Bangladesh,Flood,True,1
+2024-05,Bangladesh,Storm,True,1
+2024-05,China,Mass movement (wet),False,1
+2024-05,India,Flood,True,1
+2024-05,India,Storm,True,3
+2024-05,Indonesia,Flood,True,1
+2024-05,Indonesia,Mass movement (wet),False,2
+2024-05,Indonesia,Volcanic activity,False,1
+2024-05,Iran (Islamic Republic of),Flood,True,1
+2024-05,Pakistan,Extreme temperature,True,1
+2024-05,Philippines,Storm,True,1
+2024-05,Republic of Korea,Extreme temperature,True,1
+2024-05,Sri Lanka,Flood,True,1
+2024-05,Thailand,Storm,True,1
+2024-05,Viet Nam,Storm,True,1
+2024-06,China,Flood,True,1
+2024-06,Indonesia,Flood,True,1
+2024-06,Iran (Islamic Republic of),Earthquake,False,1
+2024-06,Myanmar,Flood,True,1
+2024-06,Pakistan,Extreme temperature,True,1
+2024-06,Philippines,Volcanic activity,False,1
+2024-06,Viet Nam,Flood,True,1
+2024-06,Viet Nam,Storm,True,1
+2024-07,China,Flood,True,3
+2024-07,China,Mass movement (wet),False,1
+2024-07,China,Storm,True,2
+2024-07,India,Flood,True,2
+2024-07,India,Mass movement (wet),False,1
+2024-07,Lao People's Democratic Republic,Flood,True,1
+2024-07,Lao People's Democratic Republic,Storm,True,1
+2024-07,Pakistan,Flood,True,1
+2024-07,Philippines,Storm,True,1
+2024-07,Republic of Korea,Flood,True,1
+2024-07,Viet Nam,Mass movement (wet),False,1
+2024-08,Bangladesh,Flood,True,1
+2024-08,China,Flood,True,1
+2024-08,India,Flood,True,2
+2024-08,India,Mass movement (wet),False,1
+2024-08,Indonesia,Flood,True,1
+2024-08,Philippines,Earthquake,False,1
+2024-08,Thailand,Flood,True,1
+2024-08,Türkiye,Wildfire,True,1
+2024-09,China,Storm,True,3
+2024-09,Indonesia,Earthquake,False,1
+2024-09,Indonesia,Mass movement (wet),False,1
+2024-09,Iran (Islamic Republic of),Flood,True,1
+2024-09,Lao People's Democratic Republic,Storm,True,1
+2024-09,Myanmar,Storm,True,1
+2024-09,Philippines,Storm,True,4
+2024-09,Republic of Korea,Storm,True,1
+2024-09,Thailand,Storm,True,1
+2024-09,Viet Nam,Storm,True,2
+2024-10,Bangladesh,Flood,True,1
+2024-10,Bangladesh,Storm,True,1
+2024-10,China,Storm,True,1
+2024-10,India,Flood,True,1
+2024-10,India,Storm,True,1
+2024-10,Philippines,Storm,True,2
+2024-10,Sri Lanka,Storm,True,1
+2024-10,Türkiye,Earthquake,False,1
+2024-10,Viet Nam,Storm,True,1
+2024-11,Indonesia,Flood,True,1
+2024-11,Indonesia,Volcanic activity,False,1
+2024-11,Philippines,Storm,True,3
+2024-11,Sri Lanka,Storm,True,1
+2024-11,Thailand,Flood,True,1
+2024-12,India,Storm,True,1
+2024-12,Indonesia,Flood,True,1
+2024-12,Philippines,Volcanic activity,False,1
+2025-01,China,Earthquake,False,1
+2025-01,Indonesia,Mass movement (wet),False,1
+2025-01,Malaysia,Flood,True,1
+2025-02,China,Mass movement (wet),False,1
+2025-02,India,Mass movement (wet),False,1
+2025-02,Malaysia,Flood,True,1
+2025-02,Philippines,Flood,True,1
+2025-02,Philippines,Storm,True,1
+2025-03,China,Earthquake,False,1
+2025-03,India,Storm,True,1
+2025-03,Indonesia,Flood,True,2
+2025-03,Iraq,Flood,True,1
+2025-03,Malaysia,Flood,True,2
+2025-03,Myanmar,Earthquake,False,1
+2025-03,Republic of Korea,Wildfire,True,1
+2025-03,Thailand,Earthquake,False,1
+2025-03,Thailand,Storm,True,1
+2025-04,India,Storm,True,2
+2025-04,Indonesia,Flood,True,2
+2025-04,Iran (Islamic Republic of),Storm,True,1
+2025-04,Iraq,Storm,True,1
+2025-04,Philippines,Volcanic activity,False,1
+2025-04,Thailand,Storm,True,1
+2025-04,Türkiye,Earthquake,False,1
+2025-04,Türkiye,Extreme temperature,True,1
+2025-04,Viet Nam,Storm,True,2
+2025-05,Bangladesh,Flood,True,1
+2025-05,Bangladesh,Storm,True,1
+2025-05,China,Mass movement (wet),False,1
+2025-05,India,Flood,True,1
+2025-05,India,Storm,True,1
+2025-05,Indonesia,Earthquake,False,1
+2025-05,Indonesia,Flood,True,1
+2025-05,Iran (Islamic Republic of),Storm,True,1
+2025-05,Iraq,Storm,True,1
+2025-05,Pakistan,Storm,True,2
+2025-05,Philippines,Storm,True,1
+2025-05,Thailand,Flood,True,2
+2025-06,China,Mass movement (wet),False,1
+2025-06,India,Flood,True,1
+2025-06,India,Storm,True,1
+2025-06,Indonesia,Flood,True,1
+2025-06,Indonesia,Volcanic activity,False,1
+2025-06,Iran (Islamic Republic of),Storm,True,1
+2025-06,Myanmar,Flood,True,1
+2025-06,Pakistan,Flood,True,1
+2025-06,Philippines,Flood,True,1
+2025-06,Philippines,Storm,True,1
+2025-06,Türkiye,Wildfire,True,1
+2025-06,Viet Nam,Flood,True,1
+2025-06,Viet Nam,Storm,True,2
+2025-07,Bangladesh,Flood,True,1
+2025-07,China,Flood,True,1
+2025-07,China,Glacial lake outburst flood,False,1
+2025-07,China,Storm,True,2
+2025-07,Indonesia,Flood,True,1
+2025-07,Lao People's Democratic Republic,Flood,True,1
+2025-07,Myanmar,Storm,True,1
+2025-07,Philippines,Storm,True,1
+2025-07,Republic of Korea,Flood,True,1
+2025-07,Thailand,Storm,True,2
+2025-07,Türkiye,Wildfire,True,1
+2025-07,Viet Nam,Flood,True,1
+2025-07,Viet Nam,Storm,True,1
+2025-08,China,Flood,True,2
+2025-08,China,Storm,True,2
+2025-08,India,Flood,True,2
+2025-08,India,Mass movement (wet),False,2
+2025-08,Indonesia,Earthquake,False,1
+2025-08,Lao People's Democratic Republic,Storm,True,1
+2025-08,Myanmar,Flood,True,1
+2025-08,Myanmar,Storm,True,1
+2025-08,Republic of Korea,Flood,True,1
+2025-08,Thailand,Storm,True,1
+2025-08,Türkiye,Earthquake,False,1
+2025-08,Viet Nam,Storm,True,1
+2025-09,China,Earthquake,False,1
+2025-09,China,Storm,True,1
+2025-09,India,Flood,True,1
+2025-09,Indonesia,Flood,True,2
+2025-09,Malaysia,Flood,True,1
+2025-09,Philippines,Earthquake,False,1
+2025-09,Philippines,Storm,True,3
+2025-09,Thailand,Flood,True,1
+2025-09,Thailand,Storm,True,2
+2025-09,Viet Nam,Storm,True,1
+2025-10,Bangladesh,Storm,True,1
+2025-10,Cambodia,Flood,True,1
+2025-10,India,Flood,True,1
+2025-10,India,Storm,True,1
+2025-10,Indonesia,Earthquake,False,1
+2025-10,Iran (Islamic Republic of),Wildfire,True,1
+2025-10,Philippines,Earthquake,False,1
+2025-10,Philippines,Storm,True,1
+2025-10,Thailand,Flood,True,1
+2025-10,Thailand,Storm,True,1
+2025-10,Viet Nam,Storm,True,3
+2025-11,Bangladesh,Earthquake,False,1
+2025-11,India,Storm,True,1
+2025-11,Indonesia,Flood,True,1
+2025-11,Indonesia,Mass movement (wet),False,1
+2025-11,Indonesia,Storm,True,1
+2025-11,Indonesia,Volcanic activity,False,1
+2025-11,Malaysia,Flood,True,1
+2025-11,Philippines,Storm,True,3
+2025-11,Sri Lanka,Mass movement (wet),False,1
+2025-11,Sri Lanka,Storm,True,1
+2025-11,Thailand,Flood,True,1
+2025-11,Viet Nam,Storm,True,2
+2025-12,Indonesia,Flood,True,2
+2025-12,Iran (Islamic Republic of),Flood,True,1
+2025-12,Iraq,Flood,True,1
+2025-12,Malaysia,Flood,True,1
+2026-01,Indonesia,Flood,True,2
+2026-01,Indonesia,Mass movement (wet),False,1
+2026-01,Pakistan,Earthquake,False,1
+2026-02,Philippines,Storm,True,1
+2026-03,Bangladesh,Epidemic,False,1
+2026-03,Indonesia,Mass movement (wet),False,1
+2026-03,Indonesia,Storm,True,1
+2026-03,Iraq,Flood,True,1
+2026-03,Pakistan,Storm,True,2
+2026-03,Viet Nam,Storm,True,1
+2026-04,Bangladesh,Storm,True,1
+2026-04,Indonesia,Earthquake,False,1
+2026-04,Viet Nam,Storm,True,1
+2026-05,China,Flood,True,1
+2026-05,Viet Nam,Storm,True,1

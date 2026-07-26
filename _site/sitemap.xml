@@ -2,30 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.matthewburns.net/index.html</loc>
-    <lastmod>2026-06-27T11:51:48.478Z</lastmod>
+    <lastmod>2026-07-26T12:55:40.478Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/projects/climate-commodity-risk/index.html</loc>
-    <lastmod>2026-07-26T10:56:03.589Z</lastmod>
+    <lastmod>2026-07-26T11:03:20.554Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/index.html</loc>
+    <loc>https://www.matthewburns.net/projects/index.html</loc>
+    <lastmod>2026-07-26T11:02:39.465Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/steam-recommender/index.html</loc>
     <lastmod>2026-06-27T11:51:48.491Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/posts/stochastic-gradient-descent/index.html</loc>
-    <lastmod>2026-06-27T11:51:48.480Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/posts/wikidata-overview/index.html</loc>
-    <lastmod>2026-06-27T11:51:48.486Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/scotland/index.html</loc>
-    <lastmod>2026-06-27T11:51:48.502Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.matthewburns.net/posts/data-lifecycle-101/index.html</loc>
+    <loc>https://www.matthewburns.net/posts/index.html</loc>
     <lastmod>2026-06-27T11:51:48.479Z</lastmod>
   </url>
   <url>
@@ -33,16 +25,28 @@
     <lastmod>2026-06-27T11:51:48.479Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/posts/index.html</loc>
+    <loc>https://www.matthewburns.net/posts/data-lifecycle-101/index.html</loc>
     <lastmod>2026-06-27T11:51:48.479Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/projects/steam-recommender/index.html</loc>
+    <loc>https://www.matthewburns.net/scotland/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.502Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/wikidata-overview/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.486Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/posts/stochastic-gradient-descent/index.html</loc>
+    <lastmod>2026-06-27T11:51:48.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.matthewburns.net/projects/amazon-sentiment-ml-eng/index.html</loc>
     <lastmod>2026-06-27T11:51:48.491Z</lastmod>
   </url>
   <url>
-    <loc>https://www.matthewburns.net/projects/index.html</loc>
-    <lastmod>2026-06-27T11:51:48.491Z</lastmod>
+    <loc>https://www.matthewburns.net/projects/climate-commodity-risk/dashboard.html</loc>
+    <lastmod>2026-07-26T11:54:01.710Z</lastmod>
   </url>
   <url>
     <loc>https://www.matthewburns.net/about.html</loc>

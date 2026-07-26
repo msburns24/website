@@ -2,6 +2,15 @@
   {
     "listing": "/index.html",
     "items": [
+      "/projects/climate-commodity-risk/index.html",
+      "/projects/amazon-sentiment-ml-eng/index.html",
+      "/projects/steam-recommender/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/climate-commodity-risk/index.html",
       "/projects/amazon-sentiment-ml-eng/index.html",
       "/projects/steam-recommender/index.html"
     ]
@@ -13,14 +22,6 @@
       "/posts/stochastic-gradient-descent/index.html",
       "/posts/wikidata-overview/index.html",
       "/posts/data-lifecycle-101/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/index.html",
-    "items": [
-      "/projects/climate-commodity-risk/index.html",
-      "/projects/amazon-sentiment-ml-eng/index.html",
-      "/projects/steam-recommender/index.html"
     ]
   }
 ]

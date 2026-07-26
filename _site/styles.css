@@ -11,34 +11,76 @@ body.quarto-dark .navbar {
   background-color: #181825; /* Catppuccin Mocha – mantle */
 }
 
-/* Theme-reactive palette for hand-authored inline SVG diagrams.
-   Inline SVG (unlike an <img src="….svg">) inherits CSS custom properties,
-   so a diagram styled from these vars follows the light/dark toggle with no
-   JS. Shared rather than page-local so the dashboard can reuse it. */
-.ccr-diagram {
-  --ccr-fg: var(--bs-body-color);
-  --ccr-muted: rgba(var(--bs-body-color-rgb), 0.85);
-  --ccr-line: rgba(var(--bs-body-color-rgb), 0.22);
-  --ccr-card: color-mix(in srgb, var(--bs-body-bg) 93%, var(--bs-body-color) 7%);
-  /* Latte accents, darkened from the chart palette: these carry small
-     semibold text on a card, which needs 4.5:1, not the 3:1 a chart mark
-     gets away with. Mocha's pastels already clear it and are unchanged. */
+/* ---------------------------------------------------------------------------
+   Climate-commodity project palette. Declared on <body> so that BOTH consumers
+   can reach it from one definition:
+     - inline SVG diagrams, which inherit custom properties directly (an
+       <img src="….svg"> cannot, which is why the header/thumbnail bake theirs);
+     - Observable Plot in dashboard.qmd, which reads these back through
+       getComputedStyle(document.body) rather than duplicating hex in JS.
+   Two accent sets on purpose. The `--ccr-mark-*` values are the site chart
+   palette and are for graphical marks. The `--ccr-l*` values are the same hues
+   darkened for LIGHT mode only, because small semibold text on a card needs
+   4.5:1 where a mark gets by on 3:1 — measured at 2.39–2.68 for the mark set.
+   Mocha's pastels clear both bars, so the dark values are identical.
+   --------------------------------------------------------------------------- */
+body {
+  /* Concrete values, not `var(--bs-body-color)` aliases, and deliberately so:
+     the dashboard reads these back through getComputedStyle, and custom
+     properties that indirect through another var() do not reliably resolve to
+     a colour when read that way. These ARE the Catppuccin values Bootstrap
+     compiles to — Latte text #4c4f69 on #eff1f5, Mocha text #cdd6f4 on
+     #1e1e2e — so re-derive them if the site theme ever changes. */
+  --ccr-fg: #4c4f69;
+  --ccr-muted: rgba(76, 79, 105, 0.85);
+  --ccr-line: rgba(76, 79, 105, 0.22);
+  --ccr-card: #e4e6eb; /* = color-mix(srgb, #eff1f5 93%, #4c4f69 7%) */
+
+  /* text-safe accents (light mode darkened) */
   --ccr-l1: #7d2ce0;
   --ccr-l2: #0b6f85;
   --ccr-l3: #2f7320;
   --ccr-l4: #a8430b;
+
+  /* chart marks — the site palette, in its documented order */
+  --ccr-mark-1: #8839ef;
+  --ccr-mark-2: #209fb5;
+  --ccr-mark-3: #40a02b;
+  --ccr-mark-4: #fe640b;
+
+  /* series identities, kept consistent with the header and thumbnail SVGs */
+  --ccr-rubber: #209fb5;
+  --ccr-cotton: #fe640b;
+  --ccr-brent: #40a02b;
+}
+
+body.quarto-dark {
+  --ccr-fg: #cdd6f4;
+  --ccr-muted: rgba(205, 214, 244, 0.85);
+  --ccr-line: rgba(205, 214, 244, 0.22);
+  --ccr-card: #2a2b3c; /* = color-mix(srgb, #1e1e2e 93%, #cdd6f4 7%) */
+
+  --ccr-l1: #cba6f7;
+  --ccr-l2: #74c7ec;
+  --ccr-l3: #a6e3a1;
+  --ccr-l4: #fab387;
+
+  --ccr-mark-1: #cba6f7;
+  --ccr-mark-2: #74c7ec;
+  --ccr-mark-3: #a6e3a1;
+  --ccr-mark-4: #fab387;
+
+  --ccr-rubber: #74c7ec;
+  --ccr-cotton: #fab387;
+  --ccr-brent: #a6e3a1;
+}
+
+.ccr-diagram {
   width: 100%;
   height: auto;
   max-width: 46rem;
   margin: 0 auto;
   display: block;
-}
-
-body.quarto-dark .ccr-diagram {
-  --ccr-l1: #cba6f7;
-  --ccr-l2: #74c7ec;
-  --ccr-l3: #a6e3a1;
-  --ccr-l4: #fab387;
 }
 
 .ccr-diagram text {
@@ -65,4 +107,108 @@ body.quarto-dark .ccr-diagram {
 .ccr-diagram .ccr-rule {
   stroke: var(--ccr-line);
   stroke-width: 1;
+}
+
+/* GitHub-style repo card. Originally page-local in
+   projects/amazon-sentiment-ml-eng; hoisted here because Quarto counts
+   raw-HTML blocks toward a page's reading time, and ~100 lines of inline CSS
+   cost the climate write-up about four minutes of phantom reading. */
+.repo-card {
+  background: color-mix(in srgb, var(--bs-body-bg) 92%, var(--bs-body-color) 8%);
+  border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+  border-radius: var(--bs-border-radius-lg);
+  padding: 1.1rem 1.25rem;
+  max-width: 560px;
+}
+
+.repo-card:hover {
+  border-color: rgba(var(--bs-body-color-rgb), 0.4);
+}
+
+.repo-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.repo-icon {
+  color: var(--bs-secondary-color);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.repo-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--bs-link-color);
+  text-decoration: none;
+}
+
+.repo-name:hover {
+  text-decoration: underline;
+}
+
+.repo-desc {
+  font-size: 13px;
+  color: var(--bs-secondary-color);
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.repo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.repo-tags .tag {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(var(--bs-info-rgb), 0.15);
+  color: var(--bs-link-color);
+  font-family: var(--bs-font-monospace);
+}
+
+.repo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.repo-lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--bs-secondary-color);
+}
+
+.repo-lang .lang-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3572a5;
+  flex-shrink: 0;
+}
+
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--bs-secondary-color);
+  text-decoration: none;
+  border: 0.5px solid rgba(var(--bs-body-color-rgb), 0.15);
+  border-radius: var(--bs-border-radius);
+  padding: 5px 10px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.view-btn:hover {
+  background: color-mix(in srgb, var(--bs-body-bg) 85%, var(--bs-body-color) 15%);
+  border-color: rgba(var(--bs-body-color-rgb), 0.4);
+  color: var(--bs-body-color);
 }

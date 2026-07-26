@@ -4,6 +4,9 @@ listing:
   contents:
     - '*.ipynb'
     - '*.qmd'
+    # The dashboard is a second page of the climate project, not a project of
+    # its own — without this it renders as its own card in the grid.
+    - '!climate-commodity-risk/dashboard.qmd'
   fields:
     - image
     - title
