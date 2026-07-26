@@ -34,6 +34,7 @@ body {
   --ccr-fg: #4c4f69;
   --ccr-muted: rgba(76, 79, 105, 0.85);
   --ccr-line: rgba(76, 79, 105, 0.22);
+  --ccr-marker: rgba(166, 169, 191, 1.00);
   --ccr-card: #e4e6eb; /* = color-mix(srgb, #eff1f5 93%, #4c4f69 7%) */
 
   /* text-safe accents (light mode darkened) */
