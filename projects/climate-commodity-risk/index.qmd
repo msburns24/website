@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Same Signal, Opposite Signs: Climate Risk in Cotton and Rubber Prices"
-description: "El Niño pushes rubber up and cotton down. Building an early-warning system for climate-driven commodity price shocks — and finding the places it fails."
+subtitle: "A graduate capstone sponsored by Nike"
+description: "El Niño pushes rubber up and cotton down. Building an early-warning system for climate-driven commodity price shocks. A graduate capstone sponsored by Nike."
 date: 2026-07-26
 image: climate_commodity_thumbnail.svg
 include-before-body:
@@ -16,44 +17,78 @@ execute:
 ---
 
 ::: {.callout-note title="TL;DR"}
-- **Problem:** A footwear manufacturer buys cotton and natural rubber from two
-  dozen countries. Climate shocks move both prices, but nobody could say which
-  shocks, how far ahead, or by how much — so hedging and forward-buying
-  decisions were made on instinct.
+- **Problem:** Nike buys cotton and natural rubber from two dozen countries.
+  Climate shocks move both prices, but nobody could say which shocks, how far
+  ahead, or by how much, so hedging and forward-buying decisions were made on
+  instinct.
 
-- **What I built:** Three stacked layers over a 300-month panel of prices,
-  ERA5 climate reanalysis, ENSO indices and disaster counts — SARIMAX and
-  VAR/Granger for the causal story, gradient-boosted and logistic classifiers
-  for a 3/6/9-month spike alarm, and a Monte Carlo scenario engine for
-  planning ranges.
+- **What I built:** A 3-layer model over a 300-month panel of prices,
+  ERA5 climate reanalysis, ENSO indices and disaster counts:
+  SARIMAX/VAR/Granger for the causal story, gradient-boosted and logistic
+  classifiers for a 3/6/9-month spike alarm, and a Monte Carlo scenario engine
+  for planning ranges.
 
 - **Key result:** The same El Niño shock moves the two commodities in
-  *opposite* directions — rubber **+36.9%** at 12 months, cotton **−10.9%** —
-  so any pooled "climate risk" model is wrong by construction. The alarm is
-  genuinely skillful for rubber (AUC **0.775**, Brier skill **+0.182**) and
-  weak for cotton. The most useful thing I found is a negative result: the
-  relative alarm rule everyone reaches for first goes **silent exactly when
-  the risk is highest**.
+  *opposite* directions: rubber by **+36.9%** over 12 months, cotton **−10.9%**.
+  Any pooled "climate risk" model is wrong by construction. The alarm shows
+  real skill for rubber (AUC **0.775**, Brier skill **+0.182**) but is weak for
+  for cotton. The most useful thing I found is a negative result: the relative
+  alarm rule everyone reaches for first goes **silent exactly when the risk is
+  highest**.
 :::
 
 ::: {.callout-tip title="Try it yourself"}
-The **[interactive dashboard](dashboard.qmd)** runs every model in this post in
-your browser: drag a severity dial through the scenario grid, move the alarm
+The **[interactive dashboard](dashboard.qmd)** runs every model from this post
+in your browser: drag a severity dial through the scenario grid, move the alarm
 threshold and watch the confusion counts recompute, and replay the procurement
-backtest at your own spend.
+backtest at your own spend levels.
 :::
+
+```{=html}
+<div class="repo-card">
+  <div class="repo-top">
+    <i class="bi bi-github repo-icon" aria-hidden="true"></i>
+    <a class="repo-name" href="https://github.com/msburns24/climate-commodity-risk">msburns24 /
+      climate-commodity-risk</a>
+  </div>
+  <p class="repo-desc">Climate-driven price risk for cotton and natural rubber — a medallion ingestion
+    pipeline, SARIMAX and VAR econometrics, walk-forward spike classifiers, and a Monte Carlo scenario
+    engine. Run locally: <code>pip install -e . && make features</code></p>
+  <div class="repo-tags">
+    <span class="tag">python</span>
+    <span class="tag">time-series</span>
+    <span class="tag">econometrics</span>
+    <span class="tag">xgboost</span>
+    <span class="tag">monte-carlo</span>
+  </div>
+  <div class="repo-footer">
+    <div class="repo-lang">
+      <span class="lang-dot"></span>
+      <span>Python</span>
+    </div>
+    <a class="view-btn" href="https://github.com/msburns24/climate-commodity-risk">
+      View on GitHub <i class="bi bi-arrow-right" style="font-size:12px" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
+<br />
+```
 
 ## 1. The question behind the question
 
-The obvious question — *does climate affect commodity prices?* — is not useful.
-Of course it does. A procurement team already believes that. What they can't do
+The obvious question, *"does climate affect commodity prices?"*, is not useful -
+of course it does. A procurement team already believes that. What they can't do
 is act on it, because acting requires three specific numbers that "yes" doesn't
-contain: **which** driver, at **what lag**, and **how big**.
+contain: **which** driver, at **what lag**, and **by how much**.
 
-So the project was scoped to the decisions a sourcing team actually makes. Do I
-forward-buy this quarter? What price goes in next year's budget? How wrong could
-that number be? Those questions have different shapes, and they don't collapse
-into one model. They became three layers:
+The project was scoped to the decisions a sourcing team actually makes:
+
+- Do I forward-buy this quarter to avoid near-term price impacts?
+- What price goes in next year's budget considering this uncertainty?
+- How wrong could that number be?
+
+Those questions have different shapes, and they don't collapse into one model.
+They became 3 layers:
 
 ```{=html}
 <svg class="ccr-diagram" viewBox="0 0 820 452" role="img"
@@ -133,9 +168,9 @@ into one model. They became three layers:
 </svg>
 ```
 
-Three layers over one panel — and the dashed arrow is the part that matters.
+3 layers over one panel, but the dashed arrow is the part that matters.
 Layer 3 is Layer 1's SARIMAX specification refit, so when a scenario shifts a
-driver and the price moves, it moves *because of* Layer 1's coefficient. That is
+driver and the price moves, it moves *because of* Layer 1's coefficient. That's
 arithmetic, not corroboration. Only Layer 2 can vote independently, and section
 7 leans on that distinction.
 
@@ -143,7 +178,7 @@ The panel underneath is 300 months, **2001-01 through 2025-12**, joined monthly
 from four public sources: ERA5 reanalysis for temperature, precipitation and
 drought balance; NOAA's Oceanic Niño Index for ENSO state; EM-DAT for disaster
 counts; and the World Bank Pink Sheet for prices. Climate enters as
-**anomalies** — z-scores against each region's own climatology — so Xinjiang and
+**anomalies** (z-scores against each region's own climatology) so Xinjiang
 Sumatra can sit in the same regression without one drowning the other. Each
 driver carries lags at 1, 2, 3, 4 and 6 months plus 3- and 6-month rolling
 means, because a drought doesn't reach a harvest instantly.
@@ -221,9 +256,9 @@ findings than for the fact that any of this can be re-run:
 </svg>
 ```
 
-That caching rule is worth dwelling on, because it cost me a rebuild. Bronze
+That caching rule is worth highlighting, because it cost me a rebuild. Bronze
 skips the download when the file is already there, which is exactly what you
-want for a reproducible pipeline — and it means a **stale source URL never
+want for a reproducible pipeline, and it means a **stale source URL never
 raises anything.** The Pink Sheet download was pinned to a document ID the World
 Bank froze in 2021; it still resolves, still parses, and still returns a clean
 monthly series that simply stops in **2024-12**. Nothing in the pipeline can
@@ -235,7 +270,7 @@ scenario signs, and every qualitative finding, held.
 
 One caveat belongs up front rather than in a limitations section, because it
 shapes everything below: the panels are region-matched to where each material is
-actually grown, and **cotton's climate coverage is Xinjiang only — roughly 20%
+actually grown, and **cotton's climate coverage is Xinjiang only, roughly 20%
 of world production.** Rubber's covers mainland Southeast Asia and Sumatra,
 which is most of the crop. Cotton's models are working with one-fifth of the
 picture, blind to the US, Brazil, India and West Africa.
@@ -249,60 +284,61 @@ Relative to a baseline scenario, a strong El Niño raises rubber's simulated
 a one-off, either. Every scenario splits the same way:
 
 | Scenario | Cotton, +12m vs baseline | Rubber, +12m vs baseline |
-| --- | ---: | ---: |
-| Drought | **−22.8%** | **+11.3%** |
-| El Niño | **−10.9%** | **+36.9%** |
-| Flood | **+20.5%** | **−19.4%** |
+| :------- | -----------------------: | -----------------------: |
+| Drought  |               **−22.8%** |               **+11.3%** |
+| El Niño  |               **−10.9%** |               **+36.9%** |
+| Flood    |               **+20.5%** |               **−19.4%** |
 
 ![Scenario shift at 12 months, both commodities](figures/modeling_3_scenario_shift.png)
 
 Six cells, six sign disagreements. A single "climate risk" model pooled across
 both materials would average those effects toward zero and report that climate
-doesn't matter much — a confident, well-validated, completely wrong answer. So
-each commodity gets its own driver set, its own lag structure, and its own
-horizons, and nothing is shared but the pipeline.
+doesn't matter much, which is a confident, well-validated, but completely wrong
+answer. To counteract this, each commodity gets its own driver set, its own lag
+structure, and its own horizons. The only shared component is the pipeline.
 
 There's a second asymmetry worth stating, because it changes the modelling
-target. A manufacturer that *buys* these materials is structurally short both:
-only *upward* moves hurt. A symmetric price forecast spends half its capacity on
-the half of the distribution nobody is exposed to. That's why Layer 2 predicts
-spikes rather than prices.
+target. A manufacturer that *buys* these materials is **structurally short**
+both: only *upward* moves hurt. A symmetric price forecast spends half its
+capacity on the half of the distribution nobody is exposed to. That's why Layer
+2 predicts **spikes** rather than prices.
 
 ## 3. Climate leads price by about two quarters
 
 Before modelling returns, the series have to justify it. Augmented Dickey-Fuller
 puts cotton's price level at **−3.36** (`p=0.012`) and rubber's at **−2.82**
-(`p=0.056`) — rubber fails to reject a unit root at 5%, cotton barely clears
-it — while log returns reject overwhelmingly (**−5.35** and **−12.84**). So
+(`p=0.056`). Rubber fails to reject a unit root at 5%, cotton barely clears
+it, while the log returns reject overwhelmingly (**−5.35** and **−12.84**). So
 everything downstream models returns: SARIMAX(0,0,1) for cotton, SARIMAX(1,0,0)
 for rubber, each with a curated exogenous set.
 
 ![SARIMAX driver coefficients](figures/modeling_1_sarimax_coefficients.png)
 
 **For rubber, the causal test is clean.** ONI leads returns at **lag 6**
-(`p=0.006`) while the reverse test sits at `p=0.45` — rubber returns show no
-sign of causing El Niño, which is the sanity check you want. The SARIMAX
+(`p=0.006`) while the reverse test sits at `p=0.45`. Rubber returns show no
+sign of causing El Niño, which is the sanity check you want to see. The SARIMAX
 coefficient agrees: `oni_lag6` is **+0.0143** (`p=0.094`). Two quarters is a lag
 a procurement team can actually work inside.
 
 **For cotton it looks similar and isn't.** Flood counts lead returns at lag 3
-(`p=0.033`), ONI at lag 5 (`p=0.050`) — and then the reverse placebo comes back
+(`p=0.033`), ONI at lag 5 (`p=0.050`), and then the reverse placebo comes back
 **significant too** (`p=0.030`). Cotton returns cannot cause floods. When a test
 fires in both directions, it's describing a shared seasonal or macro confound,
 not causation. So the cotton Granger evidence is reported as **suggestive, not
 directional**, and I don't lean on it later.
 
 The most interesting coefficient is one I expected to have the opposite sign.
-`drought_3m_lag6` is **+0.0126** (`p=0.019`) for cotton: *wetter* anomalies
-raise prices six months later. Most people — I did — expect drought to spike
-cotton. In Xinjiang's heavily irrigated system the mechanism appears to run the
-other way, with excess rain at the wrong point in the cycle disrupting harvest
-and quality. The temperature term keeps its negative sign (`t2m_anom_lag6`
-**−0.0028**) but at `p=0.325` it carries no weight, and I don't give it any.
+`drought_3m_lag6` (higher = more rainfall) is **+0.0126** (`p=0.019`) for
+cotton: *wetter* anomalies raise prices six months later. Most people (like me)
+expect a drought to spike cotton prices. In Xinjiang's heavily irrigated
+system, the mechanism appears to run the other way: excess rain at the wrong
+point in the cycle disrupting harvest and quality. The temperature term keeps
+its negative sign (`t2m_anom_lag6` **−0.0028**), but at `p=0.325` it carries no
+weight, and I don't give it any.
 
 **Rubber is not purely a climate story, and it would be dishonest to imply
 otherwise.** `brent_ret_lag1` at **+0.1158** (`p=0.022`) is the largest
-coefficient in either model — an order of magnitude above the ENSO term. Oil
+coefficient in either model: an order of magnitude above the ENSO term. Oil
 raises the cost of synthetic rubber and drags natural rubber up with it. A
 meaningful share of what looks like climate predictability is an
 oil-substitution channel.
@@ -319,7 +355,7 @@ oil-substitution channel.
 
 **The impulse responses are an honest null.** Across VAR(6) for rubber and
 VAR(8) for cotton, no orthogonalised IRF is distinguishable from zero at any
-horizon — every confidence band contains it. They're shown because they
+horizon -- every confidence band contains it. They're shown because they
 corroborate direction, and they are explicitly *not* used to justify any
 forecast horizon. Those rest on the Granger lags and the SARIMAX coefficients.
 
@@ -327,43 +363,43 @@ forecast horizon. Those rest on the Granger lags and the SARIMAX coefficients.
 
 Layer 2 asks a different question of the same panel: **what is the probability
 the price rises more than 10% at any point in the next `h` months?** The
-label is a maximum over the window, not the end-to-end change, because a spike that
-happens and reverses still hits a buyer who had to purchase during it.
+label is a maximum over the window, not the end-to-end change, because a spike
+that happens and reverses still hits a buyer who had to purchase during it.
 
 Models are scored the way a weather warning is: not on accuracy, but on whether
 they beat the base rate procurement already knows. Evaluation is walk-forward on
 an expanding window, out-of-sample from 2016, against an expanding climatology
 baseline.
 
-| Commodity | h | Model | AUC | Brier skill | Base rate |
-| --- | :---: | --- | ---: | ---: | ---: |
-| **Rubber** | **9** | Logistic | **0.775** | **+0.182** | 56% |
-| **Rubber** | **6** | Logistic | **0.740** | **+0.111** | 45% |
-| Rubber | 3 | Logistic | 0.642 | −0.000 | 28% |
-| **Cotton** | **3** | XGBoost | **0.622** | **+0.030** | 19% |
-| Cotton | 9 | XGBoost | 0.573 | −0.001 | 41% |
-| Cotton | 6 | XGBoost | 0.562 | +0.017 | 37% |
+| Commodity  |   h   | Model    |       AUC | Brier skill | Base rate |
+| :--------- | :---: | :------- | --------: | ----------: | --------: |
+| **Rubber** | **9** | Logistic | **0.775** |  **+0.182** |       56% |
+| **Rubber** | **6** | Logistic | **0.740** |  **+0.111** |       45% |
+| Rubber     |   3   | Logistic |     0.642 |      −0.000 |       28% |
+| **Cotton** | **3** | XGBoost  | **0.622** |  **+0.030** |       19% |
+| Cotton     |   9   | XGBoost  |     0.573 |      −0.001 |       41% |
+| Cotton     |   6   | XGBoost  |     0.562 |      +0.017 |       37% |
 
-Climatology sits at AUC 0.47–0.55 throughout, which is what a null should look
+Climatology sits at AUC 0.47-0.55 throughout, which is what a null should look
 like. Cotton beyond three months is at or below it, and its logistic Brier skill
 is outright **negative** at h=6 (−0.039) and h=9 (−0.100). **I don't recommend
-acting on the cotton alarm at 6 or 9 months** — a negative Brier skill score
+acting on the cotton alarm at 6 or 9 months** -- a negative Brier skill score
 means you'd have been better off quoting the base rate.
 
 ![Alarm timeline against realised spike windows](figures/modeling_2_alarm_timeline.png)
 
 Shaded bands mark months where a +10% move did occur inside the horizon. A
-useful alarm rises inside the shading and stays low outside it — visibly true
+useful alarm rises inside the shading and stays low outside it: visibly true
 for rubber, visibly weak for cotton.
 
 **Read every AUC against its own base rate.** They climb with the horizon:
-cotton 19% → 41%, rubber 28% → **56%**. Rubber's h=9 skill is real, but a +10%
-move within nine months is close to rubber's normal state, so the *value* of
-knowing is lower than 0.775 suggests. That gap between skill and usefulness
-turns out to be the whole story of the next section.
+cotton 19% up to 41%, rubber 28% up to **56%**. Rubber's h=9 skill is real, but
+a +10% move within nine months is close to rubber's normal state, so the
+*value* of knowing is lower than 0.775 suggests. That gap between skill and
+usefulness turns out to be the whole story of the next section.
 
 The drivers explain the split. For rubber, SHAP puts **three ENSO features in
-the top four** — `oni`, `oni_lag6`, `oni_lag3` — with high ONI pushing the alarm
+the top four** (`oni`, `oni_lag6`, `oni_lag3`) with high ONI pushing the alarm
 up, the same direction as SARIMAX's `+0.0143`, recovered by a different model
 class on a different target. For cotton, the top driver is `mom_6m`, six-month
 price momentum, at mean |SHAP| **0.194**, ahead of `oni` at **0.139**. Price
@@ -380,11 +416,11 @@ a finding, not a bug. With only Xinjiang in view the climate signal is thin, and
 the model falls back on what the price series says about itself.
 
 Probabilities are conservative and rarely reach 50%, so the alarm fires at
-**1.25× the historical base rate** rather than a fixed cutoff — "spike risk is
-elevated 25% above normal." At that operating point, cotton h=3 crosses at
-τ=0.24 and fires **54 alarms against 22 real events**, catching 13 with 41 false
-alarms. Rubber h=6 crosses at τ=0.56: **55 alarms, 51 events, 34 hits, 21
-false** — a 67% hit rate.
+**1.25× the historical base rate** rather than a fixed cutoff (e.g., "spike
+risk is elevated 25% above normal." At that operating point, cotton h=3 crosses
+at tau=0.24 and fires **54 alarms against 22 real events**, catching 13 with 41
+false alarms. Rubber h=6 crosses at tau=0.56: **55 alarms, 51 events, 34 hits,
+21 false**, a 67% hit rate.
 
 ![Calibration curves](figures/modeling_2_calibration.png)
 
@@ -398,31 +434,31 @@ higher multiple.
 Two results that started as footnotes turned out to be the same result, and it's
 the most useful thing in the project.
 
-Rubber's h=9 alarm has the study's best AUC — **0.775** — against a **56%** base
+Rubber's h=9 alarm has the study's best AUC (**0.775**) against a **56%** base
 rate. Multiply that base rate by 1.25 and the firing threshold lands at **70%**.
-A well-calibrated model asked about a coin-flip event essentially never emits
-70%. The skill is real and the alarm is nearly mute.
+A well-calibrated model asked about a coin-flip event essentially **never emits
+a 70% probability**. The skill is real and the alarm is nearly mute.
 
 Then the historical stress test made the same point, harder. I refit everything
-through 2009-12 only and replayed the 2010-11 commodity spike — the most extreme
-cotton move in a century — using the *actual* climate drivers of those months.
+through 2009-12 only and replayed the 2010-11 commodity spike, the most extreme
+cotton move in a century, using the *actual* climate drivers of those months.
 
-![2010–11 alarm replay](figures/modeling_3_alarm_replay.png)
+![2010-11 alarm replay](figures/modeling_3_alarm_replay.png)
 
 The alarm fired **0 times in 24 months, for both commodities.** But for opposite
 reasons, and the difference matters:
 
 - **Rubber's replay ranked the episode well.** Episode AUC **0.786**, peaking at
   **0.820** in November 2010. It never fired because the pre-2010 base rate was
-  69%, putting the 1.25× bar at **0.858** — and the peak missed it by **0.038**.
+  69%, putting the 1.25x bar at **0.858**, and the peak missed it by **0.038**.
   The signal was there. The rule suppressed it.
 - **Cotton's replay ranked it weakly.** Episode AUC **0.643**, peak 0.585
   against a 0.600 bar. Closer in absolute terms, but on a near-uninformative
-  ranking — firing would have been luck, not foresight.
+  ranking: firing would have been luck, not foresight.
 
 Both are one mechanism: **multiplying a high base rate by a constant produces a
-threshold the model cannot reach.** The relative rule is sound for rare events —
-cotton at h=3, base rate 19%, threshold 0.24, perfectly reachable — and it
+threshold the model cannot reach.** The relative rule is sound for rare events
+(cotton at h=3, base rate 19%, threshold 0.24, perfectly reachable) and it
 degrades precisely as the event becomes common, which is precisely when a buyer
 most needs the warning.
 
@@ -470,7 +506,7 @@ evidence, but read it as such: the model did not see those months.
 **92%** of months. Cotton managed **63%** — the peak of that spike escaped even
 the widest band.
 
-![2010–11 stress test](figures/modeling_3_stress_test_2010.png)
+![2010-11 stress test](figures/modeling_3_stress_test_2010.png)
 
 Bands built from bootstrapped historical residuals cannot anticipate a move
 without precedent in the sample. Tail percentiles are planning aids, not
@@ -478,19 +514,19 @@ guarantees, and 2010-11 is the reminder.
 
 Converting alarms to money: forward-buying on the XGBoost alarm at the 1.25×
 rule would have saved **2.1%** of rubber procurement cost at h=6 and **1.9%** at
-h=3, against **5.1%** under perfect foresight at h=6. Cotton is negligible —
-**0.5%** at h=3, **0.4%** at h=6 — consistent with its weaker skill. These are
+h=3, against **5.1%** under perfect foresight at h=6. Cotton is negligible
+(**0.5%** at h=3, **0.4%** at h=6), consistent with its weaker skill. These are
 directional figures, not a business case: they ignore inventory carrying cost,
 liquidity and counterparty limits.
 
 ## 7. Where this breaks
 
-The layers were built to be redundant — different targets, different methods,
-different windows — so that agreement would mean something. But **they are not
-equally independent, and it would be easy to over-claim.** Layer 3's engine *is*
-the Layer 1 SARIMAX spec, refit. When a scenario shifts a driver and the price
-moves, it moves *because of* Layer 1's coefficient. That's arithmetic, not
-confirmation. Only Layer 2 is genuinely independent: different model class,
+The layers were built to be redundant: different targets, different methods,
+different windows, so that an agreement would mean something. But **they are
+not equally independent, and it would be easy to over-claim.** Layer 3's engine
+*is* the Layer 1 SARIMAX spec, refit. When a scenario shifts a driver and the
+price moves, it moves *because of* Layer 1's coefficient. That's arithmetic,
+not confirmation. Only Layer 2 is actually independent: different model class,
 different target, sharing nothing but the input panel.
 
 Applying that test honestly splits the two headline findings:
@@ -501,7 +537,7 @@ Applying that test honestly splits the two headline findings:
   the direction, and roughly the lag. This is the strongest result in the study.
 - **"Wet is bullish for cotton" is corroborated, but weakly.** The alarm model
   does now lean on `drought_3m_lag6` — it ranks 5th among cotton's drivers at
-  mean |SHAP| **0.057**. That is genuine cross-method agreement rather than one
+  mean |SHAP| **0.057**. That is actual cross-method agreement rather than one
   coefficient carrying the claim alone. Two things keep it short of settled: a
   feature ranking inside a *weak* model is weak corroboration, and cotton's
   Granger evidence is non-directional. The mechanism is plausible and now has
@@ -553,7 +589,7 @@ synthetics are too sparse monthly to model at all.
 The result I'd keep if I could keep only one isn't the +36.9%. It's that a model
 can be right and still be silent.
 
-Rubber's 2010-11 replay had the signal — it ranked the episode at AUC 0.786 and
+Rubber's 2010-11 replay had the signal: it ranked the episode at AUC 0.786 and
 peaked within 0.038 of firing. Everything downstream of the model worked. The
 thing that failed was a single line of business logic that multiplies a base
 rate by 1.25, chosen because it was intuitive and never stress-tested at the
@@ -620,14 +656,14 @@ the same run:
 | [`modeling_2_early_warning.ipynb`](https://github.com/msburns24/climate-commodity-risk/blob/main/notebooks/modeling_2_early_warning.ipynb) | Skill table, alarm timeline, SHAP, calibration, backtest |
 | [`modeling_3_scenarios.ipynb`](https://github.com/msburns24/climate-commodity-risk/blob/main/notebooks/modeling_3_scenarios.ipynb) | Fan charts, scenario shifts, stress test, alarm replay |
 
-Every tunable — driver sets, lags, horizons, the +10% threshold, the 1.25×
-alarm multiple, hyperparameters — lives in `src/config.py`, so none of the
+Every tunable (driver sets, lags, horizons, the +10% threshold, the 1.25×
+alarm multiple, hyperparameters) lives in `src/config.py`, so none of the
 numbers above are hardcoded in a notebook.
 
-**No raw data ships with the repo.** Each source carries its own licence, and
+**No raw data ships with the repo.** Each source carries its own license, and
 two need care: EM-DAT permits publishing aggregate statistics but not
 redistribution, and the IMF commodity price series distributed through FRED
-can't be republished at all — which is why the prices here come from the World
+can't be republished at all, which is why the prices here come from the World
 Bank Pink Sheet instead.
 [`DATA.md`](https://github.com/msburns24/climate-commodity-risk/blob/main/DATA.md)
 carries the full table, the attribution strings, and instructions for
@@ -637,8 +673,7 @@ regenerating everything yourself.
 The **[interactive dashboard](dashboard.qmd)** runs every model in this post in
 your browser: drag a severity dial through the scenario grid, move the alarm
 threshold and watch the confusion counts recompute, and replay the procurement
-backtest at your own spend. No server, no login — the whole payload is 383 KB
-of static CSV.
+backtest at your own spend.
 :::
 
 ## Data sources
@@ -655,8 +690,12 @@ of static CSV.
   CPI-U. Public domain.
 
 ::: {.callout-note appearance="simple"}
-This began as a graduate capstone project at UNC's School of Data Science and
-Society, with teammates who built the Streamlit application and the
-country-level data exploration. It is an independent academic project, not affiliated with or
-endorsed by Nike.
+This began as a graduate capstone project in UNC's School of Data & Information
+Science, **sponsored by Nike**: they set the brief, served as project
+stakeholder, and we worked with them directly throughout. Teammates built the
+Streamlit application and the country-level data exploration.
+
+The write-up and dashboard here are my own, and Nike has not reviewed or
+endorsed this post specifically. No proprietary Nike data appears anywhere in
+the project. Every input is one of the public sources listed above.
 :::
